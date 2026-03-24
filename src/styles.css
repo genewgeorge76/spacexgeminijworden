@@ -9,3 +9,60 @@ body {
 code {
   font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.hero-video-container {
+  height: 80vh; /* Takes up 80% of the screen */
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #000; /* Deep black backdrop */
+}
+.back-video {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  opacity: 0.6; /* Darkens video to make text pop */
+  object-fit: cover;
+}
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  z-index: 10;
+}
+.btn-911 {
+  background: #ff9900; /* Construction Orange */
+  padding: 15px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #000;
+  border-radius: 5px;
+  margin-right: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.btn-911:hover {
+  background: #e68a00;
+  transform: scale(1.05);
+}
+.btn-outline {
+  background: transparent;
+  border: 2px solid #ff9900;
+  padding: 13px 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ff9900;
+  border-radius: 5px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.btn-outline:hover {
+  background: #ff9900;
+  color: #000;
+}
+
