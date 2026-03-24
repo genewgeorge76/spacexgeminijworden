@@ -8,8 +8,8 @@ function LandingPage() {
   return (
     <div>
       <header style={{ background: '#111', color: '#fff', padding: '2rem', textAlign: 'center', borderBottom: '5px solid #ffcc00' }}>
-        <h1 style={{ margin: 0 }}>J. WORDEN & SONS</h1>
-        <p style={{ margin: 0, marginTop: '10px' }}>4th-Generation Paving | 2015 Transition Leadership</p>
+        <h1 style={{ margin: 0 }}>J. WORDEN & SONS COMMAND</h1>
+        <p style={{ margin: 0, marginTop: '10px' }}>4th Generation Infrastructure & Real-Time Lead Dispatch</p>
       </header>
       <div className="award-banner" style={{ background: '#ffcc00', padding: '10px', textAlign: 'center', fontWeight: 'bold' }}>
         🏆 4-TIME BEST OF HOUZZ WINNER | TOP CONTRACTOR AWARD

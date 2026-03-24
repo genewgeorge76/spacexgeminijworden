@@ -14,11 +14,25 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: 'J. Worden & Sons Asphalt Paving | 4th-Gen Virginia Powerhouse',
+        title: 'J. Worden & Sons Command | 4th-Gen Infrastructure & Paving',
       },
       {
         name: 'description',
-        content: 'Award-winning 4th-generation paving legacy. Independent from all other Worden entities. Vetted by KFC and national subdivisions.',
+        content: '4th Generation Infrastructure & Real-Time Lead Dispatch. Award-winning paving legacy vetted by KFC and national subdivisions.',
+      },
+      {
+        name: 'theme-color',
+        content: '#ff9900',
+      }
+    ],
+    links: [
+      {
+        rel: 'manifest',
+        href: '/manifest.json'
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/logo-192.png'
       }
     ],
   }),
