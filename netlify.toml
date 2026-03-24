@@ -1,0 +1,17 @@
+[build]
+  command = "vite build"
+  publish = "dist/client"
+[dev]
+  command = "npm run dev"
+  targetPort = 3000
+  port = 8888
+
+[[redirects]]
+  from = "/commercial"
+  to = "/commercial.html"
+  status = 200
+
+[[redirects]]
+  from = "/masonry"
+  to = "/masonry.html"
+  status = 200

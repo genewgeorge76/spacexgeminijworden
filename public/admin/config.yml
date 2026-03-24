@@ -1,0 +1,12 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: "public/images"
+collections:
+  - name: "projects"
+    label: "Job Gallery (KFC, Maidstone, etc.)"
+    folder: "content/projects"
+    create: true
+    fields:
+      - {label: "Project Name", name: "title", widget: "string"}
+      - {label: "Photo", name: "image", widget: "image"}

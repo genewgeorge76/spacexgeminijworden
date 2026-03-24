@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Commercial asphalt paving services by J. Worden &amp; Sons — industrial sealcoating, milling &amp; overlay, ADA compliance, full-depth reclamation. Trusted by KFC, Arby's &amp; Taco Bell across Virginia." />
+  <title>Commercial Paving Services | J. Worden &amp; Sons Asphalt Paving</title>
+  <link rel="canonical" href="https://www.jworden-sons-paving.com/commercial" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Commercial Asphalt Paving",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "J. Worden & Sons Asphalt Paving",
+      "url": "https://www.jworden-sons-paving.com/"
+    },
+    "description": "Full-spectrum commercial asphalt paving including parking lots, drive-throughs, industrial sealcoating, milling & overlay, ADA-compliant striping, and full-depth reclamation across Virginia.",
+    "areaServed": {
+      "@type": "State",
+      "name": "Virginia"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:   #0a0a0a;
+      --asphalt: #1a1a2e;
+      --gold:    #d4a017;
+      --gold-lt: #f0c040;
+      --white:   #f5f5f5;
+      --gray:    #6b7280;
+      --radius:  8px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--black); color: var(--white); line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Nav (shared) ─────────────────────────────────────────── */
+    header {
+      position: sticky; top: 0; z-index: 1000;
+      background: rgba(10,10,10,0.97); border-bottom: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .logo { font-size: 1.15rem; font-weight: 700; color: var(--gold); letter-spacing: 0.03em; white-space: nowrap; }
+    nav ul { display: flex; gap: 0.25rem; list-style: none; }
+    nav a { display: block; padding: 0.45rem 0.9rem; border-radius: var(--radius); font-size: 0.92rem; font-weight: 600; letter-spacing: 0.02em; transition: background 0.2s, color 0.2s; }
+    nav a:hover, nav a.active { background: var(--gold); color: var(--black); }
+    .nav-cta { background: var(--gold); color: var(--black) !important; padding: 0.45rem 1.1rem !important; }
+    .nav-cta:hover { background: var(--gold-lt) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 26px; height: 3px; background: var(--gold); border-radius: 2px; transition: 0.3s; }
+    .nav-open .hamburger span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .nav-open .hamburger span:nth-child(2) { opacity: 0; }
+    .nav-open .hamburger span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    /* ── Page Hero ────────────────────────────────────────────── */
+    .page-hero {
+      background: linear-gradient(160deg, rgba(10,10,10,0.9) 0%, rgba(26,26,46,0.85) 100%),
+        repeating-linear-gradient(135deg, rgba(212,160,23,0.04) 0px, rgba(212,160,23,0.04) 2px, transparent 2px, transparent 40px);
+      padding: 5rem 1.5rem 3rem;
+      text-align: center;
+    }
+    .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; margin-bottom: 1rem; }
+    h1 span { color: var(--gold); }
+    .page-hero p { color: #aaa; font-size: 1.05rem; max-width: 620px; margin: 0 auto; }
+
+    /* ── Layout ───────────────────────────────────────────────── */
+    section { padding: 4rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; margin-bottom: 0.75rem; }
+    h2 span { color: var(--gold); }
+    .section-intro { color: #aaa; margin-bottom: 2.5rem; max-width: 640px; }
+
+    /* ── Services Grid ───────────────────────────────────────── */
+    .services-section { background: #111; }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .service-card {
+      background: var(--asphalt); border: 1px solid #2a2a3e;
+      border-radius: var(--radius); padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .service-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .service-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--gold); }
+    .service-card p { color: #bbb; font-size: 0.92rem; line-height: 1.65; }
+
+    /* ── Clients Strip ───────────────────────────────────────── */
+    .clients-section { background: var(--gold); color: var(--black); text-align: center; }
+    .clients-section .section-tag { color: var(--black); opacity: 0.7; }
+    .clients-section h2 { color: var(--black); }
+    .clients-section .section-intro { color: rgba(10,10,10,0.7); margin-left: auto; margin-right: auto; }
+    .client-logos { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+    .client-badge {
+      background: rgba(0,0,0,0.12); border-radius: var(--radius);
+      padding: 1rem 2.5rem; font-size: 1.15rem; font-weight: 800;
+    }
+
+    /* ── Process Section ─────────────────────────────────────── */
+    .process-section { background: var(--asphalt); }
+    .process-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .process-step {
+      background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius); padding: 1.75rem; text-align: center;
+    }
+    .step-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--gold); color: var(--black);
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 1rem;
+    }
+    .process-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .process-step p { color: #aaa; font-size: 0.88rem; }
+
+    /* ── CTA ──────────────────────────────────────────────────── */
+    .cta-section { background: #111; text-align: center; }
+    .cta-section p { color: #aaa; margin-bottom: 2rem; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.85rem 2rem; border-radius: var(--radius); font-size: 1rem; font-weight: 700; cursor: pointer; border: 2px solid transparent; transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.1s; }
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--gold); color: var(--black); border-color: var(--gold); }
+    .btn-primary:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
+    .btn-outline { background: transparent; color: var(--white); border-color: var(--white); }
+    .btn-outline:hover { background: var(--white); color: var(--black); }
+    .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+
+    /* ── Footer ───────────────────────────────────────────────── */
+    footer { background: var(--black); border-top: 1px solid #222; padding: 2.5rem 1.5rem; text-align: center; color: var(--gray); font-size: 0.85rem; }
+    footer a { color: var(--gold); }
+    footer a:hover { color: var(--gold-lt); }
+    .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 700px) {
+      header { padding: 0 1rem; }
+      .hamburger { display: flex; }
+      nav { display: none; position: absolute; top: 64px; left: 0; right: 0; background: rgba(10,10,10,0.98); padding: 1rem; border-bottom: 2px solid var(--gold); }
+      .nav-open nav { display: block; }
+      nav ul { flex-direction: column; gap: 0.25rem; }
+      nav a { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────────────────── -->
+<header id="site-header">
+  <div class="logo">⬛ J. Worden &amp; Sons</div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="main-nav" aria-label="Main navigation">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="commercial.html" class="active">Commercial</a></li>
+      <li><a href="masonry.html">Masonry</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html" class="nav-cta">Get an Estimate</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ── PAGE HERO ──────────────────────────────────────────────── -->
+<div class="page-hero">
+  <span class="section-tag">Commercial &amp; Industrial Paving</span>
+  <h1>Commercial <span>Paving Services</span></h1>
+  <p>
+    Trusted by KFC, Arby's, and Taco Bell across multiple states. Full-depth commercial asphalt construction with our 6-inch compacted stone structural standard — built to handle the heaviest traffic loads.
+  </p>
+</div>
+
+<!-- ── SERVICES ───────────────────────────────────────────────── -->
+<section class="services-section" id="services">
+  <div class="container">
+    <span class="section-tag">What We Offer</span>
+    <h2>Full-Spectrum <span>Commercial Services</span></h2>
+    <p class="section-intro">
+      From new parking lot construction to maintenance programs that extend pavement life by decades — every project meets our 4th-generation structural standard.
+    </p>
+
+    <div class="services-grid">
+      <article class="service-card">
+        <div class="service-icon">🏗️</div>
+        <h3>Industrial Sealcoating</h3>
+        <p>Heavy-duty coal-tar and asphalt-emulsion sealcoating formulated for high-traffic commercial surfaces. Blocks UV damage, fuel spills, and freeze-thaw cycles to extend pavement lifespan by 5–8 years.</p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Milling &amp; Overlay</h3>
+        <p>Precision cold-milling removes deteriorated surface layers, followed by a hot-mix asphalt overlay that restores structural integrity and ride quality — at a fraction of full replacement cost.</p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">♿</div>
+        <h3>ADA Compliance</h3>
+        <p>Complete ADA-compliant striping, ramp transitions, and accessible parking configurations. We ensure your property meets all federal and state accessibility requirements.</p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">⛏️</div>
+        <h3>Full-Depth Reclamation</h3>
+        <p>Pulverize existing asphalt and base materials in place, then re-compact and overlay — the most cost-effective and environmentally responsible method for severely deteriorated pavements.</p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🅿️</div>
+        <h3>Parking Lot Construction</h3>
+        <p>New parking lot construction with engineered drainage, proper sub-base grading, and our standard 6-inch compacted stone foundation. Designed for decades of heavy commercial use.</p>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🛣️</div>
+        <h3>Drive-Through &amp; Access Roads</h3>
+        <p>Specialized paving for drive-through lanes, loading docks, and access roads that handle constant vehicle traffic and heavy delivery trucks without premature wear.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLIENTS ────────────────────────────────────────────────── -->
+<section class="clients-section">
+  <div class="container">
+    <span class="section-tag">Trusted Partners</span>
+    <h2>Vetted by National Brands</h2>
+    <p class="section-intro">
+      When national restaurant chains need consistent, standards-compliant paving across multiple states, they turn to J. Worden &amp; Sons. Our multi-state commercial contracts speak for themselves.
+    </p>
+    <div class="client-logos">
+      <div class="client-badge">KFC</div>
+      <div class="client-badge">Arby's</div>
+      <div class="client-badge">Taco Bell</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ────────────────────────────────────────────────── -->
+<section class="process-section">
+  <div class="container">
+    <span class="section-tag">Our Process</span>
+    <h2>How We <span>Deliver Results</span></h2>
+    <p class="section-intro">
+      Every commercial project follows a proven 5-step process developed over four generations of paving excellence.
+    </p>
+
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="step-number">1</div>
+        <h3>Site Assessment</h3>
+        <p>Comprehensive evaluation of existing conditions, drainage patterns, traffic loads, and project scope.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">2</div>
+        <h3>Engineering &amp; Design</h3>
+        <p>Detailed paving plans with proper grades, drainage solutions, and material specifications tailored to your site.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">3</div>
+        <h3>Base Preparation</h3>
+        <p>Our signature 6-inch compacted stone base — the same standard applied to municipal roadways and high-traffic sites.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">4</div>
+        <h3>Paving &amp; Finishing</h3>
+        <p>Hot-mix asphalt installation with precision grading, compaction, and seamless transitions. ADA striping included.</p>
+      </div>
+      <div class="process-step">
+        <div class="step-number">5</div>
+        <h3>Quality Inspection</h3>
+        <p>Final walkthrough and compaction testing to verify every inch meets our structural and visual standards.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ─────────────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="container">
+    <span class="section-tag">Get Started</span>
+    <h2>Ready for a <span>Commercial Estimate?</span></h2>
+    <p>
+      Whether you're building a new parking lot or resurfacing an existing one, our team delivers on time and on budget. Contact us for a no-obligation commercial estimate.
+    </p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn btn-primary">Request a Free Estimate</a>
+      <a href="portfolio.html" class="btn btn-outline">View Our Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="commercial.html">Commercial</a>
+    <a href="masonry.html">Masonry</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contact.html">Contact / Estimate</a>
+  </div>
+  <p>
+    <strong style="color:var(--gold)">J. Worden &amp; Sons Asphalt Paving</strong> &mdash;
+    Richmond &amp; Chester, VA &mdash;
+    <a href="tel:8044461296">804-446-1296</a>
+  </p>
+  <p style="margin-top:0.5rem">&copy; <span id="yr"></span> J. Worden &amp; Sons. All rights reserved. Licensed &amp; Insured.</p>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Hamburger
+  const header = document.getElementById('site-header');
+  const hamburger = document.getElementById('hamburger');
+  hamburger.addEventListener('click', () => {
+    const open = header.classList.toggle('nav-open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  document.querySelectorAll('#main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      header.classList.remove('nav-open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+</body>
+</html>
