@@ -7,27 +7,27 @@ export const Route = createRootRoute({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { title: 'J. Worden & Sons Command | 4th-Gen Infrastructure & Paving' },
-      { name: 'description', content: 'J. Worden & Sons Command (Worden 911) — 4th Generation Infrastructure & Real-Time Lead Dispatch. Virginia\'s top paving contractor serving 41 cities since 1984. 4-time Best of Houzz winner.' },
+      { name: 'description', content: 'J. Worden & Sons Asphalt Paving — 4th Generation Infrastructure. Virginia\'s top paving contractor serving 41 cities since 1984. Houzz Service Award winner 2024–2026. Commercial clients: KFC, Arby\'s, Taco Bell, Winn-Dixie.' },
       { name: 'keywords', content: 'asphalt paving Virginia, Worden 911, commercial asphalt contractor, J Worden Sons Command, infrastructure, paving company Chester VA, asphalt parking lot, driveway paving, commercial paving KFC Arbys Taco Bell' },
       { name: 'author', content: 'J. Worden & Sons Asphalt Paving' },
       { name: 'theme-color', content: '#ff9900' },
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://www.jworden-sons-paving.com/' },
       { property: 'og:title', content: 'J. Worden & Sons Asphalt Paving | 4th-Generation Legacy Since 1984' },
-      { property: 'og:description', content: 'Family-owned asphalt paving since 1984. 4-time Best of Houzz winner. Commercial contracts with KFC, Arby\'s & Taco Bell across multiple states. Serving 41 Virginia cities with a 6-inch compacted stone structural standard.' },
+      { property: 'og:description', content: 'Family-owned asphalt paving since 1984. Houzz Service Award winner 2024–2026. Commercial contracts with KFC (The Big Chicken), Arby\'s, Taco Bell & Winn-Dixie across multiple states. Serving 41 Virginia cities with a 6-inch compacted stone structural standard.' },
       { property: 'og:image', content: 'https://www.jworden-sons-paving.com/og-image.jpg' },
       { property: 'og:site_name', content: 'J. Worden & Sons Asphalt Paving' },
       { property: 'og:locale', content: 'en_US' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'twitter:title', content: 'J. Worden & Sons Asphalt Paving | Virginia\'s 4th-Generation Paving Legacy' },
-      { name: 'twitter:description', content: 'Family-owned since 1984. Multi-state commercial paving for KFC, Arby\'s & Taco Bell. 4-time Best of Houzz. 41-city Virginia grid.' },
+      { name: 'twitter:description', content: 'Family-owned since 1984. Multi-state commercial paving for KFC (The Big Chicken), Arby\'s, Taco Bell & Winn-Dixie. Houzz Service Award 2024–2026. 41-city Virginia grid.' },
       { name: 'twitter:image', content: 'https://www.jworden-sons-paving.com/og-image.jpg' },
       { name: 'robots', content: 'index, follow' }
     ],
     links: [
       { rel: 'canonical', href: 'https://www.jworden-sons-paving.com/' },
       { rel: 'manifest', href: '/manifest.json' },
-      { rel: 'apple-touch-icon', href: '/logo-192.png' }
+      { rel: 'apple-touch-icon', href: '/favicon.ico' }
     ],
   }),
   shellComponent: RootDocument,
@@ -45,7 +45,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     "url": "https://www.jworden-sons-paving.com/",
     "logo": "https://www.jworden-sons-paving.com/logo.png",
     "image": "https://www.jworden-sons-paving.com/og-image.jpg",
-    "telephone": "+1-804-244-2609",
+    "telephone": "+1-804-446-1296",
     "email": "info@jworden-sons-paving.com",
     "foundingDate": "1984",
     "numberOfEmployees": {
@@ -149,12 +149,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       "height": 120
     },
     "foundingDate": "1984",
-    "description": "4th-generation, family-owned asphalt paving contractor established in 1984. Under 4th-generation leadership since 2015. 4-time Best of Houzz award recipient. Multi-state commercial paving partner for KFC, Arby's, and Taco Bell. Independent from all other Worden-named paving entities in Chester, VA.",
+    "description": "4th-generation, family-owned asphalt paving contractor established in 1984. Under 4th-generation leadership since 2015. Houzz Service Award recipient 2024, 2025, 2026. Multi-state commercial paving partner for KFC (The Big Chicken), Arby's, Taco Bell, and Winn-Dixie. Independent from all other Worden-named paving entities in Chester, VA.",
     "award": [
-      "Best of Houzz 2018",
-      "Best of Houzz 2019",
-      "Best of Houzz 2020",
-      "Best of Houzz 2021"
+      "Houzz Service Award 2024",
+      "Houzz Service Award 2025",
+      "Houzz Service Award 2026"
     ]
   };
 

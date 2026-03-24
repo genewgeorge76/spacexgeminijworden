@@ -1,21 +1,16 @@
 {
-  "name": "J. Worden & Sons Command",
-  "short_name": "Worden 911",
-  "description": "4th Generation Infrastructure & Real-Time Lead Dispatch",
+  "name": "J. Worden & Sons Asphalt Paving",
+  "short_name": "Worden Paving",
+  "description": "4th Generation Asphalt Paving — Serving Virginia Since 1984",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
   "theme_color": "#ff9900",
   "icons": [
     {
-      "src": "logo-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "logo-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
+      "src": "favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
     }
   ]
 }
