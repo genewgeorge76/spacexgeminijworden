@@ -1,0 +1,8 @@
+node_modules
+dist
+.netlify
+.tanstack
+*.log
+*.local.*
+*.DS_Store
+src/routeTree.gen.ts

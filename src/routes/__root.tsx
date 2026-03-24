@@ -8,12 +8,24 @@ export const Route = createRootRoute({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'J. Worden & Sons Asphalt Paving | 4th-Gen Legacy Since 1984 | Virginia' },
-      { name: 'description', content: 'J. Worden & Sons Asphalt Paving — a 4th-generation, family-owned asphalt contractor serving Virginia since 1984. 4-time Best of Houzz winner. Commercial partner for KFC, Arby\'s, and Taco Bell.' },
-      { name: 'keywords', content: 'asphalt paving Virginia, commercial asphalt contractor, J Worden Sons, paving company Chester VA, asphalt parking lot, driveway paving, commercial paving KFC Arbys Taco Bell' },
+      { title: 'J. Worden & Sons Asphalt Paving | Elite Asphalt Authority Since 1984' },
+      {
+        name: 'description',
+        content:
+          'J. Worden & Sons Asphalt Paving — 4th-generation, Virginia-based, corporate-vetted for KFC, Taco Bell, and Winn-Dixie. Call 804-446-1296 for the 6-inch compacted stone standard.',
+      },
+      {
+        name: 'keywords',
+        content:
+          'J Worden Sons Asphalt Paving, elite asphalt authority, corporate vetted KFC Taco Bell Winn-Dixie, Virginia paving contractor, 6-inch compacted stone base, commercial paving Virginia',
+      },
       { property: 'og:type', content: 'website' },
-      { property: 'og:title', content: 'J. Worden & Sons Asphalt Paving | 4th-Gen Legacy Since 1984' },
-      { property: 'og:description', content: 'Family-owned asphalt paving since 1984. 4-time Best of Houzz winner. Commercial contracts with KFC, Arby\'s & Taco Bell.' },
+      { property: 'og:title', content: 'J. Worden & Sons | Elite Asphalt Authority' },
+      {
+        property: 'og:description',
+        content:
+          'Multi-state commercial paving partner vetted by KFC, Taco Bell, and Winn-Dixie. Four generations of Virginia asphalt leadership. Call 804-446-1296.',
+      },
       { property: 'og:image', content: '/og-image.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
       { name: 'robots', content: 'index, follow' },
@@ -27,7 +39,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "J. Worden & Sons Asphalt Paving",
-    "description": "A 4th-generation, family-owned asphalt paving company serving Virginia since 1984. Specializing in commercial and residential asphalt paving.",
+    "description": "Elite asphalt authority since 1984. Corporate-vetted contractor for KFC, Taco Bell, and Winn-Dixie with a 6-inch compacted stone base on every project.",
     "url": "https://www.jworden-sons-paving.com/",
     "telephone": "+1-804-446-1296",
     "address": {
@@ -43,8 +55,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     },
     "areaServed": ["Virginia", "North Carolina", "Maryland"],
     "openingHours": "Mo-Fr 07:00-17:00",
-    "sameAs": ["https://www.houzz.com/pro/jwordenandsonspaving"]
-  };
+    "sameAs": ["https://www.houzz.com/pro/jwordenandsonspaving"],
+    "foundingDate": "1984",
+    "slogan": "Elite Asphalt Authority"
+  }
 
   return (
     <html lang="en">
@@ -55,7 +69,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         />
       </head>
-      <body className="font-serif text-[#2b2b2b] bg-white leading-relaxed antialiased">
+      <body className="font-serif text-[#1f1f1a] bg-white leading-relaxed antialiased">
         <Header />
         <main>
           {children}
