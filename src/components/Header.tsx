@@ -12,12 +12,13 @@ export default function Header() {
             <a href="tel:8044461296" className="text-[0.7rem] text-[#c8a84b] tracking-widest uppercase no-underline hover:text-[#e0c06a] transition-colors">
               804-446-1296 • Chester, VA • Est. 1984
             </a>
-          </div>
+        </div>
           <nav className="hidden md:flex gap-6">
             <Link to="/" hash="about" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">About</Link>
             <Link to="/" hash="services" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Services</Link>
-            <a href="/commercial.html" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Commercial</a>
-            <a href="/masonry.html" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Masonry</a>
+            <Link to="/commercial" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Commercial</Link>
+            <Link to="/mclean-residential-paving" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">McLean</Link>
+            <Link to="/windsor-farms" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Windsor Farms</Link>
             <Link to="/" hash="standard" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Our Standard</Link>
             <Link to="/" hash="contact" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Contact</Link>
           </nav>
