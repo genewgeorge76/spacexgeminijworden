@@ -16,6 +16,9 @@ function LandingPage() {
       </div>
       <div className="container" style={{ maxWidth: '1000px', margin: 'auto', padding: '2rem', textAlign: 'center' }}>
         <h2>The Structural Standard: 6-Inch Stone Base</h2>
+        <p style={{ fontSize: '1.1rem', maxWidth: '800px', margin: '10px auto 20px' }}>
+          Most paving contractors use a 4-inch compacted stone base. <strong>J. Worden &amp; Sons installs a full 6-inch compacted #21A stone base</strong> — the same specification demanded by national commercial chains and Virginia’s most exclusive subdivisions.
+        </p>
         <p>Vetted by <strong>KFC, Arby’s, and Taco Bell</strong>. Serving <strong>Maidstone Village</strong> and the 41-City VA Grid.</p>
         <a href="tel:8044461296" className="btn" style={{ background: '#ffcc00', color: '#000', padding: '1rem 2rem', textDecoration: 'none', fontWeight: 'bold', borderRadius: '5px', display: 'inline-block' }}>CALL 804-446-1296</a>
         <br /><br />
@@ -26,6 +29,28 @@ function LandingPage() {
             <div className="card" style={{ border: '1px solid #ddd', padding: '20px', borderRadius: '10px' }}><h3>Repair</h3> Crack Filling & Industrial Maintenance.</div>
         </div>
       </div>
+      <section style={{ background: '#111', color: '#fff', padding: '4rem 1rem' }}>
+          <div className="container" style={{ maxWidth: '1000px', margin: 'auto', textAlign: 'center' }}>
+              <h2 style={{ fontSize: '2rem', color: '#ffcc00', marginBottom: '1rem' }}>Why the 6-Inch Standard Matters</h2>
+              <p style={{ fontSize: '1.1rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
+                  The foundation beneath your asphalt is what separates a driveway that lasts 30 years from one that cracks in 5. Our 6-inch #21A compacted stone base provides superior load distribution, drainage, and freeze-thaw resistance.
+              </p>
+              <div className="grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '20px' }}>
+                  <div style={{ background: '#222', border: '1px solid #ffcc00', padding: '24px', borderRadius: '10px' }}>
+                      <h4 style={{ color: '#ffcc00', margin: '0 0 10px 0' }}>50% More Base Depth</h4>
+                      <p style={{ margin: 0, color: '#ccc' }}>Industry standard is 4 inches. We build to 6 inches — providing 50% more compacted base for long-term structural integrity under heavy loads.</p>
+                  </div>
+                  <div style={{ background: '#222', border: '1px solid #ffcc00', padding: '24px', borderRadius: '10px' }}>
+                      <h4 style={{ color: '#ffcc00', margin: '0 0 10px 0' }}>Commercial-Grade #21A Stone</h4>
+                      <p style={{ margin: 0, color: '#ccc' }}>We use VDOT-spec #21A crushed aggregate — the same material required for Virginia state road construction — compacted in lifts for maximum density.</p>
+                  </div>
+                  <div style={{ background: '#222', border: '1px solid #ffcc00', padding: '24px', borderRadius: '10px' }}>
+                      <h4 style={{ color: '#ffcc00', margin: '0 0 10px 0' }}>National Chain Approved</h4>
+                      <p style={{ margin: 0, color: '#ccc' }}>KFC, Arby’s, and Taco Bell require this specification for all their property installations. We bring that same commercial standard to every residential project.</p>
+                  </div>
+              </div>
+          </div>
+      </section>
       <section className="residential-dominance" style={{ background: '#fff', padding: '4rem 1rem', borderTop: '2px solid #ffcc00' }}>
           <div className="container" style={{ maxWidth: '1000px', margin: 'auto', textAlign: 'center' }}>
               <h2 style={{ fontSize: '2.2rem', color: '#111' }}>Custom Residential Driveway Design</h2>
