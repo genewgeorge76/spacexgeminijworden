@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import services from '../data/services'
 import ContactForm from '../components/ContactForm'
+import EliteSplit from '../components/EliteSplit'
 
 const brandPartners = [
   { name: 'KFC', note: 'The Big Chicken', accent: 'bg-[#fff7f5] text-[#a4121c] border-[#f2c5c6]' },
@@ -22,71 +23,47 @@ function LandingPage() {
         <a href="tel:8044461296" className="underline">Call 804-446-1296</a>.
       </div>
 
-      <section className="bg-linear-to-br from-[#111] to-[#3d3d3d] text-white pt-24 pb-20 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(-45deg,transparent,transparent_40px,rgba(255,255,255,0.015)_40px,rgba(255,255,255,0.015)_80px)] pointer-events-none"></div>
-        <div className="inline-block border border-[#c8a84b] text-[#c8a84b] font-sans text-[0.7rem] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-6">
-          4th-Generation • Since 1984 • Chester, Virginia
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold leading-[1.18] mb-4 max-w-4xl mx-auto">
-          J. Worden & Sons Asphalt Paving <br />
-          <span className="text-[#c8a84b]">Restaurant, Grocery, & Residential Specialists</span>
-        </h1>
-        <p className="text-[#e8e8e0] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Four generations of uncompromising craftsmanship. Trusted by KFC (The Big Chicken), Taco Bell, and Winn-Dixie to keep lots open and profitable. Serving 41 Virginia cities with a commercial-grade 6-inch structural standard on every project.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="tel:8044461296" className="bg-[#c8a84b] text-[#111] px-8 py-3.5 rounded-sm font-sans font-bold text-[0.9rem] hover:bg-[#e0c06a] transition-colors">
-            Call 804-446-1296
-          </a>
-          <a href="#commercial" className="bg-transparent border-2 border-white/45 text-white px-8 py-3 rounded-sm font-sans font-bold text-[0.9rem] hover:border-[#c8a84b] hover:text-[#c8a84b] transition-colors">
-            See Commercial Proof
-          </a>
-        </div>
+      <EliteSplit />
 
-        <div className="max-w-[900px] mx-auto mt-12 grid grid-cols-2 md:grid-cols-5 gap-3 text-left">
-          <div className="col-span-2 md:col-span-2 bg-white/5 border border-[#c8a84b]/30 rounded-sm p-4 text-left">
-            <p className="text-[0.7rem] uppercase tracking-[0.18em] text-[#c8a84b] font-bold mb-1">Houzz Awards</p>
-            <div className="flex gap-2">
-              {houzzYears.map((year) => (
-                <span key={year} className="bg-[#c8a84b] text-[#111] px-2 py-1 rounded-sm text-xs font-bold">
-                  {year}
-                </span>
-              ))}
+      <section className="bg-[#111] text-white px-6 py-14">
+        <div className="max-w-[1100px] mx-auto grid md:grid-cols-[1.2fr,0.8fr] gap-10 items-center">
+          <div className="space-y-4">
+            <p className="font-sans text-[0.7rem] uppercase tracking-[0.2em] text-[#c8a84b]">
+              Heritage Moat — Established 1984
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">
+              The 4th-Generation Shield that Separates Us from Look-Alikes
+            </h2>
+            <p className="text-[#e8e8e0] leading-relaxed">
+              Founded in 1984. Original J. Worden family ownership. Six-inch compacted stone on every pour. These are the anchors that keep our identity distinct from any other Worden-named operation.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-4 pt-2">
+              <div className="rounded-sm border border-[#c8a84b]/40 bg-white/5 p-4 text-center">
+                <div className="text-3xl font-bold text-[#c8a84b]">1984</div>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#c8a84b]">Year Founded</p>
+              </div>
+              <div className="rounded-sm border border-[#c8a84b]/40 bg-white/5 p-4 text-center">
+                <div className="text-3xl font-bold text-[#c8a84b]">4th</div>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#c8a84b]">Generation</p>
+              </div>
+              <div className="rounded-sm border border-[#c8a84b]/40 bg-white/5 p-4 text-center">
+                <div className="text-3xl font-bold text-[#c8a84b]">6"</div>
+                <p className="text-xs uppercase tracking-[0.18em] text-[#c8a84b]">Compacted Stone</p>
+              </div>
             </div>
           </div>
-          {brandPartners.map((brand) => (
-            <div key={brand.name} className={`border ${brand.accent} rounded-sm p-4`}>
-              <p className="text-sm font-bold">{brand.name}</p>
-              <p className="text-[0.75rem] opacity-80">{brand.note}</p>
+          <div className="rounded-sm border border-[#262626] bg-[#1a1a1a] p-8 space-y-3">
+            <h3 className="text-xl font-bold text-white">Verified NAP</h3>
+            <p className="text-sm text-[#d4d4d4]">J. Worden &amp; Sons Asphalt Paving</p>
+            <p className="text-sm text-[#d4d4d4]">Chester, VA</p>
+            <p className="text-sm text-[#d4d4d4]">Phone: 804-446-1296</p>
+            <div className="pt-2 flex flex-wrap gap-2 text-xs uppercase tracking-[0.16em] text-[#c8a84b]">
+              <span className="px-3 py-1 rounded-sm border border-[#c8a84b]/50 bg-[#c8a84b]/10">Google Business Profile Match</span>
+              <span className="px-3 py-1 rounded-sm border border-[#c8a84b]/50 bg-[#c8a84b]/10">Across Every Page</span>
             </div>
-          ))}
+          </div>
         </div>
       </section>
-
-      <div className="bg-[#f5f5f0] border-b border-[#e8e8e0] py-10 px-6">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">1984</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Year Founded</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">4th</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Generation Family</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">41</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">VA Cities Served</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">3×</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Houzz 2024-2026</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">3</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Restaurant & Grocery Partners</span>
-          </div>
-        </div>
-      </div>
 
       <section id="about" className="py-20 px-6 max-w-[1100px] mx-auto grid md:grid-cols-2 gap-16 items-center">
         <div>

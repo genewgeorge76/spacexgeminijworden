@@ -3,8 +3,10 @@ export default function Footer() {
   return (
     <footer className="bg-[#111] text-[#888] py-10 px-6 text-center text-[0.8rem] leading-7 border-t border-[#3d3d3d] font-sans">
       <div className="max-w-[1100px] mx-auto">
-        <p>&copy; {currentYear} J. Worden & Sons Asphalt Paving. All rights reserved.</p>
-        <p>Chester, Virginia • Serving 41 Virginia cities • Multi-state commercial paving</p>
+        <p className="text-white font-semibold">
+          J. Worden &amp; Sons Asphalt Paving - 4th Generation | Established 1984.
+        </p>
+        <p>Chester, Virginia • Phone: 804-446-1296 • Serving 41 Virginia cities • Multi-state commercial paving</p>
         <p className="mt-4 text-[0.72rem] italic">
           J. Worden & Sons Asphalt Paving is an independent family business and is not affiliated with, associated with, or endorsed by any other Worden-named paving business or entity in Chester, Virginia or elsewhere.
         </p>
