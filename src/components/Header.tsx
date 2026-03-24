@@ -23,9 +23,13 @@ export default function Header() {
         <a href="tel:8044461296" className="hidden md:inline-flex items-center gap-2 bg-[#c8a84b] text-[#111] px-4 py-2 rounded-sm text-[0.85rem] font-bold uppercase tracking-widest hover:bg-[#e0c06a] transition-colors">
           Call 804-446-1296
         </a>
-        <div className="md:hidden text-white cursor-pointer text-[0.85rem]">
+        <button
+          type="button"
+          className="md:hidden text-white cursor-pointer text-[0.85rem]"
+          aria-label="Open navigation menu"
+        >
           <span className="text-[#c8a84b]">MENU</span>
-        </div>
+        </button>
       </div>
     </header>
   )
