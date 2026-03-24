@@ -6,6 +6,13 @@
   targetPort = 3000
   port = 8888
 
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+    buildDir = "/" # Tells the plugin to scan your main folder
+    prettyURLs = true
+
 [[redirects]]
   from = "/commercial"
   to = "/commercial.html"
