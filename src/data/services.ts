@@ -32,7 +32,7 @@ const services: Array<Service> = [
     shortDescription:
       'Structural overlays, sealcoating, and ADA upgrades without downtime.',
     features: [
-      'Phased phasing plans to keep stores open',
+      'Phased work plans to keep stores open',
       'Industrial sealcoating and crackfill',
       'Line striping and ADA remediation included',
       'Moisture mitigation and drainage tuning',

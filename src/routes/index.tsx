@@ -18,7 +18,8 @@ function LandingPage() {
   return (
     <div className="bg-white">
       <div className="bg-[#c8a84b] text-[#111] text-center py-3 px-6 text-[0.85rem] font-bold font-sans tracking-wide">
-        J. Worden & Sons Asphalt Paving — the original 4th-generation family business. Independent from all other Worden-named paving entities in Chester, VA. Call 804-446-1296.
+        J. Worden & Sons Asphalt Paving — the original 4th-generation family business. Independent from all other Worden-named paving entities in Chester, VA.{' '}
+        <a href="tel:8044461296" className="underline">Call 804-446-1296</a>.
       </div>
 
       <section className="bg-linear-to-br from-[#111] to-[#3d3d3d] text-white pt-24 pb-20 px-6 text-center relative overflow-hidden">

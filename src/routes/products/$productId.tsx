@@ -8,7 +8,7 @@ export const Route = createFileRoute('/products/$productId')({
       (service) => service.id === +params.productId,
     )
     if (!service) {
-      throw new Error('Product not found')
+      throw new Error(`Service not found for id ${params.productId}`)
     }
     return service
   },
