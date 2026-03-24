@@ -14,7 +14,7 @@ export const Route = createRootRoute({
       { property: 'og:type', content: 'website' },
       { property: 'og:url', content: 'https://www.jworden-sons-paving.com/' },
       { property: 'og:title', content: 'J. Worden & Sons Asphalt Paving | 4th-Generation Legacy Since 1984' },
-      { property: 'og:description', content: 'Family-owned asphalt paving since 1984. Houzz Service Award winner 2024–2026. Commercial contracts with KFC (The Big Chicken), Arby\'s, Taco Bell & Winn-Dixie across multiple states. Serving 41 Virginia cities with a 6-inch compacted stone structural standard.' },
+      { property: 'og:description', content: 'Family-owned asphalt paving since 1984. Houzz Service Award winner 2024–2026. Commercial contracts with KFC (The Big Chicken), Arby\'s, Taco Bell & Winn-Dixie across multiple states. Serving 41 Virginia cities with a 6-inch structural stone base standard.' },
       { property: 'og:image', content: 'https://www.jworden-sons-paving.com/og-image.jpg' },
       { property: 'og:site_name', content: 'J. Worden & Sons Asphalt Paving' },
       { property: 'og:locale', content: 'en_US' },
@@ -90,7 +90,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           "itemOffered": {
             "@type": "Service",
             "name": "Commercial Asphalt Paving",
-            "description": "Full-depth commercial asphalt installation with 6-inch compacted stone base for maximum structural integrity. Serving restaurant chains, retail centers, and municipal contracts across 41 Virginia cities."
+            "description": "Full-depth commercial asphalt installation with 6-inch structural stone base for maximum structural integrity. Serving restaurant chains, retail centers, and municipal contracts across 41 Virginia cities."
           }
         },
         {
@@ -98,7 +98,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           "itemOffered": {
             "@type": "Service",
             "name": "Residential Driveway Paving",
-            "description": "Residential asphalt driveway installation and replacement using the same compacted stone structural standard applied to commercial projects."
+            "description": "Residential asphalt driveway installation and replacement using the same 6-inch structural stone base standard applied to commercial projects."
           }
         },
         {

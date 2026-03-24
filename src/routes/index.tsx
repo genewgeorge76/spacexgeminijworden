@@ -38,7 +38,7 @@ function LandingPage() {
             J. Worden & Sons <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-500">Asphalt Paving</span>
           </h1>
           <p className="text-xl md:text-3xl font-medium mb-10 text-gray-200 drop-shadow-xl max-w-3xl mx-auto border-l-4 border-orange-500 pl-4 py-2 bg-black/20 backdrop-blur-sm text-left">
-            The 6-Inch Compacted Stone Standard | Richmond & Beyond
+            The 6-Inch Structural Stone Base Standard | Richmond & Beyond
           </p>
           <div className="cta-buttons flex flex-col sm:flex-row justify-center items-center gap-6 mt-8">
             <a href="tel:8044461296" className="btn-911 flex items-center text-xl px-10 py-5 shadow-2xl hover:shadow-orange-500/50 uppercase tracking-wide border border-orange-400">
@@ -67,7 +67,7 @@ function LandingPage() {
             <h2 className="text-4xl md:text-6xl font-black text-stone-900 mb-6 uppercase tracking-tight">The Structural Standard</h2>
             <div className="w-24 h-1.5 bg-orange-500 mx-auto mb-8"></div>
             <p className="text-2xl text-stone-600 leading-relaxed font-light">
-              We build foundations that outlast the competition. While others cut corners, we demand the <strong className="text-stone-900 font-bold border-b-2 border-orange-500">6-Inch Compacted Stone Base</strong> for structural integrity.
+              We build foundations that outlast the competition. While others cut corners, we demand the <strong className="text-stone-900 font-bold border-b-2 border-orange-500">6-Inch Structural Stone Base</strong> for structural integrity.
             </p>
           </div>
 
