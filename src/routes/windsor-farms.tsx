@@ -1,4 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
+import NeighborhoodPage from '@/components/NeighborhoodPage'
 
 const neighborhoodFocus = [
   'Windsor Farms: brick-lined estates and sweeping circular drives',
@@ -53,35 +54,16 @@ export const Route = createFileRoute('/windsor-farms')({
 function WindsorFarmsPage() {
   return (
     <div className="bg-[#111] text-white">
-      <section className="relative overflow-hidden bg-linear-to-br from-[#0f0f0f] via-[#181818] to-[#222] px-6 pt-24 pb-16 text-center">
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(140deg,rgba(200,168,75,0.05)_0px,rgba(200,168,75,0.05)_2px,transparent_2px,transparent_44px)] opacity-60 pointer-events-none" />
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <p className="inline-block rounded-full border border-[#c8a84b]/60 px-4 py-1.5 text-[0.75rem] font-semibold uppercase tracking-[0.18em] text-[#c8a84b]">
-            Richmond Power Routes
-          </p>
-          <h1 className="mt-4 text-4xl md:text-6xl font-bold leading-tight">
-            Windsor Farms, <span className="text-[#c8a84b]">Westham</span>, Stratford Hills
-          </h1>
-          <p className="mt-6 text-lg text-[#e8e8e0] leading-relaxed">
-            Estate-grade paving for Richmond&apos;s most demanding neighborhoods. Commercial structure, elegant finishes, and quiet crews that respect the block.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              href="tel:8044461296"
-              className="rounded-sm bg-[#c8a84b] px-6 py-3 text-[#111] text-sm font-bold uppercase tracking-[0.18em] hover:bg-[#e0c06a] transition-colors"
-            >
-              Call 804-446-1296
-            </a>
-            <Link
-              to="/"
-              hash="contact"
-              className="rounded-sm border border-white/40 px-6 py-3 text-sm font-bold uppercase tracking-[0.18em] hover:border-[#c8a84b] hover:text-[#c8a84b] transition-colors"
-            >
-              Book a Site Walk
-            </Link>
-          </div>
-        </div>
-      </section>
+      <NeighborhoodPage
+        name="Windsor Farms"
+        neighborhood="Richmond Power Routes"
+        landmarks={[
+          'Windsor Farms: Oxford Circle, Sulgrave Rd, Charmian Rd',
+          'Westham Parkway: River Road approaches and steep grades',
+          'Stratford Hills: Riverside slopes and canopy-lined lanes',
+        ]}
+        zipCodes={['23221', '23229', '23235']}
+      />
 
       <section className="bg-[#0f0f0f] px-6 py-16">
         <div className="max-w-[1100px] mx-auto grid gap-10 md:grid-cols-[1.05fr,0.95fr] items-start">
