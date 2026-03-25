@@ -16,7 +16,7 @@ export const Route = createFileRoute('/')({
           <h2 className="text-3xl font-bold mb-4">Ready to get started?</h2>
           <p className="mb-6 text-lg">We've partnered with <strong>Kickserv</strong> to provide you with fast, digital estimates. Click below to fill out your project details.</p>
           <a 
-            href="INSERT_KICKSERV_URL_HERE" 
+            href="https://app.kickserv.com/request_estimate/j-worden-sons" 
             className="bg-[#f0ad4e] text-[#1a1a1a] py-[18px] px-[35px] no-underline rounded-[5px] font-bold text-[1.2rem] inline-block mt-[20px] transition-all hover:-translate-y-[3px] hover:shadow-[0_5px_15px_rgba(240,173,78,0.4)]"
           >
             Request Your Free Estimate
