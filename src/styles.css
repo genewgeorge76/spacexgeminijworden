@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-brand-gold: #ffcc00;
+  --color-industrial-black: #111111;
+}
 
 @layer base {
   body {
@@ -11,10 +14,10 @@
 
 @layer components {
   .btn-gold {
-    @apply bg-[#ffcc00] text-black px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-white hover:scale-105 text-center;
+    @apply bg-[--color-brand-gold] text-black px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-white hover:scale-105 text-center;
   }
   
   .btn-black {
-    @apply bg-black text-white px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-[#ffcc00] hover:text-black text-center border border-[#ffcc00]/20;
+    @apply bg-black text-white px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-[--color-brand-gold] hover:text-black text-center border border-white/10;
   }
 }
