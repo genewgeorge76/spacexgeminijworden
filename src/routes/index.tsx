@@ -12,14 +12,18 @@ export const Route = createFileRoute('/')({
             Commercial <br /> Infrastructure
           </h1>
           <p className="text-xl mb-8 font-bold text-gray-300 uppercase italic">
-            Vetted by KFC (The Big Chicken), Taco Bell, and Winn-Dixie.
+            Vetted by KFC (The Big Chicken), Taco Bell, and National Developers.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00] animate-pulse">
               ✓ COMPLETE LOT REPAVE: BIG CHICKEN 2017 REMODEL
             </li>
-            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">✓ 80,000LB Load Capacity Engineering</li>
-            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">✓ Maidstone Village Partnership</li>
+            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">
+              ✓ SITE PREP & PAVING: ELTON ST. FAST FOOD (JENNINGS, LA)
+            </li>
+            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-gray-400">
+              ✓ 80,000LB Load Capacity Engineering
+            </li>
           </ul>
           <a href="tel:8044461296" className="bg-[#ffcc00] text-black text-center py-6 font-black uppercase text-3xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,204,0,0.3)]">
             804-446-1296
@@ -31,8 +35,7 @@ export const Route = createFileRoute('/')({
           <h2 className="text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Residential <br /> Estates
           </h2>
-          <div className="flex items-center gap-6 mb-10">
-            {/* LINKED HOUZZ PRO BADGE */}
+          <div className="items-center gap-6 mb-10 flex">
             <a 
               href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
               target="_blank" 
