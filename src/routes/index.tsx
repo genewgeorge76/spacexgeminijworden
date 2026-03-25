@@ -15,7 +15,7 @@ export const Route = createFileRoute('/')({
             Vetted by KFC (The Big Chicken), Taco Bell, and Winn-Dixie.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
-            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00]">
+            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00] animate-pulse">
               ✓ COMPLETE LOT REPAVE: BIG CHICKEN 2017 REMODEL
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">✓ 80,000LB Load Capacity Engineering</li>
