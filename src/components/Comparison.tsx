@@ -1,6 +1,6 @@
 export const Comparison = () => {
   return (
-    <section className="bg-white py-20 px-6 font-sans">
+    <section className="bg-white py-20 px-6 font-sans border-t-8 border-black">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-black text-4xl font-black uppercase mb-12 text-center tracking-tighter">
           The 6-Inch Structural Standard <span className="text-gray-400">vs.</span> The Competition
@@ -12,28 +12,23 @@ export const Comparison = () => {
               <tr className="bg-black text-[#ffcc00]">
                 <th className="p-6 uppercase font-black italic">Feature</th>
                 <th className="p-6 uppercase font-black italic">J. Worden & Sons</th>
-                <th className="p-6 uppercase font-black italic text-gray-500">Industry Standard</th>
+                <th className="p-6 uppercase font-black italic text-gray-500">Others</th>
               </tr>
             </thead>
             <tbody className="font-bold">
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-gray-200 text-black">
                 <td className="p-6 bg-gray-50 uppercase text-xs">Stone Sub-Base</td>
-                <td className="p-6 text-xl text-black">6-Inch Compacted</td>
+                <td className="p-6 text-xl font-black">6-Inch Compacted</td>
                 <td className="p-6 text-gray-400 font-normal">3 to 4-Inch Loose</td>
               </tr>
-              <tr className="border-b border-gray-200">
+              <tr className="border-b border-gray-200 text-black">
                 <td className="p-6 bg-gray-50 uppercase text-xs">Load Capacity</td>
-                <td className="p-6 text-xl text-black">80,000 LB (Commercial Ready)</td>
+                <td className="p-6 text-xl font-black">80,000 LB (Commercial Ready)</td>
                 <td className="p-6 text-gray-400 font-normal">Residential Only</td>
               </tr>
-              <tr className="border-b border-gray-200">
-                <td className="p-6 bg-gray-50 uppercase text-xs">Compaction</td>
-                <td className="p-6 text-xl text-black">Vibratory Roller + Plate</td>
-                <td className="p-6 text-gray-400 font-normal">Static Press</td>
-              </tr>
-              <tr className="bg-[#ffcc00]/10">
-                <td className="p-6 bg-[#ffcc00] text-black uppercase text-xs font-black">Expected Life</td>
-                <td className="p-6 text-2xl font-black text-black underline decoration-black/20">20-25 Years</td>
+              <tr className="bg-[#ffcc00]/10 text-black">
+                <td className="p-6 bg-[#ffcc00] uppercase text-xs font-black">Expected Life</td>
+                <td className="p-6 text-2xl font-black underline decoration-black/20">20-25 Years</td>
                 <td className="p-6 text-gray-400 font-normal italic">8-12 Years</td>
               </tr>
             </tbody>
