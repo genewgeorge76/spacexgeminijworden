@@ -88,17 +88,9 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             to="/"
             hash="standard"
             onClick={onClose}
-            className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
-          >
-            Our Standard
-          </Link>
-          <Link
-            to="/"
-            hash="contact"
-            onClick={onClose}
             className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2"
           >
-            Contact
+            Our Standard
           </Link>
         </div>
         <div className="mt-auto px-4 pb-8">

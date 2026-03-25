@@ -14,7 +14,6 @@ export default function Footer() {
           <a href="/commercial.html" className="text-[#c8a84b] hover:underline">Commercial</a>
           <a href="/masonry.html" className="text-[#c8a84b] hover:underline">Masonry</a>
           <a href="/portfolio.html" className="text-[#c8a84b] hover:underline">Portfolio</a>
-          <a href="/contact.html" className="text-[#c8a84b] hover:underline">Contact</a>
           <a href="/sitemap.xml" className="text-[#c8a84b] hover:underline">Sitemap</a>
         </div>
       </div>

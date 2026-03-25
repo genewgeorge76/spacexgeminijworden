@@ -29,7 +29,6 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     "name": "J. Worden & Sons Asphalt Paving",
     "description": "A 4th-generation, family-owned asphalt paving company serving Virginia since 1984. Houzz Best of 2024-2026 and commercial partner for KFC (The Big Chicken), Taco Bell, and Winn-Dixie.",
     "url": "https://www.jworden-sons-paving.com/",
-    "telephone": "+1-804-446-1296",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "Chester",
