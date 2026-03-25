@@ -6,7 +6,7 @@ export const Route = createFileRoute('/')({
     <main className="min-h-screen bg-[#111111] font-sans text-white">
       <section className="flex flex-col md:flex-row min-h-[85vh] border-b-[10px] border-[#ffcc00]">
         
-        {/* COMMERCIAL SECTION (Left Side) */}
+        {/* COMMERCIAL SECTION */}
         <div className="flex-1 bg-[#1a1a1a] p-12 border-r border-[#ffcc00]/20 flex flex-col justify-center">
           <h1 className="text-[#ffcc00] text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Commercial <br /> Infrastructure
@@ -15,6 +15,9 @@ export const Route = createFileRoute('/')({
             Vetted by KFC (The Big Chicken), Taco Bell, and Winn-Dixie.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
+            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00]">
+              ✓ COMPLETE LOT REPAVE: BIG CHICKEN 2017 REMODEL
+            </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">✓ 80,000LB Load Capacity Engineering</li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">✓ Maidstone Village Partnership</li>
           </ul>
@@ -23,7 +26,7 @@ export const Route = createFileRoute('/')({
           </a>
         </div>
 
-        {/* RESIDENTIAL SECTION (Right Side) */}
+        {/* RESIDENTIAL SECTION */}
         <div className="flex-1 bg-white text-black p-12 flex flex-col justify-center">
           <h2 className="text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Residential <br /> Estates
@@ -90,7 +93,7 @@ export const Route = createFileRoute('/')({
               width="100%" 
               height="1000" 
               scrolling="auto"
-              title="Kickserv Request Form"
+              title="Kickserv Estimate Request Form"
             ></iframe>
           </div>
         </div>
