@@ -6,23 +6,26 @@ export const Route = createFileRoute('/')({
     <main className="min-h-screen bg-[#111111] font-sans text-white">
       <section className="flex flex-col md:flex-row min-h-[85vh] border-b-[10px] border-[#ffcc00]">
         
-        {/* COMMERCIAL SECTION */}
+        {/* COMMERCIAL INFRASTRUCTURE SECTION */}
         <div className="flex-1 bg-[#1a1a1a] p-12 border-r border-[#ffcc00]/20 flex flex-col justify-center">
           <h1 className="text-[#ffcc00] text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Commercial <br /> Infrastructure
           </h1>
           <p className="text-xl mb-8 font-bold text-gray-300 uppercase italic">
-            Vetted by KFC (The Big Chicken), Taco Bell, and National Developers.
+            Years of Dedicated Service for KFC, Taco Bell, and National Developers.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00] animate-pulse">
-              ✓ COMPLETE LOT REPAVE: BIG CHICKEN 2017 REMODEL
+              ✓ 90-DAY QSR FAST-TRACK SPECIALISTS (KFC & TACO BELL)
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">
-              ✓ SITE PREP & PAVING: ELTON ST. FAST FOOD (JENNINGS, LA)
+              ✓ BIG CHICKEN 2017 REMODEL: COMPLETE LOT REPAVE
+            </li>
+            <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">
+              ✓ ADA COMPLIANCE & ACCESSIBILITY SPECIALISTS
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-gray-400">
-              ✓ 80,000LB Load Capacity Engineering
+              ✓ JENNINGS, LA: ELTON ST. SITE PREP & FAST FOOD INFRASTRUCTURE
             </li>
           </ul>
           <a href="tel:8044461296" className="bg-[#ffcc00] text-black text-center py-6 font-black uppercase text-3xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,204,0,0.3)]">
@@ -30,12 +33,12 @@ export const Route = createFileRoute('/')({
           </a>
         </div>
 
-        {/* RESIDENTIAL SECTION */}
+        {/* RESIDENTIAL ESTATES SECTION */}
         <div className="flex-1 bg-white text-black p-12 flex flex-col justify-center">
           <h2 className="text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Residential <br /> Estates
           </h2>
-          <div className="items-center gap-6 mb-10 flex">
+          <div className="flex items-center gap-6 mb-10">
             <a 
               href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
               target="_blank" 
@@ -57,19 +60,12 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
-      {/* AWARDS & PROJECT GALLERY STRIP */}
+      {/* AWARDS & PROJECT STRIP */}
       <section className="bg-[#111111] py-16 border-y border-[#ffcc00]/20">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <h3 className="text-gray-500 font-black text-xl uppercase tracking-[0.2em] mb-8">Awarded Portfolio</h3>
+          <h3 className="text-gray-500 font-black text-xl uppercase tracking-[0.2em] mb-8">Vetted Authority</h3>
           <div className="flex flex-wrap justify-center items-center gap-12">
-            <a 
-              href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-white font-black text-2xl uppercase italic hover:text-[#ffcc00] transition-colors"
-            >
-              Top Rated Contractor 2026
-            </a>
+            <span className="text-white font-black text-2xl uppercase italic">OFFICIAL KFC BIG CHICKEN REPAVE (2017)</span>
             <div className="hidden md:block h-12 w-px bg-gray-800"></div>
             <a 
               href="https://www.houzz.com/hznb/projects/driveway-paving-pj-vj~361642" 
@@ -77,7 +73,7 @@ export const Route = createFileRoute('/')({
               rel="noopener noreferrer" 
               className="group flex items-center gap-4 text-[#7ac142] font-black text-2xl border-2 border-[#7ac142] px-8 py-4 hover:bg-[#7ac142] hover:text-white transition-all"
             >
-              VIEW HOUZZ PROJECT GALLERY
+              VIEW HOUZZ PROJECTS
               <span className="group-hover:translate-x-2 transition-transform">→</span>
             </a>
           </div>
