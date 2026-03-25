@@ -1,8 +1,13 @@
+import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
+import HeaderNav from './HeaderNav'
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <>
+      <HeaderNav isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
       <header className="bg-[#111] border-b-3 border-[#c8a84b] sticky top-0 z-100">
         <div className="max-w-[1100px] mx-auto flex items-center justify-between px-6 py-4">
           <div className="flex flex-col">
@@ -29,6 +34,7 @@ export default function Header() {
             type="button"
             className="md:hidden text-white cursor-pointer text-[0.85rem]"
             aria-label="Open navigation menu"
+            onClick={() => setMenuOpen(true)}
           >
             <span className="text-[#c8a84b]">MENU</span>
           </button>
