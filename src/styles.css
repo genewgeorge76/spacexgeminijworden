@@ -2,7 +2,6 @@
 
 @theme {
   --color-brand-gold: #ffcc00;
-  --color-industrial-black: #111111;
 }
 
 @layer base {
@@ -12,12 +11,9 @@
   }
 }
 
+/* This makes sure your "Commercial" and "Residential" buttons pop */
 @layer components {
   .btn-gold {
-    @apply bg-[--color-brand-gold] text-black px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-white hover:scale-105 text-center;
-  }
-  
-  .btn-black {
-    @apply bg-black text-white px-8 py-4 font-black uppercase transition-all duration-300 hover:bg-[--color-brand-gold] hover:text-black text-center border border-white/10;
+    @apply bg-[#ffcc00] text-black px-8 py-4 font-black uppercase transition-all hover:bg-white;
   }
 }
