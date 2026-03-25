@@ -6,7 +6,7 @@ export const Route = createFileRoute('/')({
     <main className="min-h-screen bg-[#111111] font-sans text-white">
       <section className="flex flex-col md:flex-row min-h-[85vh] border-b-[10px] border-[#ffcc00]">
         
-        {/* COMMERCIAL SECTION */}
+        {/* COMMERCIAL SECTION (Left Side) */}
         <div className="flex-1 bg-[#1a1a1a] p-12 border-r border-[#ffcc00]/20 flex flex-col justify-center">
           <h1 className="text-[#ffcc00] text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Commercial <br /> Infrastructure
@@ -23,13 +23,12 @@ export const Route = createFileRoute('/')({
           </a>
         </div>
 
-        {/* RESIDENTIAL SECTION */}
+        {/* RESIDENTIAL SECTION (Right Side) */}
         <div className="flex-1 bg-white text-black p-12 flex flex-col justify-center">
           <h2 className="text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
             Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
-            {/* LINKED HOUZZ PRO BADGE */}
             <a 
               href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
               target="_blank" 
@@ -78,7 +77,6 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
-      {/* THE COMPARISON TABLE */}
       <Comparison />
 
       {/* KICKSERV ESTIMATE SECTION */}
@@ -92,7 +90,7 @@ export const Route = createFileRoute('/')({
               width="100%" 
               height="1000" 
               scrolling="auto"
-              title="Kickserv Estimate Request Form"
+              title="Kickserv Request Form"
             ></iframe>
           </div>
         </div>
