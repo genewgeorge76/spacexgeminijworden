@@ -1,3 +1,4 @@
+import { Comparison } from '../components/Comparison'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -25,6 +26,7 @@ export const Route = createFileRoute('/')({
           <a href="tel:8044461296" className="bg-black text-white text-center py-6 font-black uppercase text-3xl hover:bg-[#ffcc00] hover:text-black transition-all">Request Quote</a>
         </div>
       </section>
+      <Comparison />
     </main>
   ),
 })
