@@ -32,6 +32,7 @@ export const Route = createFileRoute('/')({
             Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
+            {/* LINKED HOUZZ PRO BADGE */}
             <a 
               href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
               target="_blank" 
