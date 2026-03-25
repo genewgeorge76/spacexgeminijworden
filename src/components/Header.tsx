@@ -15,12 +15,12 @@ export const Header = () => {
         </div>
 
         <nav className="flex gap-8 text-white font-black uppercase text-xs tracking-widest">
-          <Link to="/" className="hover:text-[#ffcc00] transition-colors">Commercial</Link>
+          <Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial</Link>
           <Link to="/" className="hover:text-[#ffcc00] transition-colors">Residential</Link>
           <Link to="/" className="hover:text-[#ffcc00] transition-colors">Our Standard</Link>
         </nav>
 
-        <a 
+        <a<Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial</Link> 
           href="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new" 
           target="_blank" 
           rel="noopener noreferrer"
