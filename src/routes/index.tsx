@@ -29,8 +29,13 @@ export const Route = createFileRoute('/')({
             Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
-            {/* LINKED HOUZZ PROFILE */}
-            <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="bg-[#7ac142] text-white p-6 text-center leading-none font-black rounded-lg shadow-lg hover:scale-105 transition-transform">
+            {/* LINKED HOUZZ PRO BADGE */}
+            <a 
+              href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="bg-[#7ac142] text-white p-6 text-center leading-none font-black rounded-lg shadow-lg hover:scale-105 transition-transform"
+            >
               HOUZZ PRO<br/>2024-2026
             </a>
             <p className="font-black text-2xl tracking-tighter uppercase text-gray-800 italic">
@@ -51,7 +56,12 @@ export const Route = createFileRoute('/')({
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h3 className="text-gray-500 font-black text-xl uppercase tracking-[0.2em] mb-8">Awarded Portfolio</h3>
           <div className="flex flex-wrap justify-center items-center gap-12">
-            <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="text-white font-black text-2xl uppercase italic hover:text-[#ffcc00] transition-colors">
+            <a 
+              href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white font-black text-2xl uppercase italic hover:text-[#ffcc00] transition-colors"
+            >
               Top Rated Contractor 2026
             </a>
             <div className="hidden md:block h-12 w-px bg-gray-800"></div>
@@ -68,6 +78,7 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
+      {/* THE COMPARISON TABLE */}
       <Comparison />
 
       {/* KICKSERV ESTIMATE SECTION */}
@@ -81,7 +92,7 @@ export const Route = createFileRoute('/')({
               width="100%" 
               height="1000" 
               scrolling="auto"
-              title="Kickserv Request Form"
+              title="Kickserv Estimate Request Form"
             ></iframe>
           </div>
         </div>
