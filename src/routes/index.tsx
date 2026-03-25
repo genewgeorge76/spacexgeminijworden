@@ -12,20 +12,20 @@ export const Route = createFileRoute('/')({
             Commercial <br /> Infrastructure
           </h1>
           <p className="text-xl mb-8 font-bold text-gray-300 uppercase italic">
-            Years of Dedicated Service for KFC, Taco Bell, and National Developers.
+            Years of Dedicated Service for KFC, Taco Bell, and National Brands.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00] animate-pulse">
               ✓ 90-DAY QSR FAST-TRACK SPECIALISTS (KFC & TACO BELL)
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">
-              ✓ BIG CHICKEN 2017 REMODEL: COMPLETE LOT REPAVE
+              ✓ ADA COMPLIANCE, SEALCOATING & REMODEL REPAIRS
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight">
-              ✓ ADA COMPLIANCE & ACCESSIBILITY SPECIALISTS
+              ✓ BIG CHICKEN 2017 REMODEL: COMPLETE LOT REPAVE
             </li>
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-gray-400">
-              ✓ JENNINGS, LA: ELTON ST. SITE PREP & FAST FOOD INFRASTRUCTURE
+              ✓ JENNINGS, LA: ELTON ST. SITE PREP & INFRASTRUCTURE
             </li>
           </ul>
           <a href="tel:8044461296" className="bg-[#ffcc00] text-black text-center py-6 font-black uppercase text-3xl hover:bg-white transition-all shadow-[0_0_20px_rgba(255,204,0,0.3)]">
