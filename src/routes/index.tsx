@@ -12,7 +12,7 @@ export const Route = createFileRoute('/')({
             Commercial <br /> Infrastructure
           </h1>
           <p className="text-xl mb-8 font-bold text-gray-300 uppercase italic">
-            Years of Dedicated Service for KFC, Taco Bell, and National Developers.
+            Years of Dedicated Service for KFC, Taco Bell, and National Brands.
           </p>
           <ul className="space-y-4 mb-10 text-sm">
             <li className="border-l-4 border-[#ffcc00] pl-4 font-bold uppercase tracking-tight text-[#ffcc00] animate-pulse">
@@ -39,7 +39,6 @@ export const Route = createFileRoute('/')({
             Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
-            {/* LINKED HOUZZ PRO PROFILE */}
             <a 
               href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" 
               target="_blank" 
@@ -81,7 +80,6 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
-      {/* THE COMPARISON TABLE */}
       <Comparison />
 
       {/* KICKSERV ESTIMATE SECTION */}
