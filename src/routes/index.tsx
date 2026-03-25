@@ -9,7 +9,7 @@ export const Route = createFileRoute('/')({
         {/* COMMERCIAL SECTION */}
         <div className="flex-1 bg-[#1a1a1a] p-12 border-r border-[#ffcc00]/20 flex flex-col justify-center">
           <h1 className="text-[#ffcc00] text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
-            Commercial<br/>Infrastructure
+            Commercial <br /> Infrastructure
           </h1>
           <p className="text-xl mb-8 font-bold text-gray-300 uppercase italic">
             Vetted by KFC (The Big Chicken), Taco Bell, and Winn-Dixie.
@@ -26,11 +26,11 @@ export const Route = createFileRoute('/')({
         {/* RESIDENTIAL SECTION */}
         <div className="flex-1 bg-white text-black p-12 flex flex-col justify-center">
           <h2 className="text-7xl mb-6 uppercase font-black tracking-tighter leading-none">
-            Residential<br/>Estates
+            Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
             <div className="bg-[#7ac142] text-white p-6 text-center leading-none font-black rounded-lg shadow-lg">
-              HOUZZ<br/>2024-2026
+              HOUZZ <br /> 2024-2026
             </div>
             <p className="font-black text-2xl tracking-tighter uppercase text-gray-800 italic">
               The 6-Inch Structural Standard
@@ -45,9 +45,24 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
-      {/* THE COMPARISON TABLE */}
       <Comparison />
 
+      {/* KICKSERV ESTIMATE SECTION */}
+      <section className="py-24 px-6 bg-white text-black border-t-8 border-[#ffcc00]">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-6xl font-black uppercase tracking-tighter text-center mb-12">Request Your Free Estimate</h2>
+          <div className="bg-white rounded-xl shadow-2xl p-1 border border-gray-100 overflow-hidden">
+            <iframe 
+              src="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new?iframe=true" 
+              style={{ border: 'none', minHeight: '800px' }} 
+              width="100%" 
+              height="1000" 
+              scrolling="auto"
+              title="Kickserv Estimate Request Form"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </main>
   ),
 })
