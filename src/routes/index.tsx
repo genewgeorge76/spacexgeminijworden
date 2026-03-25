@@ -29,9 +29,10 @@ export const Route = createFileRoute('/')({
             Residential <br /> Estates
           </h2>
           <div className="flex items-center gap-6 mb-10">
-            <div className="bg-[#7ac142] text-white p-6 text-center leading-none font-black rounded-lg shadow-lg">
-              HOUZZ <br /> 2024-2026
-            </div>
+            {/* LINKED HOUZZ PROFILE */}
+            <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="bg-[#7ac142] text-white p-6 text-center leading-none font-black rounded-lg shadow-lg hover:scale-105 transition-transform">
+              HOUZZ PRO<br/>2024-2026
+            </a>
             <p className="font-black text-2xl tracking-tighter uppercase text-gray-800 italic">
               The 6-Inch Structural Standard
             </p>
@@ -45,20 +46,42 @@ export const Route = createFileRoute('/')({
         </div>
       </section>
 
+      {/* AWARDS & PROJECT GALLERY STRIP */}
+      <section className="bg-[#111111] py-16 border-y border-[#ffcc00]/20">
+        <div className="max-w-7xl mx-auto px-6 text-center">
+          <h3 className="text-gray-500 font-black text-xl uppercase tracking-[0.2em] mb-8">Awarded Portfolio</h3>
+          <div className="flex flex-wrap justify-center items-center gap-12">
+            <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="text-white font-black text-2xl uppercase italic hover:text-[#ffcc00] transition-colors">
+              Top Rated Contractor 2026
+            </a>
+            <div className="hidden md:block h-12 w-px bg-gray-800"></div>
+            <a 
+              href="https://www.houzz.com/hznb/projects/driveway-paving-pj-vj~361642" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="group flex items-center gap-4 text-[#7ac142] font-black text-2xl border-2 border-[#7ac142] px-8 py-4 hover:bg-[#7ac142] hover:text-white transition-all"
+            >
+              VIEW HOUZZ PROJECT GALLERY
+              <span className="group-hover:translate-x-2 transition-transform">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <Comparison />
 
       {/* KICKSERV ESTIMATE SECTION */}
-      <section className="py-24 px-6 bg-white text-black border-t-8 border-[#ffcc00]">
+      <section id="contact" className="py-24 px-6 bg-white text-black border-t-8 border-[#ffcc00]">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-6xl font-black uppercase tracking-tighter text-center mb-12">Request Your Free Estimate</h2>
           <div className="bg-white rounded-xl shadow-2xl p-1 border border-gray-100 overflow-hidden">
             <iframe 
               src="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new?iframe=true" 
-              style={{ border: 'none', minHeight: '800px' }} 
+              style={{ border: 'none', minHeight: '850px' }} 
               width="100%" 
               height="1000" 
               scrolling="auto"
-              title="Kickserv Estimate Request Form"
+              title="Kickserv Request Form"
             ></iframe>
           </div>
         </div>
