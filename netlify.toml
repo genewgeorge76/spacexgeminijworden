@@ -22,3 +22,5 @@
   from = "/masonry"
   to = "/masonry.html"
   status = 200
+
+# Triggering deployment to ensure the latest changes are built
