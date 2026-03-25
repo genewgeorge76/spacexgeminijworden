@@ -17,4 +17,9 @@
   package = "@netlify/plugin-sitemap"
   [plugins.inputs]
     baseUrl = "https://jwordenasphaltpaving.com"
-    exclude = ["./index.bak.html", "./src/data/products.ts"]
+    # This ignores the "Trash" files so they never show up in Google
+    exclude = [
+      "./index.bak.html",
+      "./src/data/products.ts",
+      "**/404.html"
+    ]
