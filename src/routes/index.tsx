@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { Comparison } from '../components/Comparison'
 
 export const Route = createFileRoute('/')({
@@ -77,6 +77,27 @@ export const Route = createFileRoute('/')({
               <span className="group-hover:translate-x-2 transition-transform">→</span>
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* COMMERCIAL PORTFOLIO TEASER (NEW!) */}
+      <section className="relative py-32 px-6 overflow-hidden border-t-[10px] border-[#ffcc00]">
+        <img 
+          src="https://img.monica.im/chat/image/v1/498260407/68e219ba-3b03-4554-9467-33a824151756.jpg" 
+          alt="KFC Landmark Paving Portfolio" 
+          className="absolute inset-0 w-full h-full object-cover opacity-30 grayscale hover:grayscale-0 transition-all duration-1000"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          <h2 className="text-[#ffcc00] text-7xl md:text-8xl font-black uppercase tracking-tighter mb-6 leading-none">
+            View The <br/> Authority Gallery
+          </h2>
+          <p className="text-xl md:text-2xl font-bold uppercase italic text-gray-300 mb-10 max-w-3xl mx-auto border-l-4 border-[#ffcc00] pl-6">
+            Review our 90-Day QSR Fast-Track specs, national brand receipts, and the legacy history of J. Worden & Sons.
+          </p>
+          <Link to="/commercial" className="bg-[#ffcc00] text-black px-12 py-6 text-3xl font-black uppercase hover:bg-white transition-all shadow-[0_0_40px_rgba(255,204,0,0.5)] inline-block">
+            Enter Commercial Vault
+          </Link>
         </div>
       </section>
 
