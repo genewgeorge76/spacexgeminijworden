@@ -1,66 +1,57 @@
-export const Footer = () => {
-  const cities = [
-    "Richmond", "Chester", "Midlothian", "Glen Allen", "Mechanicsville", 
-    "Henrico", "Chesterfield", "Petersburg", "Hopewell", "Colonial Heights",
-    "Mosley", "Powhatan", "Goochland", "Ashland", "Hanover", "Sandston",
-    "Varina", "Bon Air", "Short Pump", "Tuckahoe", "Wyndham", "Brandermill",
-    "Woodlake", "Enon", "Ettrick", "Matoaca", "Dinwiddie", "Prince George",
-    "Disputanta", "Charles City", "New Kent", "Quinton", "King William",
-    "Aylett", "St. Stephens Church", "Tappahannock", "Dunnsville", "Center Cross",
-    "Montpelier", "Rockville", "Manakin Sabot"
-  ]
+import { Link } from '@tanstack/react-router'
 
+export function Footer() {
   return (
-    <footer className="bg-[#111111] border-t-8 border-[#ffcc00] pt-16 pb-8 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* BRAND AUTHORITY */}
-          <div className="space-y-4">
-            <h3 className="text-[#ffcc00] text-xl font-black uppercase">J. Worden & Sons</h3>
-            <p className="text-gray-400 text-sm font-bold leading-relaxed">
-              4th Generation Asphalt Paving Legacy. Established 1984. 
-              The 6-Inch Structural Standard for Virginia.
-            </p>
-            <p className="text-[#ffcc00] font-black text-xl leading-none">804-446-1296</p>
-          </div>
-
-          {/* INDEPENDENCE DISCLAIMER */}
-          <div className="lg:col-span-2 bg-[#1a1a1a] p-6 border border-[#ffcc00]/20 rounded">
-            <h4 className="text-white font-black uppercase text-xs mb-3">Legal Notice & Brand Identity</h4>
-            <p className="text-gray-500 text-[11px] leading-tight italic">
-              J. Worden & Sons Asphalt Paving is an independent family business and is not affiliated with, 
-              associated with, or endorsed by any other Worden-named paving business or entity in Chester, 
-              Virginia or elsewhere. Our licenses, warranties, and structural standards are proprietary.
-            </p>
-          </div>
-
-          {/* QUICK LINKS */}
-          <div className="flex flex-col gap-2 uppercase font-black text-xs tracking-widest">
-            <a href="/" className="text-white hover:text-[#ffcc00]">Commercial</a>
-            <a href="/" className="text-white hover:text-[#ffcc00]">Residential</a>
-            <a href="/" className="text-white hover:text-[#ffcc00]">Masonry</a>
-            <a href="/" className="text-white hover:text-[#ffcc00]">Contact</a>
-          </div>
+    <footer className="bg-black text-white border-t-[10px] border-[#ffcc00] pt-20 pb-10 px-6 mt-auto">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16 border-b border-gray-800 pb-16">
+        
+        {/* BRANDING & HOTLINE */}
+        <div className="md:col-span-2">
+          <h2 className="text-[#ffcc00] text-4xl font-black uppercase tracking-tighter mb-4">
+            J. Worden & Sons
+          </h2>
+          <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-8">
+            Multi-Decade Infrastructure Authority
+          </p>
+          <a href="tel:8044461296" className="inline-block bg-[#1a1a1a] border-l-4 border-[#ffcc00] px-6 py-4">
+            <p className="text-xs text-gray-500 font-black uppercase mb-1">Commercial Dispatch & Estimating</p>
+            <p className="text-3xl text-white font-black">804-446-1296</p>
+          </a>
         </div>
 
-        {/* SEO SERVICE GRID - TO BEAT JORDAN WELLS */}
-        <div className="border-t border-white/10 pt-8 mb-8">
-          <h4 className="text-gray-500 font-black uppercase text-[10px] tracking-[0.3em] mb-4 text-center">
-            Virginia Service Grid: The 6-Inch Structural Standard Applied To
-          </h4>
-          <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
-            {cities.map((city) => (
-              <span key={city} className="text-gray-600 text-[10px] font-bold uppercase hover:text-[#ffcc00] transition-colors cursor-default">
-                {city}, VA
-              </span>
-            ))}
-          </div>
+        {/* QUICK LINKS */}
+        <div>
+          <h3 className="text-white font-black uppercase tracking-widest mb-6">Divisions</h3>
+          <ul className="space-y-4 font-bold text-gray-400 text-sm uppercase">
+            <li><Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial QSR Fast-Track</Link></li>
+            <li><Link to="/" className="hover:text-[#ffcc00] transition-colors">Residential Estates</Link></li>
+            <li><Link to="/standards" className="hover:text-[#ffcc00] transition-colors">Virginia Engineering Specs</Link></li>
+          </ul>
         </div>
 
-        <div className="text-center text-gray-700 text-[9px] font-black uppercase tracking-widest">
-          © 2026 J. Worden & Sons Asphalt Paving • Serving 41 Virginia Cities
+        {/* PROOF & AWARDS */}
+        <div>
+          <h3 className="text-white font-black uppercase tracking-widest mb-6">Vetted By</h3>
+          <ul className="space-y-4 font-bold text-gray-400 text-sm uppercase">
+            <li className="flex items-center gap-2">
+              <span className="text-[#ffcc00]">✓</span> KFC & Taco Bell
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="text-[#ffcc00]">✓</span> Winn-Dixie
+            </li>
+            <li className="flex items-center gap-2 mt-4">
+              <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="bg-[#7ac142] text-white px-3 py-1 text-xs rounded hover:scale-105 transition-transform">
+                Houzz Pro 2024-2026
+              </a>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      {/* COPYRIGHT & LEGAL */}
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs font-bold text-gray-600 uppercase tracking-widest gap-4">
+        <p>© {new Date().getFullYear()} J. Worden & Sons Paving. All Rights Reserved.</p>
+        <p>Virginia Dept. of Transportation (VDOT) Standard Compliant.</p>
       </div>
     </footer>
   )
