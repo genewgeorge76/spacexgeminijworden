@@ -17,7 +17,7 @@ export const Header = () => {
         <nav className="flex gap-8 text-white font-black uppercase text-xs tracking-widest">
           <Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial</Link>
           <Link to="/" className="hover:text-[#ffcc00] transition-colors">Residential</Link>
-          <Link to="/" className="hover:text-[#ffcc00] transition-colors">Our Standard</Link>
+          <Link to="/standards" className="hover:text-[#ffcc00] transition-colors">Our Standards</Link>
         </nav>
 
         <a<Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial</Link> 
