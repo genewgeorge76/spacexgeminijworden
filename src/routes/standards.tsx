@@ -1,1 +1,31 @@
+import { createFileRoute } from '@tanstack/react-router'
 
+export const Route = createFileRoute('/standards')({
+  component: () => (
+    <main className="min-h-screen bg-[#111111] font-sans text-white">
+      {/* HERO SECTION */}
+      <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
+        <div className="max-w-7xl mx-auto">
+          <span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm tracking-[0.3em] mb-6 inline-block">
+            Consumer Protection & Specs
+          </span>
+          <h1 className="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6 text-[#ffcc00]">
+            Virginia Engineered <br /> Standards
+          </h1>
+          <p className="text-2xl font-bold uppercase italic text-gray-400 max-w-4xl leading-tight">
+            We don't do "bait and switch" paving. Choose your structural tier based on your budget and timeline. Every spec is in writing.
+          </p>
+        </div>
+      </section>
+
+      {/* THE 3 TIERS OF PAVEMENT */}
+      <section className="py-24 px-6 max-w-7xl mx-auto">
+        <h2 className="text-5xl font-black uppercase mb-16 text-center tracking-tighter">The 3 Structural Tiers</h2>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          
+          {/* TIER 1: RESALE OVERLAY */}
+          <div className="bg-[#1a1a1a] border-t-8 border-gray-600 p-8 shadow-2xl flex flex-col">
+            <h3 className="text-3xl font-black uppercase mb-2 text-gray-300">Tier 1: Resale</h3>
+            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6">The Budget / Mover Option</p>
+            <p className="text
