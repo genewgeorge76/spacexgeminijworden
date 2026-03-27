@@ -21,11 +21,37 @@ export const Route = createFileRoute('/standards')({
       {/* THE 3 TIERS OF PAVEMENT */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <h2 className="text-5xl font-black uppercase mb-16 text-center tracking-tighter">The 3 Structural Tiers</h2>
-        
         <div className="grid md:grid-cols-3 gap-8">
           
           {/* TIER 1: RESALE OVERLAY */}
           <div className="bg-[#1a1a1a] border-t-8 border-gray-600 p-8 shadow-2xl flex flex-col">
             <h3 className="text-3xl font-black uppercase mb-2 text-gray-300">Tier 1: Resale</h3>
             <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6">The Budget / Mover Option</p>
-            <p className="text
+            <p className="text-gray-400 mb-8 flex-grow">
+              Ideal for property "flip" projects or quick surface refreshes. Includes a 1.5" surface course overlay with targeted patching.
+            </p>
+          </div>
+
+          {/* TIER 2: RESIDENTIAL STANDARD */}
+          <div className="bg-[#1a1a1a] border-t-8 border-[#ffcc00] p-8 shadow-2xl flex flex-col scale-105 z-10">
+            <h3 className="text-3xl font-black uppercase mb-2 text-white">Tier 2: Standard</h3>
+            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6">The 15-20 Year Driveway</p>
+            <p className="text-gray-400 mb-8 flex-grow">
+              Our most popular choice. Full 2" compacted surface over a 6" stone base. Perfect for Richmond's clay soil.
+            </p>
+          </div>
+
+          {/* TIER 3: HEAVY DUTY */}
+          <div className="bg-[#1a1a1a] border-t-8 border-white p-8 shadow-2xl flex flex-col">
+            <h3 className="text-3xl font-black uppercase mb-2 text-gray-300">Tier 3: Estate</h3>
+            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6">The "Forever" Foundation</p>
+            <p className="text-gray-400 mb-8 flex-grow">
+              Double-lift paving (3" total) over reinforced stone. Designed for heavy equipment, RVs, and maximum longevity.
+            </p>
+          </div>
+
+        </div>
+      </section>
+    </main>
+  ),
+})
