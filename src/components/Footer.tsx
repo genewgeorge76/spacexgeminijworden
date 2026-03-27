@@ -1,58 +1,35 @@
-import { Link } from '@tanstack/react-router'
+import React from 'react';
 
-export function Footer() {
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-black text-white border-t-[10px] border-[#ffcc00] pt-20 pb-10 px-6 mt-auto">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 mb-16 border-b border-gray-800 pb-16">
-        
-        {/* BRANDING & HOTLINE */}
-        <div className="md:col-span-2">
-          <h2 className="text-[#ffcc00] text-4xl font-black uppercase tracking-tighter mb-4">
-            J. Worden & Sons
-          </h2>
-          <p className="text-gray-400 font-bold uppercase tracking-widest text-sm mb-8">
-            Multi-Decade Infrastructure Authority
-          </p>
-          <a href="tel:8044461296" className="inline-block bg-[#1a1a1a] border-l-4 border-[#ffcc00] px-6 py-4">
-            <p className="text-xs text-gray-500 font-black uppercase mb-1">Commercial Dispatch & Estimating</p>
-            <p className="text-3xl text-white font-black">804-446-1296</p>
-          </a>
-        </div>
-
-        {/* QUICK LINKS */}
-        <div>
-          <h3 className="text-white font-black uppercase tracking-widest mb-6">Divisions</h3>
-          <ul className="space-y-4 font-bold text-gray-400 text-sm uppercase">
-            <li><Link to="/commercial" className="hover:text-[#ffcc00] transition-colors">Commercial QSR Fast-Track</Link></li>
-            <li><Link to="/" className="hover:text-[#ffcc00] transition-colors">Residential Estates</Link></li>
-            <li><Link to="/standards" className="hover:text-[#ffcc00] transition-colors">Virginia Engineering Specs</Link></li>
-          </ul>
-        </div>
-
-        {/* PROOF & AWARDS */}
-        <div>
-          <h3 className="text-white font-black uppercase tracking-widest mb-6">Vetted By</h3>
-          <ul className="space-y-4 font-bold text-gray-400 text-sm uppercase">
-            <li className="flex items-center gap-2">
-              <span className="text-[#ffcc00]">✓</span> KFC & Taco Bell
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-[#ffcc00]">✓</span> Winn-Dixie
-            </li>
-            <li className="flex items-center gap-2 mt-4">
-              <a href="https://www.houzz.com/pro/jwordandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="bg-[#7ac142] text-white px-3 py-1 text-xs rounded hover:scale-105 transition-transform">
-                Houzz Pro 2024-2026
-              </a>
-            </li>
-          </ul>
-        </div>
+    <footer className="site-footer" style={{ backgroundColor: '#1a1a1a', color: '#ffffff', padding: '40px 20px', textAlign: 'center', fontFamily: 'sans-serif' }}>
+      
+      <div className="footer-brand" style={{ marginBottom: '30px' }}>
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '10px', color: '#f39c12' }}>J. Worden & Sons Asphalt Paving</h3>
+        <p style={{ margin: '5px 0' }}>4th Generation Paving Experts | Est. 1984</p>
+        <p style={{ margin: '5px 0', fontWeight: 'bold' }}>National Commercial Contractors & Premium Residential Paving</p>
+        <p style={{ margin: '15px 0', fontSize: '1.25rem' }}>
+          <strong>Call Direct: <a href="tel:8044461296" style={{ color: '#f39c12', textDecoration: 'none' }}>804-446-1296</a></strong>
+        </p>
       </div>
 
-      {/* COPYRIGHT & LEGAL */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-xs font-bold text-gray-600 uppercase tracking-widest gap-4">
-        <p>© {new Date().getFullYear()} J. Worden & Sons Paving. All Rights Reserved.</p>
-        <p>Virginia Dept. of Transportation (VDOT) Standard Compliant.</p>
+      <div className="footer-service-area" style={{ marginBottom: '30px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <h4 style={{ color: '#f39c12', marginBottom: '10px' }}>Proudly Serving 41 Virginia Cities & Neighborhoods:</h4>
+        <p style={{ fontSize: '0.9rem', lineHeight: '1.6', color: '#cccccc' }}>
+          Richmond, Tuckahoe, Sleepy Hollow, Stratford Hills, River Road, Windsor Farms, Chester, Chesterfield, Midlothian, Henrico, Short Pump, Mechanicsville, Glen Allen, Bon Air, Ashland, Brandermill, Woodlake, Petersburg, Colonial Heights, Hopewell, Powhatan, Goochland, Hanover, Sandston, Varina, Wyndham, Enon, Ettrick, Matoaca, Moseley, Dinwiddie, Prince George, Disputanta, Charles City, New Kent, Quinton, King William, Aylett, St. Stephens Church, Tappahannock, Dunnsville, Center Cross, Montpelier, Rockville, Manakin Sabot.
+        </p>
       </div>
+
+      <div className="footer-legal" style={{ fontSize: '0.85rem', color: '#999999', borderTop: '1px solid #333', paddingTop: '20px', maxWidth: '800px', marginLeft: 'auto', marginRight: 'auto' }}>
+        <p style={{ color: '#ffffff', fontWeight: 'bold', marginBottom: '10px' }}>Built to Virginia DOT Specifications (21B Aggregate Base)</p>
+        <p style={{ marginBottom: '15px', fontStyle: 'italic' }}>
+          Legal Disclaimer: J. Worden & Sons Asphalt Paving is an independent, family-owned business operated by Gene W. George. We are not affiliated with any other paving company operating under the name "Worden" in the Virginia or South Carolina area.
+        </p>
+        <p>&copy; 2026 J. Worden & Sons Asphalt Paving. All Rights Reserved.</p>
+      </div>
+
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;
