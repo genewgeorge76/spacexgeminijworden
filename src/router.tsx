@@ -5,7 +5,7 @@ import { routeTree } from './routeTree.gen';
 // 1. Create the router engine
 export const router = createRouter({ routeTree });
 
-// 2. THE MISSING PIECE: Export getRouter for the Netlify/Vite Build
+// 2. Export getRouter for the build engine
 export const getRouter = () => router;
 
 // 3. Register the router for TypeScript safety
