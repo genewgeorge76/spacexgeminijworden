@@ -1,3 +1,4 @@
+import './index.css' // <--- THIS IS THE MISSING LINK
 import { createRouter } from '@tanstack/react-router'
 import { routeTree } from './routeTree.gen'
 
