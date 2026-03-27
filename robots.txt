@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Direct link to your new sitemap
+Sitemap: https://jwordenasphaltpaving.com/sitemap.xml
