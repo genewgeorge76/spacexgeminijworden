@@ -1,6 +1,10 @@
 export default function ContactForm() {
   return (
-    <form className="max-w-2xl mx-auto bg-white p-8 rounded-sm border border-[#e8e8e0] text-left shadow-sm font-sans" action="#" method="POST">
+    <form 
+      className="max-w-2xl mx-auto bg-white p-8 rounded-sm border border-[#e8e8e0] text-left shadow-sm font-sans" 
+      action="https://formspree.io/f/j.wordenandsonspaving@gmail.com" 
+      method="POST"
+    >
       <div className="grid md:grid-cols-2 gap-6 mb-6">
         <div>
           <label htmlFor="name" className="block text-xs font-bold uppercase tracking-widest text-[#888] mb-2">Full Name</label>
