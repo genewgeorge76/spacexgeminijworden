@@ -11,38 +11,28 @@ const Footer = () => {
             J. Worden & Sons<br />
             <span className="text-[#ffcc00]">Asphalt Paving</span>
           </h3>
-          <p className="text-gray-400 font-bold uppercase text-sm">
-            1601 Ware Bottom Springs Rd, Suite 214<br />
-            Chester, VA 23836
-          </p>
-          <a href="tel:8044461296" className="text-[#ffcc00] text-xl font-black block hover:underline">
-            804-446-1296
-          </a>
+          <div className="space-y-2 text-gray-400 font-bold uppercase text-sm tracking-widest">
+            <p>1601 Ware Bottom Springs Rd, Suite 214</p>
+            <p>Chester, VA 23836</p>
+            <a href="tel:8044461296" className="text-[#ffcc00] text-xl block hover:underline italic">804-446-1296</a>
+          </div>
         </div>
+
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-4">
-            <h4 className="font-black uppercase text-[#ffcc00] text-xs">Services</h4>
+            <h4 className="font-black uppercase text-[#ffcc00] text-xs tracking-[0.2em]">Authority</h4>
             <nav className="flex flex-col space-y-2 text-sm font-bold uppercase">
-              <Link to="/commercial">Commercial</Link>
-              <Link to="/standards">Standards</Link>
-            </nav>
-          </div>
-          <div className="space-y-4">
-            <h4 className="font-black uppercase text-[#ffcc00] text-xs">Regional</h4>
-            <nav className="flex flex-col space-y-2 text-sm font-bold uppercase">
-              <Link to="/locations/tuckahoe">Tuckahoe</Link>
-              <Link to="/locations/henrico">Henrico</Link>
+              <Link to="/locations/tuckahoe" className="hover:text-[#ffcc00] transition-colors">Tuckahoe Elite</Link>
+              <Link to="/locations/midlothian" className="hover:text-[#ffcc00] transition-colors">Midlothian</Link>
+              <Link to="/locations/amelia" className="hover:text-[#ffcc00] transition-colors">Amelia</Link>
             </nav>
           </div>
         </div>
+
         <div className="bg-[#1a1a1a] p-8 border border-gray-800 text-center">
-          <div className="text-[#ffcc00] text-4xl font-black italic">Since 1984</div>
-          <p className="text-xs font-bold text-gray-400 uppercase">Licensed & Insured</p>
+          <div className="text-[#ffcc00] text-4xl font-black mb-2 uppercase italic tracking-tighter">Since 1984</div>
+          <p className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">Richmond 23221 Elite Contractor</p>
         </div>
-      </div>
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-900 flex justify-between items-center text-[10px] uppercase font-black text-gray-600">
-        <p>&copy; {currentYear} J. Worden & Sons Asphalt Paving</p>
-        <p className="text-[#ffcc00]">Richmond 23221 Authority</p>
       </div>
     </footer>
   )
