@@ -7,7 +7,7 @@ export const Route = createFileRoute('/locations/powhatan')({
         <div className="max-w-7xl mx-auto">
           <span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm mb-6 inline-block">Powhatan, VA</span>
           <h1 className="text-7xl font-black uppercase text-[#ffcc00]">Powhatan Asphalt</h1>
-          <p className="text-2xl text-gray-400 italic font-bold">Structural paving for Powhatan estates and rural corridors.</p>
+          <p className="text-2xl text-gray-400 italic font-bold">Structural paving for Powhatan estates and rural corridors built on a 6-inch stone base.</p>
         </div>
       </section>
     </main>
