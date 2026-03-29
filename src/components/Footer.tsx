@@ -55,4 +55,12 @@ const Footer = () => {
 
       </div>
 
-      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row
+      <div className="max-w-7xl mx-auto mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-[0.3em] font-black text-gray-600">
+        <p>&copy; {currentYear} J. Worden & Sons Asphalt Paving | All Rights Reserved</p>
+        <p className="mt-4 md:mt-0 text-[#ffcc00]">Richmond 23221 Authority</p>
+      </div>
+    </footer>
+  )
+}
+
+export default Footer
