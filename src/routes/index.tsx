@@ -238,7 +238,7 @@ function LandingPage() {
             </div>
             <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
               <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Email</p>
-              <p className="text-sm truncate">info@jwordenasphalt.com</p>
+              <p className="text-sm truncate">info@jwordenasphaltpaving.com</p>
             </div>
             <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
               <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Location</p>
