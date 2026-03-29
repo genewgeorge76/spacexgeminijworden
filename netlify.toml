@@ -3,6 +3,25 @@
   publish = "dist"
 
 [[redirects]]
+  from = "/mclean-residential-paving.html"
+  to = "/locations/mclean"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+    baseUrl = "https://jwordenasphaltpaving.com"
+    exclude = [
+      "./index.bak.html",
+      "./src/data/products.ts",
+      "**/404.html"
+    ]
+    changeFreq = "weekly"
+    priority = 0.8
