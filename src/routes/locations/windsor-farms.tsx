@@ -14,8 +14,9 @@ export const Route = createFileRoute('/locations/windsor-farms')({
         <div className="max-w-3xl mx-auto border-l-4 border-[#ffcc00] p-10 bg-[#111111]">
           <h2 className="text-3xl font-black uppercase mb-6 text-white">The Windsor Requirement</h2>
           <p className="text-gray-400 font-bold leading-relaxed mb-6">
-            In the Windsor Farms Corridor, we don't just pave; we engineer. We utilize the same **Hercules** and **SealMaster** emulsions used on national retail hubs to ensure a deep-black, lasting finish for 23221's elite estates.
+            We utilize the same **Hercules** and **SealMaster** emulsions used on national retail hubs to ensure a deep-black, lasting finish for 23221's elite estates.
           </p>
+          <a href="tel:8044461296" className="text-[#ffcc00] text-2xl font-black underline decoration-4">804-446-1296</a>
         </div>
       </section>
     </main>
