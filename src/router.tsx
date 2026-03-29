@@ -1,4 +1,4 @@
-import './index.css'; // This turns on the Black and Gold theme
+import './index.css';
 import { createRouter } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 
