@@ -36,6 +36,12 @@ export const Route = createFileRoute('/residential')({
                   The skeleton of your driveway. We use heavy-duty compaction equipment to ensure a base that supports heavy SUVs and delivery trucks without rutting.
                 </p>
               </div>
+              <div className="text-left">
+                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2 text-left">03. Custom Belgian Block & Aprons</h4>
+                <p className="text-gray-400 font-bold leading-relaxed text-left">
+                  Specializing in hand-laid cobblestone and Belgian block transitions that define the Windsor Farms and Fairfax aesthetic.
+                </p>
+              </div>
             </div>
           </div>
 
