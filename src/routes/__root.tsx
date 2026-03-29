@@ -3,6 +3,8 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles.css'
 
+const BASE_URL = 'https://jwordenasphaltpaving.com'
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -20,7 +22,7 @@ export const Route = createRootRoute({
           'J Worden Sons Asphalt Paving, elite asphalt authority, corporate vetted KFC Taco Bell Winn-Dixie, Virginia paving contractor, 6-inch compacted stone base, commercial paving Virginia',
       },
       { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: 'https://jwordenasphaltpaving.com/' },
+      { property: 'og:url', content: `${BASE_URL}/` },
       { property: 'og:title', content: 'J. Worden & Sons | Elite Asphalt Authority' },
       {
         property: 'og:description',
@@ -41,7 +43,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     "@type": "LocalBusiness",
     "name": "J. Worden & Sons Asphalt Paving",
     "description": "Elite asphalt authority since 1984. Corporate-vetted contractor for KFC, Taco Bell, and Winn-Dixie with a 6-inch compacted stone base on every project.",
-    "url": "https://jwordenasphaltpaving.com/",
+    "url": `${BASE_URL}/`,
     "telephone": "+1-804-446-1296",
     "address": {
       "@type": "PostalAddress",
