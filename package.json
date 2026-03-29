@@ -16,6 +16,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "latest",
     "@tanstack/router-plugin": "latest",
     "@tanstack/router-cli": "latest",
     "@types/react": "latest",
@@ -25,7 +26,6 @@
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "vite": "latest",
-    "vite-tsconfig-paths": "latest"
+    "vite": "latest"
   }
 }
