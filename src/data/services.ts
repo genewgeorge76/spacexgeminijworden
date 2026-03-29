@@ -10,47 +10,41 @@ export interface Service {
 const services: Array<Service> = [
   {
     id: 1,
-    name: 'Restaurant Lot Rebuilds',
+    name: 'Commercial & National Brand Partners',
     image: '/placeholder.png',
-    description:
-      'Flagship KFC (The Big Chicken), Taco Bell, and Winn-Dixie partners rely on us for heavy-duty, night-and-weekend lot rebuilds. We manage traffic control, drainage, ADA compliance, and post-pour striping so drive-thru lanes stay profitable.',
-    shortDescription:
-      'Drive-thru and grocery lots rebuilt to national brand standards.',
+    description: 'Virginia\'s leading national brands trust J. Worden & Sons for high-traffic lot rebuilds. Our portfolio includes flagship KFC (The Big Chicken), Taco Bell, Wendy\'s, Food Lion, Walgreens, and Rite Aid. We manage the complex logistics of night-work, traffic control, and ADA compliance so your doors stay open and your revenue stays protected.',
+    shortDescription: 'The trusted paving partner for Food Lion, Walgreens, and national fast-food brands.',
     features: [
-      '6" compacted stone base for every commercial pour',
-      'Night work with traffic control to protect revenue',
-      'Brand-standard striping, ADA, and egress planning',
-      'Multi-site scheduling across Virginia\'s 41-city grid',
+      '6" compacted stone base for all high-traffic commercial pours',
+      'Specialized night & weekend shifts for Food Lion and retail hubs',
+      'ADA-compliant egress, brand-standard striping, and drainage',
+      'Expertise in "Live-Site" paving—keeping drive-thrus moving',
     ],
   },
   {
     id: 2,
-    name: 'Commercial Maintenance & Resurfacing',
+    name: 'Industrial Maintenance & Resurfacing',
     image: '/placeholder.png',
-    description:
-      'Extend the life of existing parking lots with mill-and-fill overlays, sealcoating, and structural patching. Our crews stage work to keep storefronts, warehouses, and campuses open while we work.',
-    shortDescription:
-      'Structural overlays, sealcoating, and ADA upgrades without downtime.',
+    description: 'Protect your investment with mill-and-fill overlays and structural patching designed for heavy delivery trucks and high-volume retail traffic. From grocery store loading docks to pharmacy drive-thrus, we provide the structural durability needed for 24/7 operations.',
+    shortDescription: 'Heavy-duty resurfacing for retail, pharmacy, and grocery corridors.',
     features: [
-      'Phased work plans to keep stores open',
-      'Industrial sealcoating and crackfill',
-      'Line striping and ADA remediation included',
-      'Moisture mitigation and drainage tuning',
+      'Industrial-grade sealcoating and crackfill',
+      'Precision milling for seamless retail storefront transitions',
+      'Loading dock and heavy-equipment pad reinforcement',
+      'Emergency pothole and drainage repair',
     ],
   },
   {
     id: 3,
-    name: 'Residential & HOA Pavement',
+    name: 'Residential & HOA Infrastructure',
     image: '/placeholder.png',
-    description:
-      'Residential driveways, private roads, and HOA communities built with the same 6-inch base we use on commercial lots. Clean edges, smooth transitions, and neighbor-friendly scheduling.',
-    shortDescription:
-      'Commercial-grade driveways and private roads with HOA-friendly staging.',
+    description: 'We bring the same 6-inch structural stone base used for Food Lion parking lots to every residential driveway and HOA private road. No shortcuts—just commercial-grade longevity for your home or community.',
+    shortDescription: 'Commercial-grade driveways and private roads with the 6-inch standard.',
     features: [
-      'Commercial-grade compaction and grading',
-      'Seamless tie-ins to garages and walks',
-      'HOA board-friendly scheduling and communication',
-      'Post-install seal and stripe options',
+      'DOT-compliant grading and soil stabilization',
+      'Precision tie-ins for residential garages and walkways',
+      'HOA board-friendly staging and communication',
+      'Post-install preservation and maintenance plans',
     ],
   },
 ]
