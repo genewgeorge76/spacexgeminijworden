@@ -1,1 +1,22 @@
-import { createFileRoute } from '@tanstack/react-router'; export const Route = createFileRoute('/locations/chester/')({ component: () => (<main className="min-h-screen bg-[#111111] text-white"><section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]"><div className="max-w-7xl mx-auto"><span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm mb-6 inline-block">Chester, VA</span><h1 className="text-7xl font-black uppercase text-[#ffcc00]">Chester's Paving <br/> Authority</h1><p className="text-2xl text-gray-400 italic font-bold mb-8">Serving the 23831 area with 4-generations of paving excellence and heavy-duty asphalt solutions.</p><div className="border-t border-gray-800 pt-8 mt-8"><p className="text-sm uppercase tracking-widest text-[#ffcc00]">Commercial & Franchise Logistics</p><p className="text-xl font-bold italic">"Local Roots, Regional Reach: The Franchise Choice for Precision Paving Anywhere the Project Takes Us."</p></div></div></section></main>) });
+// Premium SEO Content for Chester HQ
+const locationData = {
+  title: "Paving Contractor in Chester, VA | J. Worden & Sons Asphalt Paving",
+  description: "Professional asphalt paving services in Chester, VA. Our headquarters at 1601 Ware Bottom Springs Rd serves as the central hub for premium residential and commercial paving across Central Virginia.",
+  canonical: "https://jwordenasphaltpaving.com/locations/chester",
+  address: "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836"
+};
+
+// JSON-LD Schema (The secret sauce for #1 Rankings)
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "AsphaltPavingBusiness", // Specific type for Google
+  "name": "J. Worden & Sons Asphalt Paving",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1601 Ware Bottom Springs Rd, Suite 214",
+    "addressLocality": "Chester",
+    "addressRegion": "VA",
+    "postalCode": "23836"
+  },
+  "areaServed": ["Richmond", "Chesterfield", "Midlothian", "Henrico", "Petersburg", "...and 36 other cities"]
+};
