@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/standards')({
+export const Route = createFileRoute('/locations/standards')({
   component: () => (
     <main className="min-h-screen bg-[#111111] font-sans text-white text-left">
       {/* HERO SECTION */}
