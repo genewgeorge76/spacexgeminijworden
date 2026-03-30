@@ -1,20 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
-
-export const Route = createFileRoute('/standards')({
-  component: () => (
-    <main className="min-h-screen bg-[#111111] text-white">
-      <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-7xl font-black uppercase text-[#ffcc00]">Virginia Paving Standards</h1>
-          <p className="text-2xl font-bold uppercase italic text-gray-400 mt-4">The 6-Inch Structural Base is our non-negotiable standard.</p>
-        </div>
-      </section>
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="bg-black/50 p-10 border border-gray-800">
-          <h2 className="text-4xl font-black uppercase mb-4">ADA & Legal Compliance</h2>
-          <p className="text-xl text-gray-400">Every commercial project includes laser-leveled drainage and federal ADA-compliant egress as standard operating procedure.</p>
-        </div>
-      </section>
-    </main>
-  ),
-});
+<div className="bg-black/50 p-6 border border-gray-800 text-left">
+  <h4 className="text-[#ffcc00] font-black uppercase mb-2 text-left">Legal Compliance</h4>
+  <p className="text-sm text-gray-400 font-bold text-left italic">
+    Every handicap stall and van-accessible route is measured to the inch to meet all Virginia state and federal ADA requirements.
+  </p>
+</div>
