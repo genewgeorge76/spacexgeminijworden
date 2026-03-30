@@ -6,7 +6,7 @@ export const Route = createFileRoute('/locations/henrico')({
       <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-7xl font-black uppercase text-[#ffcc00]">Henrico Paving</h1>
-          <p className="text-2xl mt-4 italic text-gray-400">Premium asphalt solutions for the West End, Short Pump, and Glen Allen.</p>
+          <p className="text-2xl mt-4 italic text-gray-400">Premium asphalt solutions for the West End and Glen Allen.</p>
         </div>
       </section>
     </main>
