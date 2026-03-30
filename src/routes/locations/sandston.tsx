@@ -1,24 +1,36 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/locations/sandston/')({
+export const Route = createFileRoute('/locations/standards')({
   component: () => (
-    <main className="min-h-screen bg-[#111111] text-white">
+    <main className="min-h-screen bg-[#111111] font-sans text-white text-left">
       <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
-        <div className="max-w-7xl mx-auto">
-          <span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm mb-6 inline-block">
-            Sandston, VA
+        <div className="max-w-7xl mx-auto text-left">
+          <span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm tracking-[0.3em] mb-6 inline-block">
+            Industrial Grade Specs
           </span>
-          <h1 className="text-7xl font-black uppercase text-[#ffcc00]">
-            Heavy Duty <br/> Sandston Paving
+          <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none mb-6 text-[#ffcc00]">
+            J. Worden & Sons <br /> <span className="text-white italic">STANDARDS</span>
           </h1>
-          <p className="text-2xl text-gray-400 italic font-bold mb-8">
-            Specializing in commercial-grade asphalt for the airport region and East Henrico industrial zones.
+          <p className="text-2xl font-bold uppercase italic text-gray-400 max-w-4xl leading-tight">
+            Virginia Engineered Standards. No shortcuts. Every 6-inch stone base is verified for maximum longevity.
           </p>
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <p className="text-sm uppercase tracking-widest text-[#ffcc00]">Commercial & Franchise Logistics</p>
-            <p className="text-xl font-bold italic">
-              "Local Roots, Regional Reach: The Franchise Choice for Precision Paving Anywhere the Project Takes Us."
+        </div>
+      </section>
+
+      <section className="py-24 px-6 max-w-7xl mx-auto text-left">
+        <div className="grid md:grid-cols-2 gap-12 text-left">
+          <div className="bg-[#1a1a1a] p-10 border-l-8 border-[#ffcc00] shadow-2xl">
+            <h3 className="text-4xl font-black uppercase mb-4 italic text-white">Structural Tier 2</h3>
+            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6 italic underline decoration-2">The Richmond Standard</p>
+            <p className="text-gray-300 text-xl font-bold leading-relaxed mb-8">
+              Full 2" compacted surface over a 6" stone base. This is the foundation of our family legacy.
             </p>
+            <div className="bg-black/50 p-6 border border-gray-800">
+              <h4 className="text-[#ffcc00] font-black uppercase mb-2">Legal Compliance</h4>
+              <p className="text-sm text-gray-400 font-bold italic">
+                Every handicap stall and van-accessible route is measured to the inch to meet all Virginia state and federal ADA requirements.
+              </p>
+            </div>
           </div>
         </div>
       </section>
