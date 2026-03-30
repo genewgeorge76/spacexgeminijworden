@@ -9,28 +9,28 @@ export const Route = createFileRoute('/standards')({
             Consumer Protection & Specs
           </span>
           <h1 className="text-7xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6 text-[#ffcc00]">
-            Virginia Engineered <br /> Standards
+            J. Worden & Sons <br /> Asphalt Paving
           </h1>
           <p className="text-2xl font-bold uppercase italic text-gray-400 max-w-4xl leading-tight">
-            J. Worden & Sons Asphalt Paving provides tiered structural options. No guesswork. No shortcuts.
+            Virginia Engineered Standards. No shortcuts. Every 6-inch stone base is verified for maximum longevity.
           </p>
         </div>
       </section>
 
       <section className="py-24 px-6 max-w-7xl mx-auto text-left">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-[#1a1a1a] p-8 border-t-8 border-gray-600 shadow-2xl">
-            <h3 className="text-3xl font-black uppercase mb-2 text-white italic">Tier 2: Standard</h3>
-            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6 italic text-left underline underline-offset-4 decoration-2">The 20-Year Driveway</p>
-            <p className="text-gray-400 mb-8 font-bold leading-relaxed">
-              Our most popular choice. Full 2" compacted surface over a 6" stone base. Perfect for Richmond's clay soil.
+        <div className="grid md:grid-cols-2 gap-12">
+          <div className="bg-[#1a1a1a] p-10 border-l-8 border-[#ffcc00] shadow-2xl">
+            <h3 className="text-4xl font-black uppercase mb-4 italic text-white">Structural Tier 2</h3>
+            <p className="text-[#ffcc00] font-bold uppercase text-sm tracking-widest mb-6 italic underline decoration-2">The Richmond Standard</p>
+            <p className="text-gray-300 text-xl font-bold leading-relaxed mb-8">
+              Full 2" compacted surface over a 6" stone base. This is the foundation of our family legacy.
             </p>
-          </div>
-          <div className="bg-[#1a1a1a] p-8 border-t-8 border-[#ffcc00] shadow-2xl lg:scale-105">
-            <h4 className="text-[#ffcc00] font-black uppercase mb-2 text-left">Legal Compliance</h4>
-            <p className="text-sm text-gray-400 font-bold text-left italic">
-              Every handicap stall and van-accessible route is measured to the inch to meet all Virginia state and federal ADA requirements.
-            </p>
+            <div className="bg-black/50 p-6 border border-gray-800">
+              <h4 className="text-[#ffcc00] font-black uppercase mb-2">Legal Compliance</h4>
+              <p className="text-sm text-gray-400 font-bold italic">
+                Every handicap stall and van-accessible route is measured to the inch to meet all Virginia state and federal ADA requirements.
+              </p>
+            </div>
           </div>
         </div>
       </section>
