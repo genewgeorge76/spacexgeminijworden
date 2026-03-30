@@ -4,10 +4,10 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-// 2. Main Pages (Ensure you have a HomePage component)
-import HomePage from './pages/HomePage'; // Update this path if your home page is located elsewhere
+// 2. Main Pages 
+import HomePage from './pages/HomePage'; // Ensure this matches your actual home page import
 
-// 3. Premium Location Imports (The 41+ Cities)
+// 3. Premium Location Imports 
 // Core & High-Value
 import ChesterLocation from './routes/locations/chester';
 import RichmondLocation from './routes/locations/richmond';
@@ -33,21 +33,17 @@ import NewportNewsLocation from './routes/locations/newport-news';
 import WilliamsburgLocation from './routes/locations/williamsburg';
 import NewKentLocation from './routes/locations/new-kent';
 
-// I-95 North Corridor 
+// I-95 North Corridor
 import StaffordLocation from './routes/locations/stafford';
 import SpotsylvaniaLocation from './routes/locations/spotsylvania';
 import FredericksburgLocation from './routes/locations/fredericksburg';
 
-// Note: Add the remaining imports for Amelia, Ashland, Hanover, etc., here as you build them.
-
-
-// 4. The Master Layout (This is the SEO magic that puts the Footer everywhere)
+// 4. The Master Layout (Forces Header & Footer on every page)
 const RootLayout = () => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        {/* The Outlet is where the specific city content gets injected */}
         <Outlet /> 
       </main>
       <Footer />
@@ -59,9 +55,9 @@ const RootLayout = () => {
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />, // Wraps everything in Header & Footer
+    element: <RootLayout />, 
     children: [
-      { index: true, element: <HomePage /> }, // Default route (Home)
+      { index: true, element: <HomePage /> }, 
 
       // --- LOCATION ROUTES ---
       
@@ -94,8 +90,6 @@ export const router = createBrowserRouter([
       { path: 'locations/stafford', element: <StaffordLocation /> },
       { path: 'locations/spotsylvania', element: <SpotsylvaniaLocation /> },
       { path: 'locations/fredericksburg', element: <FredericksburgLocation /> },
-
-      // Add the remaining routes below as you create the components...
     ]
   }
 ]);
