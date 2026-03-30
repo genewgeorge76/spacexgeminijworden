@@ -1,5 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router';
-
 export const Route = createFileRoute('/locations/midlothian')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white text-center py-24">
