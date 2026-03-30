@@ -1,17 +1,27 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/locations/colonial-heights/')({
+export const Route = createFileRoute('/locations/colonial-heights')({
   component: () => (
-    <main className="min-h-screen bg-[#111111] text-white">
-      <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
-        <div className="max-w-7xl mx-auto">
-          <span className="bg-[#ffcc00] text-black px-4 py-1 font-black uppercase text-sm mb-6 inline-block">Colonial Heights, VA</span>
-          <h1 className="text-7xl font-black uppercase text-[#ffcc00]">The 23834 <br/> Paving Standard</h1>
-          <p className="text-2xl text-gray-400 italic font-bold mb-8">Serving Colonial Heights with premier parking lot paving and heavy-duty residential driveways.</p>
-          <div className="border-t border-gray-800 pt-8 mt-8">
-            <p className="text-sm uppercase tracking-widest text-[#ffcc00]">Commercial & Franchise Slogan</p>
-            <p className="text-xl font-bold italic">"Local Roots, Regional Reach: The Franchise Choice for Precision Paving Anywhere the Project Takes Us."</p>
-          </div>
+    <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
+      <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden">
+        <div className="max-w-7xl mx-auto relative z-10 text-left">
+          <span className="bg-[#ffcc00] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.4em] mb-8 inline-block shadow-2xl">
+            Retail & Commercial Division
+          </span>
+          <h1 className="text-8xl font-black uppercase text-[#ffcc00] leading-[0.9] tracking-tighter text-left">
+            COLONIAL HEIGHTS <br /> <span className="text-white italic">RETAIL PAVING</span>
+          </h1>
+          <p className="text-3xl text-gray-400 italic font-bold mt-10 max-w-4xl leading-snug">
+            J. Worden & Sons Asphalt Paving: Flawless commercial lots and ADA-compliant striping for Colonial Heights' premier shopping corridors.
+          </p>
+        </div>
+      </section>
+      <section className="py-24 px-6 bg-black text-left">
+        <div className="bg-[#1a1a1a] p-12 border-l-[10px] border-[#ffcc00]">
+          <h3 className="text-4xl font-black uppercase mb-6 italic text-left">The Retail Standard</h3>
+          <p className="text-xl text-gray-400 font-bold leading-relaxed text-left">
+            First impressions matter. We provide smooth, trip-hazard-free surfaces, sharp striping, and precise ADA-compliant van-accessible zones, dispatching elite crews directly from our Chester headquarters.
+          </p>
         </div>
       </section>
     </main>
