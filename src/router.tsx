@@ -4,10 +4,10 @@ import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-// 2. Main Pages 
+// 2. Main Pages
+import HomePage from "./routes/index";
 
-
-// 3. Premium Location Imports 
+// 3. Premium Location Imports
 // Core & High-Value
 import ChesterLocation from './routes/locations/chester';
 import RichmondLocation from './routes/locations/richmond';
@@ -18,7 +18,7 @@ import HenricoLocation from './routes/locations/henrico';
 import ChesterfieldLocation from './routes/locations/chesterfield';
 
 // Tri-Cities
-
+import PetersburgLocation from './routes/locations/petersburg';
 import HopewellLocation from './routes/locations/hopewell';
 import ColonialHeightsLocation from './routes/locations/colonial-heights';
 
@@ -29,7 +29,7 @@ import ChesapeakeLocation from './routes/locations/chesapeake';
 import SuffolkLocation from './routes/locations/suffolk';
 import PortsmouthLocation from './routes/locations/portsmouth';
 import HamptonLocation from './routes/locations/hampton';
-import NewportNewsLocation from './routes/locations/newport-news';
+import NewportNewsLocation from './routes/locations/newportnews';
 import WilliamsburgLocation from './routes/locations/williamsburg';
 import NewKentLocation from './routes/locations/new-kent';
 
@@ -44,7 +44,7 @@ const RootLayout = () => {
     <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow">
-        <Outlet /> 
+        <Outlet />
       </main>
       <Footer />
     </div>
@@ -55,12 +55,11 @@ const RootLayout = () => {
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: <RootLayout />, 
+    element: <RootLayout />,
     children: [
-      { index: true, element: <HomePage /> }, 
-
-      // --- LOCATION ROUTES ---
+      { index: true, element: <HomePage /> },
       
+      // --- LOCATION ROUTES ---
       // Core & High-Value
       { path: 'locations/chester', element: <ChesterLocation /> },
       { path: 'locations/richmond', element: <RichmondLocation /> },
