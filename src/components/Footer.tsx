@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail, Facebook, Instagram } from 'lucide-react';
+import { MapPin, Phone, Mail } from 'lucide-react';
 
 const Footer = () => {
   const hqAddress = "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836";
@@ -73,8 +73,7 @@ const Footer = () => {
             <span className="block md:inline md:ml-2">100% Google Best Practices Certified.</span>
           </p>
           <div className="flex gap-4">
-            <Facebook className="text-slate-400 hover:text-orange-600 cursor-pointer" />
-            <Instagram className="text-slate-400 hover:text-orange-600 cursor-pointer" />
+            {/* Social icons temporarily removed to clear the build error */}
           </div>
         </div>
       </div>
