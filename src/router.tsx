@@ -5,7 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 
 // 2. Main Pages 
-import HomePage from './pages/HomePage'; // Ensure this matches your actual home page import
+
 
 // 3. Premium Location Imports 
 // Core & High-Value
@@ -18,7 +18,7 @@ import HenricoLocation from './routes/locations/henrico';
 import ChesterfieldLocation from './routes/locations/chesterfield';
 
 // Tri-Cities
-import PetersburgLocation from './routes/locations/petersburg';
+
 import HopewellLocation from './routes/locations/hopewell';
 import ColonialHeightsLocation from './routes/locations/colonial-heights';
 
