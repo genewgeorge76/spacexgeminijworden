@@ -7,12 +7,12 @@ export const Route = createFileRoute('/gallery')({
 // To add more photos, simply place the image file in the `public` directory 
 // and add an entry to this array.
 const galleryPhotos = [
-  { src: '/asphalt-driveway-chesterfield-va.jpg', alt: 'Asphalt Driveway Chesterfield VA' },
-  { src: '/asphalt-paving-car-lot-on-midlothian.jpg', alt: 'Asphalt Paving Car Lot on Midlothian' },
-  { src: '/asphalt-paving-with-paver.jpg', alt: 'Asphalt Paving with Paver' },
-  { src: '/cvs-asphalt-paving.jpg', alt: 'CVS Asphalt Paving' },
-  { src: '/jwordenandsonspaving-maidstone-photo.jpeg', alt: 'J Worden and Sons Paving Maidstone Photo' },
-  { src: '/parking-lot-pave-richmond-va.jpg', alt: 'Parking Lot Pave Richmond VA' },
+  { src: '/asphalt-driveway-chesterfield-va.jpg', alt: 'Asphalt Driveway Chesterfield VA', caption: 'Residential Driveway Paving in Chesterfield: Complete excavation and 6-inch base installation.' },
+  { src: '/asphalt-paving-car-lot-on-midlothian.jpg', alt: 'Asphalt Paving Car Lot on Midlothian', caption: 'Industrial Paving in Midlothian: Precision-graded lot for heavy inventory.' },
+  { src: '/asphalt-paving-with-paver.jpg', alt: 'Asphalt Paving with Paver', caption: 'Heavy-Duty Equipment & Precision: Advanced paving for seamless, level surfaces.' },
+  { src: '/cvs-asphalt-paving.jpg', alt: 'CVS Asphalt Paving', caption: 'Commercial Paving in Richmond: High-traffic parking lot restoration.' },
+  { src: '/jwordenandsonspaving-maidstone-photo.jpeg', alt: 'J Worden and Sons Paving Maidstone Photo', caption: 'Estate-Grade Residential Paving: Custom driveway with precision grading.' },
+  { src: '/parking-lot-pave-richmond-va.jpg', alt: 'Parking Lot Pave Richmond VA', caption: 'Richmond Commercial Parking Lot: ADA-compliant grading and high-durability asphalt.' },
 ];
 
 function GalleryRoute() {
@@ -32,16 +32,23 @@ function GalleryRoute() {
         {galleryPhotos.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryPhotos.map((photo, index) => (
-              <div key={index} className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden group">
-                <img 
-                  src={photo.src} 
-                  alt={photo.alt} 
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
-                  onError={(e) => { 
-                    e.currentTarget.style.display = 'none'; 
-                    e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">${photo.alt}</div>`; 
-                  }} 
-                />
+              <div key={index} className="flex flex-col gap-3">
+                <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden group">
+                  <img 
+                    src={photo.src} 
+                    alt={photo.alt} 
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                    onError={(e) => { 
+                      e.currentTarget.style.display = 'none'; 
+                      e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">${photo.alt}</div>`; 
+                    }} 
+                  />
+                </div>
+                {photo.caption && (
+                  <p className="text-sm text-gray-400 px-1 leading-relaxed">
+                    {photo.caption}
+                  </p>
+                )}
               </div>
             ))}
           </div>
