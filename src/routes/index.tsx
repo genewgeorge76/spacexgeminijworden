@@ -39,8 +39,8 @@ export const Route = createFileRoute('/')({
 
           {/* The Awards Row (3xl Gold Text) */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-24 text-center">
-            <div className="flex flex-col items-center justify-center p-8 bg-black/60 rounded-2xl border border-zinc-800 shadow-2xl hover:border-[#ffcc00]/50 transition-all">
-              <p className="text-3xl md:text-4xl font-black text-[#ffcc00] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(255,204,0,0.3)]">
+            <div className="flex flex-col items-center justify-center p-8 bg-[#ffcc00] rounded-2xl border-4 border-white shadow-[0_0_30px_rgba(255,204,0,0.4)] transform hover:-translate-y-2 transition-transform">
+              <p className="text-3xl md:text-4xl font-black text-black uppercase leading-tight drop-shadow-sm">
                 Voted Best Asphalt Paving Company
               </p>
             </div>
@@ -66,26 +66,27 @@ export const Route = createFileRoute('/')({
           {/* Trust Badges Sub-section */}
           <div className="bg-black/80 border border-[#ffcc00]/30 rounded-3xl p-10 md:p-16 shadow-[0_0_50px_rgba(255,204,0,0.1)] mb-24">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center justify-center text-center">
-              <a href="https://www.houzz.com" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center justify-center">
+              <a href="https://www.houzz.com/pro/jwordenandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center justify-center">
                 <div className="w-20 h-20 mb-6 rounded-full bg-zinc-900 border-2 border-zinc-800 flex items-center justify-center group-hover:border-[#ffcc00] transition-colors shadow-lg">
                   <span className="text-4xl font-black text-[#ffcc00]">H</span>
                 </div>
-                <span className="text-3xl md:text-4xl font-black text-white group-hover:text-[#ffcc00] transition-colors mb-2">Recommended on Houzz</span>
-                <span className="text-2xl text-[#ffcc00] font-bold">View Our Profile →</span>
+                <span className="text-3xl md:text-4xl font-black text-white group-hover:text-[#ffcc00] transition-colors mb-6">Recommended on Houzz</span>
+                <span className="inline-block px-8 py-4 bg-[#ffcc00] text-black text-xl font-black uppercase tracking-wider rounded-xl shadow-[0_4px_15px_rgba(255,204,0,0.3)] group-hover:bg-white transition-colors">View Our Profile →</span>
               </a>
-              
+
               <div className="flex flex-col items-center justify-center">
                 <span className="text-6xl md:text-7xl font-black text-[#ffcc00] mb-4 drop-shadow-[0_2px_15px_rgba(255,204,0,0.4)]">500+</span>
                 <span className="text-3xl md:text-4xl font-black text-white">Ideabook Saves</span>
               </div>
-              
+
               <div className="flex flex-col items-center justify-center">
-                <span className="text-6xl md:text-7xl font-black text-[#ffcc00] mb-4 drop-shadow-[0_2px_15px_rgba(255,204,0,0.4)]">A+</span>
-                <span className="text-3xl md:text-4xl font-black text-white leading-tight">BBB Accredited<br /><span className="text-2xl text-zinc-400">Since 1994</span></span>
+                <div className="bg-[#ffcc00] text-black px-10 py-8 rounded-3xl shadow-[0_0_40px_rgba(255,204,0,0.4)] border-4 border-white flex flex-col items-center transform hover:scale-105 transition-transform w-full max-w-md">
+                  <span className="text-6xl md:text-7xl font-black mb-2 drop-shadow-md">A+</span>
+                  <span className="text-3xl md:text-4xl font-black uppercase text-center leading-tight">BBB Accredited<br /><span className="text-xl font-bold opacity-80 mt-2 block">Since 1994</span></span>
+                </div>
               </div>
             </div>
           </div>
-
           {/* Core Service Pillar */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-zinc-900 p-8 md:p-12 rounded-3xl border border-zinc-800 shadow-2xl">
             <div>
