@@ -19,24 +19,18 @@ function GalleryRoute() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Placeholder for photos to be added by the user */}
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
+          {/* Photos uploaded to the public folder */}
+          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden">
+            <img src="/wendys.jpg" alt="Wendy's" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">Wendy\'s (Pending)</div>'; }} />
           </div>
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
+          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden">
+            <img src="/walgreens.jpg" alt="Walgreens" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">Walgreens (Pending)</div>'; }} />
           </div>
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
+          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden">
+            <img src="/tar-and-chip.jpg" alt="Tar & Chip" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">Tar & Chip (Pending)</div>'; }} />
           </div>
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
-          </div>
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
-          </div>
-          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">
-            Image Pending
+          <div className="aspect-square bg-[#1a1a1a] rounded-sm border border-white/5 overflow-hidden">
+            <img src="/stone-wall.jpg" alt="Stone Wall" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.innerHTML = '<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">Stone Wall (Pending)</div>'; }} />
           </div>
         </div>
       </div>
