@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-export const Route = createFileRoute('/residential')({
+export const Route = createFileRoute('/locations/residential')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
       {/* ELITE RESIDENTIAL HERO */}
