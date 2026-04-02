@@ -35,7 +35,7 @@ function GalleryRoute() {
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
                   onError={(e) => { 
                     e.currentTarget.style.display = 'none'; 
-                    e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">${photo.alt} (Pending)</div>`; 
+                    e.currentTarget.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center text-[#555] uppercase tracking-widest text-xs font-bold">${photo.alt}</div>`; 
                   }} 
                 />
               </div>
