@@ -7,8 +7,12 @@ export const Route = createFileRoute('/gallery')({
 // To add more photos, simply place the image file in the `public` directory 
 // and add an entry to this array.
 const galleryPhotos = [
-  { src: '/tar-and-chip.jpg', alt: 'Tar & Chip' },
-  { src: '/stone-wall.jpg', alt: 'Stone Wall' },
+  { src: '/asphalt-driveway-chesterfield-va.jpg', alt: 'Asphalt Driveway Chesterfield VA' },
+  { src: '/asphalt-paving-car-lot-on-midlothian.jpg', alt: 'Asphalt Paving Car Lot on Midlothian' },
+  { src: '/asphalt-paving-with-paver.jpg', alt: 'Asphalt Paving with Paver' },
+  { src: '/cvs-asphalt-paving.jpg', alt: 'CVS Asphalt Paving' },
+  { src: '/jwordenandsonspaving-maidstone-photo.jpeg', alt: 'J Worden and Sons Paving Maidstone Photo' },
+  { src: '/parking-lot-pave-richmond-va.jpg', alt: 'Parking Lot Pave Richmond VA' },
 ];
 
 function GalleryRoute() {
