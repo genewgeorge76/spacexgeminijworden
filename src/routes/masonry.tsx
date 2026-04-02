@@ -67,7 +67,7 @@ export const Route = createFileRoute('/masonry')({
         </div>
       </section>
 
-      <section className="py-24 px-6 bg-[#1a1a1a] border-t border-white/10 text-left">
+      <section className="py-24 px-6 bg-[#1a1a1a] border-t border-white/10">
         <div className="max-w-7xl mx-auto text-center">
           <span className="text-[#c8a84b] font-black uppercase tracking-widest text-sm">Dispatching from Chester, VA</span>
           <h2 className="text-5xl font-black uppercase text-white mt-4 mb-6">
