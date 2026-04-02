@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { Phone, Shield, Award } from 'lucide-react'
+import { Phone, Award } from 'lucide-react'
 
 export default function Header() {
   return (

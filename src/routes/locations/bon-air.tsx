@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/locations/bon-air/')({
+export const Route = createFileRoute('/locations/bon-air')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white">
       <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">

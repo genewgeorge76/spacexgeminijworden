@@ -1,6 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { MapPin, Phone, Mail } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
+import { MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
   const hqAddress = "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836";
@@ -54,11 +53,10 @@ const Footer = () => {
               <ul className="grid grid-cols-1 gap-2">
                 {region.cities.map((city) => (
                   <li key={city}>
-                    <Link 
-                      to={`/locations/${city.toLowerCase().replace(/\s+/g, '-')}`}
+                    <Link
+                      to={`/locations/${city.toLowerCase().replace(/\s+/g, '-')}` as any}
                       className="text-slate-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm"
-                    >
-                      Paving in {city}
+                    >                      Paving in {city}
                     </Link>
                   </li>
                 ))}
