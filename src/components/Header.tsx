@@ -15,9 +15,10 @@ export default function Header() {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-[#888]">
-          <Link to="/" className="hover:text-white transition-colors">Our Standards</Link>
-          <Link to="/" className="hover:text-white transition-colors">Commercial</Link>
-          <Link to="/" className="hover:text-white transition-colors">Residential</Link>
+          <Link to="/standards" className="hover:text-white transition-colors">Our Standards</Link>
+          <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
+          <Link to="/residential" className="hover:text-white transition-colors">Residential</Link>
+          <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
         </nav>
 
         <div className="flex items-center gap-4">
