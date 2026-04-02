@@ -13,6 +13,7 @@ const galleryPhotos = [
   { src: '/cvs-asphalt-paving.jpg', alt: 'CVS Asphalt Paving' },
   { src: '/jwordenandsonspaving-maidstone-photo.jpeg', alt: 'J Worden and Sons Paving Maidstone Photo' },
   { src: '/parking-lot-pave-richmond-va.jpg', alt: 'Parking Lot Pave Richmond VA' },
+  { src: '/cobblestone-paver-driveway.jpg', alt: 'Cobblestone Paver Driveway Richmond VA' },
 ];
 
 function GalleryRoute() {
