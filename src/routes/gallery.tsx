@@ -20,9 +20,9 @@ function GalleryRoute() {
     <main className="min-h-screen bg-[#111111] text-white pt-32 pb-24 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
-          <span className="text-[#c8a84b] font-black uppercase tracking-widest text-sm">Our Work</span>
+          <span className="text-[#ffcc00] font-black uppercase tracking-widest text-sm">Our Work</span>
           <h1 className="text-6xl font-black uppercase text-white leading-none mt-4">
-            Project <span className="text-[#c8a84b]">Gallery</span>
+            Project <span className="text-[#ffcc00]">Gallery</span>
           </h1>
           <p className="text-xl text-gray-400 mt-6 max-w-2xl font-bold italic">
             A showcase of our premium structural stone bases and VDOT-grade asphalt paving across the region.

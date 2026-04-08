@@ -1,52 +1,102 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { MapPin, Shield, HardHat, Phone } from 'lucide-react';
 
 export const Route = createFileRoute('/locations/residential')({
   component: () => (
-    <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
-      {/* ELITE RESIDENTIAL HERO */}
-      <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
-        <div className="max-w-7xl mx-auto relative z-10 text-left">
-          <span className="bg-[#ffcc00] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.4em] mb-8 inline-block shadow-2xl">
-            4th Generation Residential Authority
+    <main className="min-h-screen bg-[#111111] text-white font-sans selection:bg-[#ffcc00] selection:text-black">
+      {/* HERO SECTION */}
+      <section className="relative py-32 px-6 lg:px-12 bg-[#1a1a1a] border-b-[8px] border-[#ffcc00] overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black to-[#1a1a1a] z-0"></div>
+        <div className="max-w-7xl mx-auto relative z-10 text-center">
+          <span className="bg-[#ffcc00] text-black px-6 py-2 font-black uppercase text-xs tracking-[0.3em] mb-8 inline-block shadow-lg">
+            Local Paving Experts in Residential, VA
           </span>
-          <h1 className="text-8xl font-black uppercase text-[#ffcc00] leading-[0.9] tracking-tighter text-left">
-            ESTATE-GRADE <br /> <span className="text-white italic">RESIDENTIAL</span>
+          <h1 className="text-6xl md:text-8xl font-black uppercase text-white leading-none tracking-tighter mb-6">
+            Residential <br />
+            <span className="text-[#ffcc00]">Asphalt Paving</span>
           </h1>
-          <p className="text-3xl text-gray-400 italic font-bold mt-10 max-w-4xl leading-snug text-left">
-            We don't just "pave" driveways. We engineer high-load residential thoroughfares built on a 6-inch structural stone foundation.
+          <p className="text-2xl text-zinc-400 italic font-bold max-w-3xl mx-auto leading-relaxed">
+            Premium residential and commercial paving solutions in Residential, engineered with our signature 6-inch structural stone base for unmatched durability.
           </p>
+          <div className="mt-12 flex justify-center gap-6">
+            <a href="tel:8044461296" className="flex items-center gap-3 bg-[#ffcc00] text-black px-8 py-4 font-black uppercase tracking-widest hover:bg-white transition-colors shadow-xl">
+              <Phone size={20} fill="currentColor" />
+              Call Now: 804-446-1296
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* THE STRUCTURAL DIFFERENCE */}
-      <section className="py-24 px-6 bg-black text-left">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 text-left">
-          <div className="space-y-12 text-left">
-            <h2 className="text-6xl font-black uppercase text-white leading-none italic text-left text-left">The <span className="text-[#ffcc00]">Premium</span> Build</h2>
-            <div className="space-y-10 text-left">
-              <div className="text-left">
-                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2 text-left">01. Sub-Grade Stabilization</h4>
-                <p className="text-gray-400 font-bold leading-relaxed text-left">We assess Virginia's clay and soil density before the first stone is dropped to prevent the sinking and shifting common with "budget" contractors.</p>
-              </div>
-              <div className="text-left">
-                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2 text-left">02. 6-Inch Compacted Stone Base</h4>
-                <p className="text-gray-400 font-bold leading-relaxed text-left">The skeleton of your driveway. We use heavy-duty compaction equipment to ensure a base that supports heavy SUVs and delivery trucks without rutting.</p>
-              </div>
-              <div className="text-left">
-                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2 text-left">03. Custom Belgian Block & Aprons</h4>
-                <p className="text-gray-400 font-bold leading-relaxed text-left">Specializing in hand-laid cobblestone and Belgian block transitions that define the Windsor Farms and Fairfax aesthetic.</p>
-              </div>
+      {/* CORE SERVICES IN THIS LOCATION */}
+      <section className="py-24 px-6 lg:px-12 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-black uppercase text-white tracking-tighter mb-4">Services in <span className="text-[#ffcc00]">Residential</span></h2>
+            <div className="w-24 h-1.5 bg-[#ffcc00] mx-auto"></div>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-[#1a1a1a] p-8 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all shadow-2xl">
+              <HardHat className="text-[#ffcc00] w-12 h-12 mb-6" />
+              <h3 className="text-2xl font-black uppercase mb-4 text-white">Residential Driveways</h3>
+              <p className="text-zinc-400 leading-relaxed mb-6">
+                From luxury estate driveways to standard residential replacements, we provide Residential homeowners with paving that boosts curb appeal and property value.
+              </p>
+              <Link to="/residential" className="text-[#ffcc00] font-bold uppercase tracking-widest text-sm hover:text-white flex items-center gap-2">View Residential &rarr;</Link>
+            </div>
+
+            <div className="bg-[#1a1a1a] p-8 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all shadow-2xl">
+              <MapPin className="text-[#ffcc00] w-12 h-12 mb-6" />
+              <h3 className="text-2xl font-black uppercase mb-4 text-white">Commercial Parking Lots</h3>
+              <p className="text-zinc-400 leading-relaxed mb-6">
+                We manage heavy-traffic commercial paving in Residential, including ADA compliance, structural repairs, and fast-track QSR lot replacements.
+              </p>
+              <Link to="/commercial" className="text-[#ffcc00] font-bold uppercase tracking-widest text-sm hover:text-white flex items-center gap-2">View Commercial &rarr;</Link>
+            </div>
+
+            <div className="bg-[#1a1a1a] p-8 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all shadow-2xl">
+              <Shield className="text-[#ffcc00] w-12 h-12 mb-6" />
+              <h3 className="text-2xl font-black uppercase mb-4 text-white">Tar & Chip / Sealcoating</h3>
+              <p className="text-zinc-400 leading-relaxed mb-6">
+                Protect your asphalt investment or opt for a rustic tar and chip finish. Our Residential maintenance team ensures your surfaces last decades.
+              </p>
+              <Link to="/standards" className="text-[#ffcc00] font-bold uppercase tracking-widest text-sm hover:text-white flex items-center gap-2">View Standards &rarr;</Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="bg-[#1a1a1a] p-12 border-l-[10px] border-[#ffcc00] shadow-2xl self-center text-left">
-            <h3 className="text-3xl font-black uppercase text-white mb-6 italic tracking-tighter text-left">The J. Worden Vow:</h3>
-            <p className="text-gray-300 font-bold leading-relaxed mb-8 text-left uppercase tracking-tighter">
-              "When we pull onto a residential job site, we treat it like a legacy project. From Goochland to the 23221, the 6-inch stone standard is non-negotiable."
-            </p>
-            <div className="text-left">
-               <a href="tel:8044461296" className="text-4xl font-black text-[#ffcc00] hover:text-white underline decoration-4 underline-offset-8 transition-colors text-left">804-446-1296</a>
+      {/* WHY CHOOSE US LOCAL */}
+      <section className="py-24 px-6 lg:px-12 bg-[#1a1a1a] border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 items-center">
+          <div className="lg:w-1/2">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tighter mb-6">
+              Why Residential Chooses <br/><span className="text-[#ffcc00]">J. Worden & Sons</span>
+            </h2>
+            <div className="space-y-6 text-lg text-zinc-300">
+              <p>For over three generations, we've been the trusted asphalt contractor for the Residential area and the greater 41-city grid.</p>
+              <ul className="space-y-4 font-bold mt-8">
+                <li className="flex items-center gap-4 text-white">
+                  <span className="w-3 h-3 bg-[#ffcc00] rounded-sm"></span> 6-Inch Structural Stone Base Standard
+                </li>
+                <li className="flex items-center gap-4 text-white">
+                  <span className="w-3 h-3 bg-[#ffcc00] rounded-sm"></span> 4-Time Best of Houzz Winner
+                </li>
+                <li className="flex items-center gap-4 text-white">
+                  <span className="w-3 h-3 bg-[#ffcc00] rounded-sm"></span> Better Business Bureau A+ Rated
+                </li>
+                <li className="flex items-center gap-4 text-white">
+                  <span className="w-3 h-3 bg-[#ffcc00] rounded-sm"></span> Fully Licensed, Bonded & Insured in VA
+                </li>
+              </ul>
             </div>
+          </div>
+          <div className="lg:w-1/2 bg-black p-10 border-l-[8px] border-[#ffcc00] shadow-2xl">
+             <h3 className="text-3xl font-black uppercase text-white mb-4">Need an Estimate in Residential?</h3>
+             <p className="text-zinc-400 mb-8 italic">Our dispatch team is ready. We provide detailed, written structural specifications for every project, eliminating the guesswork.</p>
+             <a href="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new" target="_blank" rel="noreferrer" className="block text-center bg-[#ffcc00] text-black px-8 py-5 font-black uppercase tracking-widest text-xl hover:bg-white transition-colors shadow-xl">
+               Request Free Estimate
+             </a>
           </div>
         </div>
       </section>
