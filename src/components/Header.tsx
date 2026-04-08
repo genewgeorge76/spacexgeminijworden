@@ -6,7 +6,7 @@ export default function Header() {
     <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0a]/90 backdrop-blur-md px-6 py-4 font-sans">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex flex-col items-start group">
-          <span className="text-[#c8a84b] text-xs font-bold uppercase tracking-[0.3em] group-hover:text-white transition-colors">
+          <span className="text-[#ffcc00] text-xs font-bold uppercase tracking-[0.3em] group-hover:text-white transition-colors">
             J. Worden & Sons
           </span>
           <span className="text-white text-[10px] uppercase tracking-[0.1em] opacity-60">
@@ -18,12 +18,13 @@ export default function Header() {
           <Link to="/standards" className="hover:text-white transition-colors">Our Standards</Link>
           <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
           <Link to="/residential" className="hover:text-white transition-colors">Residential</Link>
+          <Link to="/sealcoating" className="hover:text-white transition-colors">Sealcoating</Link>
           <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
         </nav>
 
         <div className="flex items-center gap-4">
           <div className="hidden sm:flex flex-col items-end mr-2">
-             <div className="flex items-center gap-1.5 text-[#c8a84b] animate-pulse">
+             <div className="flex items-center gap-1.5 text-[#ffcc00] animate-pulse">
                <Award size={10} />
                <span className="text-[9px] font-bold uppercase tracking-widest">2026 Houzz Authority</span>
              </div>
@@ -32,7 +33,7 @@ export default function Header() {
 
           <a 
             href="tel:8044461296" 
-            className="flex items-center gap-2 bg-[#c8a84b] px-4 py-2.5 rounded-sm text-[#111] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-white transition-all shadow-[0_0_15px_rgba(200,168,75,0.3)]"
+            className="flex items-center gap-2 bg-[#ffcc00] px-4 py-2.5 rounded-sm text-[#111] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-white transition-all shadow-[0_0_15px_rgba(255,204,0,0.3)]"
           >
             <Phone size={12} fill="currentColor" />
             <span>911 Dispatch: 804-446-1296</span>

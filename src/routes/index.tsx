@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import ContactForm from '../components/ContactForm';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -219,6 +220,25 @@ export const Route = createFileRoute('/')({
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* DISPATCH / CONTACT SECTION */}
+      <section className="py-32 px-6 lg:px-12 bg-black border-t border-[#ffcc00]/20 relative overflow-hidden">
+        {/* Subtle grid pattern for construction feel */}
+        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase text-white tracking-tighter mb-4">
+              Dispatch an <span className="text-[#ffcc00]">Estimator</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-zinc-400 font-bold italic max-w-3xl mx-auto">
+              Schedule an on-site structural evaluation for your next paving project.
+            </p>
+          </div>
+          
+          <ContactForm />
         </div>
       </section>
     </main>
