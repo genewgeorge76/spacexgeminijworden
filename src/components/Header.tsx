@@ -18,7 +18,7 @@ export default function Header() {
           <Link to="/standards" className="hover:text-white transition-colors">Our Standards</Link>
           <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
           <Link to="/residential" className="hover:text-white transition-colors">Residential</Link>
-          <Link to="/sealcoating" className="hover:text-white transition-colors">Sealcoating</Link>
+          <Link to="/masonry" className="hover:text-white transition-colors">Masonry</Link>
           <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
         </nav>
 
