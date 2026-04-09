@@ -147,7 +147,7 @@ export const Route = createFileRoute('/commercial')({
           <div className="max-w-4xl mx-auto text-left mt-16">
             <h3 className="text-4xl font-black uppercase mb-8 text-center">Developer Fast-Track Timeline</h3>
             <div className="grid md:grid-cols-3 gap-0 relative">
-              <div className="hidden md:block absolute top-8 left-1/6 right-1/6 h-1 bg-black z-0"></div>
+              <div className="hidden md:block absolute top-8 left-[16.666%] right-[16.666%] h-1 bg-black z-0"></div>
               {[
                 { day: 'Days 1–30', label: 'Site Prep & Base', desc: 'Grading, demolition, 6" compacted aggregate base installation' },
                 { day: 'Days 31–60', label: 'Asphalt Installation', desc: 'Binder course, surface course, compaction to municipal spec' },

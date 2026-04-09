@@ -1,5 +1,66 @@
+import { useState } from 'react';
+
+const KICKSERV_URL = 'https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new';
+
 export default function ContactForm() {
   const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+  const [submitted, setSubmitted] = useState(false);
+  const [city, setCity] = useState('');
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const addressVal = (form.elements.namedItem('address') as HTMLInputElement)?.value || '';
+    const cityMatch = addressVal.match(/,\s*([^,]+),?\s*VA/i);
+    const detectedCity = cityMatch ? cityMatch[1].trim() : 'Richmond';
+    setCity(detectedCity);
+
+    if (typeof window !== 'undefined' && (window as Window & { gtag?: Function }).gtag) {
+      (window as Window & { gtag: Function }).gtag('event', 'estimate_intent', {
+        event_category: 'demand_heatmap',
+        event_label: detectedCity,
+      });
+    }
+
+    setSubmitted(true);
+  };
+
+  if (submitted) {
+    return (
+      <div className="max-w-2xl mx-auto">
+        <div className="bg-[#ffcc00] text-black px-8 py-5 text-center mb-0 shadow-[0_0_30px_rgba(255,204,0,0.4)]">
+          <p className="text-xl md:text-2xl font-black uppercase tracking-tight leading-tight">
+            ⚡ Request Received — One Step Left!
+          </p>
+          <p className="text-sm font-bold mt-1 opacity-80">
+            High-Capacity Dispatch Available for {today}{city ? ` in ${city}` : ''} · 804-446-1296
+          </p>
+        </div>
+        <div className="bg-[#1a1a1a] p-10 border border-zinc-800 text-center shadow-2xl font-sans">
+          <p className="text-white font-bold text-xl mb-8">
+            To complete your dispatch request, click the button below to submit your details directly to our Kickserv scheduling system.
+          </p>
+          <a
+            href={KICKSERV_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block w-full bg-[#ffcc00] text-black font-black uppercase tracking-[0.2em] text-xl py-6 text-center hover:bg-white transition-colors shadow-[0_0_30px_rgba(255,204,0,0.4)] border-4 border-transparent hover:border-[#ffcc00]"
+          >
+            ⚡ Complete My Kickserv Dispatch →
+          </a>
+          <p className="mt-6 text-xs text-zinc-500 italic font-medium">
+            Secured by Kickserv · Same-day response · We respect your privacy.
+          </p>
+          <button
+            onClick={() => setSubmitted(false)}
+            className="mt-4 text-zinc-600 hover:text-zinc-400 text-xs uppercase tracking-widest font-bold transition-colors"
+          >
+            ← Edit My Request
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl mx-auto">
@@ -15,22 +76,7 @@ export default function ContactForm() {
 
       <form
         className="bg-[#1a1a1a] p-10 border border-zinc-800 text-left shadow-2xl font-sans"
-        action="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new"
-        method="GET"
-        target="_blank"
-        rel="noopener noreferrer"
-        onSubmit={(e) => {
-          // Log demand intent for heatmap tracking
-          const addressInput = (e.currentTarget.elements.namedItem('address') as HTMLInputElement)?.value || '';
-          const cityMatch = addressInput.match(/,\s*([^,]+),?\s*VA/i);
-          const city = cityMatch ? cityMatch[1].trim() : 'Richmond';
-          if (typeof window !== 'undefined' && (window as Window & { gtag?: Function }).gtag) {
-            (window as Window & { gtag: Function }).gtag('event', 'estimate_intent', {
-              event_category: 'demand_heatmap',
-              event_label: city,
-            });
-          }
-        }}
+        onSubmit={handleSubmit}
       >
         <div className="grid md:grid-cols-2 gap-8 mb-8">
           <div>
@@ -88,7 +134,7 @@ export default function ContactForm() {
           type="submit"
           className="w-full bg-[#ffcc00] text-black font-black uppercase tracking-[0.2em] text-xl py-6 hover:bg-white transition-colors shadow-[0_0_30px_rgba(255,204,0,0.4)] border-4 border-transparent hover:border-[#ffcc00]"
         >
-          ⚡ Get Your Estimate Now — Kickserv Dispatch
+          ⚡ Get Your Estimate Now — Dispatch Now
         </button>
         <p className="mt-6 text-xs text-zinc-500 text-center italic font-medium">
           Secured by Kickserv · Same-day response · We respect your privacy.

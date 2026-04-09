@@ -1,16 +1,5 @@
 import { useState } from 'react';
-
-const SERVICE_AREAS = [
-  'Richmond', 'Midlothian', 'Glen Allen', 'Chesterfield', 'Mechanicsville',
-  'Chester', 'Powhatan', 'Henrico', 'Ashland', 'Colonial Heights',
-  'Petersburg', 'Hopewell', 'Bon Air', 'Short Pump', 'Moseley',
-  'Goochland', 'Hanover', 'Caroline', 'King William', 'New Kent',
-  'Charles City', 'Dinwiddie', 'Prince George', 'Amelia', 'Cumberland',
-  'Fluvanna', 'Louisa', 'Orange', 'Culpeper', 'Spotsylvania',
-  'Stafford', 'Fredericksburg', 'Prince William', 'King George',
-  'Sandston', 'Lakeside', 'Chesapeake', 'Norfolk', 'Portsmouth',
-  'Newport News', 'Hampton',
-];
+import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 
 const PRICING = {
   standard: 4.5,
@@ -63,7 +52,7 @@ export default function PrecisionEstimator() {
             onChange={(e) => handleCityChange(e.target.value)}
             className="w-full bg-black border border-zinc-700 text-white p-4 focus:border-[#ffcc00] outline-none transition-colors appearance-none"
           >
-            {SERVICE_AREAS.map((c) => (
+            {SERVICE_AREAS_41.map((c) => (
               <option key={c} value={c}>{c}</option>
             ))}
           </select>
@@ -110,7 +99,7 @@ export default function PrecisionEstimator() {
           {baseNeeded && (
             <div className="flex justify-between font-bold mb-1">
               <span className="text-zinc-400 uppercase tracking-wider">6&quot; Stone Base Add-On</span>
-              <span className="text-[#ffcc00]">+${(PRICING.baseAddOn + (PRICING.premium - PRICING.standard)).toFixed(2)} / sq ft</span>
+              <span className="text-[#ffcc00]">+${(rate - PRICING.standard).toFixed(2)} / sq ft</span>
             </div>
           )}
           <div className="flex justify-between font-bold border-t border-zinc-700 pt-2 mt-2">
