@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import ContactForm from '../components/ContactForm';
+import PrecisionEstimator from '../components/PrecisionEstimator';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -219,6 +220,24 @@ export const Route = createFileRoute('/')({
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRECISION ESTIMATOR SECTION */}
+      <section className="py-24 px-6 lg:px-12 bg-zinc-900 border-t border-[#ffcc00]/20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black uppercase text-white tracking-tighter mb-4">
+              Instant <span className="text-[#ffcc00]">Price Intelligence</span>
+            </h2>
+            <p className="text-lg text-zinc-400 font-bold max-w-2xl mx-auto">
+              Get a real-time project estimate. No email required. No sales calls. Pure structural math.
+            </p>
+          </div>
+          <div className="max-w-2xl mx-auto">
+            <PrecisionEstimator />
           </div>
         </div>
       </section>
