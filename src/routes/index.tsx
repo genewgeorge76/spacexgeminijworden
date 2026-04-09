@@ -12,15 +12,15 @@ export const Route = createFileRoute('/')({
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <span className="inline-block text-[#ffcc00] font-bold uppercase tracking-[0.2em] text-sm mb-6 border border-[#ffcc00]/30 px-4 py-2 rounded-full">
-            3 Generations of Excellence
+            4th Generation Forensic Paving
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[1.1] tracking-tight">
             Elite Asphalt Paving &<br />
             <span className="text-[#ffcc00]">Structural Foundation Specialists</span><br />
-            <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">in Richmond, VA</span>
+            <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">Serving 12 States</span>
           </h1>
           <p className="text-xl md:text-2xl text-zinc-300 mt-8 max-w-3xl font-medium leading-relaxed border-l-4 border-[#ffcc00] pl-6">
-            Delivering uncompromising quality and 3 generations of excellence serving Richmond 23221 and 41 surrounding cities with premium paving solutions.
+            Delivering uncompromising quality and 4th-generation forensic paving intelligence, serving 12 states from our Chester, VA HQ with premium solutions.
           </p>
         </div>
       </section>

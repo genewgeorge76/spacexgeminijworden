@@ -10,7 +10,7 @@ export default function Header() {
             J. Worden & Sons
           </span>
           <span className="text-white text-[10px] uppercase tracking-[0.1em] opacity-60">
-            Asphalt Paving • Richmond 23221
+            Asphalt Paving • Chester 23836
           </span>
         </Link>
 

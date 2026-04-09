@@ -74,7 +74,7 @@ export const Route = createFileRoute('/locations/suffolk')({
               Why Suffolk Chooses <br/><span className="text-[#ffcc00]">J. Worden & Sons</span>
             </h2>
             <div className="space-y-6 text-lg text-zinc-300">
-              <p>For over three generations, we've been the trusted asphalt contractor for the Suffolk area and the greater 41-city grid.</p>
+              <p>For four generations, we've been the trusted asphalt contractor for the Suffolk area and across 12 states.</p>
               <ul className="space-y-4 font-bold mt-8">
                 <li className="flex items-center gap-4 text-white">
                   <span className="w-3 h-3 bg-[#ffcc00] rounded-sm"></span> 6-Inch Structural Stone Base Standard
