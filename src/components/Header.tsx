@@ -47,7 +47,11 @@ export default function Header() {
             </div>
 
             <a
-              href="tel:8044461296"
+              href="tel:+18044461296"
+              onClick={() => {
+                const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+                if (w.gtag) w.gtag('event', 'click', { event_category: 'phone_call', event_label: '804-446-1296' });
+              }}
               className="flex items-center gap-2 bg-[#ffcc00] px-4 py-2.5 rounded-sm text-[#111] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-white transition-all shadow-[0_0_15px_rgba(255,204,0,0.3)]"
             >
               <Phone size={12} fill="currentColor" />
