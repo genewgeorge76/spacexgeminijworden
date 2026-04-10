@@ -5,23 +5,43 @@ export const Route = createFileRoute('/')({
   component: () => (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[#ffcc00] selection:text-black">
       {/* Hero Section */}
-      <section className="relative py-32 md:py-48 px-6 lg:px-12 border-b-[8px] border-[#ffcc00] overflow-hidden">
-        {/* Background gradient effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black z-0"></div>
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent z-0"></div>
+      <section className="relative py-48 md:py-64 px-6 lg:px-12 border-b-[8px] border-[#ffcc00] overflow-hidden flex items-center justify-center min-h-[70vh]">
+        {/* Background image */}
+        <div className="absolute inset-0 bg-[url('/asphalt-paving-with-paver.jpg')] bg-cover bg-center z-0"></div>
+        <div className="absolute inset-0 bg-black/60 z-0"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <span className="inline-block text-[#ffcc00] font-bold uppercase tracking-[0.2em] text-sm mb-6 border border-[#ffcc00]/30 px-4 py-2 rounded-full">
-            3 Generations of Excellence
+            4th Generation Forensic Paving
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[1.1] tracking-tight">
             Elite Asphalt Paving &<br />
             <span className="text-[#ffcc00]">Structural Foundation Specialists</span><br />
-            <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">in Richmond, VA</span>
+            <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">Serving 12 States</span>
           </h1>
           <p className="text-xl md:text-2xl text-zinc-300 mt-8 max-w-3xl font-medium leading-relaxed border-l-4 border-[#ffcc00] pl-6">
-            Delivering uncompromising quality and 3 generations of excellence serving Richmond 23221 and 41 surrounding cities with premium paving solutions.
+            Delivering uncompromising quality and 4th-generation forensic paving intelligence, serving 12 states from our Chester, VA HQ with premium solutions.
           </p>
+        </div>
+      </section>
+
+      {/* Trust Bar */}
+      <section className="bg-zinc-900 border-b border-zinc-800 py-6 px-6 relative z-20 shadow-xl">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+          <div className="text-zinc-400 uppercase tracking-widest text-sm font-bold">Recognized for Excellence</div>
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+            {['2023', '2016', '2015', '2014'].map((year) => (
+              <div key={year} className="flex items-center gap-3 text-white">
+                <div className="w-10 h-10 rounded-full bg-[#7ac143] flex items-center justify-center font-bold text-white shadow-lg text-lg">
+                  H
+                </div>
+                <div className="flex flex-col text-left">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 leading-none mb-1">Best of Houzz</span>
+                  <span className="text-sm font-black leading-none">{year}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -168,6 +188,123 @@ export const Route = createFileRoute('/')({
                 Achieve a rustic, elegant aesthetic without sacrificing durability. Our Tar & Chip (Macadam) surfaces provide excellent traction, require minimal maintenance, and offer a classic textured finish ideal for long private roads and sweeping estate drives.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Recent Projects Showcase */}
+      <section className="py-24 px-6 lg:px-12 bg-black border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight">
+              Recent <span className="text-[#ffcc00]">Projects</span>
+            </h2>
+            <div className="w-24 h-1 bg-[#ffcc00] mx-auto mt-6"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {/* Project 1 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/cvs-asphalt-paving.jpg" alt="Commercial Parking Lot - Richmond" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Commercial</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Retail Parking Lot - Richmond</h3>
+              </div>
+            </div>
+
+            {/* Project 2 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/asphalt-driveway-chesterfield-va.jpg" alt="Residential Estate - Chesterfield" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Residential</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Estate Driveway - Chesterfield</h3>
+              </div>
+            </div>
+
+            {/* Project 3 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/asphalt-paving-car-lot-on-midlothian.jpg" alt="Commercial Auto Lot - Midlothian" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Commercial</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Auto Lot - Midlothian</h3>
+              </div>
+            </div>
+
+            {/* Project 4 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/jwordenandsonspaving-maidstone-photo.jpeg" alt="Residential Estate - Maidstone" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Residential</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Estate Driveway - Maidstone</h3>
+              </div>
+            </div>
+
+            {/* Project 5 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/parking-lot-pave-richmond-va.jpg" alt="Commercial Parking Lot - Richmond" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Commercial</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Office Park - Richmond</h3>
+              </div>
+            </div>
+
+            {/* Project 6 */}
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
+              <img src="/asphalt-paving-with-paver.jpg" alt="Paving Operations - Central Virginia" className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+                <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Operations</span>
+                <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">Heavy Paving - Central Virginia</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* Expertise & Recognition Section */}
+      <section className="py-24 px-6 lg:px-12 bg-zinc-950 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight">
+              National-Grade Excellence <span className="text-[#ffcc00]">in Every Category</span>
+            </h2>
+            <div className="w-24 h-1 bg-[#ffcc00] mx-auto mt-6 mb-12"></div>
+            
+            {/* The Voted Best Callout */}
+            <div className="inline-block bg-[#ffcc00] text-black px-8 py-4 rounded-xl shadow-[0_0_30px_rgba(255,204,0,0.3)] border-2 border-white transform hover:scale-105 transition-transform">
+              <span className="text-2xl md:text-3xl font-black uppercase tracking-wider">
+                🏆 Voted Best Asphalt Paving Company — Richmond, VA
+              </span>
+            </div>
+          </div>
+          
+          {/* The Big 4 Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-16">
+            {[
+              { title: 'PAVING', icon: '🛣️' },
+              { title: 'SEALCOATING', icon: '🛡️' },
+              { title: 'STRIPING', icon: '📏' },
+              { title: 'REPAIR', icon: '🔧' }
+            ].map((service, index) => (
+              <div key={index} className="flex flex-col items-center group bg-zinc-900 border border-zinc-800 p-8 rounded-xl hover:border-[#ffcc00]/50 transition-all shadow-xl hover:shadow-[#ffcc00]/10">
+                <div className="w-20 h-20 bg-black border-2 border-[#ffcc00] rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-[0_0_15px_rgba(255,204,0,0.2)] text-3xl">
+                  {service.icon}
+                </div>
+                <h3 className="text-2xl font-black text-white mb-6 tracking-wide">{service.title}</h3>
+                <div className="bg-black/60 border border-zinc-800 px-4 py-3 rounded-lg w-full text-center">
+                  <div className="flex items-center justify-center gap-2 mb-1">
+                    <span className="text-[#ffcc00] text-lg">★</span>
+                    <span className="text-[#ffcc00] text-lg">★</span>
+                    <span className="text-[#ffcc00] text-lg">★</span>
+                    <span className="text-[#ffcc00] text-lg">★</span>
+                    <span className="text-[#ffcc00] text-lg">★</span>
+                  </div>
+                  <span className="text-[10px] md:text-xs font-bold text-zinc-400 uppercase tracking-widest leading-tight block">
+                    Pavement Top 75<br />National Excellence
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

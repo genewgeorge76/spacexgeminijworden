@@ -1,0 +1,44 @@
+--- src/routes/index.tsx
++++ src/routes/index.tsx
+@@ -12,43 +12,32 @@
+         
+-<<<<<<< HEAD
+         <div className="relative z-10 max-w-7xl mx-auto">
+           <span className="inline-block text-[#ffcc00] font-bold uppercase tracking-[0.2em] text-sm mb-6 border border-[#ffcc00]/30 px-4 py-2 rounded-full">
+             4th Generation Forensic Paving
+           </span>
+           <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[1.1] tracking-tight">
+             Elite Asphalt Paving &<br />
+             <span className="text-[#ffcc00]">Structural Foundation Specialists</span><br />
+             <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">Serving 12 States</span>
+           </h1>
+           <p className="text-xl md:text-2xl text-zinc-300 mt-8 max-w-3xl font-medium leading-relaxed border-l-4 border-[#ffcc00] pl-6">
+             Delivering uncompromising quality and 4th-generation forensic paving intelligence, serving 12 states from our Chester, VA HQ with premium solutions.
+           </p>
+-=======
+-        <div className="relative z-10 max-w-7xl mx-auto text-center">
+-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[1.1] tracking-tight drop-shadow-2xl">
+-            4th Generation<br />
+-            <span className="text-white">Paving Excellence</span>
+-          </h1>
+         </div>
+       </section>
+ 
+       {/* Trust Bar */}
+       <section className="bg-zinc-900 border-b border-zinc-800 py-6 px-6 relative z-20 shadow-xl">
+         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12">
+           <div className="text-zinc-400 uppercase tracking-widest text-sm font-bold">Recognized for Excellence</div>
+           <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+             {['2023', '2016', '2015', '2014'].map((year) => (
+               <div key={year} className="flex items-center gap-3 text-white">
+                 <div className="w-10 h-10 rounded-full bg-[#7ac143] flex items-center justify-center font-bold text-white shadow-lg text-lg">
+                   H
+                 </div>
+                 <div className="flex flex-col text-left">
+                   <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-400 leading-none mb-1">Best of Houzz</span>
+                   <span className="text-sm font-black leading-none">{year}</span>
+                 </div>
+               </div>
+             ))}
+           </div>
+->>>>>>> origin/pr/35
