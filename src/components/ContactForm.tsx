@@ -15,8 +15,9 @@ export default function ContactForm() {
     const detectedCity = cityMatch ? cityMatch[1].trim() : 'Richmond';
     setCity(detectedCity);
 
-    if (typeof window !== 'undefined' && (window as Window & { gtag?: Function }).gtag) {
-      (window as Window & { gtag: Function }).gtag('event', 'estimate_intent', {
+    const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof window !== 'undefined' && win.gtag) {
+      win.gtag('event', 'estimate_intent', {
         event_category: 'demand_heatmap',
         event_label: detectedCity,
       });
