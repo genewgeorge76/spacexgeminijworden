@@ -200,6 +200,13 @@ const reviewSchema = {
       "datePublished": "2024-06-05",
       "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
       "reviewBody": "We've used J. Worden & Sons twice now — once for our office park and once for our storage facility. Their 96% Marshall compaction standard is not marketing — it's real engineering."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kevin A." },
+      "datePublished": "2024-05-22",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Absolutely impressed with the professionalism and quality. My 200-foot driveway was completed in one day with a perfect finish. The gold standard of Virginia paving contractors — nobody else comes close."
     }
   ]
 };

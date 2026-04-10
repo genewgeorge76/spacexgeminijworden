@@ -32,11 +32,13 @@ export default function TestimonialCarousel() {
       if (intervalRef.current) clearInterval(intervalRef.current);
       return;
     }
-    intervalRef.current = setInterval(next, 6000);
+    intervalRef.current = setInterval(() => {
+      setCurrent((c) => (c + 1) % total);
+    }, 6000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, [paused, current]);
+  }, [paused, total]);
 
   const t = testimonials[current];
 
