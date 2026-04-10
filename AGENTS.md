@@ -128,6 +128,19 @@ Marketing site with TanStack AI chat assistant. No Stripe checkout.
 
 **Dependencies:** @tanstack/ai, streamdown
 
+## GC Skills & Government Project Capabilities
+
+> **Full General Contractor (GC) skill set and Government/Public Project capabilities are defined in [`GEMINI.md`](./GEMINI.md).**
+
+This includes:
+- All CSI MasterFormat divisions (Div 01–33) that J. Worden & Sons covers
+- GC project management skills (CPM scheduling, RFIs, submittals, bonding, Davis-Bacon, etc.)
+- Federal project compliance (SAM.gov, FAR, Davis-Bacon, BABA, 8(a)/HUBZone/SDVOSB)
+- State DOT projects for all 50 states (VDOT home base, regional DOTs, prequalification tracking)
+- Municipal & county projects (CDBG, schools, parks, water/sewer, airports)
+- Compliance & certifications (E-Verify, EEO, VPDES, ADA, LEED, Section 106)
+- Government proposal auto-generation rules (license numbers, UEI/CAGE, EMR, bonding, heritage statement)
+
 ## Environment Variables
 
 For AI: ANTHROPIC_API_KEY, OPENAI_API_KEY, GEMINI_API_KEY, or OLLAMA_BASE_URL (same as ai add-on).
