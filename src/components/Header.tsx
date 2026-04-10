@@ -17,6 +17,7 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-[#888]">
           <Link to="/standards" className="hover:text-white transition-colors">Our Standards</Link>
           <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
+          <Link to="/portal" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">GC Portal</Link>
           <Link to="/residential" className="hover:text-white transition-colors">Residential</Link>
           <Link to="/masonry" className="hover:text-white transition-colors">Masonry</Link>
           <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>

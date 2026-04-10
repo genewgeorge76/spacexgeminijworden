@@ -1,14 +1,26 @@
 import { createFileRoute } from '@tanstack/react-router';
 import ContactForm from '../components/ContactForm';
+import XRayComparison from '../components/XRayComparison';
 
 export const Route = createFileRoute('/')({
   component: () => (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[#ffcc00] selection:text-black">
       {/* Hero Section */}
       <section className="relative py-32 md:py-48 px-6 lg:px-12 border-b-[8px] border-[#ffcc00] overflow-hidden">
-        {/* Background gradient effect */}
-        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black z-0"></div>
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent z-0"></div>
+        {/* 4K Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          poster="/asphalt-paving-with-paver.jpg"
+        >
+          <source src="/videos/industrial-paving-hero.mp4" type="video/mp4" />
+        </video>
+        {/* Asphalt & Zinc high-contrast overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/90 via-zinc-900/80 to-black/95 z-[1]"></div>
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent z-[1]"></div>
         
         <div className="relative z-10 max-w-7xl mx-auto">
           <span className="inline-block text-[#ffcc00] font-bold uppercase tracking-[0.2em] text-sm mb-6 border border-[#ffcc00]/30 px-4 py-2 rounded-full">
@@ -222,6 +234,8 @@ export const Route = createFileRoute('/')({
           </div>
         </div>
       </section>
+
+      <XRayComparison />
 
       {/* DISPATCH / CONTACT SECTION */}
       <section className="py-32 px-6 lg:px-12 bg-black border-t border-[#ffcc00]/20 relative overflow-hidden">
