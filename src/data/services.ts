@@ -11,7 +11,7 @@ const services: Array<Service> = [
   {
     id: 1,
     name: 'Commercial & National Brand Partners',
-    image: '/placeholder.png',
+    image: '/cvs-asphalt-paving.jpg',
     description: 'Virginia\'s leading national brands trust J. Worden & Sons for high-traffic lot rebuilds. Our portfolio includes flagship KFC (The Big Chicken), Taco Bell, Wendy\'s, Food Lion, Walgreens, and Rite Aid. We manage the complex logistics of night-work, traffic control, and ADA compliance so your doors stay open and your revenue stays protected.',
     shortDescription: 'The trusted paving partner for Food Lion, Walgreens, and national fast-food brands.',
     features: [
@@ -24,7 +24,7 @@ const services: Array<Service> = [
   {
     id: 2,
     name: 'Industrial Maintenance & Resurfacing',
-    image: '/placeholder.png',
+    image: '/parking-lot-pave-richmond-va.jpg',
     description: 'Protect your investment with mill-and-fill overlays and structural patching designed for heavy delivery trucks and high-volume retail traffic. From grocery store loading docks to pharmacy drive-thrus, we provide the structural durability needed for 24/7 operations.',
     shortDescription: 'Heavy-duty resurfacing for retail, pharmacy, and grocery corridors.',
     features: [
@@ -37,7 +37,7 @@ const services: Array<Service> = [
   {
     id: 3,
     name: 'Residential & HOA Infrastructure',
-    image: '/placeholder.png',
+    image: '/asphalt-driveway-chesterfield-va.jpg',
     description: 'We bring the same 6-inch structural stone base used for Food Lion parking lots to every residential driveway and HOA private road. No shortcuts—just commercial-grade longevity for your home or community.',
     shortDescription: 'Commercial-grade driveways and private roads with the 6-inch standard.',
     features: [
