@@ -1,28 +1,43 @@
 import { Link } from '@tanstack/react-router'
+import { Phone, Award } from 'lucide-react'
 
 export default function Header() {
   return (
-    <header className="bg-[#111] border-b-3 border-[#c8a84b] sticky top-0 z-100">
-      <div className="max-w-[1100px] mx-auto flex items-center justify-between px-6 py-4">
-        <Link to="/" className="flex flex-col no-underline group">
-          <span className="text-[1.15rem] font-bold text-white tracking-wide leading-tight group-hover:text-[#c8a84b] transition-colors">
-            J. WORDEN & SONS
+    <header className="fixed top-0 z-50 w-full border-b border-white/10 bg-[#0a0a0a]/90 backdrop-blur-md px-6 py-4 font-sans">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <Link to="/" className="flex flex-col items-start group">
+          <span className="text-[#ffcc00] text-xs font-bold uppercase tracking-[0.3em] group-hover:text-white transition-colors">
+            J. Worden & Sons
           </span>
-          <span className="text-[0.7rem] text-[#c8a84b] tracking-widest uppercase">
-            Asphalt Paving • Est. 1984
+          <span className="text-white text-[10px] uppercase tracking-[0.1em] opacity-60">
+            Asphalt Paving • Richmond 23221
           </span>
         </Link>
-        <nav className="hidden md:flex gap-6">
-          <Link to="/" hash="about" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">About</Link>
-          <Link to="/" hash="services" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Services</Link>
-          <a href="/commercial.html" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Commercial</a>
-          <a href="/masonry.html" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Masonry</a>
-          <Link to="/" hash="standard" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Our Standard</Link>
-          <Link to="/" hash="contact" className="text-white text-[0.85rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors">Contact</Link>
+
+        <nav className="hidden lg:flex items-center gap-8 text-[11px] font-bold uppercase tracking-[0.2em] text-[#888]">
+          <Link to="/standards" className="hover:text-white transition-colors">Our Standards</Link>
+          <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
+          <Link to="/residential" className="hover:text-white transition-colors">Residential</Link>
+          <Link to="/masonry" className="hover:text-white transition-colors">Masonry</Link>
+          <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
         </nav>
-        <div className="md:hidden text-white cursor-pointer">
-          {/* Mobile menu icon would go here */}
-          <span className="text-[#c8a84b]">MENU</span>
+
+        <div className="flex items-center gap-4">
+          <div className="hidden sm:flex flex-col items-end mr-2">
+             <div className="flex items-center gap-1.5 text-[#ffcc00] animate-pulse">
+               <Award size={10} />
+               <span className="text-[9px] font-bold uppercase tracking-widest">2026 Houzz Authority</span>
+             </div>
+             <span className="text-[10px] text-[#555] uppercase font-bold tracking-tighter italic">6" Structural Stone Base Std.</span>
+          </div>
+
+          <a 
+            href="tel:8044461296" 
+            className="flex items-center gap-2 bg-[#ffcc00] px-4 py-2.5 rounded-sm text-[#111] text-[10px] font-black uppercase tracking-[0.15em] hover:bg-white transition-all shadow-[0_0_15px_rgba(255,204,0,0.3)]"
+          >
+            <Phone size={12} fill="currentColor" />
+            <span>911 Dispatch: 804-446-1296</span>
+          </a>
         </div>
       </div>
     </header>

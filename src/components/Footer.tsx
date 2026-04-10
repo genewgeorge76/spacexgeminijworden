@@ -1,21 +1,85 @@
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+import { Link } from '@tanstack/react-router';
+import { MapPin, Phone } from 'lucide-react';
+
+const Footer = () => {
+  const hqAddress = "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836";
+  
+  const regions = [
+    {
+      name: "Greater Richmond",
+      cities: ["Richmond", "Midlothian", "Tuckahoe", "Short Pump", "Glen Allen", "Mechanicsville", "Bon Air", "Lakeside"]
+    },
+    {
+      name: "Chesterfield & Tri-Cities",
+      cities: ["Chester", "Chesterfield", "Petersburg", "Hopewell", "Colonial Heights", "Moseley", "Dinwiddie", "Prince George"]
+    },
+    {
+      name: "Hampton Roads & Peninsula",
+      cities: ["Virginia Beach", "Norfolk", "Chesapeake", "Newport News", "Hampton", "Suffolk", "Portsmouth", "Williamsburg"]
+    },
+    {
+      name: "Surrounding Counties",
+      cities: ["New Kent", "Powhatan", "Goochland", "Hanover", "Henrico", "Amelia", "Ashland", "Charles City"]
+    }
+  ];
+
   return (
-    <footer className="bg-[#111] text-[#888] py-10 px-6 text-center text-[0.8rem] leading-7 border-t border-[#3d3d3d] font-sans">
-      <div className="max-w-[1100px] mx-auto">
-        <p>&copy; {currentYear} J. Worden & Sons Asphalt Paving. All rights reserved.</p>
-        <p>Chester, Virginia • Serving 41 Virginia cities • Multi-state commercial paving</p>
-        <p className="mt-4 text-[0.72rem] italic">
-          J. Worden & Sons Asphalt Paving is an independent family business and is not affiliated with, associated with, or endorsed by any other Worden-named paving business or entity in Chester, Virginia or elsewhere.
-        </p>
-        <div className="mt-4 flex flex-wrap justify-center gap-4 text-[0.78rem]">
-          <a href="/commercial.html" className="text-[#c8a84b] hover:underline">Commercial</a>
-          <a href="/masonry.html" className="text-[#c8a84b] hover:underline">Masonry</a>
-          <a href="/portfolio.html" className="text-[#c8a84b] hover:underline">Portfolio</a>
-          <a href="/contact.html" className="text-[#c8a84b] hover:underline">Contact</a>
-          <a href="/sitemap.xml" className="text-[#c8a84b] hover:underline">Sitemap</a>
+    <footer className="bg-[#0a0a0a] text-white pt-16 pb-8 px-4">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          
+          {/* Column 1: Brand & HQ */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-black tracking-tighter italic">
+              J. WORDEN & SONS
+              <span className="text-[#ffcc00] font-bold block text-sm not-italic tracking-widest">ASPHALT PAVING</span>
+            </h3>
+            
+            <div className="space-y-4 text-zinc-400">
+              <div className="flex items-start gap-3">
+                <MapPin className="text-[#ffcc00] h-5 w-5 mt-1 flex-shrink-0" />
+                <p><strong>Headquarters:</strong><br />{hqAddress}</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone className="text-[#ffcc00] h-5 w-5" />
+                <p>(804) 446-1296</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Columns 2-4: Regional Links (THE SEO POWER) */}
+          {regions.map((region) => (
+            <div key={region.name}>
+              <h4 className="text-[#ffcc00] font-bold uppercase tracking-widest text-sm mb-6 border-b border-white/10 pb-2">
+                {region.name}
+              </h4>
+              <ul className="grid grid-cols-1 gap-2">
+                {region.cities.map((city) => (
+                  <li key={city}>
+                    <Link 
+                      to={`/locations/${city.toLowerCase().replace(/\s+/g, '-')}` as any}                      className="text-zinc-400 hover:text-white hover:translate-x-1 transition-all inline-block text-sm"
+                    >
+                      Paving in {city}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-zinc-500 text-sm">
+            © 2026 J. Worden & Sons Asphalt Paving. All Rights Reserved.
+            <span className="block md:inline md:ml-2">100% Google Best Practices Certified.</span>
+          </p>
+          <div className="flex gap-4">
+            {/* Social icons removed to clear the build error */}
+          </div>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;

@@ -1,194 +1,246 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import products from '../data/products'
-import ContactForm from '../components/ContactForm'
+import { createFileRoute } from '@tanstack/react-router';
+import ContactForm from '../components/ContactForm';
 
 export const Route = createFileRoute('/')({
-  component: LandingPage,
-})
-
-function LandingPage() {
-  return (
-    <div className="bg-white">
-      {/* Differentiator Banner */}
-      <div className="bg-[#c8a84b] text-[#111] text-center py-3 px-6 text-[0.85rem] font-bold font-sans tracking-wide">
-        ⚠ We are J. Worden & Sons Asphalt Paving — the original, 4th-generation family business. <span className="underline">Independent from all other Worden-named paving entities in Chester, VA.</span>
-      </div>
-
+  component: () => (
+    <main className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[#ffcc00] selection:text-black">
       {/* Hero Section */}
-      <section className="bg-linear-to-br from-[#111] to-[#3d3d3d] text-white pt-24 pb-20 px-6 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[repeating-linear-gradient(-45deg,transparent,transparent_40px,rgba(255,255,255,0.015)_40px,rgba(255,255,255,0.015)_80px)] pointer-events-none"></div>
-        <div className="inline-block border border-[#c8a84b] text-[#c8a84b] font-sans text-[0.7rem] tracking-[0.15em] uppercase px-4 py-1.5 rounded-full mb-6">
-          4th-Generation • Since 1984 • Chester, Virginia
-        </div>
-        <h1 className="text-4xl md:text-6xl font-bold leading-[1.18] mb-4 max-w-4xl mx-auto">
-          Virginia's Premier <br />
-          <span className="text-[#c8a84b]">Asphalt Paving Legacy</span>
-        </h1>
-        <p className="text-[#e8e8e0] text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-          Four generations of uncompromising craftsmanship. Trusted by Fortune-brand restaurant chains. Serving 41 cities across Virginia with a structural standard that outlasts the competition.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4">
-          <a href="tel:8044461296" className="bg-[#c8a84b] text-[#111] px-8 py-3.5 rounded-sm font-sans font-bold text-[0.9rem] hover:bg-[#e0c06a] transition-colors">
-            Get a Free Estimate
-          </a>
-          <a href="#about" className="bg-transparent border-2 border-white/45 text-white px-8 py-3 rounded-sm font-sans font-bold text-[0.9rem] hover:border-[#c8a84b] hover:text-[#c8a84b] transition-colors">
-            Our Story
-          </a>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <div className="bg-[#f5f5f0] border-b border-[#e8e8e0] py-10 px-6">
-        <div className="max-w-[1100px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">1984</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Year Founded</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">4th</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Generation Family</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">41</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">VA Cities Served</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">4×</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">Best of Houzz</span>
-          </div>
-          <div className="flex flex-col">
-            <strong className="text-3xl font-bold text-[#3d3d3d]">3</strong>
-            <span className="font-sans text-[0.7rem] text-[#888] tracking-widest uppercase">National Partners</span>
-          </div>
-        </div>
-      </div>
-
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 max-w-[1100px] mx-auto grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <p className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#c8a84b] mb-2">Our Story</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#111] mb-6 leading-tight">Built on Four Generations of Family Craftsmanship</h2>
-          <p className="text-[#2b2b2b] text-lg mb-4">
-            J. Worden & Sons Asphalt Paving was founded in 1984 with a single commitment: deliver paving that holds up for decades, not just seasons.
+      <section className="relative py-32 md:py-48 px-6 lg:px-12 border-b-[8px] border-[#ffcc00] overflow-hidden">
+        {/* Background gradient effect */}
+        <div className="absolute inset-0 bg-gradient-to-br from-zinc-900 to-black z-0"></div>
+        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent z-0"></div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <span className="inline-block text-[#ffcc00] font-bold uppercase tracking-[0.2em] text-sm mb-6 border border-[#ffcc00]/30 px-4 py-2 rounded-full">
+            3 Generations of Excellence
+          </span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white leading-[1.1] tracking-tight">
+            Elite Asphalt Paving &<br />
+            <span className="text-[#ffcc00]">Structural Foundation Specialists</span><br />
+            <span className="text-3xl md:text-5xl lg:text-6xl text-zinc-400">in Richmond, VA</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-zinc-300 mt-8 max-w-3xl font-medium leading-relaxed border-l-4 border-[#ffcc00] pl-6">
+            Delivering uncompromising quality and 3 generations of excellence serving Richmond 23221 and 41 surrounding cities with premium paving solutions.
           </p>
-          <p className="text-[#2b2b2b] text-lg font-bold">
-            Note: We are the original J. Worden family business and are entirely independent from any other Worden-named paving operations in Chester.
-          </p>
-          <ul className="mt-8 pl-6 border-l-3 border-[#c8a84b] space-y-6">
-            <li className="relative">
-              <span className="font-sans text-[0.75rem] font-bold text-[#c8a84b] tracking-widest uppercase">1984</span>
-              <p className="text-[#2b2b2b]">J. Worden & Sons founded in Chester, Virginia. First-generation leadership sets the structural standards.</p>
-            </li>
-            <li className="relative">
-              <span className="font-sans text-[0.75rem] font-bold text-[#c8a84b] tracking-widest uppercase">2015</span>
-              <p className="text-[#2b2b2b]">4th-generation leadership transition. Modernized operations while preserving family structural standards.</p>
-            </li>
-            <li className="relative">
-              <span className="font-sans text-[0.75rem] font-bold text-[#c8a84b] tracking-widest uppercase">Today</span>
-              <p className="text-[#2b2b2b]">Multi-state commercial partner for KFC, Arby's, and Taco Bell. Serving 41 cities across Virginia.</p>
-            </li>
-          </ul>
-        </div>
-        <div className="bg-[#f5f5f0] border border-[#e8e8e0] rounded-sm p-12 flex flex-col items-center justify-center text-center">
-          <div className="text-6xl mb-4">🏗️</div>
-          <p className="text-[#888] font-sans text-sm">Four Generations <br />of Asphalt Excellence</p>
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="bg-[#f5f5f0] py-20 px-6">
-        <div className="max-w-[1100px] mx-auto">
-          <div className="text-center mb-12">
-            <p className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#c8a84b] mb-2">What We Do</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#111]">Full-Spectrum Paving Services</h2>
+      {/* The Worden Standard & Awards Section */}
+      <section className="py-24 px-6 lg:px-12 bg-zinc-950 relative border-y border-zinc-800 overflow-hidden">
+        {/* Dark High-End Background with Gold Accents */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#ffcc00]/10 via-zinc-950 to-black z-0"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-20">
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase text-white tracking-tight drop-shadow-lg mb-6">
+              <span className="text-[#ffcc00]">The J. Worden & Sons</span><br />Asphalt Standard
+            </h2>
+            <div className="w-32 h-1.5 bg-[#ffcc00] mx-auto"></div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {products.map((service) => (
-              <Link
-                key={service.id}
-                to="/products/$productId"
-                params={{ productId: service.id.toString() }}
-                className="bg-white border border-[#e8e8e0] border-t-3 border-t-[#c8a84b] p-8 rounded-sm hover:shadow-lg transition-shadow group"
-              >
-                <h3 className="text-xl font-bold mb-3 group-hover:text-[#c8a84b] transition-colors">{service.name}</h3>
-                <p className="text-[#888] font-sans text-sm leading-relaxed mb-4">{service.shortDescription}</p>
-                <span className="text-[#c8a84b] font-sans text-xs font-bold tracking-widest uppercase">View Details &rarr;</span>
-              </Link>
-            ))}
+
+          {/* The Awards Row (3xl Gold Text) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-24 text-center">
+            <div className="flex flex-col items-center justify-center p-8 bg-[#ffcc00] rounded-2xl border-4 border-white shadow-[0_0_30px_rgba(255,204,0,0.4)] transform hover:-translate-y-2 transition-transform">
+              <p className="text-3xl md:text-4xl font-black text-black uppercase leading-tight drop-shadow-sm">
+                Voted Best Asphalt Paving Company
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-center p-8 bg-black/60 rounded-2xl border border-zinc-800 shadow-2xl hover:border-[#ffcc00]/50 transition-all">
+              <p className="text-3xl md:text-4xl font-black text-[#ffcc00] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(255,204,0,0.3)]">
+                4-Time Best of Houzz Winner
+              </p>
+              <span className="text-2xl font-bold text-white mt-4 tracking-wider">(2023, 2016, 2015, 2014)</span>
+            </div>
+            <div className="flex flex-col items-center justify-center p-8 bg-black/60 rounded-2xl border border-zinc-800 shadow-2xl hover:border-[#ffcc00]/50 transition-all">
+              <p className="text-3xl md:text-4xl font-black text-[#ffcc00] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(255,204,0,0.3)]">
+                2026 Houzz Authority Certified
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-center p-8 bg-black/60 rounded-2xl border border-zinc-800 shadow-2xl hover:border-[#ffcc00]/50 transition-all">
+              <p className="text-3xl md:text-4xl font-black text-[#ffcc00] uppercase leading-tight drop-shadow-[0_2px_10px_rgba(255,204,0,0.3)]">
+                Top Contractor Award Winner
+              </p>
+              <span className="text-xl font-bold text-zinc-300 mt-4 tracking-wide">(Pavement & Maintenance Magazine)</span>
+            </div>
+          </div>
+
+          {/* Trust Badges Sub-section */}
+          <div className="bg-black/80 border border-[#ffcc00]/30 rounded-3xl p-10 md:p-16 shadow-[0_0_50px_rgba(255,204,0,0.1)] mb-24">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-center justify-center text-center">
+              <a href="https://www.houzz.com/pro/jwordenandsonspaving/j-worden-sons-paving-l-l-c" target="_blank" rel="noopener noreferrer" className="group flex flex-col items-center justify-center">
+                <div className="w-20 h-20 mb-6 rounded-full bg-zinc-900 border-2 border-zinc-800 flex items-center justify-center group-hover:border-[#ffcc00] transition-colors shadow-lg">
+                  <span className="text-4xl font-black text-[#ffcc00]">H</span>
+                </div>
+                <span className="text-3xl md:text-4xl font-black text-white group-hover:text-[#ffcc00] transition-colors mb-6">Recommended on Houzz</span>
+                <span className="inline-block px-8 py-4 bg-[#ffcc00] text-black text-xl font-black uppercase tracking-wider rounded-xl shadow-[0_4px_15px_rgba(255,204,0,0.3)] group-hover:bg-white transition-colors">View Our Profile →</span>
+              </a>
+
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-6xl md:text-7xl font-black text-[#ffcc00] mb-4 drop-shadow-[0_2px_15px_rgba(255,204,0,0.4)]">500+</span>
+                <span className="text-3xl md:text-4xl font-black text-white">Ideabook Saves</span>
+              </div>
+
+              <div className="flex flex-col items-center justify-center">
+                <div className="bg-[#ffcc00] text-black px-10 py-8 rounded-3xl shadow-[0_0_40px_rgba(255,204,0,0.4)] border-4 border-white flex flex-col items-center transform hover:scale-105 transition-transform w-full max-w-md">
+                  <span className="text-6xl md:text-7xl font-black mb-2 drop-shadow-md">A+</span>
+                  <span className="text-3xl md:text-4xl font-black uppercase text-center leading-tight">BBB Accredited<br /><span className="text-xl font-bold opacity-80 mt-2 block">Since 1994</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Core Service Pillar */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center bg-zinc-900 p-8 md:p-12 rounded-3xl border border-zinc-800 shadow-2xl">
+            <div>
+              <h3 className="text-3xl md:text-4xl font-black uppercase text-white mb-6 border-b-2 border-zinc-800 pb-4">
+                The 6-Inch Structural Base
+              </h3>
+              <div className="space-y-6 text-xl text-zinc-300 leading-relaxed">
+                <p>
+                  While competitors cut corners, we establish the gold standard for longevity and drainage. The secret to an asphalt surface that lasts decades isn't just the blacktop—it's what lies beneath.
+                </p>
+                <p>
+                  Our signature <strong className="text-[#ffcc00] font-bold">6-Inch Structural Stone Base</strong> provides unparalleled load-bearing capacity and superior water runoff management. This engineered foundation prevents cracking, settling, and water damage, consistently outperforming standard industry installations.
+                </p>
+                <ul className="mt-8 space-y-4 font-bold text-white text-lg">
+                  <li className="flex items-center gap-4">
+                    <span className="w-3 h-3 bg-[#ffcc00] rounded-sm shadow-[0_0_8px_rgba(255,204,0,0.8)]"></span>
+                    Maximum Weight Distribution & Load Capacity
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-3 h-3 bg-[#ffcc00] rounded-sm shadow-[0_0_8px_rgba(255,204,0,0.8)]"></span>
+                    Optimized Sub-Surface Drainage
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-3 h-3 bg-[#ffcc00] rounded-sm shadow-[0_0_8px_rgba(255,204,0,0.8)]"></span>
+                    Immunity to Frost-Heave and Subsoil Shifting
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="bg-black p-2 rounded-xl border border-zinc-800 shadow-2xl relative">
+              <div className="absolute -inset-1 bg-gradient-to-r from-[#ffcc00]/20 to-transparent blur-lg opacity-50 rounded-xl"></div>
+              <div className="aspect-square md:aspect-video lg:aspect-square bg-zinc-950 rounded-lg relative flex items-center justify-center border border-zinc-900 overflow-hidden">
+                <div className="absolute inset-0 bg-[url('/asphalt-paving-with-paver.jpg')] bg-cover bg-center opacity-30 mix-blend-luminosity"></div>
+                <div className="text-center relative z-10 p-8">
+                  <span className="block text-8xl font-black text-[#ffcc00] mb-2 drop-shadow-[0_4px_10px_rgba(0,0,0,0.5)]">6"</span>
+                  <span className="block text-3xl font-black uppercase tracking-widest text-white drop-shadow-md">Structural Base</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Commercial Clients Section */}
-      <section id="commercial" className="py-20 px-6">
-        <div className="max-w-[1100px] mx-auto text-center">
-          <p className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#c8a84b] mb-2">Commercial Trust</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#111] mb-6">Vetted by National Brands</h2>
-          <p className="text-[#2b2b2b] text-lg max-w-3xl mx-auto mb-12">
-            J. Worden & Sons has earned and maintained multi-state commercial paving contracts with three of the most quality-conscious brands.
-          </p>
-          <div className="flex flex-wrap justify-center gap-8">
-            <div className="w-[140px] h-[80px] bg-[#f5f5f0] border border-[#e8e8e0] rounded flex items-center justify-center font-bold text-xl text-[#3d3d3d]">KFC</div>
-            <div className="w-[140px] h-[80px] bg-[#f5f5f0] border border-[#e8e8e0] rounded flex items-center justify-center font-bold text-xl text-[#3d3d3d]">Arby's</div>
-            <div className="w-[140px] h-[80px] bg-[#f5f5f0] border border-[#e8e8e0] rounded flex items-center justify-center font-bold text-xl text-[#3d3d3d]">Taco Bell</div>
+      {/* Service Details Section */}
+      <section className="py-24 px-6 lg:px-12 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tight">
+              Our Premium <span className="text-[#ffcc00]">Services</span>
+            </h2>
+            <div className="w-24 h-1 bg-[#ffcc00] mx-auto mt-6"></div>
           </div>
-        </div>
-      </section>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {/* Service 1 */}
+            <div className="group bg-zinc-900 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all duration-300 p-8 rounded-xl relative overflow-hidden shadow-lg hover:shadow-[#ffcc00]/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffcc00]/5 rounded-bl-full -z-0 group-hover:bg-[#ffcc00]/10 transition-colors"></div>
+              <h3 className="text-2xl font-bold uppercase text-white mb-4 relative z-10 group-hover:text-[#ffcc00] transition-colors">Residential Estate Paving</h3>
+              <p className="text-zinc-400 leading-relaxed relative z-10">
+                Transform your property's entrance with our premium residential estate paving. We deliver meticulously graded, aesthetically flawless driveways built on our structural stone base, ensuring your investment enhances your home's curb appeal for decades.
+              </p>
+            </div>
 
-      {/* Structural Standard Section */}
-      <section id="standard" className="bg-[#111] text-white py-24 px-6">
-        <div className="max-w-[1100px] mx-auto grid md:grid-cols-2 gap-16 items-center">
-          <div>
-            <p className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#c8a84b] mb-2">Structural Standard</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">The 6-Inch Compacted Stone Difference</h2>
-            <p className="text-[#e8e8e0] text-lg mb-8 leading-relaxed">
-              Every J. Worden & Sons project begins with a 6-inch compacted stone structural base — the same engineering standard used in municipal roadways.
-            </p>
-            <div className="bg-white/5 border border-[#c8a84b]/30 rounded-sm p-10 flex items-center gap-8">
-              <span className="text-6xl font-bold text-[#c8a84b]">6"</span>
-              <p className="text-sm text-[#e8e8e0] font-sans leading-relaxed">
-                Compacted aggregate stone base layer applied on every project across our 41-city Virginia service grid. No shortcuts. No exceptions.
+            {/* Service 2 */}
+            <div className="group bg-zinc-900 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all duration-300 p-8 rounded-xl relative overflow-hidden shadow-lg hover:shadow-[#ffcc00]/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffcc00]/5 rounded-bl-full -z-0 group-hover:bg-[#ffcc00]/10 transition-colors"></div>
+              <h3 className="text-2xl font-bold uppercase text-white mb-4 relative z-10 group-hover:text-[#ffcc00] transition-colors">Commercial Parking Lots</h3>
+              <p className="text-zinc-400 leading-relaxed relative z-10">
+                High-traffic surfaces demand heavy-duty solutions. From the precision-graded <strong>CVS project</strong> to the expansive, heavy-load capable <strong>Car Lot in Midlothian</strong>, our commercial division executes ADA-compliant, high-durability installations that keep your business running smoothly.
+              </p>
+            </div>
+
+            {/* Service 3 */}
+            <div className="group bg-zinc-900 border border-zinc-800 hover:border-[#ffcc00]/50 transition-all duration-300 p-8 rounded-xl relative overflow-hidden shadow-lg hover:shadow-[#ffcc00]/5">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#ffcc00]/5 rounded-bl-full -z-0 group-hover:bg-[#ffcc00]/10 transition-colors"></div>
+              <h3 className="text-2xl font-bold uppercase text-white mb-4 relative z-10 group-hover:text-[#ffcc00] transition-colors">Tar & Chip Paving</h3>
+              <p className="text-zinc-400 leading-relaxed relative z-10">
+                Achieve a rustic, elegant aesthetic without sacrificing durability. Our Tar & Chip (Macadam) surfaces provide excellent traction, require minimal maintenance, and offer a classic textured finish ideal for long private roads and sweeping estate drives.
               </p>
             </div>
           </div>
-          <div className="bg-white/5 border border-[#c8a84b]/20 rounded-sm h-[320px] flex flex-col items-center justify-center text-center">
-             <div className="text-6xl mb-4">📐</div>
-             <p className="text-[#c8a84b] font-sans">41 Virginia Cities <br />One Uncompromising Standard</p>
+        </div>
+      </section>
+
+      {/* Location Focus Section */}
+      <section className="py-24 px-6 lg:px-12 bg-zinc-900 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center justify-between">
+          <div className="md:w-1/2">
+            <h2 className="text-3xl md:text-4xl font-black uppercase text-white mb-6">
+              Headquartered in <span className="text-[#ffcc00]">Chester</span>
+            </h2>
+            <div className="bg-black/50 p-6 rounded-xl border border-zinc-800 inline-block mb-8 shadow-inner">
+              <p className="text-xl font-bold text-white tracking-wide">1601 Ware Bottom Springs Rd</p>
+              <p className="text-zinc-400 mt-1">Chester, VA 23836</p>
+            </div>
+            <p className="text-lg text-zinc-300 mb-4 max-w-lg leading-relaxed">
+              Strategically located to dispatch our heavy equipment fleet quickly and efficiently across Central Virginia.
+            </p>
+          </div>
+          
+          <div className="md:w-1/2 w-full">
+            <div className="bg-black border border-zinc-800 rounded-2xl p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcc00]"></div>
+              <h3 className="text-xl font-bold uppercase text-white mb-8 tracking-wider">Primary Service Areas</h3>
+              <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-lg text-zinc-300 font-medium">
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Midlothian</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Chesterfield</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Powhatan</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Richmond</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Glen Allen</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                  <span>Mechanicsville</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="bg-[#2b2b2b] text-white py-24 px-6">
-        <div className="max-w-[1100px] mx-auto text-center">
-          <p className="font-sans text-[0.7rem] tracking-[0.2em] uppercase text-[#c8a84b] mb-2">Reach Us</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">Request a Free Estimate</h2>
-          <p className="text-[#e8e8e0] text-lg max-w-3xl mx-auto mb-12 leading-relaxed">
-            Ready to discuss your commercial or residential paving project? Contact us for a no-obligation estimate. We serve all 41 cities in our Virginia grid and multi-state commercial clients.
-          </p>
+      {/* DISPATCH / CONTACT SECTION */}
+      <section className="py-32 px-6 lg:px-12 bg-black border-t border-[#ffcc00]/20 relative overflow-hidden">
+        {/* Subtle grid pattern for construction feel */}
+        <div className="absolute inset-0 opacity-5 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black uppercase text-white tracking-tighter mb-4">
+              Dispatch an <span className="text-[#ffcc00]">Estimator</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-zinc-400 font-bold italic max-w-3xl mx-auto">
+              Schedule an on-site structural evaluation for your next paving project.
+            </p>
+          </div>
           
           <ContactForm />
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto mt-16 text-left">
-            <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
-              <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Phone</p>
-              <p className="text-lg">804-446-1296</p>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
-              <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Email</p>
-              <p className="text-lg text-sm truncate">info@jwordenasphalt.com</p>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
-              <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Location</p>
-              <p className="text-lg">Chester, Virginia</p>
-            </div>
-            <div className="bg-white/5 border border-white/10 p-6 rounded-sm">
-              <p className="font-sans text-[0.7rem] tracking-widest uppercase text-[#c8a84b] mb-1">Hours</p>
-              <p className="text-lg">Mon–Fri, 7–5</p>
-            </div>
-          </div>
         </div>
       </section>
-    </div>
-  )
-}
+    </main>
+  ),
+});
