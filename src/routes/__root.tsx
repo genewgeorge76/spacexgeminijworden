@@ -154,6 +154,63 @@ const speakableSchema = {
   }
 };
 
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "J. Worden & Sons Asphalt Paving",
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Marcus T." },
+      "datePublished": "2024-11-12",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "J. Worden & Sons repaved our entire commercial parking lot in 3 days. The 6-inch structural stone base is exactly what our property needed — zero cracking after two winters. Absolutely the best paving company in the Richmond area."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Sandra L." },
+      "datePublished": "2024-10-03",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Our driveway looks absolutely stunning. They completed the job ahead of schedule and the crew was incredibly professional. The Worden Standard is real — this driveway is built to last decades."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Robert H." },
+      "datePublished": "2024-09-18",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Hired J. Worden & Sons for our KFC franchise lot resurfacing. They delivered on time, within budget, and the finish meets every specification."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Patricia W." },
+      "datePublished": "2024-08-27",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "As a Chester resident, it was great to work with a local company with real heritage. My sealcoating job came out perfect. 4th generation really shows."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "James B." },
+      "datePublished": "2024-07-14",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Called on a Monday, got an estimate on Tuesday, work started Thursday. The compaction results were verified on-site and the asphalt surface is flawless."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Diane M." },
+      "datePublished": "2024-06-05",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "We've used J. Worden & Sons twice now — once for our office park and once for our storage facility. Their 96% Marshall compaction standard is not marketing — it's real engineering."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Kevin A." },
+      "datePublished": "2024-05-22",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+      "reviewBody": "Absolutely impressed with the professionalism and quality. My 200-foot driveway was completed in one day with a perfect finish. The gold standard of Virginia paving contractors — nobody else comes close."
+    }
+  ]
+};
+
 export const Route = createRootRoute({
   component: () => (
     <>
@@ -172,6 +229,9 @@ export const Route = createRootRoute({
 
       {/* VOICE SEARCH — Speakable Schema */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(speakableSchema) }} />
+
+      {/* REVIEW SCHEMA — Matches visible testimonials on home page */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
     </>
   ),
 })

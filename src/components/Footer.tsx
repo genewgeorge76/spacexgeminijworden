@@ -39,7 +39,16 @@ const Footer = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="text-[#ffcc00] h-5 w-5" />
-                <p>(804) 000-0000</p>
+                <a
+                  href="tel:+18044461296"
+                  onClick={() => {
+                    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+                    if (w.gtag) w.gtag('event', 'click', { event_category: 'phone_call', event_label: '804-446-1296' });
+                  }}
+                  className="text-slate-400 hover:text-[#ffcc00] transition-colors font-bold"
+                >
+                  (804) 446-1296
+                </a>
               </div>
             </div>
           </div>

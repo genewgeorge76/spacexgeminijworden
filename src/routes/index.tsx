@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import ContactForm from '../components/ContactForm';
 import PrecisionEstimator from '../components/PrecisionEstimator';
 import XRayComparison from '../components/XRayComparison';
+import TestimonialCarousel from '../components/TestimonialCarousel';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -216,9 +217,9 @@ export const Route = createFileRoute('/')({
               { src: '/jwordenandsonspaving-maidstone-photo.jpeg', alt: 'Residential Estate - Maidstone', category: 'Residential', title: 'Estate Driveway - Maidstone' },
               { src: '/parking-lot-pave-richmond-va.jpg', alt: 'Commercial Parking Lot - Richmond', category: 'Commercial', title: 'Office Park - Richmond' },
               { src: '/asphalt-paving-with-paver.jpg', alt: 'Paving Operations - Central Virginia', category: 'Operations', title: 'Heavy Paving - Central Virginia' },
-            ].map((project) => (
+            ].map((project, idx) => (
               <div key={project.title} className="group relative aspect-[4/3] overflow-hidden rounded-xl bg-zinc-900 cursor-pointer shadow-xl">
-                <img src={project.src} alt={project.alt} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
+                <img src={project.src} alt={project.alt} loading={idx === 0 ? 'eager' : 'lazy'} className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                   <span className="text-[#ffcc00] text-sm font-bold uppercase tracking-widest mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{project.category}</span>
                   <h3 className="text-2xl font-bold text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">{project.title}</h3>
@@ -228,6 +229,9 @@ export const Route = createFileRoute('/')({
           </div>
         </div>
       </section>
+
+      {/* Testimonial Carousel */}
+      <TestimonialCarousel />
 
       {/* Expertise & Recognition Section */}
       <section className="py-24 px-6 lg:px-12 bg-zinc-950 border-t border-zinc-800">
@@ -273,33 +277,71 @@ export const Route = createFileRoute('/')({
 
       {/* Location Focus Section */}
       <section className="py-24 px-6 lg:px-12 bg-zinc-900 border-t border-zinc-800">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12 items-center justify-between">
-          <div className="md:w-1/2">
-            <h2 className="text-3xl md:text-4xl font-black uppercase text-white mb-6">
-              Headquartered in <span className="text-[#ffcc00]">Chester</span>
-            </h2>
-            <div className="bg-black/50 p-6 rounded-xl border border-zinc-800 inline-block mb-8 shadow-inner">
-              <p className="text-xl font-bold text-white tracking-wide">1601 Ware Bottom Springs Rd</p>
-              <p className="text-zinc-400 mt-1">Chester, VA 23836</p>
-            </div>
-            <p className="text-lg text-zinc-300 mb-4 max-w-lg leading-relaxed">
-              Strategically located to dispatch our heavy equipment fleet quickly across Central Virginia.
-            </p>
-          </div>
-
-          <div className="md:w-1/2 w-full">
-            <div className="bg-black border border-zinc-800 rounded-2xl p-8 lg:p-10 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcc00]"></div>
-              <h3 className="text-xl font-bold uppercase text-white mb-8 tracking-wider">Primary Service Areas</h3>
-              <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-lg text-zinc-300 font-medium">
-                {['Midlothian', 'Chesterfield', 'Powhatan', 'Richmond', 'Glen Allen', 'Mechanicsville'].map((city) => (
-                  <div key={city} className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
-                    <span>{city}</span>
-                  </div>
-                ))}
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row gap-12 items-start justify-between mb-12">
+            <div className="md:w-1/2">
+              <h2 className="text-3xl md:text-4xl font-black uppercase text-white mb-6">
+                Headquartered in <span className="text-[#ffcc00]">Chester</span>
+              </h2>
+              <div className="bg-black/50 p-6 rounded-xl border border-zinc-800 inline-block mb-8 shadow-inner">
+                <p className="text-xl font-bold text-white tracking-wide">1601 Ware Bottom Springs Rd</p>
+                <p className="text-zinc-400 mt-1">Chester, VA 23836</p>
+              </div>
+              <p className="text-lg text-zinc-300 mb-6 max-w-lg leading-relaxed">
+                Strategically located to dispatch our heavy equipment fleet quickly across Central Virginia.
+              </p>
+              <div className="flex flex-wrap gap-4 mb-2">
+                <a
+                  href="https://www.google.com/maps/dir/?api=1&destination=1601+Ware+Bottom+Springs+Rd+Chester+VA+23836"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => {
+                    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+                    if (w.gtag) w.gtag('event', 'click', { event_category: 'directions', event_label: 'google_maps' });
+                  }}
+                  className="flex items-center gap-2 bg-[#ffcc00] text-black px-6 py-3 font-black uppercase tracking-widest text-sm hover:bg-white transition-colors shadow-lg"
+                >
+                  📍 Get Directions
+                </a>
+                <a
+                  href="https://www.google.com/maps/place/J.+Worden+%26+Sons+Paving+LLC"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 border-2 border-[#ffcc00] text-[#ffcc00] px-6 py-3 font-black uppercase tracking-widest text-sm hover:bg-[#ffcc00] hover:text-black transition-colors"
+                >
+                  ⭐ Google Business Profile
+                </a>
               </div>
             </div>
+
+            <div className="md:w-1/2 w-full">
+              <div className="bg-black border border-zinc-800 rounded-2xl p-8 lg:p-10 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-2 h-full bg-[#ffcc00]"></div>
+                <h3 className="text-xl font-bold uppercase text-white mb-8 tracking-wider">Primary Service Areas</h3>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-8 text-lg text-zinc-300 font-medium">
+                  {['Midlothian', 'Chesterfield', 'Powhatan', 'Richmond', 'Glen Allen', 'Mechanicsville'].map((city) => (
+                    <div key={city} className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-[#ffcc00] rounded-full shadow-[0_0_8px_rgba(255,204,0,0.8)]"></div>
+                      <span>{city}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Google Maps Embed */}
+          <div className="w-full rounded-2xl overflow-hidden border-2 border-zinc-800 shadow-2xl">
+            <iframe
+              title="J. Worden & Sons Paving — Chester VA Headquarters"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3172.5!2d-77.3986!3d37.3592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s1601+Ware+Bottom+Springs+Rd%2C+Chester%2C+VA+23836!5e0!3m2!1sen!2sus!4v1"
+              width="100%"
+              height="350"
+              style={{ border: 0, display: 'block' }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
         </div>
       </section>
