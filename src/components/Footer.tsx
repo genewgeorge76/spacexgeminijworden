@@ -30,15 +30,15 @@ const Footer = () => {
           {/* Column 1: Brand & HQ */}
           <div className="space-y-6">
             <h3 className="text-2xl font-black tracking-tighter italic">
-              J. WORDEN & SONS<span className="text-orange-600 font-bold block text-sm not-italic tracking-widest">ASPHALT PAVING</span>
+              J. WORDEN & SONS<span className="text-[#ffcc00] font-bold block text-sm not-italic tracking-widest">ASPHALT PAVING</span>
             </h3>
             <div className="space-y-4 text-slate-400">
               <div className="flex items-start gap-3">
-                <MapPin className="text-orange-600 h-5 w-5 mt-1 flex-shrink-0" />
+                <MapPin className="text-[#ffcc00] h-5 w-5 mt-1 flex-shrink-0" />
                 <p><strong>Headquarters:</strong><br />{hqAddress}</p>
               </div>
               <div className="flex items-center gap-3">
-                <Phone className="text-orange-600 h-5 w-5" />
+                <Phone className="text-[#ffcc00] h-5 w-5" />
                 <p>(804) 000-0000</p>
               </div>
             </div>
@@ -47,7 +47,7 @@ const Footer = () => {
           {/* Columns 2-4: Regional Links (THE SEO POWER) */}
           {regions.map((region) => (
             <div key={region.name}>
-              <h4 className="text-orange-500 font-bold uppercase tracking-widest text-sm mb-6 border-b border-white/10 pb-2">
+              <h4 className="text-[#ffcc00] font-bold uppercase tracking-widest text-sm mb-6 border-b border-white/10 pb-2">
                 {region.name}
               </h4>
               <ul className="grid grid-cols-1 gap-2">

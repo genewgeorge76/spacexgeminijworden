@@ -103,7 +103,7 @@ function DeveloperPortal() {
           </div>
 
           <form
-            action="https://formspree.io/f/j.wordenandsonspaving@gmail.com"
+            action="https://formspree.io/f/xjwordensonspaving"
             method="POST"
             className="space-y-8"
           >
