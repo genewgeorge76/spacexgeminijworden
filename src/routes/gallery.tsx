@@ -96,7 +96,7 @@ const beforeAfterPairs = [
   },
 ];
 
-const imageGallerySchema = {
+const IMAGE_GALLERY_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'ImageGallery',
   name: 'J. Worden & Sons Asphalt Paving — Project Gallery',
@@ -130,7 +130,7 @@ function AuthorityVault() {
       {/* ImageGallery JSON-LD Schema */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(imageGallerySchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(IMAGE_GALLERY_SCHEMA) }}
       />
 
       <div className="max-w-7xl mx-auto">

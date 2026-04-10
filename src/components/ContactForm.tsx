@@ -53,6 +53,7 @@ export default function ContactForm() {
             rel="noopener noreferrer"
             onClick={() => {
               const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+              // TODO: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID
               if (w.gtag) w.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: 'G-XXXXXXXXXX' });
             }}
             className="inline-block w-full bg-[#ffcc00] text-black font-black uppercase tracking-[0.2em] text-xl py-6 text-center hover:bg-white transition-colors shadow-[0_0_30px_rgba(255,204,0,0.4)] border-4 border-transparent hover:border-[#ffcc00]"
