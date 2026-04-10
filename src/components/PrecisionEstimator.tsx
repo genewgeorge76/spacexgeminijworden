@@ -20,8 +20,9 @@ export default function PrecisionEstimator() {
 
   const handleCityChange = (selected: string) => {
     setCity(selected);
-    if (typeof window !== 'undefined' && (window as Window & { gtag?: Function }).gtag) {
-      (window as Window & { gtag: Function }).gtag('event', 'estimate_intent', {
+    const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (typeof window !== 'undefined' && win.gtag) {
+      win.gtag('event', 'estimate_intent', {
         event_category: 'demand_heatmap',
         event_label: selected,
       });

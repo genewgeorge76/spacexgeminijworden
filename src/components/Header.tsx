@@ -1,7 +1,11 @@
+import { useState } from 'react'
 import { Link } from '@tanstack/react-router'
-import { Phone, Award } from 'lucide-react'
+import { Phone, Award, Menu } from 'lucide-react'
+import HeaderNav from './HeaderNav'
 
 export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
     <header className="fixed top-0 z-50 w-full font-sans flex flex-col">
       {/* Top Bar */}
@@ -49,9 +53,19 @@ export default function Header() {
               <Phone size={12} fill="currentColor" />
               <span>911 Dispatch: 804-446-1296</span>
             </a>
+            <button
+              type="button"
+              onClick={() => setMenuOpen(true)}
+              className="lg:hidden flex items-center justify-center text-white hover:text-[#ffcc00] transition-colors p-1"
+              aria-label="Open navigation menu"
+            >
+              <Menu size={22} />
+            </button>
           </div>
         </div>
       </div>
+
+      <HeaderNav isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
     </header>
   )
 }
