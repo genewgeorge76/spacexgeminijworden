@@ -9,13 +9,22 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as StandardsRouteImport } from './routes/standards'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
+import { Route as SafetyRouteImport } from './routes/safety'
+import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as MasonryRouteImport } from './routes/masonry'
+import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as EstimatorRouteImport } from './routes/estimator'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 import { Route as LocationsWindsorFarmsRouteImport } from './routes/locations/windsor-farms'
@@ -72,14 +81,34 @@ import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 
+const WhaleHunterRoute = WhaleHunterRouteImport.update({
+  id: '/whale-hunter',
+  path: '/whale-hunter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StandardsRoute = StandardsRouteImport.update({
   id: '/standards',
   path: '/standards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SealcoatingRoute = SealcoatingRouteImport.update({
   id: '/sealcoating',
   path: '/sealcoating',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SafetyRoute = SafetyRouteImport.update({
+  id: '/safety',
+  path: '/safety',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RoofingRoute = RoofingRouteImport.update({
+  id: '/roofing',
+  path: '/roofing',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResidentialRoute = ResidentialRouteImport.update({
@@ -97,14 +126,39 @@ const MasonryRoute = MasonryRouteImport.update({
   path: '/masonry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GcBidRoute = GcBidRouteImport.update({
+  id: '/gc-bid',
+  path: '/gc-bid',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EstimatorRoute = EstimatorRouteImport.update({
+  id: '/estimator',
+  path: '/estimator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConcreteRoute = ConcreteRouteImport.update({
+  id: '/concrete',
+  path: '/concrete',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -386,13 +440,22 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/commercial': typeof CommercialRoute
+  '/concrete': typeof ConcreteRoute
+  '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
+  '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
+  '/roofing': typeof RoofingRoute
+  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
+  '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -450,13 +513,22 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/commercial': typeof CommercialRoute
+  '/concrete': typeof ConcreteRoute
+  '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
+  '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
+  '/roofing': typeof RoofingRoute
+  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
+  '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -515,13 +587,22 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/commercial': typeof CommercialRoute
+  '/concrete': typeof ConcreteRoute
+  '/contact': typeof ContactRoute
+  '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
+  '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
+  '/roofing': typeof RoofingRoute
+  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
+  '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -581,13 +662,22 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/commercial'
+    | '/concrete'
+    | '/contact'
+    | '/estimator'
     | '/gallery'
+    | '/gc-bid'
     | '/masonry'
     | '/portal'
     | '/residential'
+    | '/roofing'
+    | '/safety'
     | '/sealcoating'
+    | '/services'
     | '/standards'
+    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -645,13 +735,22 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/commercial'
+    | '/concrete'
+    | '/contact'
+    | '/estimator'
     | '/gallery'
+    | '/gc-bid'
     | '/masonry'
     | '/portal'
     | '/residential'
+    | '/roofing'
+    | '/safety'
     | '/sealcoating'
+    | '/services'
     | '/standards'
+    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -709,13 +808,22 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/commercial'
+    | '/concrete'
+    | '/contact'
+    | '/estimator'
     | '/gallery'
+    | '/gc-bid'
     | '/masonry'
     | '/portal'
     | '/residential'
+    | '/roofing'
+    | '/safety'
     | '/sealcoating'
+    | '/services'
     | '/standards'
+    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -774,13 +882,22 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   CommercialRoute: typeof CommercialRoute
+  ConcreteRoute: typeof ConcreteRoute
+  ContactRoute: typeof ContactRoute
+  EstimatorRoute: typeof EstimatorRoute
   GalleryRoute: typeof GalleryRoute
+  GcBidRoute: typeof GcBidRoute
   MasonryRoute: typeof MasonryRoute
   PortalRoute: typeof PortalRoute
   ResidentialRoute: typeof ResidentialRoute
+  RoofingRoute: typeof RoofingRoute
+  SafetyRoute: typeof SafetyRoute
   SealcoatingRoute: typeof SealcoatingRoute
+  ServicesRoute: typeof ServicesRoute
   StandardsRoute: typeof StandardsRoute
+  WhaleHunterRoute: typeof WhaleHunterRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
@@ -839,6 +956,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/whale-hunter': {
+      id: '/whale-hunter'
+      path: '/whale-hunter'
+      fullPath: '/whale-hunter'
+      preLoaderRoute: typeof WhaleHunterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/standards': {
       id: '/standards'
       path: '/standards'
@@ -846,11 +970,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StandardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sealcoating': {
       id: '/sealcoating'
       path: '/sealcoating'
       fullPath: '/sealcoating'
       preLoaderRoute: typeof SealcoatingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/safety': {
+      id: '/safety'
+      path: '/safety'
+      fullPath: '/safety'
+      preLoaderRoute: typeof SafetyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/roofing': {
+      id: '/roofing'
+      path: '/roofing'
+      fullPath: '/roofing'
+      preLoaderRoute: typeof RoofingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/residential': {
@@ -874,6 +1019,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MasonryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gc-bid': {
+      id: '/gc-bid'
+      path: '/gc-bid'
+      fullPath: '/gc-bid'
+      preLoaderRoute: typeof GcBidRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
@@ -881,11 +1033,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/estimator': {
+      id: '/estimator'
+      path: '/estimator'
+      fullPath: '/estimator'
+      preLoaderRoute: typeof EstimatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concrete': {
+      id: '/concrete'
+      path: '/concrete'
+      fullPath: '/concrete'
+      preLoaderRoute: typeof ConcreteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/commercial': {
       id: '/commercial'
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -1278,13 +1458,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   CommercialRoute: CommercialRoute,
+  ConcreteRoute: ConcreteRoute,
+  ContactRoute: ContactRoute,
+  EstimatorRoute: EstimatorRoute,
   GalleryRoute: GalleryRoute,
+  GcBidRoute: GcBidRoute,
   MasonryRoute: MasonryRoute,
   PortalRoute: PortalRoute,
   ResidentialRoute: ResidentialRoute,
+  RoofingRoute: RoofingRoute,
+  SafetyRoute: SafetyRoute,
   SealcoatingRoute: SealcoatingRoute,
+  ServicesRoute: ServicesRoute,
   StandardsRoute: StandardsRoute,
+  WhaleHunterRoute: WhaleHunterRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,

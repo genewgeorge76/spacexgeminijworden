@@ -7,13 +7,19 @@ import TestimonialCarousel from '../components/TestimonialCarousel';
 export const Route = createFileRoute('/')({
   component: () => (
     <main className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-[#ffcc00] selection:text-black">
-      {/* Hero Section */}
+      {/* Hero Section — Video Background */}
       <section className="relative py-48 md:py-64 px-6 lg:px-12 border-b-[8px] border-[#ffcc00] overflow-hidden flex items-center justify-center min-h-[70vh]">
-        <div
-          className="absolute inset-0 w-full h-full bg-cover bg-center z-0"
-          style={{ backgroundImage: "url('/asphalt-paving-with-paver.jpg')" }}
-          aria-hidden="true"
-        />
+        {/* 4K Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover z-0"
+          poster="/asphalt-paving-with-paver.jpg"
+        >
+          <source src="/videos/industrial-paving-hero.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-black/60 z-[1]"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto text-center">
