@@ -21,6 +21,11 @@ export default function ContactForm() {
         event_category: 'demand_heatmap',
         event_label: detectedCity,
       });
+      win.gtag('event', 'generate_lead', {
+        event_category: 'contact',
+        event_label: detectedCity,
+        value: 1,
+      });
     }
 
     setSubmitted(true);
@@ -34,7 +39,8 @@ export default function ContactForm() {
             ⚡ Request Received — One Step Left!
           </p>
           <p className="text-sm font-bold mt-1 opacity-80">
-            High-Capacity Dispatch Available for {today}{city ? ` in ${city}` : ''} · 804-446-1296
+            High-Capacity Dispatch Available for {today}{city ? ` in ${city}` : ''} ·{' '}
+            <a href="tel:+18044461296" className="underline hover:opacity-70">804-446-1296</a>
           </p>
         </div>
         <div className="bg-[#1a1a1a] p-10 border border-zinc-800 text-center shadow-2xl font-sans">
@@ -45,6 +51,10 @@ export default function ContactForm() {
             href={KICKSERV_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+              if (w.gtag) w.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: 'G-XXXXXXXXXX' });
+            }}
             className="inline-block w-full bg-[#ffcc00] text-black font-black uppercase tracking-[0.2em] text-xl py-6 text-center hover:bg-white transition-colors shadow-[0_0_30px_rgba(255,204,0,0.4)] border-4 border-transparent hover:border-[#ffcc00]"
           >
             ⚡ Complete My Kickserv Dispatch →
@@ -74,7 +84,8 @@ export default function ContactForm() {
           Dispatch a 4th-Generation Estimator Immediately
         </p>
         <p className="text-sm font-bold mt-1 opacity-70">
-          High-Capacity Dispatch Available for {today} · Chester HQ · 804-446-1296
+          High-Capacity Dispatch Available for {today} · Chester HQ ·{' '}
+          <a href="tel:+18044461296" className="underline hover:opacity-70">804-446-1296</a>
         </p>
       </div>
 
