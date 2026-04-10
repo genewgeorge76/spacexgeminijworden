@@ -2,4 +2,3 @@ node_modules
 dist
 .netlify
 .tanstack
-src/routeTree.gen.ts
