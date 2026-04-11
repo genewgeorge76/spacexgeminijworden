@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.88.0",
     "@tanstack/react-router": "^1.168.10",
     "@tanstack/react-start": "latest",
     "@tanstack/router-devtools": "^1.166.11",
