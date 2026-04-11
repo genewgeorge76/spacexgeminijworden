@@ -297,10 +297,10 @@ function PreConDashboard() {
                     </span>
                   </div>
                 ) : (
-                  weatherAlerts.map((alert, i) => {
+                  weatherAlerts.map((alert) => {
                     const isRain = alert.toLowerCase().includes('rain') || alert.toLowerCase().includes('sealcoating');
                     return (
-                      <div key={i} className={`flex items-start gap-3 p-3 rounded-lg border ${isRain ? 'bg-cyan-900/20 border-cyan-800/40' : 'bg-[#ffcc00]/5 border-[#ffcc00]/20'}`}>
+                      <div key={alert} className={`flex items-start gap-3 p-3 rounded-lg border ${isRain ? 'bg-cyan-900/20 border-cyan-800/40' : 'bg-[#ffcc00]/5 border-[#ffcc00]/20'}`}>
                         <div className={`w-1.5 h-1.5 rounded-full mt-1 shrink-0 ${isRain ? 'bg-cyan-400' : 'bg-[#ffcc00]'} animate-pulse`} />
                         <span className={`text-[10px] font-black uppercase tracking-wide leading-relaxed ${isRain ? 'text-cyan-300' : 'text-[#ffcc00]'}`}>
                           {alert}
