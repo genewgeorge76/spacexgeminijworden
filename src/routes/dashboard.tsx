@@ -1,4 +1,5 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
+import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
+import { useEffect, useState, useRef } from 'react';
 import {
   Activity,
   BarChart3,
@@ -8,6 +9,7 @@ import {
   DollarSign,
   Hammer,
   HardHat,
+  LogOut,
   MapPin,
   Phone,
   Shield,
@@ -18,6 +20,7 @@ import {
   Zap,
 } from 'lucide-react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
+import { useAuth } from '@/lib/auth-context';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -107,9 +110,89 @@ const areaGroups = [
 ];
 const totalAreas = areaGroups.reduce((s, g) => s + g.count, 0);
 
+// ── Ghost Protocol activity feed ─────────────────────────────────────────────
+const FEED_MESSAGES = [
+  '04:12 AM — GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.',
+  '04:14 AM — AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.',
+  '04:15 AM — AUTO-DISPATCH: Commercial proposal generated & emailed to GC Estimating.',
+  '04:18 AM — FOREMAN ALERT: Job won. Dispatching GPS & 410-ton target to Crew Alpha.',
+  '04:22 AM — PLANT PULSE: Vulcan Materials Chester — 12 min wait. Selected.',
+  '04:25 AM — WHALE HUNTER: New KFC permit detected — Colonial Heights VA. Proposal queued.',
+  '04:31 AM — VDOT CHECK: 96% Marshall compaction standard verified on JOB-2401.',
+  '04:38 AM — BID SUBMITTED: SAM.gov solicitation #VA-2024-8841 — $2.1M asphalt resurfacing.',
+];
+
+function GhostProtocolFeed() {
+  const [lines, setLines] = useState<string[]>([]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setLines([FEED_MESSAGES[0]]);
+    let idx = 1;
+    const interval = setInterval(() => {
+      if (idx < FEED_MESSAGES.length) {
+        setLines((prev) => [...prev, FEED_MESSAGES[idx++]]);
+      } else {
+        idx = 0;
+      }
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [lines]);
+
+  return (
+    <div className="bg-black/60 border border-red-900/40 rounded-xl p-4 h-44 overflow-y-auto font-mono text-[10px] space-y-1">
+      {lines.map((line, i) => (
+        <div key={i} className="text-green-400/90 leading-relaxed">
+          <span className="text-green-600/60">›</span> {line}
+        </div>
+      ))}
+      <div ref={bottomRef} />
+    </div>
+  );
+}
+
 function Dashboard() {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const [ghostMode, setGhostMode] = useState(false);
+
+  useEffect(() => {
+    if (!user || user.role !== 'OWNER') {
+      navigate({ to: '/login' });
+    }
+  }, [user, navigate]);
+
+  if (!user || user.role !== 'OWNER') return null;
+
+  function handleLogout() {
+    logout();
+    navigate({ to: '/login' });
+  }
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
+
+      {/* ── SESSION BAR ────────────────────────────────────────────────────── */}
+      <div className="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur border-b border-zinc-800 px-6 py-2 flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-amber-400/70">
+            OWNER SESSION · {user.id}
+          </span>
+        </div>
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 bg-red-950/40 hover:bg-red-900/50 border border-red-800/40 hover:border-red-700 text-red-400 hover:text-red-300 font-black uppercase tracking-widest text-[9px] px-4 py-2 rounded-lg transition-all"
+        >
+          <LogOut className="w-3 h-3" />
+          TERMINATE SESSION
+        </button>
+      </div>
+
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden">
@@ -136,6 +219,59 @@ function Dashboard() {
             J. Worden &amp; Sons Paving &amp; General Contracting — 4th generation since 1984.
             All key metrics, services, service areas, and operational tools at a glance.
           </p>
+        </div>
+      </section>
+
+      {/* ── GHOST PROTOCOL SWITCH ────────────────────────────────────────── */}
+      <section className={`py-8 px-6 border-b transition-colors duration-700 ${ghostMode ? 'border-red-900/60 bg-red-950/10' : 'border-zinc-900'}`}>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <div className="text-[9px] font-black uppercase tracking-[0.5em] text-zinc-600 mb-1">System Override</div>
+              <h2 className={`text-2xl font-black uppercase tracking-tight transition-colors duration-500 ${ghostMode ? 'text-red-400' : 'text-white'}`}>
+                {ghostMode ? '⚡ GHOST PROTOCOL: AUTONOMOUS' : '🔒 SYSTEM OVERRIDE: MANUAL'}
+              </h2>
+              <p className="text-xs text-zinc-500 font-bold mt-1 max-w-lg">
+                {ghostMode
+                  ? 'AI is actively hunting bids, calculating margins, and dispatching proposals. No human input required.'
+                  : 'Manual mode — all bids and dispatches require your approval before execution.'}
+              </p>
+            </div>
+
+            {/* Toggle switch */}
+            <button
+              onClick={() => setGhostMode((v) => !v)}
+              className={`relative w-28 h-14 rounded-full border-2 transition-all duration-500 flex items-center px-1 shrink-0 ${
+                ghostMode
+                  ? 'border-red-500 bg-red-950/60 shadow-[0_0_30px_rgba(239,68,68,0.3)]'
+                  : 'border-zinc-700 bg-zinc-900'
+              }`}
+              aria-label="Toggle Ghost Protocol"
+            >
+              <div
+                className={`w-11 h-11 rounded-full transition-all duration-500 flex items-center justify-center font-black text-xs ${
+                  ghostMode
+                    ? 'translate-x-[52px] bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.6)]'
+                    : 'translate-x-0 bg-zinc-600 text-zinc-400'
+                }`}
+              >
+                {ghostMode ? '⚡' : '🔒'}
+              </div>
+            </button>
+          </div>
+
+          {/* Live feed when autonomous */}
+          {ghostMode && (
+            <div className="mt-6">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400/80">
+                  Live Autonomous Activity Feed
+                </span>
+              </div>
+              <GhostProtocolFeed />
+            </div>
+          )}
         </div>
       </section>
 
