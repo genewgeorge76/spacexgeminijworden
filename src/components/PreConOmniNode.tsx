@@ -841,6 +841,7 @@ export default function PreConOmniNode() {
   const [contractText, setContractText] = useState('');
   const [systemStatus] = useState({ uptime: '99.97%', queries: 4821, latency: 38 });
   const typewriterRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevAnalysisRef = useRef<SiteAnalysis | null>(null);
 
   function runTypewriter(fullText: string) {
     setContractText('');
@@ -888,14 +889,18 @@ export default function PreConOmniNode() {
     };
   }, []);
 
-  // When trade changes after analysis is loaded, regenerate contract
+  // When trade changes after analysis is loaded, regenerate contract.
+  // Skip when analysis itself just changed (initial generation handled in handleAnalyze).
   useEffect(() => {
     if (!analysis) return;
+    if (prevAnalysisRef.current !== analysis) {
+      prevAnalysisRef.current = analysis;
+      return;
+    }
     if (typewriterRef.current) clearTimeout(typewriterRef.current);
     const contractFull = buildContract(analysis, selectedTrade);
     runTypewriter(contractFull);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTrade]);
+  }, [selectedTrade, analysis]);
 
   return (
     <div className="min-h-screen bg-[#050508] text-white font-sans pt-28 pb-16 px-4 lg:px-8">
