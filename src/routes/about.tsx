@@ -1,4 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
+import { lazy, Suspense } from 'react';
+
+const ProofMap = lazy(() => import('@/components/ProofMap'));
 
 export const Route = createFileRoute('/about')({
   component: () => (
@@ -65,6 +68,29 @@ export const Route = createFileRoute('/about')({
                 <p className="text-gray-400 leading-relaxed" dangerouslySetInnerHTML={{ __html: cred.desc }} />
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Proof of Performance Map */}
+      <section className="py-24 px-6 bg-black">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-5xl font-black uppercase text-white mb-4">
+            Nationwide <span className="text-[#ffcc00]">Proof of Performance</span>
+          </h2>
+          <p className="text-gray-400 font-bold mb-10 max-w-3xl">
+            Every pin below is a GPS-verified job site — asphalt, paving, and construction work extracted directly from field photos. Replace <code className="bg-[#1a1a1a] px-1 text-[#ffcc00]">src/data/verified-pins.json</code> with your harvested data to see your full 40-year footprint light up the map.
+          </p>
+          <div className="overflow-hidden rounded-lg border-[4px] border-[#ffcc00] shadow-2xl">
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-[500px] bg-[#1a1a1a] text-gray-400 text-lg font-bold">
+                  Loading map…
+                </div>
+              }
+            >
+              <ProofMap />
+            </Suspense>
           </div>
         </div>
       </section>
