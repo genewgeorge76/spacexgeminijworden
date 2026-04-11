@@ -7,7 +7,7 @@ import { prizedServices } from './prizedServices';
 
 export const commandBot = {
   status: "ONLINE",
-  hq: "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836",
+  hq: "7011 Wood Rd, Richmond, VA",
 
   processCommand: function (input: string): string {
     const lowerInput = input.toLowerCase();
