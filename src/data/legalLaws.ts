@@ -691,11 +691,15 @@ export interface AuditLogEntry {
 }
 
 export function generateSessionId(): string {
-  return 'WOS-' + Math.random().toString(36).substring(2, 10).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
+  const uuid = crypto.randomUUID();
+  return 'WOS-' + uuid.replace(/-/g, '').substring(0, 8).toUpperCase() + '-' + Date.now().toString(36).toUpperCase();
 }
 
-export function generateIpHash(): string {
-  return 'SHA256:' + Math.random().toString(36).substring(2, 18).toUpperCase();
+export function generateMockIpHash(): string {
+  // Advisory placeholder — production would hash the real client IP server-side
+  const bytes = new Uint8Array(8);
+  crypto.getRandomValues(bytes);
+  return 'SHA256:' + Array.from(bytes).map((b) => b.toString(16).padStart(2, '0')).join('').toUpperCase();
 }
 
 export function getStateList(): Array<{ code: string; name: string }> {

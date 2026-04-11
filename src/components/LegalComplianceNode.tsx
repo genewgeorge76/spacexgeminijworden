@@ -13,7 +13,7 @@ import {
   type StateLaw,
   type FederalLaw,
   generateSessionId,
-  generateIpHash,
+  generateMockIpHash,
   getStateList,
 } from '@/data/legalLaws';
 
@@ -86,10 +86,11 @@ function LegalStatusBar({ stateCode, sessionId }: { stateCode: string; sessionId
 interface LiabilityShieldModalProps {
   risk: OverrideRisk;
   stateCode: string;
+  sessionId: string;
   onAccept: (agreed: boolean) => void;
 }
 
-function LiabilityShieldModal({ risk, stateCode, onAccept }: LiabilityShieldModalProps) {
+function LiabilityShieldModal({ risk, stateCode, sessionId, onAccept }: LiabilityShieldModalProps) {
   const [inputValue, setInputValue] = useState('');
   const [userName, setUserName] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
@@ -176,8 +177,8 @@ function LiabilityShieldModal({ risk, stateCode, onAccept }: LiabilityShieldModa
             <div className="grid grid-cols-2 gap-2 text-gray-400">
               <div>Timestamp: <span className="text-white">{nowISO()}</span></div>
               <div>Risk ID: <span className="text-white">{risk.id}</span></div>
-              <div>Session: <span className="text-[#4a9eff]">{generateSessionId()}</span></div>
-              <div>IP Hash: <span className="text-gray-300">{generateIpHash()}</span></div>
+              <div>Session: <span className="text-[#4a9eff]">{sessionId}</span></div>
+              <div>IP Hash: <span className="text-gray-300">{generateMockIpHash()}</span></div>
             </div>
           </div>
 
@@ -366,7 +367,7 @@ export default function LegalComplianceNode() {
   const [filterCategory, setFilterCategory] = useState<string>('ALL');
   const [liveSync, setLiveSync] = useState(false);
 
-  const stateLaw: StateLaw | null = selectedState ? STATE_LAWS[selectedState] ?? null : null;
+  const stateLaw: StateLaw | null = selectedState ? STATE_LAWS[selectedState] || null : null;
   const stateList = getStateList();
 
   // Simulate live sync animation
@@ -389,7 +390,7 @@ export default function LegalComplianceNode() {
     (accepted: boolean) => {
       if (!activeModal) return;
       const entry: AuditLogEntry = {
-        id: Math.random().toString(36).substring(2, 10),
+        id: crypto.randomUUID(),
         timestamp: nowISO(),
         action: activeModal.action,
         riskLevel: activeModal.riskLevel,
@@ -397,7 +398,7 @@ export default function LegalComplianceNode() {
         stateCode: selectedState,
         legalCode: activeModal.federalCode ?? 'N/A',
         overrideAccepted: accepted,
-        ipHash: generateIpHash(),
+        ipHash: generateMockIpHash(),
         sessionId,
       };
       setAuditLog((prev) => [entry, ...prev]);
@@ -415,6 +416,7 @@ export default function LegalComplianceNode() {
         <LiabilityShieldModal
           risk={activeModal}
           stateCode={selectedState}
+          sessionId={sessionId}
           onAccept={handleModalClose}
         />
       )}
