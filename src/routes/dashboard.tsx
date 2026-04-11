@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   Activity,
+  AlertTriangle,
   BarChart3,
   Building2,
   CheckCircle,
@@ -18,6 +19,9 @@ import {
   Zap,
 } from 'lucide-react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
+import { arEnforcer } from '../utils/arEnforcer';
+import { ironMatrix } from '../utils/ironMatrix';
+import { plantPulse } from '../utils/plantPulse';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -276,6 +280,158 @@ function Dashboard() {
                 </div>
                 <div className="text-[10px] text-zinc-600 font-bold uppercase tracking-wider">{tool.desc}</div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── IRON MATRIX (FLEET HEALTH) ───────────────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+            <Truck className="w-4 h-4 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
+              The Iron Matrix — Fleet Health &amp; Predictive Maintenance
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {ironMatrix.fleet.map((machine) => {
+              const isCritical = machine.hoursUntilService <= 0;
+              return (
+                <div
+                  key={machine.id}
+                  className={`border-l-4 rounded-r-xl p-5 ${isCritical ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{machine.location}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isCritical ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
+                      {machine.status}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-1">{machine.id}</div>
+                  <div className={`text-[11px] font-bold ${isCritical ? 'text-orange-400' : 'text-zinc-400'}`}>
+                    {isCritical
+                      ? `⚠ SERVICE OVERDUE — ${Math.abs(machine.hoursUntilService)}h past threshold`
+                      : `${machine.hoursUntilService}h remaining until scheduled service`}
+                  </div>
+                  <div className="text-[11px] text-zinc-500 mt-1">
+                    Machine Health Fund: <span className="text-yellow-400 font-black">${machine.accruedSurcharge.toLocaleString()}</span> accrued
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Iron Matrix v1.0</div>
+            {ironMatrix.getFleetStatus().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[CRITICAL]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[CRITICAL]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── A/R ENFORCER (CASH FLOW PROTECTOR) ───────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <DollarSign className="w-4 h-4 text-orange-500" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-orange-500">
+              The A/R Enforcer — Cash Flow Protector
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {arEnforcer.outstandingInvoices.map((inv) => {
+              const isOverdue = inv.daysPastDue > 30;
+              return (
+                <div
+                  key={inv.client}
+                  className={`border-l-4 rounded-r-xl p-5 ${isOverdue ? 'border-orange-500 bg-orange-950/30' : 'border-zinc-600 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{inv.project}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isOverdue ? 'bg-orange-500/20 text-orange-400' : 'bg-zinc-700/40 text-zinc-400'}`}>
+                      {isOverdue ? 'PAST DUE' : 'NET-30 NOMINAL'}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-1">{inv.client}</div>
+                  <div className="text-2xl font-black text-yellow-400">${inv.amount.toLocaleString()}</div>
+                  <div className={`text-[11px] font-bold mt-1 ${isOverdue ? 'text-orange-400' : 'text-zinc-500'}`}>
+                    Day {inv.daysPastDue} of Net-30 {isOverdue ? `— ${inv.daysPastDue - 30} day(s) overdue` : ''}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · A/R Enforcer v1.0</div>
+            {arEnforcer.runAudit().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[A/R ALERT]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[A/R ALERT]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PLANT PULSE (SUPPLY CHAIN LOGISTICS) ─────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+            <Activity className="w-4 h-4 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
+              The Plant Pulse — Supply Chain Logistics
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {plantPulse.plants.map((plant) => {
+              const isSevere = plant.waitTimeMins > 45;
+              const waitPct = Math.min(100, Math.round((plant.waitTimeMins / 120) * 100));
+              return (
+                <div
+                  key={plant.name}
+                  className={`border-l-4 rounded-r-xl p-5 ${isSevere ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{plant.location}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isSevere ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
+                      {plant.status.replace('_', ' ')}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-2">{plant.name}</div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${isSevere ? 'bg-orange-500' : 'bg-yellow-400'}`}
+                        style={{ width: `${waitPct}%` }}
+                      />
+                    </div>
+                    <span className={`text-xl font-black ${isSevere ? 'text-orange-400' : 'text-yellow-400'}`}>
+                      {plant.waitTimeMins} min
+                    </span>
+                  </div>
+                  {isSevere && (
+                    <div className="text-[11px] text-orange-400 font-bold">
+                      ⚠ Reroute lowboys — $150/hr idle trucking cost at risk
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Plant Pulse v1.0</div>
+            {plantPulse.checkLogistics().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[LOGISTICS WARNING]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[LOGISTICS WARNING]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
             ))}
           </div>
         </div>
