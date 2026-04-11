@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "lat": 37.3592,
+    "lng": -77.3986,
+    "title": "J. Worden & Sons HQ",
+    "type": "Headquarters",
+    "date": "1984-01-01",
+    "description": "Chester, VA headquarters — 4th-generation family operation since 1984. Class A Virginia Licensed General Contractor. 96% Marshall Unit Weight compaction standard on every job."
+  },
+  {
+    "id": 2,
+    "lat": 34.0522,
+    "lng": -118.2437,
+    "title": "KFC Big Chicken Landmark Remodel",
+    "type": "Commercial",
+    "date": "2023-06-15",
+    "description": "Los Angeles, CA — Full parking lot reconstruction and drive-through resurfacing for the KFC Big Chicken flagship location. VDOT-grade structural stone base. PG 76-22 Polymer Modified Asphalt specified for high-heat UV resistance."
+  },
+  {
+    "id": 3,
+    "lat": 41.8781,
+    "lng": -87.6298,
+    "title": "Chicago Heavy-Duty Commercial Lot",
+    "type": "Government",
+    "date": "2024-03-10",
+    "description": "Chicago, IL — Heavy-duty asphalt reconstruction with 3-inch surface course and 8-inch structural stone base for frost-heave protection. Frost index compliance per Illinois DOT standards. 96% Marshall compaction verified."
+  },
+  {
+    "id": 4,
+    "lat": 39.0997,
+    "lng": -94.5786,
+    "title": "Kansas City Regional Distribution Center",
+    "type": "Commercial",
+    "date": "2023-11-05",
+    "description": "Kansas City, MO — 45,000 sq ft truck court and loading dock apron. Clay soil correction with 6-inch stone base per Worden clay-stabilization standard. Full-depth reclamation and grading prior to paving."
+  },
+  {
+    "id": 5,
+    "lat": 37.5407,
+    "lng": -77.4360,
+    "title": "Richmond VA Municipal Streetwork",
+    "type": "Government",
+    "date": "2024-07-22",
+    "description": "Richmond, VA — VDOT Section 315 asphalt paving contract. Curb & gutter installation, ADA ramp compliance, and lane resurfacing. Davis-Bacon prevailing wage compliant."
+  },
+  {
+    "id": 6,
+    "lat": 38.9072,
+    "lng": -77.0369,
+    "title": "Washington DC Federal Campus Parking",
+    "type": "Government",
+    "date": "2024-01-18",
+    "description": "Washington, DC — Federal agency campus parking lot rehabilitation. SAM.gov contract. Full-depth asphalt reclamation, VDOT-grade base aggregate, and reflective thermoplastic striping."
+  },
+  {
+    "id": 7,
+    "lat": 35.2271,
+    "lng": -80.8431,
+    "title": "Charlotte NC Fast-Food Portfolio",
+    "type": "Commercial",
+    "date": "2023-09-30",
+    "description": "Charlotte, NC — Multi-site Taco Bell and KFC franchise paving portfolio. NCDOT-compliant specs, 2-inch surface residential upgrade to 3-inch commercial spec. Striping and ADA compliance included."
+  }
+]
