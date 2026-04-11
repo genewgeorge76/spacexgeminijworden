@@ -23,6 +23,7 @@ const BINDER_INDEX = 627.50;
 const MARGIN_TARGET = 0.35;
 const MAULDIN_SURCHARGE_PER_TON = 0.08;
 const OIL_SHIELD = 9; // ±$9/ton
+// CFO spec: projects exceeding 20,000 sq ft switch to Industrial Volume and flag for Gene George review
 const EMERGENCY_THRESHOLD_SQ_FT = 20000;
 
 function calcTons(sqFt: number, depthInches: number, industrial = false): number {
@@ -538,19 +539,29 @@ function CompetitorIntelPanel() {
           </div>
         ))}
       </div>
-      <div className="grid grid-cols-3 gap-2 border-t border-gray-800 pt-3">
-        <div className="text-center">
-          <div className="text-green-400 font-black text-xl">2</div>
-          <div className="text-[10px] text-gray-500 font-bold uppercase">Won</div>
-        </div>
-        <div className="text-center">
-          <div className="text-red-400 font-black text-xl">2</div>
-          <div className="text-[10px] text-gray-500 font-bold uppercase">Lost</div>
-        </div>
-        <div className="text-center">
-          <div className="text-yellow-400 font-black text-xl">60%</div>
-          <div className="text-[10px] text-gray-500 font-bold uppercase">Win Rate</div>
-        </div>
+        <div className="grid grid-cols-3 gap-2 border-t border-gray-800 pt-3">
+        {(() => {
+          const decided = bids.filter((b) => b.result === 'WON' || b.result === 'LOST');
+          const wins = bids.filter((b) => b.result === 'WON').length;
+          const losses = bids.filter((b) => b.result === 'LOST').length;
+          const winRate = decided.length > 0 ? Math.round((wins / decided.length) * 100) : 0;
+          return (
+            <>
+              <div className="text-center">
+                <div className="text-green-400 font-black text-xl">{wins}</div>
+                <div className="text-[10px] text-gray-500 font-bold uppercase">Won</div>
+              </div>
+              <div className="text-center">
+                <div className="text-red-400 font-black text-xl">{losses}</div>
+                <div className="text-[10px] text-gray-500 font-bold uppercase">Lost</div>
+              </div>
+              <div className="text-center">
+                <div className="text-yellow-400 font-black text-xl">{winRate}%</div>
+                <div className="text-[10px] text-gray-500 font-bold uppercase">Win Rate</div>
+              </div>
+            </>
+          );
+        })()}
       </div>
     </div>
   );
@@ -702,7 +713,7 @@ export default function CommandCenter() {
       {/* ── Footer ── */}
       <footer className="border-t border-gray-800 bg-black/60 px-6 py-4 mt-6">
         <div className="max-w-[1600px] mx-auto flex flex-wrap items-center justify-between gap-3 text-[10px] text-gray-600 font-bold uppercase tracking-widest">
-          <span>J. Worden &amp; Sons · 4th Generation · Since 1984 · Chester, VA</span>
+          <span>J. Worden &amp; Sons · 4th Generation · Since 1984 · 7011 Wood Rd, Richmond, VA</span>
           <span>96% Marshall · VDOT Sec 315 · $9/Ton Oil Shield · Zero-Downtime Medical</span>
           <span>All data simulated — connect live APIs for production</span>
         </div>
