@@ -100,6 +100,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
           >
             Contact
           </Link>
+          <Link
+            to="/legal-compliance"
+            onClick={onClose}
+            className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            Legal Counsel
+          </Link>
         </div>
         <div className="mt-auto px-4 pb-8">
           <a
