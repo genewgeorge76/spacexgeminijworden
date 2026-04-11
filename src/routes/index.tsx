@@ -4,6 +4,7 @@ import PrecisionEstimator from '../components/PrecisionEstimator';
 import AutonomousEstimator from '../components/AutonomousEstimator';
 import XRayComparison from '../components/XRayComparison';
 import TestimonialCarousel from '../components/TestimonialCarousel';
+import PartnerPortal from '../components/PartnerPortal';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -397,6 +398,13 @@ export const Route = createFileRoute('/')({
           </div>
 
           <ContactForm />
+        </div>
+      </section>
+
+      {/* Crew Command: Partner Portal */}
+      <section className="py-16 px-6 lg:px-12 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto">
+          <PartnerPortal />
         </div>
       </section>
     </main>
