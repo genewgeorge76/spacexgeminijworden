@@ -85,6 +85,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             Commercial
           </Link>
           <Link
+            to="/gallery"
+            onClick={onClose}
+            className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            📸 Project Gallery
+          </Link>
+          <Link
             to="/locations/mclean"
             onClick={onClose}
             className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"

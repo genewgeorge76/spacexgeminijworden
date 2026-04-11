@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import ContactForm from '../components/ContactForm';
 import PrecisionEstimator from '../components/PrecisionEstimator';
 import XRayComparison from '../components/XRayComparison';
@@ -226,6 +226,15 @@ export const Route = createFileRoute('/')({
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              to="/gallery"
+              className="inline-block bg-[#ffcc00] text-black px-10 py-4 font-black uppercase tracking-widest text-sm rounded-sm hover:bg-white transition-colors shadow-[0_0_20px_rgba(255,204,0,0.25)]"
+            >
+              View All Projects →
+            </Link>
           </div>
         </div>
       </section>
