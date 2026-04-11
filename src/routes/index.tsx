@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import ContactForm from '../components/ContactForm';
 import PrecisionEstimator from '../components/PrecisionEstimator';
+import AutonomousEstimator from '../components/AutonomousEstimator';
 import XRayComparison from '../components/XRayComparison';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 
@@ -379,6 +380,11 @@ export const Route = createFileRoute('/')({
             <p className="text-xl md:text-2xl text-zinc-400 font-bold italic max-w-3xl mx-auto">
               Schedule an on-site structural evaluation for your next paving project.
             </p>
+          </div>
+
+          {/* J. WORDEN AUTONOMOUS ESTIMATOR */}
+          <div className="max-w-2xl mx-auto mb-16">
+            <AutonomousEstimator />
           </div>
 
           <ContactForm />
