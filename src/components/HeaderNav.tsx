@@ -93,6 +93,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             Our Standard
           </Link>
           <Link
+            to="/investor-roi"
+            onClick={onClose}
+            className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            Investor ROI
+          </Link>
+          <Link
             to="/"
             hash="contact"
             onClick={onClose}
