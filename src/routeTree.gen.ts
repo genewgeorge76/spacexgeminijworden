@@ -34,6 +34,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
@@ -219,6 +220,11 @@ const ConcreteRoute = ConcreteRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterRoute = CommandCenterRouteImport.update({
+  id: '/command-center',
+  path: '/command-center',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -531,6 +537,7 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -619,6 +626,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -708,6 +716,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -798,6 +807,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -886,6 +896,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -974,6 +985,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1063,6 +1075,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
@@ -1324,6 +1337,13 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center': {
+      id: '/command-center'
+      path: '/command-center'
+      fullPath: '/command-center'
+      preLoaderRoute: typeof CommandCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1759,6 +1779,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
