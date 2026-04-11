@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
+import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
@@ -18,6 +19,7 @@ import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
 import { Route as ProfitNodeRouteImport } from './routes/profit-node'
 import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
+import { Route as PreConRouteImport } from './routes/pre-con'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as MasonryRouteImport } from './routes/masonry'
 import { Route as LitigationRouteImport } from './routes/litigation'
@@ -26,6 +28,7 @@ import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EstimatorRouteImport } from './routes/estimator'
+import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
 import { Route as DispatchRouteImport } from './routes/dispatch'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
@@ -97,6 +100,11 @@ const WhaleHunterRoute = WhaleHunterRouteImport.update({
   path: '/whale-hunter',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WeatherIntelRoute = WeatherIntelRouteImport.update({
+  id: '/weather-intel',
+  path: '/weather-intel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StandardsRoute = StandardsRouteImport.update({
   id: '/standards',
   path: '/standards',
@@ -137,6 +145,11 @@ const PreConDashboardRoute = PreConDashboardRouteImport.update({
   path: '/pre-con-dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PreConRoute = PreConRouteImport.update({
+  id: '/pre-con',
+  path: '/pre-con',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PortalRoute = PortalRouteImport.update({
   id: '/portal',
   path: '/portal',
@@ -175,6 +188,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const EstimatorRoute = EstimatorRouteImport.update({
   id: '/estimator',
   path: '/estimator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DispatchNodeRoute = DispatchNodeRouteImport.update({
+  id: '/dispatch-node',
+  path: '/dispatch-node',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DispatchRoute = DispatchRouteImport.update({
@@ -511,6 +529,7 @@ export interface FileRoutesByFullPath {
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
   '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -519,6 +538,7 @@ export interface FileRoutesByFullPath {
   '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
@@ -527,6 +547,7 @@ export interface FileRoutesByFullPath {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -595,6 +616,7 @@ export interface FileRoutesByTo {
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
   '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -603,6 +625,7 @@ export interface FileRoutesByTo {
   '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
@@ -611,6 +634,7 @@ export interface FileRoutesByTo {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -680,6 +704,7 @@ export interface FileRoutesById {
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
   '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -688,6 +713,7 @@ export interface FileRoutesById {
   '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
@@ -696,6 +722,7 @@ export interface FileRoutesById {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -766,6 +793,7 @@ export interface FileRouteTypes {
     | '/concrete'
     | '/contact'
     | '/dispatch'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -774,6 +802,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
     | '/residential'
@@ -782,6 +811,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -850,6 +880,7 @@ export interface FileRouteTypes {
     | '/concrete'
     | '/contact'
     | '/dispatch'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -858,6 +889,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
     | '/residential'
@@ -866,6 +898,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -934,6 +967,7 @@ export interface FileRouteTypes {
     | '/concrete'
     | '/contact'
     | '/dispatch'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -942,6 +976,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
     | '/residential'
@@ -950,6 +985,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -1019,6 +1055,7 @@ export interface RootRouteChildren {
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
   DispatchRoute: typeof DispatchRoute
+  DispatchNodeRoute: typeof DispatchNodeRoute
   EstimatorRoute: typeof EstimatorRoute
   GalleryRoute: typeof GalleryRoute
   GcBidRoute: typeof GcBidRoute
@@ -1027,6 +1064,7 @@ export interface RootRouteChildren {
   LitigationRoute: typeof LitigationRoute
   MasonryRoute: typeof MasonryRoute
   PortalRoute: typeof PortalRoute
+  PreConRoute: typeof PreConRoute
   PreConDashboardRoute: typeof PreConDashboardRoute
   ProfitNodeRoute: typeof ProfitNodeRoute
   ResidentialRoute: typeof ResidentialRoute
@@ -1035,6 +1073,7 @@ export interface RootRouteChildren {
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
   StandardsRoute: typeof StandardsRoute
+  WeatherIntelRoute: typeof WeatherIntelRoute
   WhaleHunterRoute: typeof WhaleHunterRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
@@ -1106,6 +1145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhaleHunterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/weather-intel': {
+      id: '/weather-intel'
+      path: '/weather-intel'
+      fullPath: '/weather-intel'
+      preLoaderRoute: typeof WeatherIntelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/standards': {
       id: '/standards'
       path: '/standards'
@@ -1162,6 +1208,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PreConDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/pre-con': {
+      id: '/pre-con'
+      path: '/pre-con'
+      fullPath: '/pre-con'
+      preLoaderRoute: typeof PreConRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/portal': {
       id: '/portal'
       path: '/portal'
@@ -1216,6 +1269,13 @@ declare module '@tanstack/react-router' {
       path: '/estimator'
       fullPath: '/estimator'
       preLoaderRoute: typeof EstimatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dispatch-node': {
+      id: '/dispatch-node'
+      path: '/dispatch-node'
+      fullPath: '/dispatch-node'
+      preLoaderRoute: typeof DispatchNodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dispatch': {
@@ -1683,6 +1743,7 @@ const rootRouteChildren: RootRouteChildren = {
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
   DispatchRoute: DispatchRoute,
+  DispatchNodeRoute: DispatchNodeRoute,
   EstimatorRoute: EstimatorRoute,
   GalleryRoute: GalleryRoute,
   GcBidRoute: GcBidRoute,
@@ -1691,6 +1752,7 @@ const rootRouteChildren: RootRouteChildren = {
   LitigationRoute: LitigationRoute,
   MasonryRoute: MasonryRoute,
   PortalRoute: PortalRoute,
+  PreConRoute: PreConRoute,
   PreConDashboardRoute: PreConDashboardRoute,
   ProfitNodeRoute: ProfitNodeRoute,
   ResidentialRoute: ResidentialRoute,
@@ -1699,6 +1761,7 @@ const rootRouteChildren: RootRouteChildren = {
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
   StandardsRoute: StandardsRoute,
+  WeatherIntelRoute: WeatherIntelRoute,
   WhaleHunterRoute: WhaleHunterRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
