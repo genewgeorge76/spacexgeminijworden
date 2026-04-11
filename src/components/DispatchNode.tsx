@@ -347,10 +347,7 @@ export default function DispatchNode() {
   const cautionDays = evaluations.filter((e) => e.status === 'CAUTION').length;
   const noGoDays = evaluations.filter((e) => e.status === 'NO-GO').length;
   const totalFinancialRisk = evaluations.reduce((sum, e) => sum + e.financialRisk, 0);
-  const bestDayIndex = evaluations.findIndex(
-    (e, i) => e.status === 'GO' && i >= 0 &&
-      evaluations.slice(0, i).every((prev) => prev.status !== 'GO'),
-  );
+  const bestDayIndex = evaluations.findIndex((e) => e.status === 'GO');
 
   return (
     <div className="bg-zinc-950 min-h-screen font-sans text-white">
