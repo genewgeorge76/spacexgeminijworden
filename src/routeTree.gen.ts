@@ -17,6 +17,7 @@ import { Route as SealcoatingRouteImport } from './routes/sealcoating'
 import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
+import { Route as RealEstateAiRouteImport } from './routes/real-estate-ai'
 import { Route as ProfitNodeRouteImport } from './routes/profit-node'
 import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
 import { Route as PreConRouteImport } from './routes/pre-con'
@@ -135,6 +136,11 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResidentialRoute = ResidentialRouteImport.update({
   id: '/residential',
   path: '/residential',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RealEstateAiRoute = RealEstateAiRouteImport.update({
+  id: '/real-estate-ai',
+  path: '/real-estate-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfitNodeRoute = ProfitNodeRouteImport.update({
@@ -555,6 +561,7 @@ export interface FileRoutesByFullPath {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
+  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -644,6 +651,7 @@ export interface FileRoutesByTo {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
+  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -734,6 +742,7 @@ export interface FileRoutesById {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
+  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -825,6 +834,7 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
+    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -914,6 +924,7 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
+    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -1003,6 +1014,7 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
+    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -1093,6 +1105,7 @@ export interface RootRouteChildren {
   PreConRoute: typeof PreConRoute
   PreConDashboardRoute: typeof PreConDashboardRoute
   ProfitNodeRoute: typeof ProfitNodeRoute
+  RealEstateAiRoute: typeof RealEstateAiRoute
   ResidentialRoute: typeof ResidentialRoute
   RoofingRoute: typeof RoofingRoute
   SafetyRoute: typeof SafetyRoute
@@ -1225,6 +1238,13 @@ declare module '@tanstack/react-router' {
       path: '/profit-node'
       fullPath: '/profit-node'
       preLoaderRoute: typeof ProfitNodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/real-estate-ai': {
+      id: '/real-estate-ai'
+      path: '/real-estate-ai'
+      fullPath: '/real-estate-ai'
+      preLoaderRoute: typeof RealEstateAiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pre-con-dashboard': {
@@ -1797,6 +1817,7 @@ const rootRouteChildren: RootRouteChildren = {
   PreConRoute: PreConRoute,
   PreConDashboardRoute: PreConDashboardRoute,
   ProfitNodeRoute: ProfitNodeRoute,
+  RealEstateAiRoute: RealEstateAiRoute,
   ResidentialRoute: ResidentialRoute,
   RoofingRoute: RoofingRoute,
   SafetyRoute: SafetyRoute,
