@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
+import ProofMap from '@/components/ProofMap';
 
 export const Route = createFileRoute('/about')({
   component: () => (
@@ -68,6 +69,9 @@ export const Route = createFileRoute('/about')({
           </div>
         </div>
       </section>
+
+      {/* Proof of Performance Map */}
+      <ProofMap />
 
       {/* CTA */}
       <section className="py-24 px-6 bg-[#ffcc00]">
