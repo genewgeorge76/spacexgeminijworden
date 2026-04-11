@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
+import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
@@ -84,6 +85,11 @@ import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 const WhaleHunterRoute = WhaleHunterRouteImport.update({
   id: '/whale-hunter',
   path: '/whale-hunter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeatherIntelRoute = WeatherIntelRouteImport.update({
+  id: '/weather-intel',
+  path: '/weather-intel',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StandardsRoute = StandardsRouteImport.update({
@@ -455,6 +461,7 @@ export interface FileRoutesByFullPath {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -528,6 +535,7 @@ export interface FileRoutesByTo {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -602,6 +610,7 @@ export interface FileRoutesById {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
@@ -677,6 +686,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -750,6 +760,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -823,6 +834,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/weather-intel'
     | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
@@ -897,6 +909,7 @@ export interface RootRouteChildren {
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
   StandardsRoute: typeof StandardsRoute
+  WeatherIntelRoute: typeof WeatherIntelRoute
   WhaleHunterRoute: typeof WhaleHunterRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
@@ -961,6 +974,13 @@ declare module '@tanstack/react-router' {
       path: '/whale-hunter'
       fullPath: '/whale-hunter'
       preLoaderRoute: typeof WhaleHunterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weather-intel': {
+      id: '/weather-intel'
+      path: '/weather-intel'
+      fullPath: '/weather-intel'
+      preLoaderRoute: typeof WeatherIntelRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/standards': {
@@ -1473,6 +1493,7 @@ const rootRouteChildren: RootRouteChildren = {
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
   StandardsRoute: StandardsRoute,
+  WeatherIntelRoute: WeatherIntelRoute,
   WhaleHunterRoute: WhaleHunterRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,

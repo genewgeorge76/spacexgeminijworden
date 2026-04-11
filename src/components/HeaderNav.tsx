@@ -85,12 +85,18 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             Windsor Farms
           </Link>
           <Link
-            to="/"
-            hash="standard"
+            to="/whale-hunter"
             onClick={onClose}
             className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
           >
-            Our Standard
+            🐋 Whale Hunter
+          </Link>
+          <Link
+            to="/weather-intel"
+            onClick={onClose}
+            className="text-white text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            ⛈ Weather Intel
           </Link>
           <Link
             to="/"
