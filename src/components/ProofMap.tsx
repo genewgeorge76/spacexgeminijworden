@@ -30,9 +30,9 @@ export default function ProofMap() {
     (async () => {
       const L = (await import('leaflet')).default;
 
-      // Fix default icon paths broken by bundlers
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      delete (L.Icon.Default.prototype as any)._getIconUrl;
+      // Override default icon URLs so bundlers (Vite/Rollup) resolve them correctly.
+      // Leaflet's default icon uses _getIconUrl internally; mergeOptions replaces the
+      // resolved paths without needing to patch the prototype.
       L.Icon.Default.mergeOptions({
         iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
         iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
