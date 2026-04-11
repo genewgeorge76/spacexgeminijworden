@@ -48,6 +48,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
         </div>
         <div className="flex flex-col gap-1 px-4 py-6">
           <Link
+            to="/pre-con"
+            onClick={onClose}
+            className="text-[#ffcc00] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333] font-bold"
+          >
+            ⚡ Pre-Con AI Dashboard
+          </Link>
+          <Link
             to="/"
             hash="about"
             onClick={onClose}

@@ -16,6 +16,7 @@ import { Route as SealcoatingRouteImport } from './routes/sealcoating'
 import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
+import { Route as PreConRouteImport } from './routes/pre-con'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as MasonryRouteImport } from './routes/masonry'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
@@ -114,6 +115,11 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResidentialRoute = ResidentialRouteImport.update({
   id: '/residential',
   path: '/residential',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreConRoute = PreConRouteImport.update({
+  id: '/pre-con',
+  path: '/pre-con',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PortalRoute = PortalRouteImport.update({
@@ -449,6 +455,7 @@ export interface FileRoutesByFullPath {
   '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -522,6 +529,7 @@ export interface FileRoutesByTo {
   '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -596,6 +604,7 @@ export interface FileRoutesById {
   '/gc-bid': typeof GcBidRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -671,6 +680,7 @@ export interface FileRouteTypes {
     | '/gc-bid'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -744,6 +754,7 @@ export interface FileRouteTypes {
     | '/gc-bid'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -817,6 +828,7 @@ export interface FileRouteTypes {
     | '/gc-bid'
     | '/masonry'
     | '/portal'
+    | '/pre-con'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -891,6 +903,7 @@ export interface RootRouteChildren {
   GcBidRoute: typeof GcBidRoute
   MasonryRoute: typeof MasonryRoute
   PortalRoute: typeof PortalRoute
+  PreConRoute: typeof PreConRoute
   ResidentialRoute: typeof ResidentialRoute
   RoofingRoute: typeof RoofingRoute
   SafetyRoute: typeof SafetyRoute
@@ -1003,6 +1016,13 @@ declare module '@tanstack/react-router' {
       path: '/residential'
       fullPath: '/residential'
       preLoaderRoute: typeof ResidentialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pre-con': {
+      id: '/pre-con'
+      path: '/pre-con'
+      fullPath: '/pre-con'
+      preLoaderRoute: typeof PreConRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/portal': {
@@ -1467,6 +1487,7 @@ const rootRouteChildren: RootRouteChildren = {
   GcBidRoute: GcBidRoute,
   MasonryRoute: MasonryRoute,
   PortalRoute: PortalRoute,
+  PreConRoute: PreConRoute,
   ResidentialRoute: ResidentialRoute,
   RoofingRoute: RoofingRoute,
   SafetyRoute: SafetyRoute,
