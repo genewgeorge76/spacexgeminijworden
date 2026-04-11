@@ -292,7 +292,7 @@ function Dashboard() {
             <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
             <Truck className="w-4 h-4 text-yellow-400" />
             <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
-              The Iron Matrix — Fleet Health &amp; Predictive Maintenance
+              The Iron Matrix — Fleet Health & Predictive Maintenance
             </h2>
           </div>
           <div className="grid md:grid-cols-2 gap-4 mb-6">
@@ -311,9 +311,14 @@ function Dashboard() {
                   </div>
                   <div className="text-base font-black text-white mb-1">{machine.id}</div>
                   <div className={`text-[11px] font-bold ${isCritical ? 'text-orange-400' : 'text-zinc-400'}`}>
-                    {isCritical
-                      ? `⚠ SERVICE OVERDUE — ${Math.abs(machine.hoursUntilService)}h past threshold`
-                      : `${machine.hoursUntilService}h remaining until scheduled service`}
+                    {isCritical ? (
+                      <span className="flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" aria-hidden="true" />
+                        SERVICE OVERDUE — {Math.abs(machine.hoursUntilService)}h past threshold
+                      </span>
+                    ) : (
+                      `${machine.hoursUntilService}h remaining until scheduled service`
+                    )}
                   </div>
                   <div className="text-[11px] text-zinc-500 mt-1">
                     Machine Health Fund: <span className="text-yellow-400 font-black">${machine.accruedSurcharge.toLocaleString()}</span> accrued
@@ -417,8 +422,9 @@ function Dashboard() {
                     </span>
                   </div>
                   {isSevere && (
-                    <div className="text-[11px] text-orange-400 font-bold">
-                      ⚠ Reroute lowboys — $150/hr idle trucking cost at risk
+                    <div className="text-[11px] text-orange-400 font-bold flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                      Reroute lowboys — $150/hr idle trucking cost at risk
                     </div>
                   )}
                 </div>
