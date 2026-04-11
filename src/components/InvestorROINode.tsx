@@ -1,4 +1,3 @@
-'use client';
 import { useState, useMemo } from 'react';
 import {
   TrendingUp,
@@ -26,7 +25,23 @@ function fmtUSD(n: number) {
   return `$${fmt(n)}`;
 }
 
-// ─── Sub-components ─────────────────────────────────────────────────────────
+function numSetter(setter: (v: number) => void) {
+  return (e: React.ChangeEvent<HTMLInputElement>) => setter(Number(e.target.value));
+}
+
+type SliderField = {
+  id: string;
+  label: string;
+  value: number;
+  min: number;
+  max: number;
+  step: number;
+  setter: (v: number) => void;
+  prefix: string;
+  suffix?: string;
+  fmtVal?: (v: number) => string;
+};
+
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
@@ -144,8 +159,9 @@ function CapRateCalculator() {
                 setter: setCapRate,
                 prefix: '',
                 suffix: '%',
+                fmtVal: (v: number) => v.toFixed(2),
               },
-            ] as const
+            ] as SliderField[]
           ).map((field) => (
             <div key={field.id}>
               <div className="flex justify-between items-center mb-2">
@@ -157,10 +173,8 @@ function CapRateCalculator() {
                 </label>
                 <span className="text-white font-black text-lg">
                   {field.prefix}
-                  {field.id === 'capRate'
-                    ? field.value.toFixed(2)
-                    : fmt(field.value)}
-                  {('suffix' in field && field.suffix) || ''}
+                  {field.fmtVal ? field.fmtVal(field.value) : fmt(field.value)}
+                  {field.suffix ?? ''}
                 </span>
               </div>
               <input
@@ -170,19 +184,19 @@ function CapRateCalculator() {
                 max={field.max}
                 step={field.step}
                 value={field.value}
-                onChange={(e) => (field.setter as (v: number) => void)(Number(e.target.value))}
+                onChange={numSetter(field.setter)}
                 className={sliderClass}
               />
               <div className="flex justify-between text-[10px] text-zinc-600 font-bold mt-1">
                 <span>
                   {field.prefix}
-                  {field.id === 'capRate' ? field.min : fmt(field.min as number)}
-                  {('suffix' in field && field.suffix) || ''}
+                  {field.fmtVal ? field.fmtVal(field.min) : fmt(field.min)}
+                  {field.suffix ?? ''}
                 </span>
                 <span>
                   {field.prefix}
-                  {field.id === 'capRate' ? field.max : fmt(field.max as number)}
-                  {('suffix' in field && field.suffix) || ''}
+                  {field.fmtVal ? field.fmtVal(field.max) : fmt(field.max)}
+                  {field.suffix ?? ''}
                 </span>
               </div>
             </div>
@@ -320,7 +334,7 @@ const USE_SCENARIOS = [
 
 function HighestBestUse() {
   const [selected, setSelected] = useState(USE_SCENARIOS[0].id);
-  const scenario = USE_SCENARIOS.find((s) => s.id === selected)!;
+  const scenario = USE_SCENARIOS.find((s) => s.id === selected) ?? USE_SCENARIOS[0];
 
   return (
     <section className="mb-20">
@@ -555,7 +569,8 @@ function ProFormaPanel() {
                   max: 10_000_000,
                   step: 50_000,
                   setter: setLoanAmount,
-                  fmt: (v: number) => `$${fmt(v)}`,
+                  prefix: '',
+                  fmtVal: (v: number) => `$${fmt(v)}`,
                 },
                 {
                   id: 'interestRate',
@@ -565,7 +580,8 @@ function ProFormaPanel() {
                   max: 14,
                   step: 0.25,
                   setter: setInterestRate,
-                  fmt: (v: number) => `${v.toFixed(2)}%`,
+                  prefix: '',
+                  fmtVal: (v: number) => `${v.toFixed(2)}%`,
                 },
                 {
                   id: 'delayDays',
@@ -575,7 +591,8 @@ function ProFormaPanel() {
                   max: 90,
                   step: 1,
                   setter: setDelayDays,
-                  fmt: (v: number) => `${v} days`,
+                  prefix: '',
+                  fmtVal: (v: number) => `${v} days`,
                 },
                 {
                   id: 'liquidatedDamages',
@@ -585,9 +602,10 @@ function ProFormaPanel() {
                   max: 25_000,
                   step: 500,
                   setter: setLiquidatedDamages,
-                  fmt: (v: number) => `$${fmt(v)}/day`,
+                  prefix: '',
+                  fmtVal: (v: number) => `$${fmt(v)}/day`,
                 },
-              ] as const
+              ] as SliderField[]
             ).map((field) => (
               <div key={field.id}>
                 <div className="flex justify-between items-center mb-2">
@@ -598,7 +616,7 @@ function ProFormaPanel() {
                     {field.label}
                   </label>
                   <span className="text-white font-black">
-                    {field.fmt(field.value)}
+                    {field.fmtVal ? field.fmtVal(field.value) : fmt(field.value)}
                   </span>
                 </div>
                 <input
@@ -608,9 +626,7 @@ function ProFormaPanel() {
                   max={field.max}
                   step={field.step}
                   value={field.value}
-                  onChange={(e) =>
-                    (field.setter as (v: number) => void)(Number(e.target.value))
-                  }
+                  onChange={numSetter(field.setter)}
                   className={sliderClass}
                 />
               </div>
