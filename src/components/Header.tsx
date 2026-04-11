@@ -38,6 +38,7 @@ export default function Header() {
             <Link to="/weather-intel" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">⛈ Weather</Link>
             <Link to="/pre-con" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">🏗 Pre-Con</Link>
             <Link to="/pre-con-dashboard" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">⚡ God-Mode</Link>
+            <Link to="/command-center" className="hover:text-white transition-colors bg-[#ffcc00]/10 border border-[#ffcc00]/30 px-2 py-1 rounded text-[#ffcc00]">🖥 Command</Link>
             <Link to="/profit-node" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">💰 Profit Node</Link>
             <Link to="/litigation" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">⚖️ Legal Engine</Link>
             <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
