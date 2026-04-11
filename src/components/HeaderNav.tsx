@@ -114,6 +114,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
           >
             Legal Counsel
           </Link>
+          <Link
+            to="/litigation"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            ⚖️ Legal Engine
+          </Link>
         </div>
         <div className="mt-auto px-4 pb-8">
           <a
