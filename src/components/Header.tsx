@@ -33,6 +33,7 @@ export default function Header() {
             <Link to="/commercial" className="hover:text-white transition-colors">Commercial</Link>
             <Link to="/gc-bid" className="hover:text-[#ffcc00] transition-colors">Gov Bids</Link>
             <Link to="/whale-hunter" className="hover:text-[#ffcc00] transition-colors">🐋 Whale Hunter</Link>
+            <Link to="/pre-con-dashboard" className="hover:text-[#ffcc00] transition-colors text-red-400/80">⚡ God-Mode</Link>
             <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
             <Link to="/about" className="hover:text-white transition-colors">About</Link>
             <Link to="/estimator" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">Free Estimate</Link>
