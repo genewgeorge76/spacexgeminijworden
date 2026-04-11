@@ -30,6 +30,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
 import { Route as DispatchRouteImport } from './routes/dispatch'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
@@ -198,6 +199,11 @@ const DispatchNodeRoute = DispatchNodeRouteImport.update({
 const DispatchRoute = DispatchRouteImport.update({
   id: '/dispatch',
   path: '/dispatch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -528,6 +534,7 @@ export interface FileRoutesByFullPath {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
@@ -615,6 +622,7 @@ export interface FileRoutesByTo {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
@@ -703,6 +711,7 @@ export interface FileRoutesById {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
@@ -792,6 +801,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
@@ -879,6 +889,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
@@ -966,6 +977,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
@@ -1054,6 +1066,7 @@ export interface RootRouteChildren {
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
   DispatchRoute: typeof DispatchRoute
   DispatchNodeRoute: typeof DispatchNodeRoute
   EstimatorRoute: typeof EstimatorRoute
@@ -1283,6 +1296,13 @@ declare module '@tanstack/react-router' {
       path: '/dispatch'
       fullPath: '/dispatch'
       preLoaderRoute: typeof DispatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1742,6 +1762,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
   DispatchRoute: DispatchRoute,
   DispatchNodeRoute: DispatchNodeRoute,
   EstimatorRoute: EstimatorRoute,
