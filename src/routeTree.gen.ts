@@ -21,6 +21,7 @@ import { Route as MasonryRouteImport } from './routes/masonry'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EstimatorRouteImport } from './routes/estimator'
+import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
@@ -139,6 +140,11 @@ const GalleryRoute = GalleryRouteImport.update({
 const EstimatorRoute = EstimatorRouteImport.update({
   id: '/estimator',
   path: '/estimator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DispatchNodeRoute = DispatchNodeRouteImport.update({
+  id: '/dispatch-node',
+  path: '/dispatch-node',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -444,6 +450,7 @@ export interface FileRoutesByFullPath {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -517,6 +524,7 @@ export interface FileRoutesByTo {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -591,6 +599,7 @@ export interface FileRoutesById {
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
@@ -666,6 +675,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -739,6 +749,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -812,6 +823,7 @@ export interface FileRouteTypes {
     | '/commercial'
     | '/concrete'
     | '/contact'
+    | '/dispatch-node'
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
@@ -886,6 +898,7 @@ export interface RootRouteChildren {
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
+  DispatchNodeRoute: typeof DispatchNodeRoute
   EstimatorRoute: typeof EstimatorRoute
   GalleryRoute: typeof GalleryRoute
   GcBidRoute: typeof GcBidRoute
@@ -1038,6 +1051,13 @@ declare module '@tanstack/react-router' {
       path: '/estimator'
       fullPath: '/estimator'
       preLoaderRoute: typeof EstimatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dispatch-node': {
+      id: '/dispatch-node'
+      path: '/dispatch-node'
+      fullPath: '/dispatch-node'
+      preLoaderRoute: typeof DispatchNodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -1462,6 +1482,7 @@ const rootRouteChildren: RootRouteChildren = {
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
+  DispatchNodeRoute: DispatchNodeRoute,
   EstimatorRoute: EstimatorRoute,
   GalleryRoute: GalleryRoute,
   GcBidRoute: GcBidRoute,

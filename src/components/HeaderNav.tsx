@@ -93,6 +93,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             Our Standard
           </Link>
           <Link
+            to="/dispatch-node"
+            onClick={onClose}
+            className="text-[#ffcc00] text-[0.9rem] uppercase tracking-wider hover:text-[#c8a84b] transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            ⚡ Dispatch Node
+          </Link>
+          <Link
             to="/"
             hash="contact"
             onClick={onClose}
