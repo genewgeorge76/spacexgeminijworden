@@ -211,6 +211,62 @@ const reviewSchema = {
   ]
 };
 
+const nationalCorporationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Corporation", "GeneralContractor"],
+  "name": "J. Worden & Sons Asphalt Paving",
+  "legalName": "J. Worden & Sons Paving LLC",
+  "foundingDate": "1984",
+  "founder": { "@type": "Person", "name": "Gene W. George" },
+  "description": "National commercial asphalt paving contractor operating across all 50 states. 4th-generation family business powered by JWORDENAI predictive logistics. Virginia Class A Licensed. 96% Marshall compaction standard on every project.",
+  "url": "https://jwordenasphaltpaving.com",
+  "telephone": "804-446-1296",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1601 Ware Bottom Springs Rd, Suite 214",
+    "addressLocality": "Chester",
+    "addressRegion": "VA",
+    "postalCode": "23836",
+    "addressCountry": "US"
+  },
+  "areaServed": [
+    "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+    "Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
+    "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi",
+    "Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico",
+    "New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania",
+    "Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+    "Virginia","Washington","West Virginia","Wisconsin","Wyoming"
+  ],
+  "knowsAbout": [
+    "National Commercial Paving",
+    "50-State Asphalt Infrastructure",
+    "Commercial Parking Lot Paving",
+    "VDOT Section 315 Compliance",
+    "96% Marshall Unit Weight Compaction",
+    "AI Asphalt Estimating Software"
+  ]
+};
+
+const jwordenAISchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JWORDENAI",
+  "alternateName": "JWORDENAI Paving Technology",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "description": "Proprietary AI-powered predictive logistics and pricing optimization platform for national commercial asphalt paving. Developed exclusively by J. Worden & Sons Asphalt Paving. Automates bid intelligence, margin protection, crew scheduling, and 50-state compliance.",
+  "author": {
+    "@type": "Corporation",
+    "name": "J. Worden & Sons Asphalt Paving",
+    "url": "https://jwordenasphaltpaving.com"
+  },
+  "url": "https://jwordenasphaltpaving.com",
+  "copyrightHolder": { "@type": "Person", "name": "Gene W. George" },
+  "copyrightYear": "2026",
+  "keywords": "AI Asphalt Estimating Software, JWORDENAI Paving Technology, predictive logistics paving, national commercial paving AI, Plaza Street Partners Paving Contractor"
+};
+
 export const Route = createRootRoute({
   component: () => (
     <>
@@ -232,6 +288,12 @@ export const Route = createRootRoute({
 
       {/* REVIEW SCHEMA — Matches visible testimonials on home page */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }} />
+
+      {/* NATIONAL CORPORATION SCHEMA — 50-State Dominance Signal */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(nationalCorporationSchema) }} />
+
+      {/* JWORDENAI SOFTWARE APPLICATION SCHEMA — Proprietary AI Technology */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jwordenAISchema) }} />
     </>
   ),
 })
