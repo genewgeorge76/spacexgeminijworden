@@ -3,6 +3,12 @@
  * Objective: Convert raw CFO Math & Satellite Data into elite Commercial Proposals and Kickserv JSON payloads.
  */
 
+// Named constants for maintainability
+const COST_PER_TON = 85;           // Base materials + labor cost per ton of asphalt
+const COST_PER_SQFT = 1.50;       // Mobilization & prep cost per square foot
+const GRADING_SQFT_UNIT = 5000;   // Square feet per 2-hour grading block
+const INDUSTRIAL_STRIPING_RATIO = 0.05; // Linear feet of striping per sq ft for industrial lots
+
 export const claudeDropEngine = {
   model: "claude-3-opus",
   binderIndex: 627.50,
@@ -24,11 +30,11 @@ export const claudeDropEngine = {
     const density = type === 'INDUSTRIAL' ? 148 : 145;
     // GEMINI.md Formula: T = (sqft / 9 * depth_inches * density) / 24000
     const tonnage = (sqft / 9 * depthInches * density) / 24000;
-    const machineHealthSurcharge = tonnage * 0.08;
+    const machineHealthSurcharge = tonnage * 0.08; // Mauldin 690 fund: $0.08/ton
 
-    // Calculate a base cost (mock logic for bid total generation)
-    const baseCost = (tonnage * 85) + (sqft * 1.50) + this.binderIndex + machineHealthSurcharge;
-    // 35% net margin target (Floor)
+    // Base cost: materials/labor per ton + mobilization per sqft + binder index + machine health surcharge
+    const baseCost = (tonnage * COST_PER_TON) + (sqft * COST_PER_SQFT) + this.binderIndex + machineHealthSurcharge;
+    // 35% net margin target (Floor) — GEMINI.md requirement
     const finalBidTotal = baseCost / 0.65;
 
     return {
@@ -50,8 +56,8 @@ export const claudeDropEngine = {
       "sq_ft": sqft,
       "tons_required": math.tonnage,
       "binder_index_applied": this.binderIndex,
-      "grading_hours": Math.ceil(sqft / 5000) * 2,
-      "striping_linear_ft": type === 'INDUSTRIAL' ? Math.ceil(sqft * 0.05) : 0,
+      "grading_hours": Math.ceil(sqft / GRADING_SQFT_UNIT) * 2,
+      "striping_linear_ft": type === 'INDUSTRIAL' ? Math.ceil(sqft * INDUSTRIAL_STRIPING_RATIO) : 0,
       "net_margin_target": "35%",
       "machine_health_surcharge": math.machineHealthSurcharge,
       "vdot_section_211_flag": `VERIFY — 2026 ${dotStandard} mix design required`,

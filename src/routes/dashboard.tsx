@@ -114,8 +114,9 @@ const DEMO_SQFT = 50000;
 const DEMO_STATE = 'TX';
 const DEMO_ADDRESS = '12345 Lone Star Blvd, Dallas, TX 75201';
 const DEMO_DEPTH = 3;
-const DEMO_TYPE: 'INDUSTRIAL' = 'INDUSTRIAL';
+const DEMO_TYPE = 'INDUSTRIAL' as const;
 const DEMO_PROJECT_ID = `JWA-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-0001`;
+const DEMO_DELAY_MS = 600; // Artificial delay to simulate async AI processing
 
 function Dashboard() {
   const [dropResult, setDropResult] = useState<{
@@ -131,7 +132,7 @@ function Dashboard() {
       const prompt = claudeDropEngine.generateClaudePrompt(payload, DEMO_ADDRESS);
       setDropResult({ payload, prompt });
       setDropping(false);
-    }, 600);
+    }, DEMO_DELAY_MS);
   }
 
   return (
@@ -350,7 +351,7 @@ function Dashboard() {
             className="group relative inline-flex items-center gap-4 bg-[#ffcc00] hover:bg-yellow-300 disabled:opacity-60 text-black font-black uppercase tracking-widest text-lg px-10 py-5 transition-all duration-200 shadow-[0_0_40px_rgba(255,204,0,0.4)] hover:shadow-[0_0_60px_rgba(255,204,0,0.7)] border-b-4 border-black/20 mb-10"
           >
             <Zap className="w-6 h-6" fill="currentColor" />
-            {dropping ? 'INITIATING DROP...' : '⚡ INITIATE CLAUDE DROP'}
+            {dropping ? 'INITIATING DROP...' : 'INITIATE CLAUDE DROP'}
           </button>
 
           {/* Output area */}
