@@ -173,7 +173,7 @@ function Dashboard() {
               <div className="flex items-center gap-1">
                 <CheckCircle className="w-3 h-3 text-green-400" />
                 <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
-                  All Margins Locked &gt;35%
+                  All Margins Locked {'>'} 35%
                 </span>
               </div>
             </div>

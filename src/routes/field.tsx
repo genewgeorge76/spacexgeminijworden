@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { AlertTriangle, Clock, HardHat, MapPin, Truck, Zap } from 'lucide-react';
+import { AlertTriangle, Clock, HardHat, MapPin, OctagonX, Truck, Zap } from 'lucide-react';
 
 export const Route = createFileRoute('/field')({
   component: FieldApp,
@@ -191,9 +191,10 @@ function FieldApp() {
               Hours Tracker — OT Kill Switch @ 38 Hrs
             </h2>
           </div>
-          <p className="text-[9px] font-bold text-zinc-600 uppercase tracking-wider mb-4 ml-6">
-            ⚠ Overtime Kill Switch activates at {OT_KILL_SWITCH} hours — alert supervisor before reaching limit
-          </p>
+          <div className="flex items-center gap-1 text-[9px] font-bold text-zinc-600 uppercase tracking-wider mb-4 ml-6">
+            <AlertTriangle className="w-3 h-3 shrink-0" />
+            <span>Overtime Kill Switch activates at {OT_KILL_SWITCH} hours — alert supervisor before reaching limit</span>
+          </div>
           <div className="flex flex-col gap-2">
             {crewHours.map((member) => {
               const pct = Math.min(100, Math.round((member.hoursWorked / OT_KILL_SWITCH) * 100));
@@ -216,13 +217,13 @@ function FieldApp() {
                     <div className={`text-sm font-black ${getHoursColor(member.hoursWorked)}`}>
                       {member.hoursWorked.toFixed(1)} hrs
                       {isDanger && (
-                        <span className="ml-1 text-[9px] font-black text-red-400 uppercase">
-                          ⛔ OT LIMIT
+                        <span className="inline-flex items-center gap-0.5 ml-1 text-[9px] font-black text-red-400 uppercase">
+                          <OctagonX className="w-3 h-3" /> OT LIMIT
                         </span>
                       )}
                       {isWarning && !isDanger && (
-                        <span className="ml-1 text-[9px] font-black text-orange-400 uppercase">
-                          ⚠ NEAR LIMIT
+                        <span className="inline-flex items-center gap-0.5 ml-1 text-[9px] font-black text-orange-400 uppercase">
+                          <AlertTriangle className="w-3 h-3" /> NEAR LIMIT
                         </span>
                       )}
                     </div>
