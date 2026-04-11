@@ -27,7 +27,7 @@ export const Route = createFileRoute('/dashboard')({
 });
 
 // ── Richmond Voice Hub — demo intercept log ───────────────────────────────────
-const demoCallLog = [
+const richmondVoiceHubDemoLog = [
   {
     time: '03:14 AM',
     caller: 'Mike T.',
@@ -393,7 +393,7 @@ function Dashboard() {
               </span>
             </div>
             <div className="divide-y divide-zinc-900">
-              {demoCallLog.map((entry) => (
+              {richmondVoiceHubDemoLog.map((entry) => (
                 <div
                   key={entry.time}
                   className={`grid grid-cols-2 md:grid-cols-5 gap-3 px-4 py-3 text-[10px] font-bold uppercase tracking-wide ${entry.highlight ? 'bg-green-950/20' : ''}`}
