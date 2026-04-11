@@ -26,13 +26,15 @@ const COMPLETED_JOB = {
   actualMaterialCost: 71200,
 };
 
+// ── Pre-compute static outputs from Treasury Engine ──────────────────────────
+const subPayoutMsg = payrollTreasury.calculateSubPayout(SUB_PAYOUT_TONS, SUB_RATE_PER_TON);
+const marginMsg    = payrollTreasury.marginAuditLock(
+  COMPLETED_JOB.estimatedBid,
+  COMPLETED_JOB.actualLaborCost,
+  COMPLETED_JOB.actualMaterialCost,
+);
+
 function PayrollTreasury() {
-  const subPayoutMsg = payrollTreasury.calculateSubPayout(SUB_PAYOUT_TONS, SUB_RATE_PER_TON);
-  const marginMsg    = payrollTreasury.marginAuditLock(
-    COMPLETED_JOB.estimatedBid,
-    COMPLETED_JOB.actualLaborCost,
-    COMPLETED_JOB.actualMaterialCost,
-  );
   const marginBelow35 = marginMsg.startsWith('[CFO AUDIT REQUIRED]');
 
   return (
@@ -55,7 +57,7 @@ function PayrollTreasury() {
             </span>
           </div>
           <h1 className="text-5xl md:text-7xl font-black uppercase leading-[0.9] tracking-tighter mb-4">
-            <span className="text-[#ffcc00]">LABOR &amp;</span>
+            <span className="text-[#ffcc00]">LABOR &</span>
             <br />
             <span className="text-white italic">SUBCONTRACTOR TREASURY</span>
           </h1>
@@ -228,7 +230,7 @@ function PayrollTreasury() {
         {/* ── Footer CTA ── */}
         <section className="text-center py-10 border-t border-zinc-900">
           <p className="text-zinc-500 text-[11px] font-black uppercase tracking-[0.35em] mb-3">
-            J. Worden &amp; Sons · 4th Generation · Est. 1984
+            J. Worden & Sons · 4th Generation · Est. 1984
           </p>
           <a
             href="tel:8044461296"

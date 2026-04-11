@@ -19,7 +19,14 @@ export const payrollTreasury = {
 
   // Margin Audit Lock - compare actuals to estimated
   marginAuditLock: function(estimatedBid: number, actualLaborCost: number, actualMaterialCost: number) {
+      if (estimatedBid <= 0) {
+          return `[CFO AUDIT REQUIRED]: Invalid estimated bid value.`;
+      }
       const totalActualCost = actualLaborCost + actualMaterialCost;
+      if (totalActualCost > estimatedBid) {
+          const overrun = (totalActualCost - estimatedBid).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+          return `[CFO AUDIT REQUIRED]: Project over budget by $${overrun}. Margin is negative.`;
+      }
       const actualMargin = ((estimatedBid - totalActualCost) / estimatedBid) * 100;
       
       if (actualMargin < 35) {
