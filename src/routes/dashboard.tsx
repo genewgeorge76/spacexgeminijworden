@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   Activity,
@@ -107,12 +108,122 @@ const areaGroups = [
 ];
 const totalAreas = areaGroups.reduce((s, g) => s + g.count, 0);
 
+// ── Ghost Protocol Activity Feed ─────────────────────────────────────────────
+const ghostFeed = [
+  { time: '04:12 AM', msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
+  { time: '04:14 AM', msg: 'AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.' },
+  { time: '04:15 AM', msg: 'AUTO-DISPATCH: Commercial proposal generated and emailed to GC Estimating Dept.' },
+  { time: '04:18 AM', msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
+];
+
 function Dashboard() {
+  const [isAutonomousMode, setIsAutonomousMode] = useState(false);
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
 
+      {/* ── GHOST PROTOCOL MASTER SWITCH ─────────────────────────────────── */}
+      <section
+        className={`sticky top-0 z-50 py-4 px-6 flex flex-col items-center justify-center gap-3 border-b transition-all duration-700 ${
+          isAutonomousMode
+            ? 'bg-[#0f0000] border-red-900'
+            : 'bg-[#0f0f0f] border-zinc-900'
+        }`}
+      >
+        {/* Status label */}
+        <div className="flex items-center gap-3">
+          {isAutonomousMode && (
+            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping absolute" />
+          )}
+          <span
+            className={`text-[9px] font-black uppercase tracking-[0.5em] transition-colors duration-500 ${
+              isAutonomousMode ? 'text-red-400' : 'text-zinc-500'
+            }`}
+          >
+            {isAutonomousMode ? 'GHOST PROTOCOL: AUTONOMOUS' : 'SYSTEM OVERRIDE: MANUAL'}
+          </span>
+        </div>
+
+        {/* Toggle switch */}
+        <button
+          onClick={() => setIsAutonomousMode((v) => !v)}
+          aria-pressed={isAutonomousMode}
+          aria-label={isAutonomousMode ? 'Disengage Ghost Protocol' : 'Engage Ghost Protocol'}
+          className={`relative inline-flex h-10 w-64 items-center rounded-full border-2 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
+            isAutonomousMode
+              ? 'bg-gradient-to-r from-red-900 to-orange-900 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.6)] focus:ring-red-500 animate-[borderPulse_2s_ease-in-out_infinite]'
+              : 'bg-zinc-900 border-zinc-700 hover:border-amber-600/60 focus:ring-amber-500'
+          }`}
+        >
+          {/* Track labels */}
+          <span
+            className={`absolute left-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
+              isAutonomousMode ? 'opacity-0' : 'opacity-100 text-amber-400'
+            }`}
+          >
+            MANUAL
+          </span>
+          <span
+            className={`absolute right-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
+              isAutonomousMode ? 'opacity-100 text-red-300' : 'opacity-0'
+            }`}
+          >
+            AUTONOMOUS
+          </span>
+          {/* Thumb */}
+          <span
+            className={`absolute top-1 h-7 w-7 rounded-full shadow-lg transition-all duration-500 ${
+              isAutonomousMode
+                ? 'left-[calc(100%-2rem)] bg-gradient-to-br from-red-400 to-orange-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]'
+                : 'left-1 bg-gradient-to-br from-zinc-300 to-zinc-500'
+            }`}
+          />
+        </button>
+
+        {/* Ghost Protocol label row */}
+        <div
+          className={`text-[10px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${
+            isAutonomousMode ? 'text-red-500' : 'text-zinc-700'
+          }`}
+        >
+          {isAutonomousMode
+            ? '⚠ JWORDENAI IS ACTIVELY HUNTING · BIDDING · DISPATCHING'
+            : 'JWORDENAI MASTER COMMAND CENTER — GHOST PROTOCOL SWITCH'}
+        </div>
+      </section>
+
+      {/* ── GHOST PROTOCOL ACTIVITY FEED ─────────────────────────────────── */}
+      {isAutonomousMode && (
+        <section className="px-6 py-6 border-b border-red-900/50 bg-[#0f0000]">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">
+                Live Autonomous Activity Feed
+              </span>
+            </div>
+            <div className="space-y-2">
+              {ghostFeed.map((entry, i) => (
+                <div
+                  key={i}
+                  className="flex items-start gap-4 bg-red-950/30 border border-red-900/40 rounded-lg px-4 py-3 font-mono text-xs"
+                >
+                  <span className="text-red-400 font-black whitespace-nowrap">{entry.time}</span>
+                  <span className="text-orange-200/80">—</span>
+                  <span className="text-orange-100/90">{entry.msg}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden">
+      <section
+        className={`relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b overflow-hidden transition-colors duration-700 ${
+          isAutonomousMode ? 'border-red-900/60' : 'border-zinc-900'
+        }`}
+      >
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -140,7 +251,11 @@ function Dashboard() {
       </section>
 
       {/* ── KPI CARDS ────────────────────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900">
+      <section
+        className={`py-12 px-6 border-b transition-colors duration-700 ${
+          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <BarChart3 className="w-4 h-4 text-[#ffcc00]" />
@@ -165,7 +280,11 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICES GRID ────────────────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900">
+      <section
+        className={`py-12 px-6 border-b transition-colors duration-700 ${
+          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <Wrench className="w-4 h-4 text-[#ffcc00]" />
@@ -190,7 +309,13 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICE AREA COVERAGE ─────────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      <section
+        className={`py-12 px-6 border-b transition-colors duration-700 ${
+          isAutonomousMode
+            ? 'border-red-900/50 bg-[#0a0505] shadow-[inset_0_0_40px_rgba(239,68,68,0.06)]'
+            : 'border-zinc-900 bg-zinc-950'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <MapPin className="w-4 h-4 text-[#ffcc00]" />
@@ -234,7 +359,11 @@ function Dashboard() {
       </section>
 
       {/* ── WORDEN STANDARDS ─────────────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900">
+      <section
+        className={`py-12 px-6 border-b transition-colors duration-700 ${
+          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <CheckCircle className="w-4 h-4 text-green-400" />
@@ -258,7 +387,13 @@ function Dashboard() {
       </section>
 
       {/* ── OPERATIONS TOOLS ─────────────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      <section
+        className={`py-12 px-6 border-b transition-colors duration-700 ${
+          isAutonomousMode
+            ? 'border-red-900/50 bg-[#0a0505] shadow-[inset_0_0_40px_rgba(239,68,68,0.06)]'
+            : 'border-zinc-900 bg-zinc-950'
+        }`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <Zap className="w-4 h-4 text-[#ffcc00]" />
