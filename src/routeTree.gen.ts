@@ -18,6 +18,7 @@ import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as MasonryRouteImport } from './routes/masonry'
+import { Route as LitigationRouteImport } from './routes/litigation'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EstimatorRouteImport } from './routes/estimator'
@@ -124,6 +125,11 @@ const PortalRoute = PortalRouteImport.update({
 const MasonryRoute = MasonryRouteImport.update({
   id: '/masonry',
   path: '/masonry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LitigationRoute = LitigationRouteImport.update({
+  id: '/litigation',
+  path: '/litigation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GcBidRoute = GcBidRouteImport.update({
@@ -447,6 +453,7 @@ export interface FileRoutesByFullPath {
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -520,6 +527,7 @@ export interface FileRoutesByTo {
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -594,6 +602,7 @@ export interface FileRoutesById {
   '/estimator': typeof EstimatorRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -669,6 +678,7 @@ export interface FileRouteTypes {
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -742,6 +752,7 @@ export interface FileRouteTypes {
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -815,6 +826,7 @@ export interface FileRouteTypes {
     | '/estimator'
     | '/gallery'
     | '/gc-bid'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -889,6 +901,7 @@ export interface RootRouteChildren {
   EstimatorRoute: typeof EstimatorRoute
   GalleryRoute: typeof GalleryRoute
   GcBidRoute: typeof GcBidRoute
+  LitigationRoute: typeof LitigationRoute
   MasonryRoute: typeof MasonryRoute
   PortalRoute: typeof PortalRoute
   ResidentialRoute: typeof ResidentialRoute
@@ -1017,6 +1030,13 @@ declare module '@tanstack/react-router' {
       path: '/masonry'
       fullPath: '/masonry'
       preLoaderRoute: typeof MasonryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/litigation': {
+      id: '/litigation'
+      path: '/litigation'
+      fullPath: '/litigation'
+      preLoaderRoute: typeof LitigationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gc-bid': {
@@ -1465,6 +1485,7 @@ const rootRouteChildren: RootRouteChildren = {
   EstimatorRoute: EstimatorRoute,
   GalleryRoute: GalleryRoute,
   GcBidRoute: GcBidRoute,
+  LitigationRoute: LitigationRoute,
   MasonryRoute: MasonryRoute,
   PortalRoute: PortalRoute,
   ResidentialRoute: ResidentialRoute,
