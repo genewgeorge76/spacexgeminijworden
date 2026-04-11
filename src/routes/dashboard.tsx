@@ -342,7 +342,7 @@ function Dashboard() {
               <div className="flex items-center gap-2 mb-4">
                 <Activity className="w-4 h-4 text-yellow-400" />
                 <div className="text-[9px] font-black uppercase tracking-widest text-yellow-400/70">
-                  Whale Win Probability — Active &gt;20,000 sq ft Targets
+                  Whale Win Probability — Active {'>'} 20,000 sq ft Targets
                 </div>
               </div>
               <div className="space-y-3">
@@ -356,7 +356,7 @@ function Dashboard() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-[10px] font-black uppercase tracking-wide text-white truncate">{target.name}</span>
-                        <span className="shrink-0 text-[8px] font-black uppercase tracking-widest text-orange-500 bg-orange-500/10 border border-orange-500/20 rounded px-1.5 py-0.5">
+                        <span aria-label="Warning: Industrial volume" className="shrink-0 text-[8px] font-black uppercase tracking-widest text-orange-500 bg-orange-500/10 border border-orange-500/20 rounded px-1.5 py-0.5">
                           ⚠ {target.sqft}
                         </span>
                       </div>
@@ -388,8 +388,9 @@ function Dashboard() {
                 <div className="text-[9px] font-black uppercase tracking-widest text-green-400/70">
                   Margin Forecast — 35% Net Floor Lock
                 </div>
-                <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1">
-                  ALL BIDS COMPLIANT ✓
+                <span aria-label="All bids compliant" className="ml-auto flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1">
+                  <CheckCircle className="w-3 h-3" />
+                  ALL BIDS COMPLIANT
                 </span>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
