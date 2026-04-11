@@ -121,6 +121,48 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
           >
             ⚖️ Legal Engine
           </Link>
+          <Link
+            to="/pre-con-dashboard"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            ⚡ God-Mode Dashboard
+          </Link>
+          <Link
+            to="/profit-node"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            💰 Profit Node
+          </Link>
+          <Link
+            to="/investor-roi"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            📈 Investor ROI
+          </Link>
+          <Link
+            to="/weather-intel"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            ⛈ Weather Intel
+          </Link>
+          <Link
+            to="/pre-con"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            🏗 Pre-Con AI
+          </Link>
+          <Link
+            to="/dispatch-node"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333]"
+          >
+            🌡 90-Day Forecast
+          </Link>
         </div>
         <div className="mt-auto px-4 pb-8">
           <a
