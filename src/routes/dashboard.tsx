@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   Activity,
   BarChart3,
+  Bot,
   Building2,
   CheckCircle,
   Construction,
@@ -253,6 +254,188 @@ function Dashboard() {
                 <p className="text-[11px] text-zinc-400 font-bold leading-relaxed">{std.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CLAUDE AI INTELLIGENCE & PROJECTIONS ─────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Section header */}
+          <div className="flex items-center gap-3 mb-8">
+            <Bot className="w-5 h-5 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+              Claude AI Intelligence &amp; Projections
+            </h2>
+            <span className="ml-auto flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest text-yellow-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+              LIVE
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* ── Active Model Status ── */}
+            <div className="col-span-1 lg:col-span-2 bg-zinc-900/60 border border-yellow-400/20 rounded-xl p-6">
+              <div className="text-[9px] font-black uppercase tracking-widest text-yellow-400/60 mb-2">
+                Active Model Status
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="flex items-center gap-2 text-green-400 font-black text-sm uppercase tracking-widest">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Status: ACTIVE
+                </span>
+                <span className="text-zinc-700">|</span>
+                <span className="text-yellow-400 font-black text-sm uppercase tracking-widest">
+                  Model: Claude-3-Opus
+                </span>
+                <span className="text-zinc-700">|</span>
+                <span className="text-orange-400 font-black text-sm uppercase tracking-widest">
+                  Scope: 50-State National Operation
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-500 font-bold mt-3 leading-relaxed">
+                JWORDENAI Drop Engine armed — dynamic DOT compliance active across all 50 states. Binder index $627.50 · Machine health surcharge $0.08/ton · 35% net margin floor enforced.
+              </p>
+            </div>
+
+            {/* ── Live Pipeline Projections ── */}
+            <div className="bg-zinc-900/60 border border-orange-500/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="w-4 h-4 text-orange-500" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-orange-500/70">
+                  Live Pipeline Projections
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-end gap-3">
+                  <span className="text-4xl font-black text-white">14</span>
+                  <span className="text-sm font-black text-orange-400 uppercase tracking-wider mb-1">
+                    Commercial Bids Auto-Generated This Week
+                  </span>
+                </div>
+                <div className="h-px bg-zinc-800" />
+                <div className="flex items-end gap-3">
+                  <span className="text-4xl font-black text-yellow-400">$2.4M</span>
+                  <span className="text-sm font-black text-zinc-400 uppercase tracking-wider mb-1">
+                    Projected Pipeline Value
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-3 pt-2">
+                  {[
+                    { label: 'Federal / SAM.gov', value: '3', color: 'text-cyan-400' },
+                    { label: 'State DOT', value: '5', color: 'text-purple-400' },
+                    { label: 'Commercial', value: '6', color: 'text-orange-400' },
+                  ].map((item) => (
+                    <div key={item.label} className="bg-zinc-800/50 rounded-lg p-3 text-center">
+                      <div className={`text-2xl font-black ${item.color}`}>{item.value}</div>
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-zinc-600 mt-1">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Whale Win Probability ── */}
+            <div className="bg-zinc-900/60 border border-yellow-400/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Activity className="w-4 h-4 text-yellow-400" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-yellow-400/70">
+                  Whale Win Probability — Active &gt;20,000 sq ft Targets
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { name: 'Texas Plaza Street Partners', sqft: '50k sqft', prob: 82, state: 'TX', dot: 'TxDOT' },
+                  { name: 'KBP Brands — Southeast Cluster', sqft: '38k sqft', prob: 74, state: 'GA', dot: 'GDOT' },
+                  { name: 'Food City — K-VA-T Expansion', sqft: '27k sqft', prob: 69, state: 'VA', dot: 'VDOT' },
+                  { name: 'National Mall Overlay — USACE', sqft: '120k sqft', prob: 58, state: 'DC', dot: 'FHWA' },
+                ].map((target) => (
+                  <div key={target.name} className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] font-black uppercase tracking-wide text-white truncate">{target.name}</span>
+                        <span className="shrink-0 text-[8px] font-black uppercase tracking-widest text-orange-500 bg-orange-500/10 border border-orange-500/20 rounded px-1.5 py-0.5">
+                          ⚠ {target.sqft}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-gradient-to-r from-yellow-500 to-yellow-300"
+                            style={{ width: `${target.prob}%` }}
+                          />
+                        </div>
+                        <span className={`shrink-0 text-[10px] font-black ${target.prob >= 75 ? 'text-green-400' : target.prob >= 60 ? 'text-yellow-400' : 'text-orange-400'}`}>
+                          {target.prob}%
+                        </span>
+                        <span className="shrink-0 text-[9px] font-bold text-zinc-600 uppercase">{target.dot}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 pt-4 border-t border-zinc-800 text-[9px] font-bold uppercase tracking-widest text-zinc-600">
+                Win Probability · Powered by Claude-3-Opus · DOT-Compliant Proposals Ready
+              </div>
+            </div>
+
+            {/* ── Margin Forecast ── */}
+            <div className="col-span-1 lg:col-span-2 bg-zinc-900/60 border border-green-500/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <DollarSign className="w-4 h-4 text-green-400" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-green-400/70">
+                  Margin Forecast — 35% Net Floor Lock
+                </div>
+                <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1">
+                  ALL BIDS COMPLIANT ✓
+                </span>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { label: 'TX Plaza Street Partners', margin: 41, value: '$487K' },
+                  { label: 'KBP SE Cluster', margin: 38, value: '$312K' },
+                  { label: 'K-VA-T Food City', margin: 36, value: '$198K' },
+                  { label: 'USACE Mall Overlay', margin: 35, value: '$1.4M' },
+                ].map((bid) => (
+                  <div key={bid.label} className="bg-zinc-800/40 rounded-lg p-4">
+                    <div className="text-[9px] font-black uppercase tracking-wide text-zinc-500 mb-2 leading-tight">{bid.label}</div>
+                    <div className="flex items-end gap-2 mb-2">
+                      <span className={`text-2xl font-black ${bid.margin >= 40 ? 'text-green-400' : bid.margin >= 36 ? 'text-yellow-400' : 'text-orange-400'}`}>
+                        {bid.margin}%
+                      </span>
+                      <span className="text-xs font-bold text-zinc-500 mb-0.5">margin</span>
+                    </div>
+                    <div className="h-1.5 bg-zinc-700 rounded-full overflow-hidden mb-2">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-green-600 to-green-400"
+                        style={{ width: `${Math.min((bid.margin / 50) * 100, 100)}%` }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] font-bold text-zinc-600 uppercase">Floor: 35%</span>
+                      <span className="text-[10px] font-black text-white">{bid.value}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-4 pt-4 border-t border-zinc-800">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Binder Index Applied: $627.50/ton
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Machine Health Surcharge: $0.08/ton
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Oil-Price Shield: ±$9/ton
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
