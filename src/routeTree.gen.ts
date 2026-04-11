@@ -19,6 +19,7 @@ import { Route as ResidentialRouteImport } from './routes/residential'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as MasonryRouteImport } from './routes/masonry'
 import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
+import { Route as LitigationRouteImport } from './routes/litigation'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EstimatorRouteImport } from './routes/estimator'
@@ -131,6 +132,11 @@ const MasonryRoute = MasonryRouteImport.update({
 const LegalComplianceRoute = LegalComplianceRouteImport.update({
   id: '/legal-compliance',
   path: '/legal-compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LitigationRoute = LitigationRouteImport.update({
+  id: '/litigation',
+  path: '/litigation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GcBidRoute = GcBidRouteImport.update({
@@ -461,6 +467,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -536,6 +543,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -612,6 +620,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
   '/masonry': typeof MasonryRoute
   '/portal': typeof PortalRoute
   '/residential': typeof ResidentialRoute
@@ -689,6 +698,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/gc-bid'
     | '/legal-compliance'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -764,6 +774,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/gc-bid'
     | '/legal-compliance'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -839,6 +850,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/gc-bid'
     | '/legal-compliance'
+    | '/litigation'
     | '/masonry'
     | '/portal'
     | '/residential'
@@ -915,17 +927,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   GcBidRoute: typeof GcBidRoute
   LegalComplianceRoute: typeof LegalComplianceRoute
-  MasonryRoute: typeof MasonryRoute
-  PortalRoute: typeof PortalRoute
-  ResidentialRoute: typeof ResidentialRoute
-  RoofingRoute: typeof RoofingRoute
-  SafetyRoute: typeof SafetyRoute
-  SealcoatingRoute: typeof SealcoatingRoute
-  ServicesRoute: typeof ServicesRoute
-  StandardsRoute: typeof StandardsRoute
-  WhaleHunterRoute: typeof WhaleHunterRoute
-  LocationsAmeliaRoute: typeof LocationsAmeliaRoute
-  LocationsAshlandRoute: typeof LocationsAshlandRoute
+  LitigationRoute: typeof LitigationRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
   LocationsCarolineRoute: typeof LocationsCarolineRoute
   LocationsCharlesCityRoute: typeof LocationsCharlesCityRoute
@@ -1050,6 +1052,13 @@ declare module '@tanstack/react-router' {
       path: '/legal-compliance'
       fullPath: '/legal-compliance'
       preLoaderRoute: typeof LegalComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/litigation': {
+      id: '/litigation'
+      path: '/litigation'
+      fullPath: '/litigation'
+      preLoaderRoute: typeof LitigationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gc-bid': {
@@ -1507,7 +1516,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   GcBidRoute: GcBidRoute,
   LegalComplianceRoute: LegalComplianceRoute,
-  MasonryRoute: MasonryRoute,
+  LitigationRoute: LitigationRoute,
   PortalRoute: PortalRoute,
   ResidentialRoute: ResidentialRoute,
   RoofingRoute: RoofingRoute,
