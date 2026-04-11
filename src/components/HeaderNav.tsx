@@ -48,6 +48,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
         </div>
         <div className="flex flex-col gap-1 px-4 py-6">
           <Link
+            to="/dashboard"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333] font-bold"
+          >
+            📊 Dashboard
+          </Link>
+          <Link
             to="/dispatch"
             onClick={onClose}
             className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333] font-bold"
