@@ -5,15 +5,23 @@
 
 // Mock APIs for demonstration
 const satelliteAPI = {
-  measure: (_address: string) => Math.floor(Math.random() * (15000 - 800) + 800), // Returns 800-15000 sqft
+  measure: (_address: string) => Math.floor(Math.random() * 14200 + 800), // Returns 800-15000 sqft
 };
 
 const historyDatabase = {
   findNearby: (_address: string) => ({ city: 'Chester, VA', project: '3-inch Heavy Duty Overlay', year: 2023 }),
 };
 
+interface KickservLeadData {
+  name: string;
+  address: string;
+  sqft: number;
+  proofSent: { city: string; project: string; year: number };
+  status: string;
+}
+
 const kickserv = {
-  createLead: (data: { name: string; address: string; sqft: number; proofSent: { city: string; project: string; year: number }; status: string }) =>
+  createLead: (data: KickservLeadData) =>
     console.log(`[KICKSERV-SYNC]: Lead created for ${data.name} at ${data.address}`),
 };
 
