@@ -94,8 +94,29 @@ const ROUTE_WARNINGS: RouteWarning[] = [
   },
 ];
 
-const TEMP_FLOOR = 275;
-const TEMP_CRITICAL = 250;
+const TEMP_FLOOR = 275;   // ≥275°F: compaction-ready per ASTM D3515 / VDOT Section 315
+const TEMP_CRITICAL = 250; // <250°F: mix cannot be compacted — load must be rejected (ASTM D3515)
+
+/** Returns true when a truck requires an alert (TEMP_WARNING status or temperature below laydown floor). */
+function hasTemperatureAlert(truck: TruckStatus): boolean {
+  return truck.status === 'TEMP_WARNING' || truck.tempF < TEMP_FLOOR;
+}
+
+/**
+ * Calculates the next temperature tick for a truck based on its status.
+ * TEMP_WARNING trucks cool at 1°F/tick; STAGING trucks hold temperature;
+ * EN_ROUTE trucks cool gently at 0.3°F/tick (aggregate cab heat retention).
+ * Minimum floor is TEMP_CRITICAL - 10 to represent a fully cold load.
+ */
+function calculateNextTemperature(truck: TruckStatus): number {
+  if (truck.status === 'TEMP_WARNING') {
+    return Math.max(truck.tempF - 1, TEMP_CRITICAL - 10);
+  }
+  if (truck.status === 'STAGING') {
+    return truck.tempF; // Staging — insulated hold, minimal heat loss
+  }
+  return Math.max(truck.tempF - 0.3, TEMP_CRITICAL - 10);
+}
 
 function getTempColor(tempF: number): string {
   if (tempF >= TEMP_FLOOR) return 'text-emerald-400';
@@ -147,9 +168,7 @@ export default function DispatchNode() {
         prev.map(truck => ({
           ...truck,
           etaMinutes: Math.max(0, truck.etaMinutes - 1),
-          tempF: truck.status === 'TEMP_WARNING'
-            ? Math.max(truck.tempF - 1, TEMP_CRITICAL - 10)
-            : Math.max(truck.tempF - 0.5, truck.status === 'STAGING' ? truck.tempF : truck.tempF - 0.3),
+          tempF: calculateNextTemperature(truck),
         }))
       );
     }, 10000);
@@ -161,7 +180,7 @@ export default function DispatchNode() {
     return () => clearInterval(pulseTimer);
   }, []);
 
-  const activeAlerts = trucks.filter(t => t.status === 'TEMP_WARNING' || t.tempF < TEMP_FLOOR).length;
+  const activeAlerts = trucks.filter(hasTemperatureAlert).length;
 
   return (
     <div className="min-h-screen bg-[#050a0f] text-white font-mono selection:bg-[#ffcc00] selection:text-black">
