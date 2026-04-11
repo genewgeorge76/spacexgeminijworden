@@ -10,3 +10,8 @@
     font-family: 'Arial Black', sans-serif;
   }
 }
+
+@keyframes radarSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}

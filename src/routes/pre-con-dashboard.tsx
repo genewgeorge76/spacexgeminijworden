@@ -1,6 +1,8 @@
+import { useMemo } from 'react';
 import { createFileRoute } from '@tanstack/react-router';
 import RealityEngineNode from '@/components/RealityEngineNode';
-import { Activity, BarChart3, CloudLightning, Cpu, Globe2, Layers, ShieldAlert, Zap } from 'lucide-react';
+import { seasonalityEngine } from '@/utils/seasonalityEngine';
+import { Activity, BarChart3, CloudLightning, Cpu, Globe2, Layers, Radio, ShieldAlert, Zap } from 'lucide-react';
 
 export const Route = createFileRoute('/pre-con-dashboard')({
   component: PreConDashboard,
@@ -23,6 +25,15 @@ const phaseNodes = [
 ];
 
 function PreConDashboard() {
+  const weatherAlerts = useMemo(() => seasonalityEngine.runEnvironmentalCheck(), []);
+
+  const hubMeta: Record<string, { city: string; state: string }> = {
+    '23836': { city: 'Chester', state: 'VA' },
+    '23221': { city: 'Richmond', state: 'VA' },
+    '29902': { city: 'Beaufort', state: 'SC' },
+    '31401': { city: 'Savannah', state: 'GA' },
+  };
+
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
 
@@ -159,6 +170,162 @@ function PreConDashboard() {
             </div>
           </div>
           <RealityEngineNode />
+        </div>
+      </section>
+
+      {/* ── LIVE DOPPLER & ENVIRONMENTAL PREDICTIONS ── */}
+      <section className="py-16 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-8">
+            <Radio className="w-6 h-6 text-[#ffcc00] animate-pulse" />
+            <div>
+              <h2 className="text-2xl font-black uppercase tracking-tight text-white">
+                LIVE DOPPLER &amp; <span className="text-[#ffcc00]">ENVIRONMENTAL PREDICTIONS</span>
+              </h2>
+              <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider mt-0.5">
+                NWS &amp; OpenWeather API v3.0 · Chester · Richmond · Beaufort · Savannah
+              </p>
+            </div>
+            <span className="ml-auto text-[9px] font-black uppercase tracking-widest px-3 py-1 bg-[#ffcc00]/20 text-[#ffcc00] border border-[#ffcc00]/40 rounded">
+              ● {seasonalityEngine.status}
+            </span>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-6">
+
+            {/* ── Radar Visual ── */}
+            <div className="relative bg-[#050c10] border border-cyan-900/50 rounded-2xl overflow-hidden min-h-[320px] flex flex-col items-center justify-center">
+              {/* Radar rings */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                {[160, 120, 80, 40].map((size) => (
+                  <div
+                    key={size}
+                    className="absolute rounded-full border border-cyan-800/30"
+                    style={{ width: size * 2, height: size * 2 }}
+                  />
+                ))}
+                {/* Crosshair lines */}
+                <div className="absolute w-full h-px bg-cyan-900/20" />
+                <div className="absolute h-full w-px bg-cyan-900/20" />
+              </div>
+
+              {/* Rotating sweep */}
+              <div
+                className="absolute w-[320px] h-[320px] rounded-full overflow-hidden"
+                style={{ animation: 'radarSpin 3s linear infinite' }}
+              >
+                <div
+                  className="absolute top-1/2 left-1/2 w-[160px] h-[2px] origin-left"
+                  style={{
+                    background: 'linear-gradient(90deg, rgba(255,204,0,0.9) 0%, rgba(255,204,0,0.1) 60%, transparent 100%)',
+                    transformOrigin: '0 50%',
+                  }}
+                />
+                <div
+                  className="absolute top-0 left-1/2 w-[160px] h-full origin-top-left"
+                  style={{
+                    background: 'conic-gradient(from 0deg, transparent 270deg, rgba(255,204,0,0.08) 360deg)',
+                    transformOrigin: '0 50%',
+                  }}
+                />
+              </div>
+
+              {/* Hub blips */}
+              {[
+                { label: 'Chester VA', top: '30%', left: '35%', color: 'bg-cyan-400' },
+                { label: 'Richmond VA', top: '38%', left: '55%', color: 'bg-[#ffcc00]' },
+                { label: 'Beaufort SC', top: '65%', left: '62%', color: 'bg-green-400' },
+                { label: 'Savannah GA', top: '72%', left: '45%', color: 'bg-orange-400' },
+              ].map((blip) => (
+                <div
+                  key={blip.label}
+                  className="absolute flex flex-col items-center gap-1"
+                  style={{ top: blip.top, left: blip.left }}
+                >
+                  <div className={`w-2 h-2 rounded-full ${blip.color} animate-ping`} style={{ animationDuration: '2s' }} />
+                  <span className="text-[8px] font-black uppercase tracking-widest text-zinc-400 whitespace-nowrap">{blip.label}</span>
+                </div>
+              ))}
+
+              {/* Label overlay */}
+              <div className="absolute top-4 left-4 text-[9px] font-black uppercase tracking-[0.3em] text-cyan-700">
+                JWORDENAI · LIVE DOPPLER
+              </div>
+              <div className="absolute bottom-4 right-4 text-[9px] font-black uppercase tracking-widest text-zinc-700">
+                NWS / NOAA COMPOSITE
+              </div>
+            </div>
+
+            {/* ── Environmental Alerts ── */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center justify-between mb-1">
+                <h3 className="text-xs font-black uppercase tracking-widest text-zinc-400">
+                  Active Environmental Alerts
+                </h3>
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">
+                  {seasonalityEngine.hubs.length} Hubs Monitored
+                </span>
+              </div>
+
+              {/* Hub status row */}
+              <div className="grid grid-cols-2 gap-3">
+                {seasonalityEngine.hubs.map((zip) => {
+                  const meta = hubMeta[zip] ?? { city: zip, state: '' };
+                  return (
+                    <div key={zip} className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3 flex items-center gap-3">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+                      <div>
+                        <div className="text-[10px] font-black uppercase text-white">
+                          {meta.city} <span className="text-zinc-500">{meta.state}</span>
+                        </div>
+                        <div className="text-[9px] text-zinc-600 font-bold">ZIP {zip}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Alerts list */}
+              <div className="flex-1 bg-zinc-900/40 border border-zinc-800 rounded-xl p-4 space-y-3 min-h-[120px]">
+                {weatherAlerts.length === 0 ? (
+                  <div className="flex items-center gap-3 text-green-400">
+                    <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="text-xs font-black uppercase tracking-widest">
+                      All Hubs Clear — No Active Weather Alerts
+                    </span>
+                  </div>
+                ) : (
+                  weatherAlerts.map((alert, i) => {
+                    const isRain = alert.toLowerCase().includes('rain') || alert.toLowerCase().includes('sealcoating');
+                    return (
+                      <div key={i} className={`flex items-start gap-3 p-3 rounded-lg border ${isRain ? 'bg-cyan-900/20 border-cyan-800/40' : 'bg-[#ffcc00]/5 border-[#ffcc00]/20'}`}>
+                        <div className={`w-1.5 h-1.5 rounded-full mt-1 shrink-0 ${isRain ? 'bg-cyan-400' : 'bg-[#ffcc00]'} animate-pulse`} />
+                        <span className={`text-[10px] font-black uppercase tracking-wide leading-relaxed ${isRain ? 'text-cyan-300' : 'text-[#ffcc00]'}`}>
+                          {alert}
+                        </span>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+
+              {/* Engine status bar */}
+              <div className="bg-black border border-zinc-800 rounded-xl p-3 flex items-center justify-between">
+                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600">
+                  JWORDENAI Seasonality Engine
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#ffcc00] animate-pulse" />
+                  <span className="text-[9px] font-black uppercase tracking-widest text-[#ffcc00]">
+                    {seasonalityEngine.status}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </section>
 
