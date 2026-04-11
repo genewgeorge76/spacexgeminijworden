@@ -97,8 +97,8 @@ export default function ProofMap() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {pins.map((pin, i) => (
-        <Marker key={i} position={[pin.lat, pin.lng]} icon={defaultIcon}>
+      {pins.map((pin) => (
+        <Marker key={`${pin.lat}-${pin.lng}-${pin.date}`} position={[pin.lat, pin.lng]} icon={defaultIcon}>
           <Popup>
             <strong className="block text-sm">{pin.title}</strong>
             <span className="block text-xs text-gray-600">{pin.type}</span>
