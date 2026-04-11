@@ -24,7 +24,8 @@ export const residentialLogic = {
 export function pushToKickserv(lead: Lead): string {
   let priority = lead.isCommercial ? 'High-Value' : 'High-Velocity';
 
-  // Prioritize everyday residential scores for immediate cash flow
+  // Prioritize everyday residential scores for immediate cash flow.
+  // Intentionally overrides commercial 'High-Value' for local ZIP codes — cash flow takes precedence.
   if (residentialLogic.highVelocityZips.includes(lead.zip)) {
     priority = 'CRITICAL - LOCAL RESIDENTIAL';
   }

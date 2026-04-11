@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { pushToKickserv } from '@/utils/jwordenLogic';
 
 export default function PartnerPortal() {
+  const [dispatchMessage, setDispatchMessage] = useState<string | null>(null);
+
   function handleViewJobs() {
     const dummyLead = {
       zip: '21811',
@@ -8,7 +11,7 @@ export default function PartnerPortal() {
       isCommercial: false,
     };
     const priority = pushToKickserv(dummyLead);
-    alert(`Kickserv Dispatch Priority: ${priority}`);
+    setDispatchMessage(`Kickserv Dispatch Priority: ${priority}`);
   }
 
   return (
@@ -24,7 +27,7 @@ export default function PartnerPortal() {
         <div className="bg-black p-4 rounded border-l-4 border-[#ffcc00]">
           <h4 className="text-white font-semibold">Credential Vault</h4>
           <p className="text-xs text-gray-500 mb-2">
-            Automated COI &amp; Class A/B Verification
+            Automated COI & Class A/B Verification
           </p>
           <button className="text-xs bg-gray-800 text-white p-2 rounded w-full">
             UPLOAD CURRENT DOCS
@@ -42,6 +45,9 @@ export default function PartnerPortal() {
           >
             VIEW AVAILABLE JOBS
           </button>
+          {dispatchMessage && (
+            <p className="mt-2 text-xs text-[#ffcc00] font-semibold">{dispatchMessage}</p>
+          )}
         </div>
       </div>
     </section>
