@@ -17,6 +17,7 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react';
+import IronGridMap from '../components/IronGridMap';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 import { franchiseTracker } from '../utils/franchiseTracker';
 
@@ -164,6 +165,9 @@ function Dashboard() {
           </div>
         </div>
       </section>
+
+      {/* ── IRON GRID WAR ROOM MAP — SEO HEATMAP ─────────────────────────── */}
+      <IronGridMap />
 
       {/* ── SERVICES GRID ────────────────────────────────────────────────── */}
       <section className="py-12 px-6 border-b border-zinc-900">
