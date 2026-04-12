@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { commandBot } from '@/utils/commandBot';
 import { premiumSuite } from '@/utils/premiumSuite';
 import { prizedServices } from '@/utils/prizedServices';
+
+interface TerminalLine {
+  type: 'input' | 'output';
+  text: string;
+}
 
 const COMMANDS = [
   'leads',
@@ -18,13 +24,9 @@ const COMMANDS = [
 function processCommand(input: string): string {
   const lower = input.toLowerCase().trim();
 
-  if (lower.includes('leads')) return 'Checking Kickserv pipeline... 3 High-Velocity leads found.';
-  if (lower.includes('photos')) return 'Syncing Vision Folders... BEAUFORT updated.';
-  if (lower.includes('pricing')) return 'Fetching live binder costs... Bids adjusted for 2026 volatility.';
-
   if (lower === 'run premium bid') {
     const result = premiumSuite.calculateEliteBid({ zip: '23221', sqft: 5000, type: 'commercial' });
-    return `[JWORDENAI Premium]: Elite bid calculated → $${result} (ZIP 23221 · 5,000 sq ft · Commercial)`;
+    return `[JWORDENAI Premium]: Elite bid calculated -> $${result} (ZIP 23221 · 5,000 sq ft · Commercial)`;
   }
 
   for (const key of Object.keys(prizedServices)) {
@@ -34,58 +36,77 @@ function processCommand(input: string): string {
     }
   }
 
-  return `Command not recognized. Try: ${COMMANDS.join(', ')}.`;
+  const response = commandBot.processCommand(input);
+  if (response.startsWith('Command not recognized')) {
+    return `Command not recognized. Try: ${COMMANDS.join(', ')}.`;
+  }
+
+  return response;
 }
 
-export function CommandBot() {
+function CommandBotUI() {
   const [input, setInput] = useState('');
-  const [log, setLog] = useState<{ cmd: string; res: string }[]>([]);
+  const [lines, setLines] = useState<TerminalLine[]>([
+    { type: 'output', text: `JWORDENAI Command Bot v1.0 - STATUS: ${commandBot.status}` },
+    { type: 'output', text: `HQ: ${commandBot.hq}` },
+    { type: 'output', text: "Try: 'leads', 'photos', 'pricing', 'run premium bid', or a service command." },
+  ]);
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [lines]);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const trimmed = input.trim();
-    if (!trimmed) return;
-    const res = processCommand(trimmed);
-    setLog((prev) => [...prev, { cmd: trimmed, res }]);
+    const cmd = input.trim();
+    if (!cmd) return;
+
+    const response = processCommand(cmd);
+    setLines((prev) => [
+      ...prev,
+      { type: 'input', text: `$ ${cmd}` },
+      { type: 'output', text: response },
+    ]);
     setInput('');
   }
 
   return (
-    <div className="bg-black border border-[#ffcc00]/30 rounded-xl p-6 font-mono text-sm max-w-2xl w-full">
-      <div className="flex items-center gap-3 mb-4">
-        <span className="w-2.5 h-2.5 rounded-full bg-[#ffcc00] animate-pulse" />
-        <span className="text-[#ffcc00] font-black uppercase tracking-widest text-xs">
-          JWORDENAI Command Bot · ONLINE
-        </span>
+    <section className="bg-zinc-950 border border-zinc-700 rounded-2xl p-6 max-w-xl mx-auto shadow-2xl font-mono">
+      <div className="flex items-center gap-2 mb-4">
+        <span className="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+        <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span>
+        <span className="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
+        <span className="ml-3 text-zinc-400 text-xs uppercase tracking-widest">JWORDENAI Terminal</span>
       </div>
 
-      <div className="bg-zinc-950 rounded-lg p-4 min-h-[200px] max-h-[320px] overflow-y-auto mb-4 space-y-3">
-        {log.length === 0 && (
-          <p className="text-zinc-600 italic">
-            Type a command below. Try: <span className="text-[#ffcc00]">run premium bid</span>, <span className="text-[#ffcc00]">grading</span>, or <span className="text-[#ffcc00]">leads</span>.
-          </p>
-        )}
-        {log.map((entry, i) => (
-          <div key={i}>
-            <p className="text-zinc-400">
-              <span className="text-[#ffcc00]">$</span> {entry.cmd}
-            </p>
-            <p className="text-white pl-4">{entry.res}</p>
+      <div
+        role="log"
+        aria-live="polite"
+        aria-label="Command Bot output"
+        className="bg-zinc-900 rounded-lg p-4 h-52 overflow-y-auto text-sm space-y-1 mb-4"
+      >
+        {lines.map((line, i) => (
+          <div key={i} className={line.type === 'input' ? 'text-[#ffcc00]' : 'text-green-400'}>
+            {line.text}
           </div>
         ))}
+        <div ref={bottomRef} />
       </div>
 
-      <form onSubmit={handleSubmit} className="flex gap-2">
+      <form onSubmit={handleSubmit} className="flex gap-3">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Enter command..."
-          className="flex-1 bg-zinc-900 border border-zinc-700 focus:border-[#ffcc00] outline-none rounded-lg px-4 py-2 text-white placeholder-zinc-600 transition-colors"
+          aria-label="Command input"
+          className="flex-1 bg-zinc-800 border border-zinc-600 text-zinc-100 placeholder-zinc-600 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#ffcc00] transition-colors font-mono"
+          autoFocus
         />
         <button
           type="submit"
-          className="bg-[#ffcc00] text-black font-black uppercase text-xs tracking-widest px-5 py-2 rounded-lg hover:bg-yellow-300 transition-colors"
+          className="bg-[#ffcc00] text-zinc-900 font-bold uppercase text-xs tracking-wide px-5 py-2 rounded-lg hover:bg-yellow-400 transition-colors"
         >
           Run
         </button>
@@ -95,6 +116,9 @@ export function CommandBot() {
         HQ: 1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836 · Premium Status:{' '}
         <span className="text-[#ffcc00]">{premiumSuite.status}</span>
       </p>
-    </div>
+    </section>
   );
 }
+
+export { CommandBotUI as CommandBot };
+export default CommandBotUI;

@@ -1,25 +1,30 @@
-/**
- * JWORDENAI Ultra-Premium Module
- * Features: Satellite Measurement, Soil-Density Logic, SMS Hook
- */
+export interface EliteBidInput {
+  zip: string;
+  sqft: number;
+  type: 'commercial' | 'residential';
+}
+
+const BASE_RATE_PER_SQFT = {
+  commercial: 7.4,
+  residential: 5.6,
+} as const;
+
+const ZIP_MODIFIERS: Record<string, number> = {
+  '23221': 1.08,
+  '23220': 1.06,
+  '23226': 1.07,
+};
+
 export const premiumSuite = {
-  status: "ULTRA-ACTIVE",
-  features: {
-    satellite: "Google Maps Static API v2 Enabled",
-    soilMapping: "USGS Soil Data Integration Active",
-    volatility: "Live Fuel & Asphalt Index Pings: ON",
-  },
+  status: 'ACTIVE',
+  calculateEliteBid(input: EliteBidInput): number {
+    const typeRate = BASE_RATE_PER_SQFT[input.type] ?? BASE_RATE_PER_SQFT.commercial;
+    const zipModifier = ZIP_MODIFIERS[input.zip] ?? 1;
+    const subtotal = input.sqft * typeRate * zipModifier;
 
-  calculateEliteBid: function (leadData: { zip: string; sqft: number; type: string }) {
-    const soilFactor = this.getSoilFactor(leadData.zip);
-    const gradingCost = leadData.sqft * 0.85 * soilFactor;
-    const stripingCost = leadData.type === "commercial" ? leadData.sqft * 0.12 : 0;
+    // Includes mobilization, prep, and QC overhead for premium-tier estimates.
+    const total = subtotal + 1450;
 
-    return (gradingCost + stripingCost).toFixed(2);
-  },
-
-  getSoilFactor: function (zip: string) {
-    // Coastal sands (1.1) vs. Virginia Clay (1.4)
-    return zip.startsWith("23") ? 1.4 : 1.1;
+    return Math.round(total);
   },
 };

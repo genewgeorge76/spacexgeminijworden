@@ -18,7 +18,6 @@ import {
   Zap,
 } from 'lucide-react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
-import { franchiseTracker } from '../utils/franchiseTracker';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -255,49 +254,6 @@ function Dashboard() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── QSR & FRANCHISE NSO RADAR ─────────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-6">
-            <TrendingUp className="w-4 h-4 text-[#ffcc00]" />
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">QSR &amp; Franchise NSO Radar — 5-State Coastal Empire</h2>
-            <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-[#ffcc00] bg-[#ffcc00]/10 border border-[#ffcc00]/30 rounded-full px-3 py-1 animate-pulse">
-              LIVE MONITORING
-            </span>
-          </div>
-          {/* Target Developers */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            {franchiseTracker.targets.map((target) => (
-              <div key={target} className="border-l-4 border-[#ffcc00] bg-zinc-900/40 rounded-r-xl p-5">
-                <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-1">Target Developer</div>
-                <div className="text-sm font-black uppercase text-white mb-1">{target}</div>
-                <div className="text-[10px] text-[#ffcc00]/70 font-bold uppercase tracking-wider">Acquisition / Permitting Watch</div>
-              </div>
-            ))}
-          </div>
-          {/* High Priority Brands */}
-          <div className="flex flex-wrap gap-3 mb-6">
-            {franchiseTracker.highPriorityBrands.map((brand) => (
-              <span key={brand} className="bg-zinc-900 border border-[#ffcc00]/30 text-[#ffcc00] text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full">
-                🍔 {brand}
-              </span>
-            ))}
-          </div>
-          {/* Coastal Empire States */}
-          <div className="flex flex-wrap gap-3">
-            {franchiseTracker.coastalEmpireStates.map((state) => (
-              <div key={state} className="bg-zinc-900/60 border border-zinc-800 rounded-xl px-5 py-3 text-center">
-                <div className="text-lg font-black text-white">{state}</div>
-                <div className="text-[9px] text-zinc-600 font-bold uppercase tracking-widest">Coastal Empire</div>
-              </div>
-            ))}
-          </div>
-          <p className="mt-6 text-[11px] text-zinc-500 font-bold uppercase tracking-widest">
-            Auto-triggers 90-day fast-track bid · Industrial math (148 lbs/sq yd) · 35% margin target · Kickserv lead generation
-          </p>
         </div>
       </section>
 

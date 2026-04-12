@@ -1,53 +1,43 @@
-import { useState } from 'react';
-import { pushToKickserv } from '@/utils/jwordenLogic';
+import { Link } from '@tanstack/react-router';
+import { ArrowRight, Building2, FileCheck2, ShieldCheck } from 'lucide-react';
 
 export default function PartnerPortal() {
-  const [dispatchMessage, setDispatchMessage] = useState<string | null>(null);
-
-  function handleViewJobs() {
-    const dummyLead = {
-      zip: '21811',
-      service: 'sealcoating',
-      isCommercial: false,
-    };
-    const priority = pushToKickserv(dummyLead);
-    setDispatchMessage(`Kickserv Dispatch Priority: ${priority}`);
-  }
-
   return (
-    <section className="bg-[#111111] p-8 rounded-lg mt-10 border border-gray-800">
-      <h3 className="text-[#ffcc00] text-xl font-bold uppercase tracking-widest">
-        Crew Command: Partner Portal
-      </h3>
-      <p className="text-gray-400 text-sm mb-6">
-        Managing the Worden-Standard across 50 states.
-      </p>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-black p-4 rounded border-l-4 border-[#ffcc00]">
-          <h4 className="text-white font-semibold">Credential Vault</h4>
-          <p className="text-xs text-gray-500 mb-2">
-            Automated COI & Class A/B Verification
+    <section className="rounded-3xl border border-zinc-800 bg-zinc-900/60 p-8 md:p-12 shadow-2xl">
+      <div className="flex flex-col gap-8 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-3xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-[#ffcc00]/30 bg-black/40 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#ffcc00]">
+            <Building2 className="h-4 w-4" />
+            Partner Access
+          </span>
+          <h3 className="mt-5 text-3xl font-black uppercase tracking-tight text-white md:text-4xl">
+            GC Portal For Commercial Partners
+          </h3>
+          <p className="mt-4 max-w-2xl text-zinc-300">
+            Access insurance documents, W-9 records, and priority dispatch intake in one secure workflow for general contractors and development teams.
           </p>
-          <button className="text-xs bg-gray-800 text-white p-2 rounded w-full">
-            UPLOAD CURRENT DOCS
-          </button>
+          <div className="mt-8 flex flex-col gap-4 text-sm font-bold text-zinc-300 md:flex-row md:items-center md:gap-8">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="h-4 w-4 text-[#ffcc00]" />
+              Verified Compliance Docs
+            </div>
+            <div className="flex items-center gap-2">
+              <FileCheck2 className="h-4 w-4 text-[#ffcc00]" />
+              One-Click Download Access
+            </div>
+          </div>
         </div>
 
-        <div className="bg-black p-4 rounded border-l-4 border-[#ffcc00]">
-          <h4 className="text-white font-semibold">Active Dispatch</h4>
-          <p className="text-xs text-gray-500 mb-2">
-            Syncing with Kickserv Lead-Pipe
-          </p>
-          <button
-            onClick={handleViewJobs}
-            className="text-xs bg-[#ffcc00] text-black font-bold p-2 rounded w-full"
+        <div className="w-full max-w-md rounded-2xl border border-zinc-700 bg-black/50 p-6">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">Portal Access</p>
+          <p className="mt-3 text-lg font-bold text-white">Open the contractor portal for project-ready documents and expedited scheduling.</p>
+          <Link
+            to="/portal"
+            className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl border-2 border-[#ffcc00] bg-[#ffcc00] px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-white"
           >
-            VIEW AVAILABLE JOBS
-          </button>
-          {dispatchMessage && (
-            <p className="mt-2 text-xs text-[#ffcc00] font-semibold">{dispatchMessage}</p>
-          )}
+            Open Partner Portal
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
