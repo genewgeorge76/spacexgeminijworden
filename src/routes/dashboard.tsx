@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import {
   Activity,
+  AlertTriangle,
   BarChart3,
+  Bot,
   Building2,
   CheckCircle,
   Construction,
@@ -9,20 +11,62 @@ import {
   Hammer,
   HardHat,
   MapPin,
+  Mic,
   Phone,
+  Radio,
   Shield,
   Star,
   TrendingUp,
   Truck,
   Wrench,
+  LogOut,
   Zap,
 } from 'lucide-react';
+import { useState } from 'react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 import { franchiseTracker } from '../utils/franchiseTracker';
+import { type CallLogEntry, virtualForeman } from '../utils/virtualForeman';
+import { richmondVoiceHub } from '../utils/richmondVoiceHub';
+import { claudeDropEngine } from '../utils/claudeDrop';
+import { arEnforcer } from '../utils/arEnforcer';
+import { ironMatrix } from '../utils/ironMatrix';
+import { plantPulse } from '../utils/plantPulse';
+import { useAuth } from '@/lib/auth-context';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
 });
+
+// ── Richmond Voice Hub — demo intercept log ───────────────────────────────────
+const richmondVoiceHubDemoLog = [
+  {
+    time: '03:14 AM',
+    caller: 'Mike T.',
+    address: '4210 Midlothian Tpke, Richmond, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Midlothian'),
+    sqft: '14,800 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: true,
+  },
+  {
+    time: '07:42 AM',
+    caller: 'Sandra J.',
+    address: '1020 Hull Street, Richmond, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Richmond'),
+    sqft: '3,200 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: false,
+  },
+  {
+    time: '11:58 AM',
+    caller: 'Brandon K.',
+    address: '355 Colonial Ave, Petersburg, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Petersburg'),
+    sqft: '8,600 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: false,
+  },
+];
 
 // ── Key Metrics ──────────────────────────────────────────────────────────────
 const metrics = [
@@ -96,6 +140,10 @@ const tools = [
   { label: '📈 Investor ROI', route: '/investor-roi', desc: 'Capital & yield model' },
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
+  { label: '🤖 Command Bot', route: '/command-bot', desc: 'JWORDENAI service priority terminal' },
+  { label: '🎙 AI-Foreman', route: '/dashboard#ai-foreman', desc: 'Voice reception & lead lock' },
+  { label: '💵 Labor & Treasury', route: '/payroll-treasury', desc: 'OT burn, 1099 payouts & margin lock' },
+  { label: '👷 Field App', route: '/field', desc: 'Foreman view — tonnage & hours' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────
@@ -108,9 +156,211 @@ const areaGroups = [
 ];
 const totalAreas = areaGroups.reduce((s, g) => s + g.count, 0);
 
+// ── Demo callers for the AI-Foreman panel ─────────────────────────────────────
+const demoCallers = [
+  { callerID: '+1-804-555-0101', callerName: 'Mike Thornton', address: '412 Bermuda Hundred Rd, Chester, VA' },
+  { callerID: '+1-804-555-0188', callerName: 'Lisa Greenway', address: '7700 Hull Street Rd, Richmond, VA' },
+  { callerID: '+1-804-555-0247', callerName: 'Carlos Vega', address: '2201 Ironbridge Rd, Chesterfield, VA' },
+];
+
+function AiForemanPanel() {
+  const [log, setLog] = useState<CallLogEntry[]>([]);
+  const [simulating, setSimulating] = useState(false);
+
+  function simulateCall() {
+    setSimulating(true);
+    const caller = demoCallers[log.length % demoCallers.length];
+    setTimeout(() => {
+      const entry = virtualForeman.onIncomingCall(caller.callerID, caller.callerName, caller.address);
+      setLog((prev) => [entry, ...prev]);
+      setSimulating(false);
+    }, 800);
+  }
+
+  return (
+    <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <Mic className="w-5 h-5 text-[#ffcc00]" />
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+                AI-Foreman Voice Reception
+              </h2>
+              <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-0.5">
+                JWORDENAI v1.0 · {virtualForeman.voiceModel} · After-Hours Lead Lock
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-green-400">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              LIVE · {virtualForeman.hq}
+            </div>
+            <button
+              onClick={simulateCall}
+              disabled={simulating}
+              className="bg-[#ffcc00] text-black text-[11px] font-black uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {simulating ? '⏳ Processing…' : '📞 Simulate Incoming Call'}
+            </button>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {[
+            { label: 'Calls Intercepted', value: log.length.toString(), color: 'border-[#ffcc00]' },
+            { label: 'Avg. Sqft Measured', value: log.length ? Math.round(log.reduce((s, e) => s + e.sqft, 0) / log.length).toLocaleString() : '—', color: 'border-cyan-500' },
+            { label: 'Kickserv Leads Created', value: log.length.toString(), color: 'border-green-500' },
+          ].map((stat) => (
+            <div key={stat.label} className={`border-l-4 ${stat.color} bg-zinc-900/60 rounded-r-xl px-5 py-4`}>
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-1">{stat.label}</div>
+              <div className="text-2xl font-black text-white">{stat.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call log */}
+        {log.length === 0 ? (
+          <div className="border border-dashed border-zinc-800 rounded-xl p-10 text-center">
+            <Mic className="w-8 h-8 text-zinc-700 mx-auto mb-3" />
+            <p className="text-zinc-600 font-bold text-sm uppercase tracking-widest">
+              No calls yet — click "Simulate Incoming Call" to trigger the AI-Foreman
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {log.map((entry, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 grid md:grid-cols-[1fr_auto] gap-4 items-start"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-[#ffcc00] font-black text-sm uppercase tracking-wide">{entry.callerName}</span>
+                    <span className="text-[10px] text-zinc-600 font-bold">{entry.callerID}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest bg-green-900/40 text-green-400 border border-green-800/40 px-2 py-0.5 rounded">
+                      AI-Qualified
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-zinc-400 font-bold">{entry.address}</div>
+                  <div className="flex flex-wrap gap-4 mt-1">
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-cyan-400">
+                      <span className="text-zinc-600 font-bold">📡 Satellite:</span>
+                      {entry.sqft.toLocaleString()} sqft measured
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-purple-400">
+                      <span className="text-zinc-600 font-bold">🏗 Social Proof:</span>
+                      Cited {entry.socialProof.year} {entry.socialProof.project} in {entry.socialProof.city}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
+                    {new Date(entry.timestamp).toLocaleTimeString()}
+                  </div>
+                  <div className="text-[10px] font-black text-green-400 mt-1">✓ Kickserv Lead Created</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ── Dummy inputs for Claude Drop demo ────────────────────────────────────────
+const DEMO_SQFT = 50000;
+const DEMO_STATE = 'TX';
+const DEMO_ADDRESS = '12345 Lone Star Blvd, Dallas, TX 75201';
+const DEMO_DEPTH = 3;
+const DEMO_TYPE = 'INDUSTRIAL' as const;
+const DEMO_PROJECT_ID = `JWA-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-0001`;
+const DEMO_DELAY_MS = 600; // Artificial delay to simulate async AI processing
+
+// ── Ghost Protocol Activity Feed ──────────────────────────────────────────────
+const ghostFeed = [
+  { time: '04:12 AM', type: 'SYSTEM', color: 'text-red-400',    msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
+  { time: '04:14 AM', type: 'BID',    color: 'text-orange-400', msg: 'AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.' },
+  { time: '04:15 AM', type: 'MAIL',   color: 'text-yellow-400', msg: 'AUTO-DISPATCH: Commercial proposal generated and emailed to GC Estimating Dept.' },
+  { time: '04:18 AM', type: 'CREW',   color: 'text-green-400',  msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
+];
+
 function Dashboard() {
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white font-sans">
+    <main className={`min-h-screen bg-[#0a0a0a] text-white font-sans transition-colors duration-500 ${isAutonomousMode ? 'bg-[#0a0505]' : ''}`}>
+
+      {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
+      <section className="px-6 py-4 bg-black border-b border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-3">
+            <Radio className="w-4 h-4 text-[#f59e0b] animate-pulse" />
+            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#f59e0b]">
+              Live Operational Status
+            </h2>
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-auto" />
+            <span className="text-[9px] font-black uppercase tracking-widest text-green-400">ALL SYSTEMS GO</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* System Health */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">System Health</div>
+              <div className="flex flex-col gap-1">
+                {[
+                  { label: 'PWA Core', status: 'ACTIVE', color: 'text-green-400' },
+                  { label: 'Claude-3-Opus API', status: 'CONNECTED', color: 'text-green-400' },
+                  { label: 'Kickserv CRM', status: 'SYNCED', color: 'text-[#f59e0b]' },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-zinc-400">{item.label}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest ${item.color}`}>
+                      ● {item.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Active Crews */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Active Crews Online</div>
+              <div className="flex flex-col gap-1">
+                {[
+                  { label: 'Crew Alpha [TX]', status: 'App Online' },
+                  { label: 'Crew Beta [VA]', status: 'App Online' },
+                  { label: 'Crew Gamma [NC]', status: 'App Online' },
+                ].map((crew) => (
+                  <div key={crew.label} className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-zinc-400">{crew.label}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
+                      ● {crew.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Live Active Sites */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Live Active Sites</div>
+              <div className="text-xs font-black text-[#f59e0b] mb-1">
+                3 Active Pours
+              </div>
+              <div className="text-[10px] font-bold text-zinc-400 mb-2">
+                Dallas · Richmond · Charlotte
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-400" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
+                  All Margins Locked {'>'} 35%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
       <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden">
@@ -300,6 +550,188 @@ function Dashboard() {
           </p>
         </div>
       </section>
+      {/* ── CLAUDE AI INTELLIGENCE & PROJECTIONS ─────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Section header */}
+          <div className="flex items-center gap-3 mb-8">
+            <Bot className="w-5 h-5 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+              Claude AI Intelligence &amp; Projections
+            </h2>
+            <span className="ml-auto flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 rounded-full px-3 py-1 text-[9px] font-black uppercase tracking-widest text-yellow-400">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+              LIVE
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            {/* ── Active Model Status ── */}
+            <div className="col-span-1 lg:col-span-2 bg-zinc-900/60 border border-yellow-400/20 rounded-xl p-6">
+              <div className="text-[9px] font-black uppercase tracking-widest text-yellow-400/60 mb-2">
+                Active Model Status
+              </div>
+              <div className="flex flex-wrap items-center gap-3">
+                <span className="flex items-center gap-2 text-green-400 font-black text-sm uppercase tracking-widest">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  Status: ACTIVE
+                </span>
+                <span className="text-zinc-700">|</span>
+                <span className="text-yellow-400 font-black text-sm uppercase tracking-widest">
+                  Model: Claude-3-Opus
+                </span>
+                <span className="text-zinc-700">|</span>
+                <span className="text-orange-400 font-black text-sm uppercase tracking-widest">
+                  Scope: 50-State National Operation
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-500 font-bold mt-3 leading-relaxed">
+                JWORDENAI Drop Engine armed — dynamic DOT compliance active across all 50 states. Binder index $627.50 · Machine health surcharge $0.08/ton · 35% net margin floor enforced.
+              </p>
+            </div>
+
+            {/* ── Live Pipeline Projections ── */}
+            <div className="bg-zinc-900/60 border border-orange-500/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="w-4 h-4 text-orange-500" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-orange-500/70">
+                  Live Pipeline Projections
+                </div>
+              </div>
+              <div className="space-y-4">
+                <div className="flex items-end gap-3">
+                  <span className="text-4xl font-black text-white">14</span>
+                  <span className="text-sm font-black text-orange-400 uppercase tracking-wider mb-1">
+                    Commercial Bids Auto-Generated This Week
+                  </span>
+                </div>
+                <div className="h-px bg-zinc-800" />
+                <div className="flex items-end gap-3">
+                  <span className="text-4xl font-black text-yellow-400">$2.4M</span>
+                  <span className="text-sm font-black text-zinc-400 uppercase tracking-wider mb-1">
+                    Projected Pipeline Value
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-3 pt-2">
+                  {[
+                    { label: 'Federal / SAM.gov', value: '3', color: 'text-cyan-400' },
+                    { label: 'State DOT', value: '5', color: 'text-purple-400' },
+                    { label: 'Commercial', value: '6', color: 'text-orange-400' },
+                  ].map((item) => (
+                    <div key={item.label} className="bg-zinc-800/50 rounded-lg p-3 text-center">
+                      <div className={`text-2xl font-black ${item.color}`}>{item.value}</div>
+                      <div className="text-[9px] font-bold uppercase tracking-wider text-zinc-600 mt-1">{item.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* ── Whale Win Probability ── */}
+            <div className="bg-zinc-900/60 border border-yellow-400/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <Activity className="w-4 h-4 text-yellow-400" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-yellow-400/70">
+                  Whale Win Probability — Active {'>'} 20,000 sq ft Targets
+                </div>
+              </div>
+              <div className="space-y-3">
+                {[
+                  { name: 'Texas Plaza Street Partners', sqft: '50k sqft', prob: 82, state: 'TX', dot: 'TxDOT' },
+                  { name: 'KBP Brands — Southeast Cluster', sqft: '38k sqft', prob: 74, state: 'GA', dot: 'GDOT' },
+                  { name: 'Food City — K-VA-T Expansion', sqft: '27k sqft', prob: 69, state: 'VA', dot: 'VDOT' },
+                  { name: 'National Mall Overlay — USACE', sqft: '120k sqft', prob: 58, state: 'DC', dot: 'FHWA' },
+                ].map((target) => (
+                  <div key={target.name} className="flex items-center gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] font-black uppercase tracking-wide text-white truncate">{target.name}</span>
+                        <span aria-label="Warning: Industrial volume" className="shrink-0 text-[8px] font-black uppercase tracking-widest text-orange-500 bg-orange-500/10 border border-orange-500/20 rounded px-1.5 py-0.5">
+                          ⚠ {target.sqft}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="flex-1 h-1.5 bg-zinc-800 rounded-full overflow-hidden">
+                          <div
+                            className="h-full rounded-full bg-gradient-to-r from-yellow-500 to-yellow-300"
+                            style={{ width: `${target.prob}%` }}
+                          />
+                        </div>
+                        <span className={`shrink-0 text-[10px] font-black ${target.prob >= 75 ? 'text-green-400' : target.prob >= 60 ? 'text-yellow-400' : 'text-orange-400'}`}>
+                          {target.prob}%
+                        </span>
+                        <span className="shrink-0 text-[9px] font-bold text-zinc-600 uppercase">{target.dot}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 pt-4 border-t border-zinc-800 text-[9px] font-bold uppercase tracking-widest text-zinc-600">
+                Win Probability · Powered by Claude-3-Opus · DOT-Compliant Proposals Ready
+              </div>
+            </div>
+
+            {/* ── Margin Forecast ── */}
+            <div className="col-span-1 lg:col-span-2 bg-zinc-900/60 border border-green-500/20 rounded-xl p-6">
+              <div className="flex items-center gap-2 mb-4">
+                <DollarSign className="w-4 h-4 text-green-400" />
+                <div className="text-[9px] font-black uppercase tracking-widest text-green-400/70">
+                  Margin Forecast — 35% Net Floor Lock
+                </div>
+                <span aria-label="All bids compliant" className="ml-auto flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-green-400 bg-green-400/10 border border-green-400/20 rounded-full px-3 py-1">
+                  <CheckCircle className="w-3 h-3" />
+                  ALL BIDS COMPLIANT
+                </span>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { label: 'TX Plaza Street Partners', margin: 41, value: '$487K' },
+                  { label: 'KBP SE Cluster', margin: 38, value: '$312K' },
+                  { label: 'K-VA-T Food City', margin: 36, value: '$198K' },
+                  { label: 'USACE Mall Overlay', margin: 35, value: '$1.4M' },
+                ].map((bid) => (
+                  <div key={bid.label} className="bg-zinc-800/40 rounded-lg p-4">
+                    <div className="text-[9px] font-black uppercase tracking-wide text-zinc-500 mb-2 leading-tight">{bid.label}</div>
+                    <div className="flex items-end gap-2 mb-2">
+                      <span className={`text-2xl font-black ${bid.margin >= 40 ? 'text-green-400' : bid.margin >= 36 ? 'text-yellow-400' : 'text-orange-400'}`}>
+                        {bid.margin}%
+                      </span>
+                      <span className="text-xs font-bold text-zinc-500 mb-0.5">margin</span>
+                    </div>
+                    <div className="h-1.5 bg-zinc-700 rounded-full overflow-hidden mb-2">
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-green-600 to-green-400"
+                        style={{ width: `${Math.min((bid.margin / 50) * 100, 100)}%` }}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[9px] font-bold text-zinc-600 uppercase">Floor: 35%</span>
+                      <span className="text-[10px] font-black text-white">{bid.value}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap items-center gap-4 pt-4 border-t border-zinc-800">
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Binder Index Applied: $627.50/ton
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Machine Health Surcharge: $0.08/ton
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                  <CheckCircle className="w-3.5 h-3.5 text-green-400" />
+                  Oil-Price Shield: ±$9/ton
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
 
       {/* ── OPERATIONS TOOLS ─────────────────────────────────────────────── */}
       <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
@@ -320,6 +752,360 @@ function Dashboard() {
                 </div>
                 <div className="text-[10px] text-zinc-600 font-bold uppercase tracking-wider">{tool.desc}</div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── AI-FOREMAN VOICE RECEPTION ───────────────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-[#0d0d0d]">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Panel header */}
+          <div className="flex items-center gap-3 mb-2">
+            <Mic className="w-4 h-4 text-green-400 animate-pulse" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+              AI-Foreman Voice Reception — Richmond Metro Node
+            </h2>
+          </div>
+          <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mb-6">
+            JWORDENAI · 804 Hub · 72-City SEO Grid · Satellite Auto-Measure · Kickserv Auto-Inject
+          </p>
+
+          {/* Node status card */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="md:col-span-1 bg-zinc-900/80 border border-green-800/60 rounded-xl p-5 flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <Radio className="w-4 h-4 text-green-400 animate-pulse" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">Live Node — 804 Metro</span>
+              </div>
+              <div className="text-3xl font-black text-white tracking-tighter">804-446-1296</div>
+              <div className="text-[10px] text-zinc-500 font-bold uppercase leading-relaxed">
+                {richmondVoiceHub.primaryHQ}
+              </div>
+              <div className="mt-auto pt-3 border-t border-zinc-800">
+                <a
+                  href={`tel:${richmondVoiceHub.activeNumber}`}
+                  className="flex items-center gap-2 bg-green-900/30 border border-green-700/40 text-green-400 font-black uppercase tracking-widest text-[10px] px-4 py-2 hover:bg-green-800/40 transition-colors rounded"
+                >
+                  <Phone className="w-3 h-3" fill="currentColor" />
+                  Call Richmond Node
+                </a>
+              </div>
+            </div>
+
+            {/* Capability tags */}
+            <div className="md:col-span-2 bg-zinc-900/60 border border-zinc-800 rounded-xl p-5">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mb-3">Node Capabilities</div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {[
+                  '72-City SEO Grid Match',
+                  'Satellite Auto-Measure',
+                  '30-Year Social Proof Lookup',
+                  'Kickserv Auto-Inject',
+                  'CFO Margin Math',
+                  'After-Hours Lead Lock',
+                  'AI-Qualified Status',
+                  'Chester HQ Sync',
+                ].map((cap) => (
+                  <span
+                    key={cap}
+                    className="text-[9px] font-black uppercase tracking-wider bg-zinc-800 border border-zinc-700 text-zinc-400 px-2 py-1 rounded"
+                  >
+                    {cap}
+                  </span>
+                ))}
+              </div>
+              <div className="text-[10px] text-zinc-600 font-bold leading-relaxed">
+                Every inbound call on <span className="text-green-400 font-black">804-446-1296</span> is intercepted by the AI-Foreman,
+                matched to the nearest SEO city node in the 72-city Richmond Metro grid, satellite-measured for square footage,
+                and injected into Kickserv with CFO-grade margin math — before Gene picks up his coffee.
+              </div>
+            </div>
+          </div>
+
+          {/* Intercept log */}
+          <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 bg-zinc-900/60">
+              <Activity className="w-3 h-3 text-[#ffcc00]" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Live Intercept Log — 804 Richmond Node</span>
+              <span className="ml-auto flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[8px] font-black uppercase text-green-500 tracking-widest">Active</span>
+              </span>
+            </div>
+            <div className="divide-y divide-zinc-900">
+              {richmondVoiceHubDemoLog.map((entry) => (
+                <div
+                  key={entry.time}
+                  className={`grid grid-cols-2 md:grid-cols-5 gap-3 px-4 py-3 text-[10px] font-bold uppercase tracking-wide ${entry.highlight ? 'bg-green-950/20' : ''}`}
+                >
+                  <div className="text-zinc-600">{entry.time}</div>
+                  <div className="text-white">{entry.caller}</div>
+                  <div className="text-zinc-400 hidden md:block truncate">{entry.address}</div>
+                  <div className={`${entry.highlight ? 'text-green-400' : 'text-[#ffcc00]'}`}>
+                    ⬡ {entry.cityNode}
+                  </div>
+                  <div className="text-zinc-500">{entry.sqft} · {entry.status}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      {/* ── CLAUDE DROP ENGINE ───────────────────────────────────────────── */}
+      <section className="py-16 px-6 border-b border-zinc-900 bg-gradient-to-b from-zinc-950 to-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ffcc00]/70">
+              JWORDENAI · 50-State National Operation · Claude Drop Engine
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-2">
+            <span className="text-[#ffcc00]">CLAUDE</span>{' '}
+            <span className="text-white italic">DROP</span>
+          </h2>
+          <p className="text-zinc-400 font-bold text-sm max-w-2xl mb-8">
+            Convert raw CFO Math &amp; Satellite Data into elite Commercial Proposals and Kickserv JSON payloads.
+            Powered by GEMINI.md math core — binder index $627.50, 35% net margin floor, dynamic 50-state DOT compliance.
+          </p>
+
+          {/* Demo inputs badge row */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              { label: 'Sq Ft', value: DEMO_SQFT.toLocaleString() },
+              { label: 'State', value: DEMO_STATE },
+              { label: 'Type', value: DEMO_TYPE },
+              { label: 'Depth', value: `${DEMO_DEPTH}"` },
+              { label: 'Address', value: DEMO_ADDRESS },
+            ].map((item) => (
+              <div key={item.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 flex items-center gap-2">
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">{item.label}</span>
+                <span className="text-xs font-black text-white">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* INITIATE CLAUDE DROP button */}
+          <button
+            onClick={initiateDrop}
+            disabled={dropping}
+            className="group relative inline-flex items-center gap-4 bg-[#ffcc00] hover:bg-yellow-300 disabled:opacity-60 text-black font-black uppercase tracking-widest text-lg px-10 py-5 transition-all duration-200 shadow-[0_0_40px_rgba(255,204,0,0.4)] hover:shadow-[0_0_60px_rgba(255,204,0,0.7)] border-b-4 border-black/20 mb-10"
+          >
+            <Zap className="w-6 h-6" fill="currentColor" />
+            {dropping ? 'INITIATING DROP...' : 'INITIATE CLAUDE DROP'}
+          </button>
+
+          {/* Output area */}
+          {dropResult && (
+            <div className="grid lg:grid-cols-2 gap-6">
+
+              {/* Kickserv JSON Payload */}
+              <div className="bg-zinc-900 border border-[#ffcc00]/30 rounded-xl overflow-hidden">
+                <div className="bg-[#ffcc00]/10 border-b border-[#ffcc00]/20 px-5 py-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ffcc00]">
+                      Kickserv JSON Payload
+                    </span>
+                  </div>
+                  {dropResult.payload.sq_ft > 20000 && (
+                    <span className="text-[9px] font-black uppercase tracking-widest text-orange-400 bg-orange-900/30 border border-orange-700/40 px-2 py-1 rounded">
+                      🐋 WHALE ALERT
+                    </span>
+                  )}
+                </div>
+                <pre className="p-5 text-[11px] text-green-400 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap break-all">
+                  {JSON.stringify(dropResult.payload, null, 2)}
+                </pre>
+              </div>
+
+              {/* Claude Prompt */}
+              <div className="bg-zinc-900 border border-purple-800/40 rounded-xl overflow-hidden">
+                <div className="bg-purple-900/20 border-b border-purple-800/30 px-5 py-3 flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-purple-400">
+                    Claude Proposal Prompt
+                  </span>
+                </div>
+                <pre className="p-5 text-[11px] text-zinc-300 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap">
+                  {dropResult.prompt}
+                </pre>
+              </div>
+
+            </div>
+          )}
+
+          {/* Legend row */}
+          <div className="mt-8 flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest text-zinc-600">
+            <span>Model: {claudeDropEngine.model}</span>
+            <span>Binder Index: ${claudeDropEngine.binderIndex.toFixed(2)}</span>
+            <span>Margin Floor: 35%</span>
+            <span>DOT: {claudeDropEngine.getDOTCompliance(DEMO_STATE)}</span>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ── IRON MATRIX (FLEET HEALTH) ───────────────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+            <Truck className="w-4 h-4 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
+              The Iron Matrix — Fleet Health & Predictive Maintenance
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {ironMatrix.fleet.map((machine) => {
+              const isCritical = machine.hoursUntilService <= 0;
+              return (
+                <div
+                  key={machine.id}
+                  className={`border-l-4 rounded-r-xl p-5 ${isCritical ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{machine.location}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isCritical ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
+                      {machine.status}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-1">{machine.id}</div>
+                  <div className={`text-[11px] font-bold ${isCritical ? 'text-orange-400' : 'text-zinc-400'}`}>
+                    {isCritical ? (
+                      <span className="flex items-center gap-1">
+                        <AlertTriangle className="w-3 h-3" aria-hidden="true" />
+                        SERVICE OVERDUE — {Math.abs(machine.hoursUntilService)}h past threshold
+                      </span>
+                    ) : (
+                      `${machine.hoursUntilService}h remaining until scheduled service`
+                    )}
+                  </div>
+                  <div className="text-[11px] text-zinc-500 mt-1">
+                    Machine Health Fund: <span className="text-yellow-400 font-black">${machine.accruedSurcharge.toLocaleString()}</span> accrued
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Iron Matrix v1.0</div>
+            {ironMatrix.getFleetStatus().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[CRITICAL]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[CRITICAL]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── A/R ENFORCER (CASH FLOW PROTECTOR) ───────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+            <DollarSign className="w-4 h-4 text-orange-500" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-orange-500">
+              The A/R Enforcer — Cash Flow Protector
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {arEnforcer.outstandingInvoices.map((inv) => {
+              const isOverdue = inv.daysPastDue > 30;
+              return (
+                <div
+                  key={inv.client}
+                  className={`border-l-4 rounded-r-xl p-5 ${isOverdue ? 'border-orange-500 bg-orange-950/30' : 'border-zinc-600 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{inv.project}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isOverdue ? 'bg-orange-500/20 text-orange-400' : 'bg-zinc-700/40 text-zinc-400'}`}>
+                      {isOverdue ? 'PAST DUE' : 'NET-30 NOMINAL'}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-1">{inv.client}</div>
+                  <div className="text-2xl font-black text-yellow-400">${inv.amount.toLocaleString()}</div>
+                  <div className={`text-[11px] font-bold mt-1 ${isOverdue ? 'text-orange-400' : 'text-zinc-500'}`}>
+                    Day {inv.daysPastDue} of Net-30 {isOverdue ? `— ${inv.daysPastDue - 30} day(s) overdue` : ''}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · A/R Enforcer v1.0</div>
+            {arEnforcer.runAudit().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[A/R ALERT]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[A/R ALERT]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── PLANT PULSE (SUPPLY CHAIN LOGISTICS) ─────────────────────────── */}
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+            <Activity className="w-4 h-4 text-yellow-400" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
+              The Plant Pulse — Supply Chain Logistics
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
+            {plantPulse.plants.map((plant) => {
+              const isSevere = plant.waitTimeMins > 45;
+              const waitPct = Math.min(100, Math.round((plant.waitTimeMins / 120) * 100));
+              return (
+                <div
+                  key={plant.name}
+                  className={`border-l-4 rounded-r-xl p-5 ${isSevere ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
+                >
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{plant.location}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isSevere ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
+                      {plant.status.replace('_', ' ')}
+                    </span>
+                  </div>
+                  <div className="text-base font-black text-white mb-2">{plant.name}</div>
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${isSevere ? 'bg-orange-500' : 'bg-yellow-400'}`}
+                        style={{ width: `${waitPct}%` }}
+                      />
+                    </div>
+                    <span className={`text-xl font-black ${isSevere ? 'text-orange-400' : 'text-yellow-400'}`}>
+                      {plant.waitTimeMins} min
+                    </span>
+                  </div>
+                  {isSevere && (
+                    <div className="text-[11px] text-orange-400 font-bold flex items-center gap-1">
+                      <AlertTriangle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
+                      Reroute lowboys — $150/hr idle trucking cost at risk
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
+            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Plant Pulse v1.0</div>
+            {plantPulse.checkLogistics().map((line, i) => (
+              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[LOGISTICS WARNING]') ? 'text-orange-400' : 'text-zinc-400'}`}>
+                {line.startsWith('[LOGISTICS WARNING]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
+                {line}
+              </div>
             ))}
           </div>
         </div>

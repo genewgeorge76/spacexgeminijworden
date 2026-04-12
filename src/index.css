@@ -10,3 +10,17 @@
     font-family: 'Arial Black', sans-serif;
   }
 }
+
+@keyframes radarSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ghost-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.15), inset 0 0 0 1px rgba(249, 115, 22, 0.08); }
+  50%       { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.30), inset 0 0 0 1px rgba(239, 68, 68, 0.15); }
+}
+
+.ghost-protocol-panel {
+  animation: ghost-pulse 2.4s ease-in-out infinite;
+}
