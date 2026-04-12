@@ -9,6 +9,7 @@ import {
   Hammer,
   HardHat,
   MapPin,
+  Mic,
   Phone,
   Shield,
   Star,
@@ -17,8 +18,10 @@ import {
   Wrench,
   Zap,
 } from 'lucide-react';
+import { useState } from 'react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 import { franchiseTracker } from '../utils/franchiseTracker';
+import { type CallLogEntry, virtualForeman } from '../utils/virtualForeman';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -97,6 +100,7 @@ const tools = [
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
   { label: '🤖 Command Bot', route: '/command-bot', desc: 'JWORDENAI service priority terminal' },
+  { label: '🎙 AI-Foreman', route: '/dashboard#ai-foreman', desc: 'Voice reception & lead lock' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────
@@ -108,6 +112,123 @@ const areaGroups = [
   { label: 'Central VA Counties', count: 15, color: 'bg-purple-500' },
 ];
 const totalAreas = areaGroups.reduce((s, g) => s + g.count, 0);
+
+// ── Demo callers for the AI-Foreman panel ─────────────────────────────────────
+const demoCallers = [
+  { callerID: '+1-804-555-0101', callerName: 'Mike Thornton', address: '412 Bermuda Hundred Rd, Chester, VA' },
+  { callerID: '+1-804-555-0188', callerName: 'Lisa Greenway', address: '7700 Hull Street Rd, Richmond, VA' },
+  { callerID: '+1-804-555-0247', callerName: 'Carlos Vega', address: '2201 Ironbridge Rd, Chesterfield, VA' },
+];
+
+function AiForemanPanel() {
+  const [log, setLog] = useState<CallLogEntry[]>([]);
+  const [simulating, setSimulating] = useState(false);
+
+  function simulateCall() {
+    setSimulating(true);
+    const caller = demoCallers[log.length % demoCallers.length];
+    setTimeout(() => {
+      const entry = virtualForeman.onIncomingCall(caller.callerID, caller.callerName, caller.address);
+      setLog((prev) => [entry, ...prev]);
+      setSimulating(false);
+    }, 800);
+  }
+
+  return (
+    <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <Mic className="w-5 h-5 text-[#ffcc00]" />
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+                AI-Foreman Voice Reception
+              </h2>
+              <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-0.5">
+                JWORDENAI v1.0 · {virtualForeman.voiceModel} · After-Hours Lead Lock
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-green-400">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              LIVE · {virtualForeman.hq}
+            </div>
+            <button
+              onClick={simulateCall}
+              disabled={simulating}
+              className="bg-[#ffcc00] text-black text-[11px] font-black uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {simulating ? '⏳ Processing…' : '📞 Simulate Incoming Call'}
+            </button>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {[
+            { label: 'Calls Intercepted', value: log.length.toString(), color: 'border-[#ffcc00]' },
+            { label: 'Avg. Sqft Measured', value: log.length ? Math.round(log.reduce((s, e) => s + e.sqft, 0) / log.length).toLocaleString() : '—', color: 'border-cyan-500' },
+            { label: 'Kickserv Leads Created', value: log.length.toString(), color: 'border-green-500' },
+          ].map((stat) => (
+            <div key={stat.label} className={`border-l-4 ${stat.color} bg-zinc-900/60 rounded-r-xl px-5 py-4`}>
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-1">{stat.label}</div>
+              <div className="text-2xl font-black text-white">{stat.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call log */}
+        {log.length === 0 ? (
+          <div className="border border-dashed border-zinc-800 rounded-xl p-10 text-center">
+            <Mic className="w-8 h-8 text-zinc-700 mx-auto mb-3" />
+            <p className="text-zinc-600 font-bold text-sm uppercase tracking-widest">
+              No calls yet — click "Simulate Incoming Call" to trigger the AI-Foreman
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {log.map((entry, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 grid md:grid-cols-[1fr_auto] gap-4 items-start"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-[#ffcc00] font-black text-sm uppercase tracking-wide">{entry.callerName}</span>
+                    <span className="text-[10px] text-zinc-600 font-bold">{entry.callerID}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest bg-green-900/40 text-green-400 border border-green-800/40 px-2 py-0.5 rounded">
+                      AI-Qualified
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-zinc-400 font-bold">{entry.address}</div>
+                  <div className="flex flex-wrap gap-4 mt-1">
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-cyan-400">
+                      <span className="text-zinc-600 font-bold">📡 Satellite:</span>
+                      {entry.sqft.toLocaleString()} sqft measured
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-purple-400">
+                      <span className="text-zinc-600 font-bold">🏗 Social Proof:</span>
+                      Cited {entry.socialProof.year} {entry.socialProof.project} in {entry.socialProof.city}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
+                    {new Date(entry.timestamp).toLocaleTimeString()}
+                  </div>
+                  <div className="text-[10px] font-black text-green-400 mt-1">✓ Kickserv Lead Created</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
 
 function Dashboard() {
   return (
@@ -325,6 +446,9 @@ function Dashboard() {
           </div>
         </div>
       </section>
+
+      {/* ── AI-FOREMAN VOICE RECEPTION ───────────────────────────────────── */}
+      <AiForemanPanel />
 
       {/* ── CTA STRIP ────────────────────────────────────────────────────── */}
       <section className="py-12 px-6 bg-[#ffcc00]">
