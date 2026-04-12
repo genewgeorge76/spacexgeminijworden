@@ -295,7 +295,7 @@ type DropResult = {
 };
 
 function Dashboard() {
-  const [isAutonomousMode] = useState(false);
+  const isAutonomousMode = false;
   const [dropping, setDropping] = useState(false);
   const [dropResult, setDropResult] = useState<DropResult | null>(null);
 
