@@ -11,6 +11,7 @@ import {
   MapPin,
   Mic,
   Phone,
+  Radio,
   Shield,
   Star,
   TrendingUp,
@@ -22,10 +23,42 @@ import { useState } from 'react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 import { franchiseTracker } from '../utils/franchiseTracker';
 import { type CallLogEntry, virtualForeman } from '../utils/virtualForeman';
+import { richmondVoiceHub } from '../utils/richmondVoiceHub';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
 });
+
+// ── Richmond Voice Hub — demo intercept log ───────────────────────────────────
+const richmondVoiceHubDemoLog = [
+  {
+    time: '03:14 AM',
+    caller: 'Mike T.',
+    address: '4210 Midlothian Tpke, Richmond, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Midlothian'),
+    sqft: '14,800 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: true,
+  },
+  {
+    time: '07:42 AM',
+    caller: 'Sandra J.',
+    address: '1020 Hull Street, Richmond, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Richmond'),
+    sqft: '3,200 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: false,
+  },
+  {
+    time: '11:58 AM',
+    caller: 'Brandon K.',
+    address: '355 Colonial Ave, Petersburg, VA',
+    cityNode: richmondVoiceHub.matchCityNode('Petersburg'),
+    sqft: '8,600 sqft',
+    status: 'AI-Qualified → Kickserv',
+    highlight: false,
+  },
+];
 
 // ── Key Metrics ──────────────────────────────────────────────────────────────
 const metrics = [
@@ -448,7 +481,103 @@ function Dashboard() {
       </section>
 
       {/* ── AI-FOREMAN VOICE RECEPTION ───────────────────────────────────── */}
-      <AiForemanPanel />
+      <section className="py-12 px-6 border-b border-zinc-900 bg-[#0d0d0d]">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Panel header */}
+          <div className="flex items-center gap-3 mb-2">
+            <Mic className="w-4 h-4 text-green-400 animate-pulse" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+              AI-Foreman Voice Reception — Richmond Metro Node
+            </h2>
+          </div>
+          <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mb-6">
+            JWORDENAI · 804 Hub · 72-City SEO Grid · Satellite Auto-Measure · Kickserv Auto-Inject
+          </p>
+
+          {/* Node status card */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            <div className="md:col-span-1 bg-zinc-900/80 border border-green-800/60 rounded-xl p-5 flex flex-col gap-3">
+              <div className="flex items-center gap-2">
+                <Radio className="w-4 h-4 text-green-400 animate-pulse" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">Live Node — 804 Metro</span>
+              </div>
+              <div className="text-3xl font-black text-white tracking-tighter">804-446-1296</div>
+              <div className="text-[10px] text-zinc-500 font-bold uppercase leading-relaxed">
+                {richmondVoiceHub.primaryHQ}
+              </div>
+              <div className="mt-auto pt-3 border-t border-zinc-800">
+                <a
+                  href={`tel:${richmondVoiceHub.activeNumber}`}
+                  className="flex items-center gap-2 bg-green-900/30 border border-green-700/40 text-green-400 font-black uppercase tracking-widest text-[10px] px-4 py-2 hover:bg-green-800/40 transition-colors rounded"
+                >
+                  <Phone className="w-3 h-3" fill="currentColor" />
+                  Call Richmond Node
+                </a>
+              </div>
+            </div>
+
+            {/* Capability tags */}
+            <div className="md:col-span-2 bg-zinc-900/60 border border-zinc-800 rounded-xl p-5">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mb-3">Node Capabilities</div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {[
+                  '72-City SEO Grid Match',
+                  'Satellite Auto-Measure',
+                  '30-Year Social Proof Lookup',
+                  'Kickserv Auto-Inject',
+                  'CFO Margin Math',
+                  'After-Hours Lead Lock',
+                  'AI-Qualified Status',
+                  'Chester HQ Sync',
+                ].map((cap) => (
+                  <span
+                    key={cap}
+                    className="text-[9px] font-black uppercase tracking-wider bg-zinc-800 border border-zinc-700 text-zinc-400 px-2 py-1 rounded"
+                  >
+                    {cap}
+                  </span>
+                ))}
+              </div>
+              <div className="text-[10px] text-zinc-600 font-bold leading-relaxed">
+                Every inbound call on <span className="text-green-400 font-black">804-446-1296</span> is intercepted by the AI-Foreman,
+                matched to the nearest SEO city node in the 72-city Richmond Metro grid, satellite-measured for square footage,
+                and injected into Kickserv with CFO-grade margin math — before Gene picks up his coffee.
+              </div>
+            </div>
+          </div>
+
+          {/* Intercept log */}
+          <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 bg-zinc-900/60">
+              <Activity className="w-3 h-3 text-[#ffcc00]" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Live Intercept Log — 804 Richmond Node</span>
+              <span className="ml-auto flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                <span className="text-[8px] font-black uppercase text-green-500 tracking-widest">Active</span>
+              </span>
+            </div>
+            <div className="divide-y divide-zinc-900">
+              {richmondVoiceHubDemoLog.map((entry) => (
+                <div
+                  key={entry.time}
+                  className={`grid grid-cols-2 md:grid-cols-5 gap-3 px-4 py-3 text-[10px] font-bold uppercase tracking-wide ${entry.highlight ? 'bg-green-950/20' : ''}`}
+                >
+                  <div className="text-zinc-600">{entry.time}</div>
+                  <div className="text-white">{entry.caller}</div>
+                  <div className="text-zinc-400 hidden md:block truncate">{entry.address}</div>
+                  <div className={`${entry.highlight ? 'text-green-400' : 'text-[#ffcc00]'}`}>
+                    ⬡ {entry.cityNode}
+                  </div>
+                  <div className="text-zinc-500">{entry.sqft} · {entry.status}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
 
       {/* ── CTA STRIP ────────────────────────────────────────────────────── */}
       <section className="py-12 px-6 bg-[#ffcc00]">
