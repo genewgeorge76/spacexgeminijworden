@@ -1,0 +1,9 @@
+{
+  "major_accounts": [
+    { "name": "KFC", "projects": "Regional Repaving & Remodel", "status": "Legacy Partner" },
+    { "name": "Taco Bell", "projects": "Multi-State Pavement Maintenance", "status": "Legacy Partner" },
+    { "name": "Arby's", "projects": "Parking Lot Reconstruction", "status": "Legacy Partner" },
+    { "name": "Wendy's", "projects": "Asphalt & Concrete Integration", "status": "Legacy Partner" }
+  ],
+  "heritage": "Fourth Generation Asphalt Paving Contractor since 1984"
+}
