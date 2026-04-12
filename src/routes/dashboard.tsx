@@ -24,6 +24,7 @@ import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
 import { franchiseTracker } from '../utils/franchiseTracker';
 import { type CallLogEntry, virtualForeman } from '../utils/virtualForeman';
 import { richmondVoiceHub } from '../utils/richmondVoiceHub';
+import { claudeDropEngine } from '../utils/claudeDrop';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -262,6 +263,15 @@ function AiForemanPanel() {
     </section>
   );
 }
+
+// ── Dummy inputs for Claude Drop demo ────────────────────────────────────────
+const DEMO_SQFT = 50000;
+const DEMO_STATE = 'TX';
+const DEMO_ADDRESS = '12345 Lone Star Blvd, Dallas, TX 75201';
+const DEMO_DEPTH = 3;
+const DEMO_TYPE = 'INDUSTRIAL' as const;
+const DEMO_PROJECT_ID = `JWA-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-0001`;
+const DEMO_DELAY_MS = 600; // Artificial delay to simulate async AI processing
 
 function Dashboard() {
   return (
@@ -578,6 +588,103 @@ function Dashboard() {
         </div>
       </section>
 
+
+      {/* ── CLAUDE DROP ENGINE ───────────────────────────────────────────── */}
+      <section className="py-16 px-6 border-b border-zinc-900 bg-gradient-to-b from-zinc-950 to-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto">
+
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-3">
+            <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ffcc00]/70">
+              JWORDENAI · 50-State National Operation · Claude Drop Engine
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-2">
+            <span className="text-[#ffcc00]">CLAUDE</span>{' '}
+            <span className="text-white italic">DROP</span>
+          </h2>
+          <p className="text-zinc-400 font-bold text-sm max-w-2xl mb-8">
+            Convert raw CFO Math &amp; Satellite Data into elite Commercial Proposals and Kickserv JSON payloads.
+            Powered by GEMINI.md math core — binder index $627.50, 35% net margin floor, dynamic 50-state DOT compliance.
+          </p>
+
+          {/* Demo inputs badge row */}
+          <div className="flex flex-wrap gap-3 mb-8">
+            {[
+              { label: 'Sq Ft', value: DEMO_SQFT.toLocaleString() },
+              { label: 'State', value: DEMO_STATE },
+              { label: 'Type', value: DEMO_TYPE },
+              { label: 'Depth', value: `${DEMO_DEPTH}"` },
+              { label: 'Address', value: DEMO_ADDRESS },
+            ].map((item) => (
+              <div key={item.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 flex items-center gap-2">
+                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">{item.label}</span>
+                <span className="text-xs font-black text-white">{item.value}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* INITIATE CLAUDE DROP button */}
+          <button
+            onClick={initiateDrop}
+            disabled={dropping}
+            className="group relative inline-flex items-center gap-4 bg-[#ffcc00] hover:bg-yellow-300 disabled:opacity-60 text-black font-black uppercase tracking-widest text-lg px-10 py-5 transition-all duration-200 shadow-[0_0_40px_rgba(255,204,0,0.4)] hover:shadow-[0_0_60px_rgba(255,204,0,0.7)] border-b-4 border-black/20 mb-10"
+          >
+            <Zap className="w-6 h-6" fill="currentColor" />
+            {dropping ? 'INITIATING DROP...' : 'INITIATE CLAUDE DROP'}
+          </button>
+
+          {/* Output area */}
+          {dropResult && (
+            <div className="grid lg:grid-cols-2 gap-6">
+
+              {/* Kickserv JSON Payload */}
+              <div className="bg-zinc-900 border border-[#ffcc00]/30 rounded-xl overflow-hidden">
+                <div className="bg-[#ffcc00]/10 border-b border-[#ffcc00]/20 px-5 py-3 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
+                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ffcc00]">
+                      Kickserv JSON Payload
+                    </span>
+                  </div>
+                  {dropResult.payload.sq_ft > 20000 && (
+                    <span className="text-[9px] font-black uppercase tracking-widest text-orange-400 bg-orange-900/30 border border-orange-700/40 px-2 py-1 rounded">
+                      🐋 WHALE ALERT
+                    </span>
+                  )}
+                </div>
+                <pre className="p-5 text-[11px] text-green-400 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap break-all">
+                  {JSON.stringify(dropResult.payload, null, 2)}
+                </pre>
+              </div>
+
+              {/* Claude Prompt */}
+              <div className="bg-zinc-900 border border-purple-800/40 rounded-xl overflow-hidden">
+                <div className="bg-purple-900/20 border-b border-purple-800/30 px-5 py-3 flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
+                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-purple-400">
+                    Claude Proposal Prompt
+                  </span>
+                </div>
+                <pre className="p-5 text-[11px] text-zinc-300 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap">
+                  {dropResult.prompt}
+                </pre>
+              </div>
+
+            </div>
+          )}
+
+          {/* Legend row */}
+          <div className="mt-8 flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest text-zinc-600">
+            <span>Model: {claudeDropEngine.model}</span>
+            <span>Binder Index: ${claudeDropEngine.binderIndex.toFixed(2)}</span>
+            <span>Margin Floor: 35%</span>
+            <span>DOT: {claudeDropEngine.getDOTCompliance(DEMO_STATE)}</span>
+          </div>
+
+        </div>
+      </section>
 
       {/* ── CTA STRIP ────────────────────────────────────────────────────── */}
       <section className="py-12 px-6 bg-[#ffcc00]">
