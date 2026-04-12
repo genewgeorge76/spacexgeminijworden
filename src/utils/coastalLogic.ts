@@ -6,7 +6,7 @@ export const coastalEmpire = {
     GA: { landmark: "Savannah Historic District", focus: "Heritage Restoration" }
   },
   injectLocalSignals: function(stateCode: string) {
-    const hub = this.hubs[stateCode as keyof typeof this.hubs];
+    const hub = coastalEmpire.hubs[stateCode as keyof typeof coastalEmpire.hubs];
     if (hub) {
       return {
         schemaLandmark: hub.landmark,
