@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import legacyData from '../data/legacyPortfolio.json';
 import { JWordenAI } from '../ai/JWordenAIEngine';
+import { ProjectDominanceGallery } from './ProjectDominanceGallery';
 
 type LegacyAccount = {
   name?: string;
@@ -105,6 +106,11 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Project Dominance Gallery */}
+        <div className="col-span-2">
+          <ProjectDominanceGallery />
         </div>
 
         <div className="bg-glass p-6 rounded-xl border border-white/10 h-fit">
