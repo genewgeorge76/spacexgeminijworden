@@ -20,7 +20,6 @@ import {
   TrendingUp,
   Truck,
   Wrench,
-  LogOut,
   Zap,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -32,7 +31,6 @@ import { claudeDropEngine } from '../utils/claudeDrop';
 import { arEnforcer } from '../utils/arEnforcer';
 import { ironMatrix } from '../utils/ironMatrix';
 import { plantPulse } from '../utils/plantPulse';
-import { useAuth } from '@/lib/auth-context';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -291,7 +289,29 @@ const ghostFeed = [
   { time: '04:18 AM', type: 'CREW',   color: 'text-green-400',  msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
 ];
 
+type DropResult = {
+  payload: ReturnType<typeof claudeDropEngine.generateKickservPayload>;
+  prompt: string;
+};
+
 function Dashboard() {
+  const [isAutonomousMode] = useState(false);
+  const [dropping, setDropping] = useState(false);
+  const [dropResult, setDropResult] = useState<DropResult | null>(null);
+
+  function initiateDrop() {
+    setDropping(true);
+    setDropResult(null);
+    setTimeout(() => {
+      const payload = claudeDropEngine.generateKickservPayload(
+        DEMO_PROJECT_ID, DEMO_STATE, DEMO_SQFT, DEMO_DEPTH, DEMO_TYPE,
+      );
+      const prompt = claudeDropEngine.generateClaudePrompt(payload, DEMO_ADDRESS);
+      setDropResult({ payload, prompt });
+      setDropping(false);
+    }, DEMO_DELAY_MS);
+  }
+
   return (
     <main className={`min-h-screen bg-[#0a0a0a] text-white font-sans transition-colors duration-500 ${isAutonomousMode ? 'bg-[#0a0505]' : ''}`}>
 
@@ -869,9 +889,30 @@ function Dashboard() {
             </div>
           </div>
 
+          {/* AI Foreman Simulator */}
+          <AiForemanPanel />
+
         </div>
       </section>
 
+      {/* ── GHOST PROTOCOL FEED ──────────────────────────────────────────── */}
+      <section className="py-8 px-6 border-b border-zinc-900 bg-zinc-950/60">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">Ghost Protocol — Autonomous Activity Feed</span>
+          </div>
+          <div className="space-y-1.5">
+            {ghostFeed.map((entry) => (
+              <div key={entry.time} className="flex items-start gap-4 font-mono text-[11px]">
+                <span className="text-zinc-600 whitespace-nowrap">{entry.time}</span>
+                <span className={`font-black uppercase tracking-widest w-14 flex-shrink-0 ${entry.color}`}>{entry.type}</span>
+                <span className="text-zinc-400">{entry.msg}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── CLAUDE DROP ENGINE ───────────────────────────────────────────── */}
       <section className="py-16 px-6 border-b border-zinc-900 bg-gradient-to-b from-zinc-950 to-[#0a0a0a]">
