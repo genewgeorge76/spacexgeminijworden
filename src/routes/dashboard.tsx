@@ -96,6 +96,7 @@ const tools = [
   { label: '📈 Investor ROI', route: '/investor-roi', desc: 'Capital & yield model' },
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
+  { label: '🤖 Command Bot', route: '/command-bot', desc: 'JWORDENAI service priority terminal' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────

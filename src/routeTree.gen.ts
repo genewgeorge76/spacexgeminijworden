@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
@@ -17,7 +18,6 @@ import { Route as SealcoatingRouteImport } from './routes/sealcoating'
 import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
-import { Route as RealEstateAiRouteImport } from './routes/real-estate-ai'
 import { Route as ProfitNodeRouteImport } from './routes/profit-node'
 import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
 import { Route as PreConRouteImport } from './routes/pre-con'
@@ -35,7 +35,6 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
-import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
@@ -98,6 +97,11 @@ import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 
+const CommandBotRoute = CommandBotRouteImport.update({
+  id: '/command-bot',
+  path: '/command-bot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhaleHunterRoute = WhaleHunterRouteImport.update({
   id: '/whale-hunter',
   path: '/whale-hunter',
@@ -136,11 +140,6 @@ const RoofingRoute = RoofingRouteImport.update({
 const ResidentialRoute = ResidentialRouteImport.update({
   id: '/residential',
   path: '/residential',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RealEstateAiRoute = RealEstateAiRouteImport.update({
-  id: '/real-estate-ai',
-  path: '/real-estate-ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProfitNodeRoute = ProfitNodeRouteImport.update({
@@ -226,11 +225,6 @@ const ConcreteRoute = ConcreteRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommandCenterRoute = CommandCenterRouteImport.update({
-  id: '/command-center',
-  path: '/command-center',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -543,7 +537,7 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/command-center': typeof CommandCenterRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -561,7 +555,6 @@ export interface FileRoutesByFullPath {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
-  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -633,7 +626,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/command-center': typeof CommandCenterRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -651,7 +644,6 @@ export interface FileRoutesByTo {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
-  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -724,7 +716,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/command-center': typeof CommandCenterRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -742,7 +734,6 @@ export interface FileRoutesById {
   '/pre-con': typeof PreConRoute
   '/pre-con-dashboard': typeof PreConDashboardRoute
   '/profit-node': typeof ProfitNodeRoute
-  '/real-estate-ai': typeof RealEstateAiRoute
   '/residential': typeof ResidentialRoute
   '/roofing': typeof RoofingRoute
   '/safety': typeof SafetyRoute
@@ -816,7 +807,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/command-center'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -834,7 +825,6 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
-    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -906,7 +896,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/command-center'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -924,7 +914,6 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
-    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -996,7 +985,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
-    | '/command-center'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1014,7 +1003,6 @@ export interface FileRouteTypes {
     | '/pre-con'
     | '/pre-con-dashboard'
     | '/profit-node'
-    | '/real-estate-ai'
     | '/residential'
     | '/roofing'
     | '/safety'
@@ -1087,7 +1075,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  CommandCenterRoute: typeof CommandCenterRoute
+  CommandBotRoute: typeof CommandBotRoute
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
@@ -1105,7 +1093,6 @@ export interface RootRouteChildren {
   PreConRoute: typeof PreConRoute
   PreConDashboardRoute: typeof PreConDashboardRoute
   ProfitNodeRoute: typeof ProfitNodeRoute
-  RealEstateAiRoute: typeof RealEstateAiRoute
   ResidentialRoute: typeof ResidentialRoute
   RoofingRoute: typeof RoofingRoute
   SafetyRoute: typeof SafetyRoute
@@ -1240,13 +1227,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProfitNodeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/real-estate-ai': {
-      id: '/real-estate-ai'
-      path: '/real-estate-ai'
-      fullPath: '/real-estate-ai'
-      preLoaderRoute: typeof RealEstateAiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pre-con-dashboard': {
       id: '/pre-con-dashboard'
       path: '/pre-con-dashboard'
@@ -1359,11 +1339,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommercialRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/command-center': {
-      id: '/command-center'
-      path: '/command-center'
-      fullPath: '/command-center'
-      preLoaderRoute: typeof CommandCenterRouteImport
+    '/command-bot': {
+      id: '/command-bot'
+      path: '/command-bot'
+      fullPath: '/command-bot'
+      preLoaderRoute: typeof CommandBotRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1799,7 +1779,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  CommandCenterRoute: CommandCenterRoute,
+  CommandBotRoute: CommandBotRoute,
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
@@ -1817,7 +1797,6 @@ const rootRouteChildren: RootRouteChildren = {
   PreConRoute: PreConRoute,
   PreConDashboardRoute: PreConDashboardRoute,
   ProfitNodeRoute: ProfitNodeRoute,
-  RealEstateAiRoute: RealEstateAiRoute,
   ResidentialRoute: ResidentialRoute,
   RoofingRoute: RoofingRoute,
   SafetyRoute: SafetyRoute,
