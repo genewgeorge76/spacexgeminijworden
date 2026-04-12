@@ -1,18 +1,11 @@
 /**
- * JWORDENAI Iron Matrix
- * Tracks Machine Health Surcharge funds and predictive maintenance for the 50-state fleet.
+ * ============================================================================
+ * PROPRIETARY AND CONFIDENTIAL
+ * Copyright (c) 2026 Gene W. George / J. Worden & Sons Asphalt Paving.
+ * All Rights Reserved.
+ *
+ * Unauthorized copying of this file, via any medium, is strictly prohibited.
+ * The algorithms, pricing models, and logic contained herein ("JWORDENAI")
+ * are the exclusive property of Gene W. George.
+ * ============================================================================
  */
-export const ironMatrix = {
-    fleet: [
-        { id: "Mauldin-690-TX", location: "Dallas, TX", status: "ACTIVE", hoursUntilService: 42, accruedSurcharge: 14500.00 },
-        { id: "LeeBoy-8520-VA", location: "Chester, VA", status: "MAINTENANCE_REQUIRED", hoursUntilService: -5, accruedSurcharge: 8200.50 }
-    ],
-    getFleetStatus: function() {
-        return this.fleet.map(machine => {
-            if (machine.hoursUntilService <= 0) {
-                return `[CRITICAL]: ${machine.id} requires immediate service. $${machine.accruedSurcharge} available in Health Fund.`;
-            }
-            return `${machine.id} (${machine.location}) - Nominal. ${machine.hoursUntilService}h to service.`;
-        });
-    }
-};
