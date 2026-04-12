@@ -1,0 +1,7 @@
+{
+  "accounts": [
+    { "name": "KBP Brands", "lead": "Mike Kulp", "hq": "Leawood, KS", "priority": "CRITICAL" },
+    { "name": "Plaza Street Partners", "lead": "Don Larsen", "hq": "Leawood, KS", "priority": "HIGH" },
+    { "name": "Inova Real Estate Services", "lead": "Asset Manager", "hq": "Fairfax, VA", "priority": "HIGH" }
+  ]
+}
