@@ -62,7 +62,6 @@ export default function CommandBotUI() {
           placeholder="Enter command..."
           aria-label="Command input"
           className="flex-1 bg-zinc-800 border border-zinc-600 text-zinc-100 placeholder-zinc-600 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-[#ffcc00] transition-colors font-mono"
-          autoFocus
         />
         <button
           type="submit"
