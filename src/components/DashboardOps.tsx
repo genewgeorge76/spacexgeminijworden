@@ -2,6 +2,7 @@ import { useState } from 'react';
 import legacyData from '../data/legacyPortfolio.json';
 import { JWordenAI } from '../ai/JWordenAIEngine';
 import { ProjectDominanceGallery } from './ProjectDominanceGallery';
+import { NegotiationPanel } from './NegotiationPanel';
 
 type LegacyAccount = {
   name?: string;
@@ -40,6 +41,13 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
 
   const heritageLine = getHeritageLine();
   const majorAccounts = getMajorAccounts();
+  const activeLead = {
+    name: majorAccounts[0]?.name ?? 'Target Account',
+    email: 'estimating@jwordenandsons.com',
+    estimatedPrice: 185000,
+    tonnage: 720,
+    projectDays: 4,
+  };
 
   const runEstimator = async () => {
     setIsGenerating(true);
@@ -121,6 +129,7 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
           <button className="w-full bg-[#1f1f23] hover:bg-black text-white border border-white/20 font-bold py-3 px-4 rounded-lg mb-3">2. DEPLOY TWILIO SMS SURGE</button>
           <button className="w-full bg-[#1f1f23] hover:bg-black text-white border border-white/20 font-bold py-3 px-4 rounded-lg mb-3">3. GENERATE LEGAL PDF</button>
           <button className="w-full bg-[#1f1f23] hover:bg-black text-white border border-white/20 font-bold py-3 px-4 rounded-lg">4. AUDIT STRIPE MOAT DEPOSITS</button>
+          <NegotiationPanel activeLead={activeLead} />
         </div>
       </div>
     </div>
