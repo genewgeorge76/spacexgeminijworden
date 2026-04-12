@@ -29,6 +29,7 @@ import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
 import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
 import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as FieldRouteImport } from './routes/field'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
 import { Route as DispatchRouteImport } from './routes/dispatch'
@@ -196,6 +197,11 @@ const GcBidRoute = GcBidRouteImport.update({
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FieldRoute = FieldRouteImport.update({
+  id: '/field',
+  path: '/field',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstimatorRoute = EstimatorRouteImport.update({
@@ -551,6 +557,7 @@ export interface FileRoutesByFullPath {
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/investor-roi': typeof InvestorRoiRoute
@@ -641,6 +648,7 @@ export interface FileRoutesByTo {
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/investor-roi': typeof InvestorRoiRoute
@@ -732,6 +740,7 @@ export interface FileRoutesById {
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
   '/gc-bid': typeof GcBidRoute
   '/investor-roi': typeof InvestorRoiRoute
@@ -824,6 +833,7 @@ export interface FileRouteTypes {
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
+    | '/field'
     | '/gallery'
     | '/gc-bid'
     | '/investor-roi'
@@ -914,6 +924,7 @@ export interface FileRouteTypes {
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
+    | '/field'
     | '/gallery'
     | '/gc-bid'
     | '/investor-roi'
@@ -1004,6 +1015,7 @@ export interface FileRouteTypes {
     | '/dispatch'
     | '/dispatch-node'
     | '/estimator'
+    | '/field'
     | '/gallery'
     | '/gc-bid'
     | '/investor-roi'
@@ -1095,6 +1107,7 @@ export interface RootRouteChildren {
   DispatchRoute: typeof DispatchRoute
   DispatchNodeRoute: typeof DispatchNodeRoute
   EstimatorRoute: typeof EstimatorRoute
+  FieldRoute: typeof FieldRoute
   GalleryRoute: typeof GalleryRoute
   GcBidRoute: typeof GcBidRoute
   InvestorRoiRoute: typeof InvestorRoiRoute
@@ -1308,6 +1321,13 @@ declare module '@tanstack/react-router' {
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/field': {
+      id: '/field'
+      path: '/field'
+      fullPath: '/field'
+      preLoaderRoute: typeof FieldRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estimator': {
@@ -1807,6 +1827,7 @@ const rootRouteChildren: RootRouteChildren = {
   DispatchRoute: DispatchRoute,
   DispatchNodeRoute: DispatchNodeRoute,
   EstimatorRoute: EstimatorRoute,
+  FieldRoute: FieldRoute,
   GalleryRoute: GalleryRoute,
   GcBidRoute: GcBidRoute,
   InvestorRoiRoute: InvestorRoiRoute,
