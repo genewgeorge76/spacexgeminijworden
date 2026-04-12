@@ -32,9 +32,12 @@ import { claudeDropEngine } from '../utils/claudeDrop';
 import { arEnforcer } from '../utils/arEnforcer';
 import { ironMatrix } from '../utils/ironMatrix';
 import { plantPulse } from '../utils/plantPulse';
-import { useAuth } from '@/lib/auth-context';
+import { requireOwnerAccess } from '@/lib/accessControl';
 
 export const Route = createFileRoute('/dashboard')({
+  beforeLoad: () => {
+    requireOwnerAccess();
+  },
   component: Dashboard,
 });
 

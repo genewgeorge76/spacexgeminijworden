@@ -1,0 +1,29 @@
+{
+  "brand": "J. Worden & Sons Paving LLC",
+  "heritage": {
+    "founded": 1984,
+    "summary": "Founded in 1984, J. Worden & Sons built a multi-generation reputation delivering municipal-grade paving and fast-turn commercial sitework."
+  },
+  "majorAccounts": [
+    {
+      "name": "KFC",
+      "category": "QSR",
+      "relationship": "National and regional paving support"
+    },
+    {
+      "name": "Taco Bell",
+      "category": "QSR",
+      "relationship": "Ground-up and resurfacing partner"
+    },
+    {
+      "name": "Arby's",
+      "category": "QSR",
+      "relationship": "Commercial lot and access paving"
+    },
+    {
+      "name": "Wendy's",
+      "category": "QSR",
+      "relationship": "Pavement rehabilitation and striping support"
+    }
+  ]
+}

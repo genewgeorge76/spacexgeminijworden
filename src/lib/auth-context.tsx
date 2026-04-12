@@ -19,7 +19,7 @@ interface AuthContextValue {
   logout: () => void;
 }
 
-const STORAGE_KEY = 'jwordenai_session';
+export const AUTH_SESSION_STORAGE_KEY = 'jwordenai_session';
 
 const CREDENTIALS: Record<string, { passcode: string; role: UserRole }> = {
   george_exec: { passcode: 'admin35', role: 'OWNER' },
@@ -28,7 +28,7 @@ const CREDENTIALS: Record<string, { passcode: string; role: UserRole }> = {
 
 function loadSession(): AuthUser | null {
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY);
+    const raw = sessionStorage.getItem(AUTH_SESSION_STORAGE_KEY);
     if (!raw) return null;
     return JSON.parse(raw) as AuthUser;
   } catch {
@@ -37,11 +37,11 @@ function loadSession(): AuthUser | null {
 }
 
 function saveSession(user: AuthUser): void {
-  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(user));
+  sessionStorage.setItem(AUTH_SESSION_STORAGE_KEY, JSON.stringify(user));
 }
 
 function clearSession(): void {
-  sessionStorage.removeItem(STORAGE_KEY);
+  sessionStorage.removeItem(AUTH_SESSION_STORAGE_KEY);
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
