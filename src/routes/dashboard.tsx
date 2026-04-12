@@ -1,7 +1,4 @@
-import { useState } from 'react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { createFileRoute, Link, useNavigate } from '@tanstack/react-router';
-import { useEffect, useState, useRef } from 'react';
 import {
   Activity,
   AlertTriangle,
@@ -13,7 +10,6 @@ import {
   DollarSign,
   Hammer,
   HardHat,
-  LogOut,
   MapPin,
   Mic,
   Phone,
@@ -23,6 +19,7 @@ import {
   TrendingUp,
   Truck,
   Wrench,
+  LogOut,
   Zap,
 } from 'lucide-react';
 import { useState } from 'react';
@@ -178,67 +175,6 @@ function AiForemanPanel() {
       setLog((prev) => [entry, ...prev]);
       setSimulating(false);
     }, 800);
-// ── Ghost Protocol activity feed ─────────────────────────────────────────────
-const FEED_MESSAGES = [
-  '04:12 AM — GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.',
-  '04:14 AM — AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.',
-  '04:15 AM — AUTO-DISPATCH: Commercial proposal generated & emailed to GC Estimating.',
-  '04:18 AM — FOREMAN ALERT: Job won. Dispatching GPS & 410-ton target to Crew Alpha.',
-  '04:22 AM — PLANT PULSE: Vulcan Materials Chester — 12 min wait. Selected.',
-  '04:25 AM — WHALE HUNTER: New KFC permit detected — Colonial Heights VA. Proposal queued.',
-  '04:31 AM — VDOT CHECK: 96% Marshall compaction standard verified on JOB-2401.',
-  '04:38 AM — BID SUBMITTED: SAM.gov solicitation #VA-2024-8841 — $2.1M asphalt resurfacing.',
-];
-
-function GhostProtocolFeed() {
-  const [lines, setLines] = useState<string[]>([]);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setLines([FEED_MESSAGES[0]]);
-    let idx = 1;
-    const interval = setInterval(() => {
-      if (idx < FEED_MESSAGES.length) {
-        setLines((prev) => [...prev, FEED_MESSAGES[idx++]]);
-      } else {
-        idx = 0;
-      }
-    }, 2200);
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [lines]);
-
-  return (
-    <div className="bg-black/60 border border-red-900/40 rounded-xl p-4 h-44 overflow-y-auto font-mono text-[10px] space-y-1">
-      {lines.map((line, i) => (
-        <div key={i} className="text-green-400/90 leading-relaxed">
-          <span className="text-green-600/60">›</span> {line}
-        </div>
-      ))}
-      <div ref={bottomRef} />
-    </div>
-  );
-}
-
-function Dashboard() {
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
-  const [ghostMode, setGhostMode] = useState(false);
-
-  useEffect(() => {
-    if (!user || user.role !== 'OWNER') {
-      navigate({ to: '/login' });
-    }
-  }, [user, navigate]);
-
-  if (!user || user.role !== 'OWNER') return null;
-
-  function handleLogout() {
-    logout();
-    navigate({ to: '/login' });
   }
 
   return (
@@ -346,12 +282,6 @@ const DEMO_TYPE = 'INDUSTRIAL' as const;
 const DEMO_PROJECT_ID = `JWA-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-0001`;
 const DEMO_DELAY_MS = 600; // Artificial delay to simulate async AI processing
 
-// ── Ghost Protocol Activity Feed ─────────────────────────────────────────────
-const ghostFeed = [
-  { time: '04:12 AM', msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
-  { time: '04:14 AM', msg: 'AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.' },
-  { time: '04:15 AM', msg: 'AUTO-DISPATCH: Commercial proposal generated and emailed to GC Estimating Dept.' },
-  { time: '04:18 AM', msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
 // ── Ghost Protocol Activity Feed ──────────────────────────────────────────────
 const ghostFeed = [
   { time: '04:12 AM', type: 'SYSTEM', color: 'text-red-400',    msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
@@ -361,67 +291,8 @@ const ghostFeed = [
 ];
 
 function Dashboard() {
-  const [isAutonomousMode, setIsAutonomousMode] = useState(false);
-
-  const panelCls = isAutonomousMode ? 'ghost-protocol-panel' : '';
-
   return (
     <main className={`min-h-screen bg-[#0a0a0a] text-white font-sans transition-colors duration-500 ${isAutonomousMode ? 'bg-[#0a0505]' : ''}`}>
-
-      {/* ── GHOST PROTOCOL MASTER SWITCH ─────────────────────────────────── */}
-      <section className={`py-6 px-6 flex flex-col items-center gap-4 border-b transition-colors duration-500 ${isAutonomousMode ? 'bg-gradient-to-b from-red-950/40 to-[#0a0a0a] border-red-900/50' : 'bg-[#0a0a0a] border-zinc-900'}`}>
-        <p className={`text-[9px] font-black uppercase tracking-[0.5em] transition-colors duration-300 ${isAutonomousMode ? 'text-red-500/70' : 'text-zinc-600'}`}>
-          JWORDENAI™ — Master Autonomy Control
-        </p>
-
-        {/* Toggle button */}
-        <button
-          type="button"
-          onClick={() => setIsAutonomousMode((v) => !v)}
-          className={`relative flex items-center justify-between w-full max-w-lg rounded-2xl px-6 py-4 border-2 font-black uppercase tracking-widest text-sm transition-all duration-500 select-none shadow-2xl ${
-            isAutonomousMode
-              ? 'bg-gradient-to-r from-red-950 via-orange-950 to-red-950 border-red-600/70 text-red-300 shadow-red-900/50 animate-pulse'
-              : 'bg-zinc-900 border-zinc-700 text-amber-400 hover:border-amber-500/50'
-          }`}
-          aria-pressed={isAutonomousMode}
-        >
-          {/* Left label */}
-          <span className={`flex items-center gap-2 transition-opacity duration-300 ${isAutonomousMode ? 'opacity-30' : 'opacity-100'}`}>
-            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0" />
-            SYSTEM OVERRIDE: MANUAL
-          </span>
-
-          {/* Pill track */}
-          <span className={`relative mx-4 w-14 h-7 rounded-full border-2 transition-all duration-500 shrink-0 ${isAutonomousMode ? 'bg-red-600 border-red-400' : 'bg-zinc-800 border-zinc-600'}`}>
-            <span className={`absolute top-0.5 w-5 h-5 rounded-full shadow-lg transition-all duration-500 ${isAutonomousMode ? 'left-[calc(100%-1.5rem)] bg-red-200' : 'left-0.5 bg-amber-400'}`} />
-          </span>
-
-          {/* Right label */}
-          <span className={`flex items-center gap-2 transition-opacity duration-300 ${isAutonomousMode ? 'opacity-100' : 'opacity-30'}`}>
-            GHOST PROTOCOL: AUTONOMOUS
-            <span className={`w-2.5 h-2.5 rounded-full bg-red-500 shrink-0 ${isAutonomousMode ? 'animate-ping' : ''}`} />
-          </span>
-        </button>
-
-        {/* Activity Feed — visible only when autonomous */}
-        {isAutonomousMode && (
-          <div className="w-full max-w-lg rounded-xl border border-red-900/40 bg-black/60 backdrop-blur-sm overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-red-900/30 bg-red-950/30">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">Live Autonomous Activity Feed</span>
-            </div>
-            <ul className="divide-y divide-red-900/20">
-              {ghostFeed.map((entry) => (
-                <li key={entry.time} className="flex items-start gap-3 px-4 py-3">
-                  <span className="text-[9px] font-black uppercase tracking-wider text-zinc-600 shrink-0 pt-0.5 w-14">{entry.time}</span>
-                  <span className={`text-[9px] font-black uppercase tracking-widest shrink-0 pt-0.5 w-12 ${entry.color}`}>{entry.type}</span>
-                  <span className="text-[10px] text-zinc-300 font-bold leading-relaxed">{entry.msg}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </section>
 
       {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
       <section className="px-6 py-4 bg-black border-b border-zinc-900">
@@ -491,127 +362,8 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* ── GHOST PROTOCOL MASTER SWITCH ─────────────────────────────────── */}
-      <section
-        className={`sticky top-0 z-50 py-4 px-6 flex flex-col items-center justify-center gap-3 border-b transition-all duration-700 ${
-          isAutonomousMode
-            ? 'bg-[#0f0000] border-red-900'
-            : 'bg-[#0f0f0f] border-zinc-900'
-        }`}
-      >
-        {/* Status label */}
-        <div className="flex items-center gap-3">
-          {isAutonomousMode && (
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping absolute" />
-          )}
-          <span
-            className={`text-[9px] font-black uppercase tracking-[0.5em] transition-colors duration-500 ${
-              isAutonomousMode ? 'text-red-400' : 'text-zinc-500'
-            }`}
-          >
-            {isAutonomousMode ? 'GHOST PROTOCOL: AUTONOMOUS' : 'SYSTEM OVERRIDE: MANUAL'}
-          </span>
-        </div>
-
-        {/* Toggle switch */}
-        <button
-          onClick={() => setIsAutonomousMode((v) => !v)}
-          aria-pressed={isAutonomousMode}
-          aria-label={isAutonomousMode ? 'Disengage Ghost Protocol' : 'Engage Ghost Protocol'}
-          className={`relative inline-flex h-10 w-64 items-center rounded-full border-2 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
-            isAutonomousMode
-              ? 'bg-gradient-to-r from-red-900 to-orange-900 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.6)] focus:ring-red-500 animate-[borderPulse_2s_ease-in-out_infinite]'
-              : 'bg-zinc-900 border-zinc-700 hover:border-amber-600/60 focus:ring-amber-500'
-          }`}
-        >
-          {/* Track labels */}
-          <span
-            className={`absolute left-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
-              isAutonomousMode ? 'opacity-0' : 'opacity-100 text-amber-400'
-            }`}
-          >
-            MANUAL
-          </span>
-          <span
-            className={`absolute right-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
-              isAutonomousMode ? 'opacity-100 text-red-300' : 'opacity-0'
-            }`}
-          >
-            AUTONOMOUS
-          </span>
-          {/* Thumb */}
-          <span
-            className={`absolute top-1 h-7 w-7 rounded-full shadow-lg transition-all duration-500 ${
-              isAutonomousMode
-                ? 'left-[calc(100%-2rem)] bg-gradient-to-br from-red-400 to-orange-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]'
-                : 'left-1 bg-gradient-to-br from-zinc-300 to-zinc-500'
-            }`}
-          />
-        </button>
-
-        {/* Ghost Protocol label row */}
-        <div
-          className={`text-[10px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${
-            isAutonomousMode ? 'text-red-500' : 'text-zinc-700'
-          }`}
-        >
-          {isAutonomousMode
-            ? '⚠ JWORDENAI IS ACTIVELY HUNTING · BIDDING · DISPATCHING'
-            : 'JWORDENAI MASTER COMMAND CENTER — GHOST PROTOCOL SWITCH'}
-        </div>
-      </section>
-
-      {/* ── GHOST PROTOCOL ACTIVITY FEED ─────────────────────────────────── */}
-      {isAutonomousMode && (
-        <section className="px-6 py-6 border-b border-red-900/50 bg-[#0f0000]">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">
-                Live Autonomous Activity Feed
-              </span>
-            </div>
-            <div className="space-y-2">
-              {ghostFeed.map((entry, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 bg-red-950/30 border border-red-900/40 rounded-lg px-4 py-3 font-mono text-xs"
-                >
-                  <span className="text-red-400 font-black whitespace-nowrap">{entry.time}</span>
-                  <span className="text-orange-200/80">—</span>
-                  <span className="text-orange-100/90">{entry.msg}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── SESSION BAR ────────────────────────────────────────────────────── */}
-      <div className="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur border-b border-zinc-800 px-6 py-2 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
-          <span className="text-[9px] font-black uppercase tracking-[0.4em] text-amber-400/70">
-            OWNER SESSION · {user.id}
-          </span>
-        </div>
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 bg-red-950/40 hover:bg-red-900/50 border border-red-800/40 hover:border-red-700 text-red-400 hover:text-red-300 font-black uppercase tracking-widest text-[9px] px-4 py-2 rounded-lg transition-all"
-        >
-          <LogOut className="w-3 h-3" />
-          TERMINATE SESSION
-        </button>
-      </div>
-
-
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section
-        className={`relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b overflow-hidden transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/60' : 'border-zinc-900'
-        }`}
-      >
-      <section className={`relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden ${panelCls}`}>
+      <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -638,66 +390,8 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* ── GHOST PROTOCOL SWITCH ────────────────────────────────────────── */}
-      <section className={`py-8 px-6 border-b transition-colors duration-700 ${ghostMode ? 'border-red-900/60 bg-red-950/10' : 'border-zinc-900'}`}>
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <div className="text-[9px] font-black uppercase tracking-[0.5em] text-zinc-600 mb-1">System Override</div>
-              <h2 className={`text-2xl font-black uppercase tracking-tight transition-colors duration-500 ${ghostMode ? 'text-red-400' : 'text-white'}`}>
-                {ghostMode ? '⚡ GHOST PROTOCOL: AUTONOMOUS' : '🔒 SYSTEM OVERRIDE: MANUAL'}
-              </h2>
-              <p className="text-xs text-zinc-500 font-bold mt-1 max-w-lg">
-                {ghostMode
-                  ? 'AI is actively hunting bids, calculating margins, and dispatching proposals. No human input required.'
-                  : 'Manual mode — all bids and dispatches require your approval before execution.'}
-              </p>
-            </div>
-
-            {/* Toggle switch */}
-            <button
-              onClick={() => setGhostMode((v) => !v)}
-              className={`relative w-28 h-14 rounded-full border-2 transition-all duration-500 flex items-center px-1 shrink-0 ${
-                ghostMode
-                  ? 'border-red-500 bg-red-950/60 shadow-[0_0_30px_rgba(239,68,68,0.3)]'
-                  : 'border-zinc-700 bg-zinc-900'
-              }`}
-              aria-label="Toggle Ghost Protocol"
-            >
-              <div
-                className={`w-11 h-11 rounded-full transition-all duration-500 flex items-center justify-center font-black text-xs ${
-                  ghostMode
-                    ? 'translate-x-[52px] bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.6)]'
-                    : 'translate-x-0 bg-zinc-600 text-zinc-400'
-                }`}
-              >
-                {ghostMode ? '⚡' : '🔒'}
-              </div>
-            </button>
-          </div>
-
-          {/* Live feed when autonomous */}
-          {ghostMode && (
-            <div className="mt-6">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400/80">
-                  Live Autonomous Activity Feed
-                </span>
-              </div>
-              <GhostProtocolFeed />
-            </div>
-          )}
-        </div>
-      </section>
-
       {/* ── KPI CARDS ────────────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
-      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
+      <section className="py-12 px-6 border-b border-zinc-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <BarChart3 className="w-4 h-4 text-[#ffcc00]" />
@@ -722,12 +416,7 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICES GRID ────────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
-      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
+      <section className="py-12 px-6 border-b border-zinc-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <Wrench className="w-4 h-4 text-[#ffcc00]" />
@@ -752,14 +441,7 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICE AREA COVERAGE ─────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode
-            ? 'border-red-900/50 bg-[#0a0505] shadow-[inset_0_0_40px_rgba(239,68,68,0.06)]'
-            : 'border-zinc-900 bg-zinc-950'
-        }`}
-      >
-      <section className={`py-12 px-6 border-b border-zinc-900 bg-zinc-950 ${panelCls}`}>
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <MapPin className="w-4 h-4 text-[#ffcc00]" />
@@ -803,12 +485,7 @@ function Dashboard() {
       </section>
 
       {/* ── WORDEN STANDARDS ─────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
-      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
+      <section className="py-12 px-6 border-b border-zinc-900">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <CheckCircle className="w-4 h-4 text-green-400" />
@@ -833,8 +510,6 @@ function Dashboard() {
 
       {/* ── QSR & FRANCHISE NSO RADAR ─────────────────────────────────────── */}
       <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
-      {/* ── OPERATIONS TOOLS ─────────────────────────────────────────────── */}
-      <section className={`py-12 px-6 border-b border-zinc-900 bg-zinc-950 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <TrendingUp className="w-4 h-4 text-[#ffcc00]" />
@@ -873,6 +548,8 @@ function Dashboard() {
           <p className="mt-6 text-[11px] text-zinc-500 font-bold uppercase tracking-widest">
             Auto-triggers 90-day fast-track bid · Industrial math (148 lbs/sq yd) · 35% margin target · Kickserv lead generation
           </p>
+        </div>
+      </section>
       {/* ── CLAUDE AI INTELLIGENCE & PROJECTIONS ─────────────────────────── */}
       <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
@@ -1057,13 +734,7 @@ function Dashboard() {
       </section>
 
       {/* ── OPERATIONS TOOLS ─────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode
-            ? 'border-red-900/50 bg-[#0a0505] shadow-[inset_0_0_40px_rgba(239,68,68,0.06)]'
-            : 'border-zinc-900 bg-zinc-950'
-        }`}
-      >
+      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <Zap className="w-4 h-4 text-[#ffcc00]" />
@@ -1278,6 +949,9 @@ function Dashboard() {
             <span>Margin Floor: 35%</span>
             <span>DOT: {claudeDropEngine.getDOTCompliance(DEMO_STATE)}</span>
           </div>
+        </div>
+      </section>
+
 
       {/* ── IRON MATRIX (FLEET HEALTH) ───────────────────────────────────── */}
       <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
