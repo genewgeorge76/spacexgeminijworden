@@ -24,6 +24,7 @@ import { Route as PreConRouteImport } from './routes/pre-con'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PayrollTreasuryRouteImport } from './routes/payroll-treasury'
 import { Route as MasonryRouteImport } from './routes/masonry'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LitigationRouteImport } from './routes/litigation'
 import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
 import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
@@ -172,6 +173,11 @@ const PayrollTreasuryRoute = PayrollTreasuryRouteImport.update({
 const MasonryRoute = MasonryRouteImport.update({
   id: '/masonry',
   path: '/masonry',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LitigationRoute = LitigationRouteImport.update({
@@ -563,6 +569,7 @@ export interface FileRoutesByFullPath {
   '/investor-roi': typeof InvestorRoiRoute
   '/legal-compliance': typeof LegalComplianceRoute
   '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
@@ -654,6 +661,7 @@ export interface FileRoutesByTo {
   '/investor-roi': typeof InvestorRoiRoute
   '/legal-compliance': typeof LegalComplianceRoute
   '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
@@ -746,6 +754,7 @@ export interface FileRoutesById {
   '/investor-roi': typeof InvestorRoiRoute
   '/legal-compliance': typeof LegalComplianceRoute
   '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
@@ -839,6 +848,7 @@ export interface FileRouteTypes {
     | '/investor-roi'
     | '/legal-compliance'
     | '/litigation'
+    | '/login'
     | '/masonry'
     | '/payroll-treasury'
     | '/portal'
@@ -930,6 +940,7 @@ export interface FileRouteTypes {
     | '/investor-roi'
     | '/legal-compliance'
     | '/litigation'
+    | '/login'
     | '/masonry'
     | '/payroll-treasury'
     | '/portal'
@@ -1021,6 +1032,7 @@ export interface FileRouteTypes {
     | '/investor-roi'
     | '/legal-compliance'
     | '/litigation'
+    | '/login'
     | '/masonry'
     | '/payroll-treasury'
     | '/portal'
@@ -1113,6 +1125,7 @@ export interface RootRouteChildren {
   InvestorRoiRoute: typeof InvestorRoiRoute
   LegalComplianceRoute: typeof LegalComplianceRoute
   LitigationRoute: typeof LitigationRoute
+  LoginRoute: typeof LoginRoute
   MasonryRoute: typeof MasonryRoute
   PayrollTreasuryRoute: typeof PayrollTreasuryRoute
   PortalRoute: typeof PortalRoute
@@ -1286,6 +1299,13 @@ declare module '@tanstack/react-router' {
       path: '/masonry'
       fullPath: '/masonry'
       preLoaderRoute: typeof MasonryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/litigation': {
@@ -1833,6 +1853,7 @@ const rootRouteChildren: RootRouteChildren = {
   InvestorRoiRoute: InvestorRoiRoute,
   LegalComplianceRoute: LegalComplianceRoute,
   LitigationRoute: LitigationRoute,
+  LoginRoute: LoginRoute,
   MasonryRoute: MasonryRoute,
   PayrollTreasuryRoute: PayrollTreasuryRoute,
   PortalRoute: PortalRoute,
