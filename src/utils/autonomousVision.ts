@@ -4,7 +4,7 @@ export const autonomousVision = {
     return map[zipCode] || "REGIONAL";
   },
   serveLocalEvidence: function(leadZip: string) {
-    const targetFolder = this.matchZipToFolder(leadZip);
+    const targetFolder = autonomousVision.matchZipToFolder(leadZip);
     return {
       folder: targetFolder,
       message: `Loading verified ${targetFolder} projects for your estimate...`,
