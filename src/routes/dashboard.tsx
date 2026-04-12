@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
+import IronGridMap from '../components/IronGridMap';
 import {
   Activity,
   BarChart3,
@@ -162,6 +163,22 @@ function Dashboard() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── IRON GRID WAR ROOM MAP ───────────────────────────────────────── */}
+      <section className="py-8 px-6 border-b border-zinc-900 bg-zinc-950">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+              The Iron Grid — 50-State War Room Command Map
+            </h2>
+            <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-[#ffcc00] bg-[#ffcc00]/10 border border-[#ffcc00]/30 rounded-full px-3 py-1 animate-pulse">
+              LIVE WAR ROOM
+            </span>
+          </div>
+          <IronGridMap />
         </div>
       </section>
 

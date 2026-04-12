@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import IronGridMap from './IronGridMap';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 interface KickservPayload {
@@ -682,6 +683,11 @@ export default function CommandCenter() {
 
       {/* ── Live Ticker ── */}
       <SystemTicker />
+
+      {/* ── Iron Grid: 50-State War Room Map ── */}
+      <div className="max-w-[1600px] mx-auto px-4 pt-6">
+        <IronGridMap />
+      </div>
 
       {/* ── Main Grid ── */}
       <main className="max-w-[1600px] mx-auto px-4 py-6">

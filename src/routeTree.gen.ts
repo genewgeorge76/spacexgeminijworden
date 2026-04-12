@@ -1233,18 +1233,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResidentialRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profit-node': {
-      id: '/profit-node'
-      path: '/profit-node'
-      fullPath: '/profit-node'
-      preLoaderRoute: typeof ProfitNodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/real-estate-ai': {
       id: '/real-estate-ai'
       path: '/real-estate-ai'
       fullPath: '/real-estate-ai'
       preLoaderRoute: typeof RealEstateAiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profit-node': {
+      id: '/profit-node'
+      path: '/profit-node'
+      fullPath: '/profit-node'
+      preLoaderRoute: typeof ProfitNodeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pre-con-dashboard': {
