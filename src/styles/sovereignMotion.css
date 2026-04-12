@@ -1,0 +1,12 @@
+.sovereign-hero {
+  background: radial-gradient(circle at center, #1a1a1a 0%, #0d0d0d 100%);
+  animation: subtlePulse 8s infinite alternate;
+}
+.safety-gold-border {
+  border: 2px solid #FFD700;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+@keyframes subtlePulse {
+  from { opacity: 0.9; }
+  to { opacity: 1; }
+}
