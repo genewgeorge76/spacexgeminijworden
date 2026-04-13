@@ -133,7 +133,7 @@ const tools = [
   { label: '📈 Investor ROI', route: '/investor-roi', desc: 'Capital & yield model' },
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
-  { label: '🎙 AI-Foreman', route: '/dashboard#ai-foreman', desc: 'Voice reception & lead lock' },
+  { label: '💵 Labor & Treasury', route: '/payroll-treasury', desc: 'OT burn, 1099 payouts & margin lock' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────
