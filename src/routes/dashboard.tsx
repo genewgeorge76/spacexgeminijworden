@@ -1,6 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import IronGridMap from '../components/IronGridMap';
-import { CastleMoat } from '../components/auth/CastleMoat';
 import {
   Activity,
   AlertTriangle,
@@ -34,7 +33,7 @@ import { ironMatrix } from '../utils/ironMatrix';
 import { plantPulse } from '../utils/plantPulse';
 
 export const Route = createFileRoute('/dashboard')({
-  component: CastleMoat,
+  component: Dashboard,
 });
 
 // ── Richmond Voice Hub — demo intercept log ───────────────────────────────────
@@ -295,7 +294,7 @@ type DropResult = {
   prompt: string;
 };
 
-export function Dashboard() {
+function Dashboard() {
   const isAutonomousMode = false;
   const [dropping, setDropping] = useState(false);
   const [dropResult, setDropResult] = useState<DropResult | null>(null);
