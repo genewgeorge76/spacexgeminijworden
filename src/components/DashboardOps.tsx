@@ -3,6 +3,7 @@ import legacyData from '../data/legacyPortfolio.json';
 import { JWordenAI } from '../ai/JWordenAIEngine';
 import { ProjectDominanceGallery } from './ProjectDominanceGallery';
 import { NegotiationPanel } from './NegotiationPanel';
+import { SovereignHoldings } from './holdings/SovereignHoldings';
 
 type LegacyAccount = {
   name?: string;
@@ -130,6 +131,11 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
           <button className="w-full bg-[#1f1f23] hover:bg-black text-white border border-white/20 font-bold py-3 px-4 rounded-lg mb-3">3. GENERATE LEGAL PDF</button>
           <button className="w-full bg-[#1f1f23] hover:bg-black text-white border border-white/20 font-bold py-3 px-4 rounded-lg">4. AUDIT STRIPE MOAT DEPOSITS</button>
           <NegotiationPanel activeLead={activeLead} />
+        </div>
+
+        {/* Sovereign Capital & Real Estate Acquisitions */}
+        <div className="col-span-1 lg:col-span-3">
+          <SovereignHoldings />
         </div>
       </div>
     </div>
