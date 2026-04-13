@@ -1,13 +1,88 @@
 @import "tailwindcss";
 
+/* J. WORDEN & SONS - PREMIUM AUTHORITY STYLING
+   Version: 10.0 (Million Dollar Build)
+*/
+
+:root {
+  --jworden-dark: #121212;        /* Deep Industrial Charcoal */
+  --jworden-slate: #1e1e24;       /* Secondary Surface */
+  --jworden-gold: #ffc107;        /* Safety Gold Call-to-Action */
+  --jworden-white: #f5f5f5;       /* Premium Text */
+  --jworden-accent: #37474f;      /* Heavy Equipment Slate */
+}
+
 @theme {
   --color-brand-gold: #ffcc00;
 }
 
 @layer base {
   body {
-    @apply bg-[#111111] text-white antialiased;
-    font-family: 'Arial Black', sans-serif;
+    background-color: var(--jworden-dark);
+    color: var(--jworden-white);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  /* HERO VIDEO OVERLAY */
+  .hero-section {
+    position: relative;
+    height: 90vh;
+    background: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-content h1 {
+    font-size: 4.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+  }
+
+  /* PREMIUM "SAFETY GOLD" BUTTONS */
+  .cta-button-gold {
+    background-color: var(--jworden-gold);
+    color: #000;
+    padding: 18px 40px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .cta-button-gold:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+  }
+
+  /* FRANCHISE LOGO STRIP */
+  .authority-strip {
+    background: var(--jworden-slate);
+    padding: 40px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  /* INTERACTIVE SERVICE CARDS */
+  .service-card {
+    background: var(--jworden-slate);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+
+  .service-card:hover {
+    border-color: var(--jworden-gold);
   }
 }
 
