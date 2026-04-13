@@ -6,6 +6,7 @@ import XRayComparison from '../components/XRayComparison';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import CustomerQuoteForm from '../components/CustomerQuoteForm';
 import CommandBotUI from '../components/CommandBot';
+import PartnerPortal from '../components/PartnerPortal';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -436,6 +437,36 @@ export const Route = createFileRoute('/')({
 
       {/* JWORDENAI Vision™ — Customer Quote Form */}
       <section className="py-20 px-6 lg:px-12 bg-zinc-950 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tighter mb-4">
+              JWORDENAI <span className="text-[#ffcc00]">Vision™</span>
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Enter your ZIP code to instantly load verified local paving projects near your address.
+            </p>
+          </div>
+          <CustomerQuoteForm />
+        </div>
+      </section>
+
+      {/* JWORDENAI Command Bot */}
+      <section className="py-20 px-6 lg:px-12 bg-zinc-900 border-t border-zinc-800">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tighter mb-4">
+              Command <span className="text-[#ffcc00]">Bot</span>
+            </h2>
+            <p className="text-zinc-400 text-lg max-w-2xl mx-auto">
+              Secure JWORDENAI terminal — query leads, sync photos, or pull live pricing.
+            </p>
+          </div>
+          <CommandBotUI />
+        </div>
+      </section>
+
+      {/* Crew Command: Partner Portal */}
+      <section className="py-16 px-6 lg:px-12 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-black uppercase text-white tracking-tighter mb-4">

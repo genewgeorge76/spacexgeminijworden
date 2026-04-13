@@ -1,36 +1,38 @@
-/**
- * JWORDENAI Prized Service Expansion
- * Added: Thermoplastic Striping, Heavy-Duty Grading, Milling, Sealcoating, Patching, Chip and Tar
- */
-export const prizedServices: Record<string, { margin: string; tag: string; visualProof: string }> = {
+export interface PrizedService {
+  tag: string;
+  margin: string;
+  visualProof: string;
+}
+
+export const prizedServices: Record<string, PrizedService> = {
   grading: {
-    margin: "Elite",
-    tag: "GC-Standard",
-    visualProof: "Heavy Equipment / Base Prep",
+    tag: 'SUBGRADE-PRECISION',
+    margin: '23%',
+    visualProof: 'Laser-grade elevation report',
   },
   striping: {
-    margin: "High",
-    tag: "Commercial-Finish",
-    visualProof: "Precision Markings",
+    tag: 'ADA-COMPLIANCE',
+    margin: '29%',
+    visualProof: 'Final striping and stall-count photos',
   },
   milling: {
-    margin: "Elite",
-    tag: "Heavy-Highway",
-    visualProof: "Milling Machine / Subbase Exposure",
+    tag: 'SURFACE-RESET',
+    margin: '26%',
+    visualProof: 'Milling depth verification photos',
   },
   sealcoating: {
-    margin: "High-Volume",
-    tag: "Recurring-Revenue",
-    visualProof: "Fresh Blacktop Sealer",
+    tag: 'LIFECYCLE-PROTECT',
+    margin: '31%',
+    visualProof: 'Before/after finish comparison',
   },
   patching: {
-    margin: "High",
-    tag: "Urgent-Repair",
-    visualProof: "Infrared Patch / Cut & Replace",
+    tag: 'STRUCTURAL-REPAIR',
+    margin: '24%',
+    visualProof: 'Core repair and compaction logs',
   },
-  "chip and tar": {
-    margin: "Elite",
-    tag: "Rural-Estate",
-    visualProof: "Tar & Chip Surface / Country Road",
+  'chip and tar': {
+    tag: 'RURAL-DURABILITY',
+    margin: '27%',
+    visualProof: 'Aggregate embedment footage',
   },
 };
