@@ -30,5 +30,5 @@ export const SocialTracking = () => {
     document.head.appendChild(ttScript);
   }, []);
 
-  return null; // This is a headless tracking component
+  return null; // Headless component
 };
