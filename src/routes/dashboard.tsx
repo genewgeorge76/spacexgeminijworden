@@ -24,13 +24,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
-import { franchiseTracker } from '../utils/franchiseTracker';
 import { type CallLogEntry, virtualForeman } from '../utils/virtualForeman';
-import { richmondVoiceHub } from '../utils/richmondVoiceHub';
-import { claudeDropEngine } from '../utils/claudeDrop';
-import { arEnforcer } from '../utils/arEnforcer';
-import { ironMatrix } from '../utils/ironMatrix';
-import { plantPulse } from '../utils/plantPulse';
 
 export const Route = createFileRoute('/dashboard')({
   component: Dashboard,
@@ -139,7 +133,7 @@ const tools = [
   { label: '📈 Investor ROI', route: '/investor-roi', desc: 'Capital & yield model' },
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
-  { label: '🤖 Command Bot', route: '/command-bot', desc: 'JWORDENAI service priority terminal' },
+  { label: '🎙 AI-Foreman', route: '/dashboard#ai-foreman', desc: 'Voice reception & lead lock' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────
@@ -173,6 +167,103 @@ function AiForemanPanel() {
     }, 800);
   }
 
+  return (
+    <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
+          <div className="flex items-center gap-3">
+            <Mic className="w-5 h-5 text-[#ffcc00]" />
+            <div>
+              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
+                AI-Foreman Voice Reception
+              </h2>
+              <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-0.5">
+                JWORDENAI v1.0 · {virtualForeman.voiceModel} · After-Hours Lead Lock
+              </p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-green-400">
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              LIVE · {virtualForeman.hq}
+            </div>
+            <button
+              onClick={simulateCall}
+              disabled={simulating}
+              className="bg-[#ffcc00] text-black text-[11px] font-black uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {simulating ? '⏳ Processing…' : '📞 Simulate Incoming Call'}
+            </button>
+          </div>
+        </div>
+
+        {/* Stats bar */}
+        <div className="grid grid-cols-3 gap-3 mb-6">
+          {[
+            { label: 'Calls Intercepted', value: log.length.toString(), color: 'border-[#ffcc00]' },
+            { label: 'Avg. Sqft Measured', value: log.length ? Math.round(log.reduce((s, e) => s + e.sqft, 0) / log.length).toLocaleString() : '—', color: 'border-cyan-500' },
+            { label: 'Kickserv Leads Created', value: log.length.toString(), color: 'border-green-500' },
+          ].map((stat) => (
+            <div key={stat.label} className={`border-l-4 ${stat.color} bg-zinc-900/60 rounded-r-xl px-5 py-4`}>
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-1">{stat.label}</div>
+              <div className="text-2xl font-black text-white">{stat.value}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Call log */}
+        {log.length === 0 ? (
+          <div className="border border-dashed border-zinc-800 rounded-xl p-10 text-center">
+            <Mic className="w-8 h-8 text-zinc-700 mx-auto mb-3" />
+            <p className="text-zinc-600 font-bold text-sm uppercase tracking-widest">
+              No calls yet — click "Simulate Incoming Call" to trigger the AI-Foreman
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-3">
+            {log.map((entry, i) => (
+              <div
+                key={i}
+                className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 grid md:grid-cols-[1fr_auto] gap-4 items-start"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-[#ffcc00] font-black text-sm uppercase tracking-wide">{entry.callerName}</span>
+                    <span className="text-[10px] text-zinc-600 font-bold">{entry.callerID}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest bg-green-900/40 text-green-400 border border-green-800/40 px-2 py-0.5 rounded">
+                      AI-Qualified
+                    </span>
+                  </div>
+                  <div className="text-[11px] text-zinc-400 font-bold">{entry.address}</div>
+                  <div className="flex flex-wrap gap-4 mt-1">
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-cyan-400">
+                      <span className="text-zinc-600 font-bold">📡 Satellite:</span>
+                      {entry.sqft.toLocaleString()} sqft measured
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[11px] font-black text-purple-400">
+                      <span className="text-zinc-600 font-bold">🏗 Social Proof:</span>
+                      Cited {entry.socialProof.year} {entry.socialProof.project} in {entry.socialProof.city}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-right shrink-0">
+                  <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
+                    {new Date(entry.timestamp).toLocaleTimeString()}
+                  </div>
+                  <div className="text-[10px] font-black text-green-400 mt-1">✓ Kickserv Lead Created</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function Dashboard() {
   return (
     <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
       <div className="max-w-7xl mx-auto">
@@ -792,379 +883,7 @@ function Dashboard() {
       </section>
 
       {/* ── AI-FOREMAN VOICE RECEPTION ───────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-[#0d0d0d]">
-        <div className="max-w-7xl mx-auto">
-
-          {/* Panel header */}
-          <div className="flex items-center gap-3 mb-2">
-            <Mic className="w-4 h-4 text-green-400 animate-pulse" />
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
-              AI-Foreman Voice Reception — Richmond Metro Node
-            </h2>
-          </div>
-          <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mb-6">
-            JWORDENAI · 804 Hub · 72-City SEO Grid · Satellite Auto-Measure · Kickserv Auto-Inject
-          </p>
-
-          {/* Node status card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <div className="md:col-span-1 bg-zinc-900/80 border border-green-800/60 rounded-xl p-5 flex flex-col gap-3">
-              <div className="flex items-center gap-2">
-                <Radio className="w-4 h-4 text-green-400 animate-pulse" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">Live Node — 804 Metro</span>
-              </div>
-              <div className="text-3xl font-black text-white tracking-tighter">804-446-1296</div>
-              <div className="text-[10px] text-zinc-500 font-bold uppercase leading-relaxed">
-                {richmondVoiceHub.primaryHQ}
-              </div>
-              <div className="mt-auto pt-3 border-t border-zinc-800">
-                <a
-                  href={`tel:${richmondVoiceHub.activeNumber}`}
-                  className="flex items-center gap-2 bg-green-900/30 border border-green-700/40 text-green-400 font-black uppercase tracking-widest text-[10px] px-4 py-2 hover:bg-green-800/40 transition-colors rounded"
-                >
-                  <Phone className="w-3 h-3" fill="currentColor" />
-                  Call Richmond Node
-                </a>
-              </div>
-            </div>
-
-            {/* Capability tags */}
-            <div className="md:col-span-2 bg-zinc-900/60 border border-zinc-800 rounded-xl p-5">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-500 mb-3">Node Capabilities</div>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {[
-                  '72-City SEO Grid Match',
-                  'Satellite Auto-Measure',
-                  '30-Year Social Proof Lookup',
-                  'Kickserv Auto-Inject',
-                  'CFO Margin Math',
-                  'After-Hours Lead Lock',
-                  'AI-Qualified Status',
-                  'Chester HQ Sync',
-                ].map((cap) => (
-                  <span
-                    key={cap}
-                    className="text-[9px] font-black uppercase tracking-wider bg-zinc-800 border border-zinc-700 text-zinc-400 px-2 py-1 rounded"
-                  >
-                    {cap}
-                  </span>
-                ))}
-              </div>
-              <div className="text-[10px] text-zinc-600 font-bold leading-relaxed">
-                Every inbound call on <span className="text-green-400 font-black">804-446-1296</span> is intercepted by the AI-Foreman,
-                matched to the nearest SEO city node in the 72-city Richmond Metro grid, satellite-measured for square footage,
-                and injected into Kickserv with CFO-grade margin math — before Gene picks up his coffee.
-              </div>
-            </div>
-          </div>
-
-          {/* Intercept log */}
-          <div className="bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-800 bg-zinc-900/60">
-              <Activity className="w-3 h-3 text-[#ffcc00]" />
-              <span className="text-[9px] font-black uppercase tracking-widest text-zinc-400">Live Intercept Log — 804 Richmond Node</span>
-              <span className="ml-auto flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                <span className="text-[8px] font-black uppercase text-green-500 tracking-widest">Active</span>
-              </span>
-            </div>
-            <div className="divide-y divide-zinc-900">
-              {richmondVoiceHubDemoLog.map((entry) => (
-                <div
-                  key={entry.time}
-                  className={`grid grid-cols-2 md:grid-cols-5 gap-3 px-4 py-3 text-[10px] font-bold uppercase tracking-wide ${entry.highlight ? 'bg-green-950/20' : ''}`}
-                >
-                  <div className="text-zinc-600">{entry.time}</div>
-                  <div className="text-white">{entry.caller}</div>
-                  <div className="text-zinc-400 hidden md:block truncate">{entry.address}</div>
-                  <div className={`${entry.highlight ? 'text-green-400' : 'text-[#ffcc00]'}`}>
-                    ⬡ {entry.cityNode}
-                  </div>
-                  <div className="text-zinc-500">{entry.sqft} · {entry.status}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* AI Foreman Simulator */}
-          <AiForemanPanel />
-
-        </div>
-      </section>
-
-      {/* ── GHOST PROTOCOL FEED ──────────────────────────────────────────── */}
-      <section className="py-8 px-6 border-b border-zinc-900 bg-zinc-950/60">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">Ghost Protocol — Autonomous Activity Feed</span>
-          </div>
-          <div className="space-y-1.5">
-            {ghostFeed.map((entry) => (
-              <div key={entry.time} className="flex items-start gap-4 font-mono text-[11px]">
-                <span className="text-zinc-600 whitespace-nowrap">{entry.time}</span>
-                <span className={`font-black uppercase tracking-widest w-14 flex-shrink-0 ${entry.color}`}>{entry.type}</span>
-                <span className="text-zinc-400">{entry.msg}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CLAUDE DROP ENGINE ───────────────────────────────────────────── */}
-      <section className="py-16 px-6 border-b border-zinc-900 bg-gradient-to-b from-zinc-950 to-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto">
-
-          {/* Header */}
-          <div className="flex items-center gap-3 mb-3">
-            <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ffcc00]/70">
-              JWORDENAI · 50-State National Operation · Claude Drop Engine
-            </span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tight mb-2">
-            <span className="text-[#ffcc00]">CLAUDE</span>{' '}
-            <span className="text-white italic">DROP</span>
-          </h2>
-          <p className="text-zinc-400 font-bold text-sm max-w-2xl mb-8">
-            Convert raw CFO Math &amp; Satellite Data into elite Commercial Proposals and Kickserv JSON payloads.
-            Powered by GEMINI.md math core — binder index $627.50, 35% net margin floor, dynamic 50-state DOT compliance.
-          </p>
-
-          {/* Demo inputs badge row */}
-          <div className="flex flex-wrap gap-3 mb-8">
-            {[
-              { label: 'Sq Ft', value: DEMO_SQFT.toLocaleString() },
-              { label: 'State', value: DEMO_STATE },
-              { label: 'Type', value: DEMO_TYPE },
-              { label: 'Depth', value: `${DEMO_DEPTH}"` },
-              { label: 'Address', value: DEMO_ADDRESS },
-            ].map((item) => (
-              <div key={item.label} className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 flex items-center gap-2">
-                <span className="text-[9px] font-black uppercase tracking-widest text-zinc-500">{item.label}</span>
-                <span className="text-xs font-black text-white">{item.value}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* INITIATE CLAUDE DROP button */}
-          <button
-            onClick={initiateDrop}
-            disabled={dropping}
-            className="group relative inline-flex items-center gap-4 bg-[#ffcc00] hover:bg-yellow-300 disabled:opacity-60 text-black font-black uppercase tracking-widest text-lg px-10 py-5 transition-all duration-200 shadow-[0_0_40px_rgba(255,204,0,0.4)] hover:shadow-[0_0_60px_rgba(255,204,0,0.7)] border-b-4 border-black/20 mb-10"
-          >
-            <Zap className="w-6 h-6" fill="currentColor" />
-            {dropping ? 'INITIATING DROP...' : 'INITIATE CLAUDE DROP'}
-          </button>
-
-          {/* Output area */}
-          {dropResult && (
-            <div className="grid lg:grid-cols-2 gap-6">
-
-              {/* Kickserv JSON Payload */}
-              <div className="bg-zinc-900 border border-[#ffcc00]/30 rounded-xl overflow-hidden">
-                <div className="bg-[#ffcc00]/10 border-b border-[#ffcc00]/20 px-5 py-3 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
-                    <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[#ffcc00]">
-                      Kickserv JSON Payload
-                    </span>
-                  </div>
-                  {dropResult.payload.sq_ft > 20000 && (
-                    <span className="text-[9px] font-black uppercase tracking-widest text-orange-400 bg-orange-900/30 border border-orange-700/40 px-2 py-1 rounded">
-                      🐋 WHALE ALERT
-                    </span>
-                  )}
-                </div>
-                <pre className="p-5 text-[11px] text-green-400 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap break-all">
-                  {JSON.stringify(dropResult.payload, null, 2)}
-                </pre>
-              </div>
-
-              {/* Claude Prompt */}
-              <div className="bg-zinc-900 border border-purple-800/40 rounded-xl overflow-hidden">
-                <div className="bg-purple-900/20 border-b border-purple-800/30 px-5 py-3 flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-                  <span className="text-[10px] font-black uppercase tracking-[0.3em] text-purple-400">
-                    Claude Proposal Prompt
-                  </span>
-                </div>
-                <pre className="p-5 text-[11px] text-zinc-300 font-mono leading-relaxed overflow-auto max-h-[480px] whitespace-pre-wrap">
-                  {dropResult.prompt}
-                </pre>
-              </div>
-
-            </div>
-          )}
-
-          {/* Legend row */}
-          <div className="mt-8 flex flex-wrap gap-6 text-[10px] font-bold uppercase tracking-widest text-zinc-600">
-            <span>Model: {claudeDropEngine.model}</span>
-            <span>Binder Index: ${claudeDropEngine.binderIndex.toFixed(2)}</span>
-            <span>Margin Floor: 35%</span>
-            <span>DOT: {claudeDropEngine.getDOTCompliance(DEMO_STATE)}</span>
-          </div>
-        </div>
-      </section>
-
-
-      {/* ── IRON MATRIX (FLEET HEALTH) ───────────────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-            <Truck className="w-4 h-4 text-yellow-400" />
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
-              The Iron Matrix — Fleet Health & Predictive Maintenance
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {ironMatrix.fleet.map((machine) => {
-              const isCritical = machine.hoursUntilService <= 0;
-              return (
-                <div
-                  key={machine.id}
-                  className={`border-l-4 rounded-r-xl p-5 ${isCritical ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{machine.location}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isCritical ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
-                      {machine.status}
-                    </span>
-                  </div>
-                  <div className="text-base font-black text-white mb-1">{machine.id}</div>
-                  <div className={`text-[11px] font-bold ${isCritical ? 'text-orange-400' : 'text-zinc-400'}`}>
-                    {isCritical ? (
-                      <span className="flex items-center gap-1">
-                        <AlertTriangle className="w-3 h-3" aria-hidden="true" />
-                        SERVICE OVERDUE — {Math.abs(machine.hoursUntilService)}h past threshold
-                      </span>
-                    ) : (
-                      `${machine.hoursUntilService}h remaining until scheduled service`
-                    )}
-                  </div>
-                  <div className="text-[11px] text-zinc-500 mt-1">
-                    Machine Health Fund: <span className="text-yellow-400 font-black">${machine.accruedSurcharge.toLocaleString()}</span> accrued
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
-            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Iron Matrix v1.0</div>
-            {ironMatrix.getFleetStatus().map((line, i) => (
-              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[CRITICAL]') ? 'text-orange-400' : 'text-zinc-400'}`}>
-                {line.startsWith('[CRITICAL]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
-                {line}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── A/R ENFORCER (CASH FLOW PROTECTOR) ───────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
-            <DollarSign className="w-4 h-4 text-orange-500" />
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-orange-500">
-              The A/R Enforcer — Cash Flow Protector
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {arEnforcer.outstandingInvoices.map((inv) => {
-              const isOverdue = inv.daysPastDue > 30;
-              return (
-                <div
-                  key={inv.client}
-                  className={`border-l-4 rounded-r-xl p-5 ${isOverdue ? 'border-orange-500 bg-orange-950/30' : 'border-zinc-600 bg-zinc-900/60'}`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{inv.project}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isOverdue ? 'bg-orange-500/20 text-orange-400' : 'bg-zinc-700/40 text-zinc-400'}`}>
-                      {isOverdue ? 'PAST DUE' : 'NET-30 NOMINAL'}
-                    </span>
-                  </div>
-                  <div className="text-base font-black text-white mb-1">{inv.client}</div>
-                  <div className="text-2xl font-black text-yellow-400">${inv.amount.toLocaleString()}</div>
-                  <div className={`text-[11px] font-bold mt-1 ${isOverdue ? 'text-orange-400' : 'text-zinc-500'}`}>
-                    Day {inv.daysPastDue} of Net-30 {isOverdue ? `— ${inv.daysPastDue - 30} day(s) overdue` : ''}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
-            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · A/R Enforcer v1.0</div>
-            {arEnforcer.runAudit().map((line, i) => (
-              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[A/R ALERT]') ? 'text-orange-400' : 'text-zinc-400'}`}>
-                {line.startsWith('[A/R ALERT]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
-                {line}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── PLANT PULSE (SUPPLY CHAIN LOGISTICS) ─────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
-            <Activity className="w-4 h-4 text-yellow-400" />
-            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-yellow-400">
-              The Plant Pulse — Supply Chain Logistics
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            {plantPulse.plants.map((plant) => {
-              const isSevere = plant.waitTimeMins > 45;
-              const waitPct = Math.min(100, Math.round((plant.waitTimeMins / 120) * 100));
-              return (
-                <div
-                  key={plant.name}
-                  className={`border-l-4 rounded-r-xl p-5 ${isSevere ? 'border-orange-500 bg-orange-950/30' : 'border-yellow-400 bg-zinc-900/60'}`}
-                >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">{plant.location}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-widest px-2 py-0.5 rounded ${isSevere ? 'bg-orange-500/20 text-orange-400' : 'bg-yellow-400/10 text-yellow-400'}`}>
-                      {plant.status.replace('_', ' ')}
-                    </span>
-                  </div>
-                  <div className="text-base font-black text-white mb-2">{plant.name}</div>
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="flex-1 h-2 bg-zinc-800 rounded-full overflow-hidden">
-                      <div
-                        className={`h-full rounded-full ${isSevere ? 'bg-orange-500' : 'bg-yellow-400'}`}
-                        style={{ width: `${waitPct}%` }}
-                      />
-                    </div>
-                    <span className={`text-xl font-black ${isSevere ? 'text-orange-400' : 'text-yellow-400'}`}>
-                      {plant.waitTimeMins} min
-                    </span>
-                  </div>
-                  {isSevere && (
-                    <div className="text-[11px] text-orange-400 font-bold flex items-center gap-1">
-                      <AlertTriangle className="w-3 h-3 flex-shrink-0" aria-hidden="true" />
-                      Reroute lowboys — $150/hr idle trucking cost at risk
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-          <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-4 space-y-2">
-            <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-3">System Output · Plant Pulse v1.0</div>
-            {plantPulse.checkLogistics().map((line, i) => (
-              <div key={i} className={`text-[11px] font-mono font-bold ${line.startsWith('[LOGISTICS WARNING]') ? 'text-orange-400' : 'text-zinc-400'}`}>
-                {line.startsWith('[LOGISTICS WARNING]') && <AlertTriangle className="inline w-3 h-3 mr-1 mb-0.5" />}
-                {line}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <AiForemanPanel />
 
       {/* ── CTA STRIP ────────────────────────────────────────────────────── */}
       <section className="py-12 px-6 bg-[#ffcc00]">
