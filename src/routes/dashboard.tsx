@@ -140,9 +140,6 @@ const tools = [
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
   { label: '🤖 Command Bot', route: '/command-bot', desc: 'JWORDENAI service priority terminal' },
-  { label: '🎙 AI-Foreman', route: '/dashboard#ai-foreman', desc: 'Voice reception & lead lock' },
-  { label: '💵 Labor & Treasury', route: '/payroll-treasury', desc: 'OT burn, 1099 payouts & margin lock' },
-  { label: '👷 Field App', route: '/field', desc: 'Foreman view — tonnage & hours' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────

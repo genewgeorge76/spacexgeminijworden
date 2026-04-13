@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
@@ -102,6 +103,11 @@ import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 
+const CommandBotRoute = CommandBotRouteImport.update({
+  id: '/command-bot',
+  path: '/command-bot',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WhaleHunterRoute = WhaleHunterRouteImport.update({
   id: '/whale-hunter',
   path: '/whale-hunter',
@@ -568,7 +574,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -662,7 +667,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -757,7 +761,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -853,7 +856,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -947,7 +949,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1041,7 +1042,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1136,7 +1136,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   CommandBotRoute: typeof CommandBotRoute
-  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
@@ -1430,13 +1429,6 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/command-center': {
-      id: '/command-center'
-      path: '/command-center'
-      fullPath: '/command-center'
-      preLoaderRoute: typeof CommandCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/command-bot': {
@@ -1880,7 +1872,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   CommandBotRoute: CommandBotRoute,
-  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
