@@ -5,6 +5,16 @@ export const coastalEmpire = {
     SC: { landmark: "Arthur Ravenel Jr. Bridge", focus: "Charleston Elite" },
     GA: { landmark: "Savannah Historic District", focus: "Heritage Restoration" }
   },
+  calculateZonePremium: function(zoneName: string) {
+    const normalizedZone = zoneName.trim().toLowerCase();
+    const premiumTable: Record<string, number> = {
+      fredericksburg: 1.12,
+      richmond: 1.08,
+      fairfax: 1.15,
+      stafford: 1.1
+    };
+    return premiumTable[normalizedZone] ?? 1;
+  },
   injectLocalSignals: function(stateCode: string) {
     const hub = coastalEmpire.hubs[stateCode as keyof typeof coastalEmpire.hubs];
     if (hub) {
