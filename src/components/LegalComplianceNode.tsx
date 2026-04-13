@@ -18,15 +18,6 @@ import {
 } from '@/data/legalLaws';
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
-function getRiskColor(level: string): string {
-  switch (level) {
-    case 'CRITICAL': return 'text-red-400';
-    case 'HIGH': return 'text-orange-400';
-    case 'MEDIUM': return 'text-yellow-400';
-    default: return 'text-green-400';
-  }
-}
-
 function getRiskBadgeClass(level: string): string {
   switch (level) {
     case 'CRITICAL': return 'bg-red-900/60 border border-red-500 text-red-300';
