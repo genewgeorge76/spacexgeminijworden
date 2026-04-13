@@ -3,6 +3,7 @@ import '../index.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import DispatchTicker from '../components/DispatchTicker'
+import { SocialTracking } from '../components/marketing/SocialTracking'
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
 
 const pavingContractorSchema = {
@@ -270,6 +271,7 @@ const jwordenAISchema = {
 export const Route = createRootRoute({
   component: () => (
     <>
+      <SocialTracking />
       <DispatchTicker />
       <Header />
       <main className="min-h-screen bg-[#0a0a0a]">
