@@ -1,3 +1,23 @@
 {
-  "heritage": "Heritage craftsmanship. Modern execution."
+  "heritage": {
+    "title": "4th-Generation Legacy",
+    "established": "1984",
+    "statement": "Establishing the infrastructure standard for four generations. We do not just build; we command the lifecycle of the property."
+  },
+  "major_accounts": [
+    {
+      "name": "KBP Brands (KFC)",
+      "role": "General Contractor of Record",
+      "territories": ["Louisiana", "Texas", "Missouri", "Michigan"],
+      "projects": "Complete Site Development, Concrete Integration & Paving",
+      "status": "Active Legacy Partner"
+    },
+    {
+      "name": "Taco Bell & Wendy's",
+      "role": "Infrastructure Lead",
+      "territories": ["National Rollout"],
+      "projects": "Multi-Zone Pavement Maintenance & Zero-Disruption Remodeling",
+      "status": "Active Legacy Partner"
+    }
+  ]
 }
