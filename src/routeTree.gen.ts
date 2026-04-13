@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
@@ -38,6 +37,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
@@ -100,11 +100,6 @@ import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 
-const CommandBotRoute = CommandBotRouteImport.update({
-  id: '/command-bot',
-  path: '/command-bot',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const WhaleHunterRoute = WhaleHunterRouteImport.update({
   id: '/whale-hunter',
   path: '/whale-hunter',
@@ -243,6 +238,11 @@ const ConcreteRoute = ConcreteRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandBotRoute = CommandBotRouteImport.update({
+  id: '/command-bot',
+  path: '/command-bot',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -555,6 +555,7 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -646,6 +647,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -738,6 +740,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-bot': typeof CommandBotRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -831,6 +834,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -922,6 +926,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1013,6 +1018,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/command-bot'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1105,6 +1111,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CommandBotRoute: typeof CommandBotRoute
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
@@ -1390,6 +1397,13 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-bot': {
+      id: '/command-bot'
+      path: '/command-bot'
+      fullPath: '/command-bot'
+      preLoaderRoute: typeof CommandBotRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1825,6 +1839,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CommandBotRoute: CommandBotRoute,
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
