@@ -11,11 +11,11 @@ export const SovereignLanding = () => {
       <div className="fixed inset-0 bg-[linear-gradient(rgba(212,175,55,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(212,175,55,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
       <nav className="relative z-10 flex justify-between items-center p-8 border-b border-white/5">
-        <div className="text-[#d4af37] font-black tracking-[0.2em] text-xl uppercase text-glow">J. Worden & Sons</div>
+        <div className="text-[#d4af37] font-black tracking-[0.2em] text-xl uppercase text-glow">J. Worden Sovereign</div>
         <div className="hidden md:flex space-x-8 text-xs font-mono tracking-widest text-gray-400">
+          <span className="text-[#00ff41] animate-pulse cursor-pointer transition-colors">TEXAS EXPANSION ACTIVE</span>
           <span className="hover:text-white cursor-pointer transition-colors">90-DAY QSR BUILDS</span>
           <span className="hover:text-white cursor-pointer transition-colors">CONCRETE & CIVIL</span>
-          <span className="hover:text-white cursor-pointer transition-colors">ASPHALT PAVING</span>
           <span className="hover:text-white cursor-pointer transition-colors">SOVEREIGN HOLDINGS</span>
         </div>
         <button className="border border-[#d4af37] text-[#d4af37] px-6 py-2 text-xs font-bold tracking-widest hover:bg-[#d4af37] hover:text-black transition-all">
@@ -25,21 +25,21 @@ export const SovereignLanding = () => {
 
       <main className="relative z-10 flex flex-col items-center justify-center text-center px-4 pt-32 pb-20">
         <div className="inline-block border border-[#00ff41]/30 bg-[#00ff41]/5 text-[#00ff41] px-4 py-1 rounded-full text-[10px] font-mono tracking-widest mb-8 animate-pulse">
-          HEAVY CIVIL • CONCRETE • ASPHALT • TOTAL SITE CONTROL
+          HEAVY CIVIL • CONCRETE • ASPHALT • SUNBELT SYNDICATE
         </div>
         <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
-          The 90-Day QSR Build <br />
-          <span className="text-[#d4af37]">Executed by AI.</span>
+          National QSR Dominance. <br />
+          <span className="text-[#d4af37]">Executing from Texas to D.C.</span>
         </h1>
         <p className="max-w-2xl text-gray-400 text-lg md:text-xl font-light mb-12">
-          We are a Sovereign GC Syndicate. From 4000 PSI concrete foundations and mass earthworks, to HVAC rooftop lifts and 96% Marshall asphalt paving. We deliver Turnkey Total Envelope Control for Franchise Developers.
+          We are the Sovereign GC Syndicate. From mass earthworks in Dallas to 4000 PSI concrete foundations in Richmond. We deliver Turnkey Total Envelope Control for Franchise Developers scaling across high-volume markets.
         </p>
         <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
           <button className="bg-[#d4af37] text-black font-black uppercase tracking-widest px-8 py-4 text-sm hover:bg-white transition-all shadow-[0_0_30px_rgba(212,175,55,0.3)]">
             Secure Commercial GC Bid
           </button>
           <button className="bg-[#1f1f23] border border-white/10 text-white font-bold uppercase tracking-widest px-8 py-4 text-sm hover:border-[#d4af37] transition-all">
-            View Franchise Portfolio
+            View Sunbelt Portfolio
           </button>
         </div>
       </main>
@@ -54,7 +54,7 @@ export const SovereignLanding = () => {
           <div>
             <div className="text-[#d4af37] text-3xl mb-4">🚜</div>
             <h3 className="text-sm font-black mb-3 uppercase tracking-wider">Mass Earthworks</h3>
-            <p className="text-gray-500 text-xs leading-relaxed">GPS-guided land clearing, storm-water drainage, and VDOT-spec aggregate base compaction.</p>
+            <p className="text-gray-500 text-xs leading-relaxed">GPS-guided land clearing, storm-water drainage, and VDOT/TxDOT-spec aggregate base compaction.</p>
           </div>
           <div>
             <div className="text-[#d4af37] text-3xl mb-4">🛣️</div>
@@ -70,7 +70,7 @@ export const SovereignLanding = () => {
       </section>
 
       <footer className="relative z-10 border-t border-white/5 p-8 flex justify-between items-center text-xs text-gray-600 font-mono">
-        <div>© 1984 - 2026 J. WORDEN & SONS MULTI-TRADE SYNDICATE.</div>
+        <div>© 1984 - 2026 J. WORDEN SOVEREIGN MULTI-TRADE SYNDICATE.</div>
         <button onClick={() => setAccessWarRoom(true)} className="hover:text-[#d4af37] transition-colors focus:outline-none group flex items-center space-x-2">
           <span>SYSTEM</span>
           <span className="opacity-0 group-hover:opacity-100">🔒</span>

@@ -8,7 +8,7 @@ export const QSRFacilitySyndicate = () => {
       id: "KFC-90DAY", 
       franchise: "KFC / KBP Foods", 
       type: "90-Day Turnkey QSR Build", 
-      location: "Richmond, VA (I-95 Corridor)", 
+      location: "Dallas-Fort Worth, TX (High-Volume Sunbelt)",
       needs: ["Earth & Gravel Grading", "Concrete Foundations", "96% Marshall Paving", "TPO Flat Roof", "HVAC RTU Lifting"],
       status: "PERMIT FILED - HOT SPOT",
       value: "$1,245,000"
@@ -17,7 +17,7 @@ export const QSRFacilitySyndicate = () => {
       id: "FLYNN-WINTER", 
       franchise: "Taco Bell / Flynn Group", 
       type: "Annual Winter & Lifecycle", 
-      location: "Fairfax, VA", 
+      location: "Austin, TX",
       needs: ["Snow & Ice Management", "Asphalt Mill & Overlay", "Roof Membrane Coating"],
       status: "MAINTENANCE DUE",
       value: "$285,000"
@@ -26,7 +26,7 @@ export const QSRFacilitySyndicate = () => {
       id: "INDUSTRIAL-DIRT", 
       franchise: "Prologis Logistics", 
       type: "Heavy Civil Earthwork", 
-      location: "Stafford, VA", 
+      location: "Houston, TX (Industrial Corridor)",
       needs: ["High-Margin Gravel Grading", "Sub-Base Compaction", "Stormwater Drainage"],
       status: "GEO-FENCED",
       value: "$442,000"
