@@ -1,45 +1,28 @@
 export const TreasuryLogic = {
   capitalReserves: {
-    currentStripeBalance: 1250000, // Simulated current cash
-    deploymentThreshold: 1000000, // The AI only buys assets if cash is above this
+    currentHoldingsFund: 185000, // Cash currently swept into the real estate fund
+    pavingSweepPercentage: 0.15, // 15% of all paving profit automatically goes here
   },
 
   acquisitionTargets: {
-    industrialLand: { maxPurchasePrice: 5000000, targetIRR: 0.12 },
-    distressedRetail: { maxPurchasePrice: 2000000, targetIRR: 0.15 },
-    asphaltPlantBuyout: { maxPurchasePrice: 8000000, targetIRR: 0.2 },
+    industrialLand: { targetDownPayment: 250000, targetIRR: 0.12 },
+    distressedRetail: { targetDownPayment: 150000, targetIRR: 0.15 },
+    asphaltPlantBuyout: { targetDownPayment: 800000, targetIRR: 0.20 },
   },
 
   /**
-   * TREASURY ROUTER: Checks if paving ops have generated enough excess capital.
-   * If yes, flags off-market real estate targets for immediate cash acquisition.
+   * THE SLOW FEED ROUTER: Simulates sweeping paving profit into the Holding fund.
    */
-  evaluateCapitalDeployment: (targetPropertyCost: number, projectedYield: number) => {
-    const excessCapital =
-      TreasuryLogic.capitalReserves.currentStripeBalance -
-      TreasuryLogic.capitalReserves.deploymentThreshold;
-
-    if (excessCapital < targetPropertyCost * 0.2) {
-      // Assuming 20% down commercial loan
-      return {
-        status: 'HOLD',
-        reason:
-          'PAVING_OPS_PRIORITY: Insufficient excess capital. Keep cash in paving operations.',
-      };
-    }
-
-    if (projectedYield >= TreasuryLogic.acquisitionTargets.industrialLand.targetIRR) {
-      return {
-        status: 'DEPLOY',
-        reason:
-          'YIELD_APPROVED: Target exceeds 12% IRR. Authorized for Sovereign Acquisition.',
-      };
-    }
-
+  sweepPavingProfit: (pavingJobProfit: number) => {
+    const sweepAmount = pavingJobProfit * TreasuryLogic.capitalReserves.pavingSweepPercentage;
     return {
-      status: 'REJECT',
-      reason:
-        'SUB_OPTIMAL_YIELD: Target does not meet minimum Sovereign return requirements.',
+      sweptAmount: sweepAmount,
+      message: `SWEEP EXECUTED: $${sweepAmount.toLocaleString()} routed to Sovereign Real Estate Fund.`
     };
   },
+
+  calculateFundingProgress: (downPaymentTarget: number) => {
+    const progress = (TreasuryLogic.capitalReserves.currentHoldingsFund / downPaymentTarget) * 100;
+    return Math.min(progress, 100).toFixed(1); // Caps at 100%
+  }
 };
