@@ -149,122 +149,6 @@ const areaGroups = [
 ];
 const totalAreas = areaGroups.reduce((s, g) => s + g.count, 0);
 
-// ── Ghost Protocol Activity Feed ─────────────────────────────────────────────
-const ghostFeed = [
-  { time: '04:12 AM', msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
-  { time: '04:14 AM', msg: 'AUTONOMOUS BID: Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.' },
-  { time: '04:15 AM', msg: 'AUTO-DISPATCH: Commercial proposal generated and emailed to GC Estimating Dept.' },
-  { time: '04:18 AM', msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
-];
-
-function Dashboard() {
-  const [isAutonomousMode, setIsAutonomousMode] = useState(false);
-
-  return (
-    <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
-      <div className="max-w-7xl mx-auto">
-
-        {/* Header */}
-        <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-          <div className="flex items-center gap-3">
-            <Mic className="w-5 h-5 text-[#ffcc00]" />
-            <div>
-              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-zinc-400">
-                AI-Foreman Voice Reception
-              </h2>
-              <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest mt-0.5">
-                JWORDENAI v1.0 · {virtualForeman.voiceModel} · After-Hours Lead Lock
-              </p>
-            </div>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-green-400">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              LIVE · {virtualForeman.hq}
-            </div>
-            <button
-              onClick={simulateCall}
-              disabled={simulating}
-              className="bg-[#ffcc00] text-black text-[11px] font-black uppercase tracking-widest px-5 py-2.5 hover:bg-yellow-300 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {simulating ? '⏳ Processing…' : '📞 Simulate Incoming Call'}
-            </button>
-          </div>
-        </div>
-
-        {/* Stats bar */}
-        <div className="grid grid-cols-3 gap-3 mb-6">
-          {[
-            { label: 'Calls Intercepted', value: log.length.toString(), color: 'border-[#ffcc00]' },
-            { label: 'Avg. Sqft Measured', value: log.length ? Math.round(log.reduce((s, e) => s + e.sqft, 0) / log.length).toLocaleString() : '—', color: 'border-cyan-500' },
-            { label: 'Kickserv Leads Created', value: log.length.toString(), color: 'border-green-500' },
-          ].map((stat) => (
-            <div key={stat.label} className={`border-l-4 ${stat.color} bg-zinc-900/60 rounded-r-xl px-5 py-4`}>
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-1">{stat.label}</div>
-              <div className="text-2xl font-black text-white">{stat.value}</div>
-            </div>
-          ))}
-        </div>
-
-        {/* Call log */}
-        {log.length === 0 ? (
-          <div className="border border-dashed border-zinc-800 rounded-xl p-10 text-center">
-            <Mic className="w-8 h-8 text-zinc-700 mx-auto mb-3" />
-            <p className="text-zinc-600 font-bold text-sm uppercase tracking-widest">
-              No calls yet — click "Simulate Incoming Call" to trigger the AI-Foreman
-            </p>
-          </div>
-        ) : (
-          <div className="space-y-3">
-            {log.map((entry, i) => (
-              <div
-                key={i}
-                className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-5 grid md:grid-cols-[1fr_auto] gap-4 items-start"
-              >
-                <div className="space-y-2">
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-[#ffcc00] font-black text-sm uppercase tracking-wide">{entry.callerName}</span>
-                    <span className="text-[10px] text-zinc-600 font-bold">{entry.callerID}</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest bg-green-900/40 text-green-400 border border-green-800/40 px-2 py-0.5 rounded">
-                      AI-Qualified
-                    </span>
-                  </div>
-                  <div className="text-[11px] text-zinc-400 font-bold">{entry.address}</div>
-                  <div className="flex flex-wrap gap-4 mt-1">
-                    <div className="flex items-center gap-1.5 text-[11px] font-black text-cyan-400">
-                      <span className="text-zinc-600 font-bold">📡 Satellite:</span>
-                      {entry.sqft.toLocaleString()} sqft measured
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[11px] font-black text-purple-400">
-                      <span className="text-zinc-600 font-bold">🏗 Social Proof:</span>
-                      Cited {entry.socialProof.year} {entry.socialProof.project} in {entry.socialProof.city}
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right shrink-0">
-                  <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
-                    {new Date(entry.timestamp).toLocaleTimeString()}
-                  </div>
-                  <div className="text-[10px] font-black text-green-400 mt-1">✓ Kickserv Lead Created</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-// ── Dummy inputs for Claude Drop demo ────────────────────────────────────────
-const DEMO_SQFT = 50000;
-const DEMO_STATE = 'TX';
-const DEMO_ADDRESS = '12345 Lone Star Blvd, Dallas, TX 75201';
-const DEMO_DEPTH = 3;
-const DEMO_TYPE = 'INDUSTRIAL' as const;
-const DEMO_PROJECT_ID = `JWA-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-0001`;
-const DEMO_DELAY_MS = 600; // Artificial delay to simulate async AI processing
-
 // ── Ghost Protocol Activity Feed ──────────────────────────────────────────────
 const ghostFeed = [
   { time: '04:12 AM', type: 'SYSTEM', color: 'text-red-400',    msg: 'GHOST PROTOCOL ACTIVE: Scanned 14 municipal commercial permits.' },
@@ -273,270 +157,71 @@ const ghostFeed = [
   { time: '04:18 AM', type: 'CREW',   color: 'text-green-400',  msg: 'FOREMAN ALERT: Job won. Dispatching GPS and 410-ton target to Crew Alpha app.' },
 ];
 
-type DropResult = {
-  payload: ReturnType<typeof claudeDropEngine.generateKickservPayload>;
-  prompt: string;
-};
-
 function Dashboard() {
-  const isAutonomousMode = false;
-  const [dropping, setDropping] = useState(false);
-  const [dropResult, setDropResult] = useState<DropResult | null>(null);
+  const [isAutonomousMode, setIsAutonomousMode] = useState(false);
 
-  function initiateDrop() {
-    setDropping(true);
-    setDropResult(null);
-    setTimeout(() => {
-      const payload = claudeDropEngine.generateKickservPayload(
-        DEMO_PROJECT_ID, DEMO_STATE, DEMO_SQFT, DEMO_DEPTH, DEMO_TYPE,
-      );
-      const prompt = claudeDropEngine.generateClaudePrompt(payload, DEMO_ADDRESS);
-      setDropResult({ payload, prompt });
-      setDropping(false);
-    }, DEMO_DELAY_MS);
-  }
+  const panelCls = isAutonomousMode ? 'ghost-protocol-panel' : '';
 
   return (
     <main className={`min-h-screen bg-[#0a0a0a] text-white font-sans transition-colors duration-500 ${isAutonomousMode ? 'bg-[#0a0505]' : ''}`}>
 
-      {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
-      <section className="px-6 py-4 bg-black border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-3">
-            <Radio className="w-4 h-4 text-[#f59e0b] animate-pulse" />
-            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#f59e0b]">
-              Live Operational Status
-            </h2>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-auto" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-green-400">ALL SYSTEMS GO</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* System Health */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">System Health</div>
-              <div className="flex flex-col gap-1">
-                {[
-                  { label: 'PWA Core', status: 'ACTIVE', color: 'text-green-400' },
-                  { label: 'Claude-3-Opus API', status: 'CONNECTED', color: 'text-green-400' },
-                  { label: 'Kickserv CRM', status: 'SYNCED', color: 'text-[#f59e0b]' },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-zinc-400">{item.label}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-widest ${item.color}`}>
-                      ● {item.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Active Crews */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Active Crews Online</div>
-              <div className="flex flex-col gap-1">
-                {[
-                  { label: 'Crew Alpha [TX]', status: 'App Online' },
-                  { label: 'Crew Beta [VA]', status: 'App Online' },
-                  { label: 'Crew Gamma [NC]', status: 'App Online' },
-                ].map((crew) => (
-                  <div key={crew.label} className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-zinc-400">{crew.label}</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
-                      ● {crew.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Live Active Sites */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Live Active Sites</div>
-              <div className="text-xs font-black text-[#f59e0b] mb-1">
-                3 Active Pours
-              </div>
-              <div className="text-[10px] font-bold text-zinc-400 mb-2">
-                Dallas · Richmond · Charlotte
-              </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-green-400" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
-                  All Margins Locked {'>'} 35%
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
-      <section className="px-6 py-4 bg-black border-b border-zinc-900">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center gap-2 mb-3">
-            <Radio className="w-4 h-4 text-[#f59e0b] animate-pulse" />
-            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#f59e0b]">
-              Live Operational Status
-            </h2>
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-auto" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-green-400">ALL SYSTEMS GO</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* System Health */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">System Health</div>
-              <div className="flex flex-col gap-1">
-                {[
-                  { label: 'PWA Core', status: 'ACTIVE', color: 'text-green-400' },
-                  { label: 'Claude-3-Opus API', status: 'CONNECTED', color: 'text-green-400' },
-                  { label: 'Kickserv CRM', status: 'SYNCED', color: 'text-[#f59e0b]' },
-                ].map((item) => (
-                  <div key={item.label} className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-zinc-400">{item.label}</span>
-                    <span className={`text-[9px] font-black uppercase tracking-widest ${item.color}`}>
-                      ● {item.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Active Crews */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Active Crews Online</div>
-              <div className="flex flex-col gap-1">
-                {[
-                  { label: 'Crew Alpha [TX]', status: 'App Online' },
-                  { label: 'Crew Beta [VA]', status: 'App Online' },
-                  { label: 'Crew Gamma [NC]', status: 'App Online' },
-                ].map((crew) => (
-                  <div key={crew.label} className="flex items-center justify-between">
-                    <span className="text-[10px] font-bold text-zinc-400">{crew.label}</span>
-                    <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
-                      ● {crew.status}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            {/* Live Active Sites */}
-            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
-              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Live Active Sites</div>
-              <div className="text-xs font-black text-[#f59e0b] mb-1">
-                3 Active Pours
-              </div>
-              <div className="text-[10px] font-bold text-zinc-400 mb-2">
-                Dallas · Richmond · Charlotte
-              </div>
-              <div className="flex items-center gap-1">
-                <CheckCircle className="w-3 h-3 text-green-400" />
-                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
-                  All Margins Locked {'>'} 35%
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── GHOST PROTOCOL MASTER SWITCH ─────────────────────────────────── */}
-      <section
-        className={`sticky top-0 z-50 py-4 px-6 flex flex-col items-center justify-center gap-3 border-b transition-all duration-700 ${
-          isAutonomousMode
-            ? 'bg-[#0f0000] border-red-900'
-            : 'bg-[#0f0f0f] border-zinc-900'
-        }`}
-      >
-        {/* Status label */}
-        <div className="flex items-center gap-3">
-          {isAutonomousMode && (
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-ping absolute" />
-          )}
-          <span
-            className={`text-[9px] font-black uppercase tracking-[0.5em] transition-colors duration-500 ${
-              isAutonomousMode ? 'text-red-400' : 'text-zinc-500'
-            }`}
-          >
-            {isAutonomousMode ? 'GHOST PROTOCOL: AUTONOMOUS' : 'SYSTEM OVERRIDE: MANUAL'}
-          </span>
-        </div>
+      <section className={`py-6 px-6 flex flex-col items-center gap-4 border-b transition-colors duration-500 ${isAutonomousMode ? 'bg-gradient-to-b from-red-950/40 to-[#0a0a0a] border-red-900/50' : 'bg-[#0a0a0a] border-zinc-900'}`}>
+        <p className={`text-[9px] font-black uppercase tracking-[0.5em] transition-colors duration-300 ${isAutonomousMode ? 'text-red-500/70' : 'text-zinc-600'}`}>
+          JWORDENAI™ — Master Autonomy Control
+        </p>
 
-        {/* Toggle switch */}
+        {/* Toggle button */}
         <button
+          type="button"
           onClick={() => setIsAutonomousMode((v) => !v)}
-          aria-pressed={isAutonomousMode}
-          aria-label={isAutonomousMode ? 'Disengage Ghost Protocol' : 'Engage Ghost Protocol'}
-          className={`relative inline-flex h-10 w-64 items-center rounded-full border-2 transition-all duration-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black ${
+          className={`relative flex items-center justify-between w-full max-w-lg rounded-2xl px-6 py-4 border-2 font-black uppercase tracking-widest text-sm transition-all duration-500 select-none shadow-2xl ${
             isAutonomousMode
-              ? 'bg-gradient-to-r from-red-900 to-orange-900 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.6)] focus:ring-red-500 animate-[borderPulse_2s_ease-in-out_infinite]'
-              : 'bg-zinc-900 border-zinc-700 hover:border-amber-600/60 focus:ring-amber-500'
+              ? 'bg-gradient-to-r from-red-950 via-orange-950 to-red-950 border-red-600/70 text-red-300 shadow-red-900/50 animate-pulse'
+              : 'bg-zinc-900 border-zinc-700 text-amber-400 hover:border-amber-500/50'
           }`}
+          aria-pressed={isAutonomousMode}
         >
-          {/* Track labels */}
-          <span
-            className={`absolute left-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
-              isAutonomousMode ? 'opacity-0' : 'opacity-100 text-amber-400'
-            }`}
-          >
-            MANUAL
+          {/* Left label */}
+          <span className={`flex items-center gap-2 transition-opacity duration-300 ${isAutonomousMode ? 'opacity-30' : 'opacity-100'}`}>
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 shrink-0" />
+            SYSTEM OVERRIDE: MANUAL
           </span>
-          <span
-            className={`absolute right-3 text-[8px] font-black uppercase tracking-widest transition-opacity duration-300 ${
-              isAutonomousMode ? 'opacity-100 text-red-300' : 'opacity-0'
-            }`}
-          >
-            AUTONOMOUS
+
+          {/* Pill track */}
+          <span className={`relative mx-4 w-14 h-7 rounded-full border-2 transition-all duration-500 shrink-0 ${isAutonomousMode ? 'bg-red-600 border-red-400' : 'bg-zinc-800 border-zinc-600'}`}>
+            <span className={`absolute top-0.5 w-5 h-5 rounded-full shadow-lg transition-all duration-500 ${isAutonomousMode ? 'left-[calc(100%-1.5rem)] bg-red-200' : 'left-0.5 bg-amber-400'}`} />
           </span>
-          {/* Thumb */}
-          <span
-            className={`absolute top-1 h-7 w-7 rounded-full shadow-lg transition-all duration-500 ${
-              isAutonomousMode
-                ? 'left-[calc(100%-2rem)] bg-gradient-to-br from-red-400 to-orange-500 shadow-[0_0_12px_rgba(239,68,68,0.8)]'
-                : 'left-1 bg-gradient-to-br from-zinc-300 to-zinc-500'
-            }`}
-          />
+
+          {/* Right label */}
+          <span className={`flex items-center gap-2 transition-opacity duration-300 ${isAutonomousMode ? 'opacity-100' : 'opacity-30'}`}>
+            GHOST PROTOCOL: AUTONOMOUS
+            <span className={`w-2.5 h-2.5 rounded-full bg-red-500 shrink-0 ${isAutonomousMode ? 'animate-ping' : ''}`} />
+          </span>
         </button>
 
-        {/* Ghost Protocol label row */}
-        <div
-          className={`text-[10px] font-black uppercase tracking-[0.4em] transition-colors duration-500 ${
-            isAutonomousMode ? 'text-red-500' : 'text-zinc-700'
-          }`}
-        >
-          {isAutonomousMode
-            ? '⚠ JWORDENAI IS ACTIVELY HUNTING · BIDDING · DISPATCHING'
-            : 'JWORDENAI MASTER COMMAND CENTER — GHOST PROTOCOL SWITCH'}
-        </div>
+        {/* Activity Feed — visible only when autonomous */}
+        {isAutonomousMode && (
+          <div className="w-full max-w-lg rounded-xl border border-red-900/40 bg-black/60 backdrop-blur-sm overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-red-900/30 bg-red-950/30">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-ping" />
+              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">Live Autonomous Activity Feed</span>
+            </div>
+            <ul className="divide-y divide-red-900/20">
+              {ghostFeed.map((entry) => (
+                <li key={entry.time} className="flex items-start gap-3 px-4 py-3">
+                  <span className="text-[9px] font-black uppercase tracking-wider text-zinc-600 shrink-0 pt-0.5 w-14">{entry.time}</span>
+                  <span className={`text-[9px] font-black uppercase tracking-widest shrink-0 pt-0.5 w-12 ${entry.color}`}>{entry.type}</span>
+                  <span className="text-[10px] text-zinc-300 font-bold leading-relaxed">{entry.msg}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </section>
 
-      {/* ── GHOST PROTOCOL ACTIVITY FEED ─────────────────────────────────── */}
-      {isAutonomousMode && (
-        <section className="px-6 py-6 border-b border-red-900/50 bg-[#0f0000]">
-          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-              <span className="text-[9px] font-black uppercase tracking-[0.4em] text-red-400">
-                Live Autonomous Activity Feed
-              </span>
-            </div>
-            <div className="space-y-2">
-              {ghostFeed.map((entry, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 bg-red-950/30 border border-red-900/40 rounded-lg px-4 py-3 font-mono text-xs"
-                >
-                  <span className="text-red-400 font-black whitespace-nowrap">{entry.time}</span>
-                  <span className="text-orange-200/80">—</span>
-                  <span className="text-orange-100/90">{entry.msg}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
       {/* ── HERO ──────────────────────────────────────────────────────────── */}
-      <section
-        className={`relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b overflow-hidden transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/60' : 'border-zinc-900'
-        }`}
-      >
+      <section className={`relative py-24 px-6 bg-gradient-to-b from-[#0f0f0f] to-[#0a0a0a] border-b border-zinc-900 overflow-hidden ${panelCls}`}>
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -564,11 +249,7 @@ function Dashboard() {
       </section>
 
       {/* ── KPI CARDS ────────────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
+      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <BarChart3 className="w-4 h-4 text-[#ffcc00]" />
@@ -609,11 +290,7 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICES GRID ────────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
+      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <Wrench className="w-4 h-4 text-[#ffcc00]" />
@@ -638,13 +315,7 @@ function Dashboard() {
       </section>
 
       {/* ── SERVICE AREA COVERAGE ─────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode
-            ? 'border-red-900/50 bg-[#0a0505] shadow-[inset_0_0_40px_rgba(239,68,68,0.06)]'
-            : 'border-zinc-900 bg-zinc-950'
-        }`}
-      >
+      <section className={`py-12 px-6 border-b border-zinc-900 bg-zinc-950 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <MapPin className="w-4 h-4 text-[#ffcc00]" />
@@ -688,11 +359,7 @@ function Dashboard() {
       </section>
 
       {/* ── WORDEN STANDARDS ─────────────────────────────────────────────── */}
-      <section
-        className={`py-12 px-6 border-b transition-colors duration-700 ${
-          isAutonomousMode ? 'border-red-900/50 shadow-[inset_0_0_30px_rgba(239,68,68,0.04)]' : 'border-zinc-900'
-        }`}
-      >
+      <section className={`py-12 px-6 border-b border-zinc-900 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center gap-2 mb-6">
             <CheckCircle className="w-4 h-4 text-green-400" />
@@ -715,8 +382,8 @@ function Dashboard() {
         </div>
       </section>
 
-      {/* ── CLAUDE AI INTELLIGENCE & PROJECTIONS ─────────────────────────── */}
-      <section className="py-12 px-6 border-b border-zinc-900 bg-zinc-950">
+      {/* ── OPERATIONS TOOLS ─────────────────────────────────────────────── */}
+      <section className={`py-12 px-6 border-b border-zinc-900 bg-zinc-950 ${panelCls}`}>
         <div className="max-w-7xl mx-auto">
 
           {/* Section header */}
