@@ -4,6 +4,7 @@ import { JWordenAI } from '../ai/JWordenAIEngine';
 import { ProjectDominanceGallery } from './ProjectDominanceGallery';
 import { NegotiationPanel } from './NegotiationPanel';
 import { SovereignHoldings } from './holdings/SovereignHoldings';
+import { CommanderTerminal } from './ai/CommanderTerminal';
 import { VirtualForemanConsole } from './voice/VirtualForemanConsole';
 
 type LegacyAccount = {
@@ -137,6 +138,11 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
         {/* Virtual Foreman Voice Ops */}
         <div className="col-span-1 lg:col-span-3">
           <VirtualForemanConsole />
+        </div>
+
+        {/* Neural Command Terminal */}
+        <div className="col-span-1 lg:col-span-3">
+          <CommanderTerminal />
         </div>
 
         {/* Sovereign Capital & Real Estate Acquisitions */}
