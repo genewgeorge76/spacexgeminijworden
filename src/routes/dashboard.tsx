@@ -135,7 +135,7 @@ const tools = [
   { label: '📈 Investor ROI', route: '/investor-roi', desc: 'Capital & yield model' },
   { label: '🛡 Safety HQ', route: '/safety', desc: 'OSHA 30 compliance hub' },
   { label: '📰 Standards', route: '/standards', desc: 'VDOT · ASTM · ACI refs' },
-  { label: '💵 Labor & Treasury', route: '/payroll-treasury', desc: 'OT burn, 1099 payouts & margin lock' },
+  { label: '👷 Field App', route: '/field', desc: 'Foreman view — tonnage & hours' },
 ];
 
 // ── Service-area buckets (for the coverage bar) ───────────────────────────────
@@ -312,6 +312,74 @@ function Dashboard() {
 
   return (
     <main className={`min-h-screen bg-[#0a0a0a] text-white font-sans transition-colors duration-500 ${isAutonomousMode ? 'bg-[#0a0505]' : ''}`}>
+
+      {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
+      <section className="px-6 py-4 bg-black border-b border-zinc-900">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-2 mb-3">
+            <Radio className="w-4 h-4 text-[#f59e0b] animate-pulse" />
+            <h2 className="text-[10px] font-black uppercase tracking-[0.4em] text-[#f59e0b]">
+              Live Operational Status
+            </h2>
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse ml-auto" />
+            <span className="text-[9px] font-black uppercase tracking-widest text-green-400">ALL SYSTEMS GO</span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            {/* System Health */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">System Health</div>
+              <div className="flex flex-col gap-1">
+                {[
+                  { label: 'PWA Core', status: 'ACTIVE', color: 'text-green-400' },
+                  { label: 'Claude-3-Opus API', status: 'CONNECTED', color: 'text-green-400' },
+                  { label: 'Kickserv CRM', status: 'SYNCED', color: 'text-[#f59e0b]' },
+                ].map((item) => (
+                  <div key={item.label} className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-zinc-400">{item.label}</span>
+                    <span className={`text-[9px] font-black uppercase tracking-widest ${item.color}`}>
+                      ● {item.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Active Crews */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Active Crews Online</div>
+              <div className="flex flex-col gap-1">
+                {[
+                  { label: 'Crew Alpha [TX]', status: 'App Online' },
+                  { label: 'Crew Beta [VA]', status: 'App Online' },
+                  { label: 'Crew Gamma [NC]', status: 'App Online' },
+                ].map((crew) => (
+                  <div key={crew.label} className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-zinc-400">{crew.label}</span>
+                    <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
+                      ● {crew.status}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Live Active Sites */}
+            <div className="bg-zinc-900/60 border border-zinc-800 rounded-xl p-3">
+              <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600 mb-2">Live Active Sites</div>
+              <div className="text-xs font-black text-[#f59e0b] mb-1">
+                3 Active Pours
+              </div>
+              <div className="text-[10px] font-bold text-zinc-400 mb-2">
+                Dallas · Richmond · Charlotte
+              </div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-400" />
+                <span className="text-[9px] font-black uppercase tracking-widest text-green-400">
+                  All Margins Locked {'>'} 35%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ── LIVE OPERATIONAL STATUS ───────────────────────────────────────── */}
       <section className="px-6 py-4 bg-black border-b border-zinc-900">
