@@ -19,7 +19,7 @@ export class JWordenAI {
       3. Your capabilities include: 90-Day Turnkey Builds, High-Margin Earth/Gravel Grading, Concrete Foundations, TPO Roofing, HVAC RTU Lifting, and Commercial Snow/Ice Management.
       4. Always demand a 50% Stripe deposit to lock a confirmed start date. Zero exceptions.
       
-      Draft the supreme executive summary pitching our Multi-Trade Syndicate capability.
+      Draft the supreme executive summary pitching our Multi-Trade Syndicate capability. CRITICAL: You MUST include the Grandfather Guardrail clause: "Estimate assumes standard soil compaction. Rock excavation, limestone trenching, or unstable sub-grade remediation will be billed as an immediate Change Order at $350/hour."
     `;
 
     try {
