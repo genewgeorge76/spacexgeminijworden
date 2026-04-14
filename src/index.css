@@ -14,7 +14,34 @@
 }
 
 @theme {
-  --color-brand-gold: #ffcc00;
+  --color-obsidian: #0a0a0c;
+  --color-empire-gold: #d4af37;
+  --color-vdot-gray: #1f1f23;
+}
+
+@layer utilities {
+  .bg-glass { @apply bg-black/40 backdrop-blur-md border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]; }
+  .border-gold-glow { @apply border border-[#d4af37] shadow-[0_0_15px_rgba(212,175,55,0.3)]; }
+  .text-glow { text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+  .radar-sweep {
+    background: linear-gradient(180deg, transparent 0%, rgba(0, 255, 65, 0.05) 50%, transparent 100%);
+    background-size: 100% 200%;
+    animation: radar 4s linear infinite;
+  }
+}
+
+@keyframes radar {
+  0% { background-position: 0% -100%; }
+  100% { background-position: 0% 100%; }
+}
+
+body {
+  background-color: var(--color-obsidian);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-image: radial-gradient(circle at 50% 0%, var(--color-vdot-gray) 0%, transparent 70%), linear-gradient(to bottom, transparent, var(--color-obsidian) 100%);
+  min-height: 100vh;
+  margin: 0;
 }
 
 @layer base {

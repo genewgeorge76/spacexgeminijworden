@@ -25,8 +25,16 @@ import {
 } from 'lucide-react';
 import IronGridMap from '../components/IronGridMap';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
+import { richmondVoiceHub } from '../utils/richmondVoiceHub';
+import { arEnforcer } from '../utils/arEnforcer';
+import { ironMatrix } from '../utils/ironMatrix';
+import { plantPulse } from '../utils/plantPulse';
+import { requireOwnerAccess } from '@/lib/accessControl';
 
 export const Route = createFileRoute('/dashboard')({
+  beforeLoad: () => {
+    requireOwnerAccess();
+  },
   component: Dashboard,
 });
 
