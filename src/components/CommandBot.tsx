@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { commandBot } from '@/utils/commandBot';
 
 interface TerminalLine {
@@ -15,25 +15,29 @@ export default function CommandBotUI() {
   ]);
   const bottomRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [lines]);
+  const MAX_LOG_LINES = 200;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const cmd = input.trim();
     if (!cmd) return;
     const response = commandBot.processCommand(cmd);
-    setLines((prev) => [
-      ...prev,
-      { type: 'input', text: `> ${cmd}` },
-      { type: 'output', text: response },
-    ]);
+    setLines((prev) => {
+      const next = [
+        ...prev,
+        { type: 'input' as const, text: `> ${cmd}` },
+        { type: 'output' as const, text: response },
+      ];
+      return next.slice(-MAX_LOG_LINES);
+    });
     setInput('');
+    requestAnimationFrame(() => {
+      bottomRef.current?.scrollIntoView({ behavior: 'instant' });
+    });
   };
 
   return (
-    <section className="bg-zinc-950 border border-zinc-700 rounded-2xl p-6 max-w-xl mx-auto shadow-2xl font-mono">
+    <div className="bg-zinc-950 border border-zinc-700 rounded-2xl p-6 max-w-xl mx-auto shadow-2xl font-mono">
       <div className="flex items-center gap-2 mb-4">
         <span className="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
         <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span>
@@ -70,6 +74,6 @@ export default function CommandBotUI() {
           Run
         </button>
       </form>
-    </section>
+    </div>
   );
 }
