@@ -1,0 +1,56 @@
+name: 🌐 SEO Opportunity
+description: Identify and act on a search engine optimization opportunity
+labels: ["seo", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Log an SEO opportunity.** Include the keyword, current ranking, and proposed action.
+
+  - type: input
+    id: keyword
+    attributes:
+      label: Target keyword
+      placeholder: "asphalt paving Richmond VA"
+    validations:
+      required: true
+
+  - type: input
+    id: current-rank
+    attributes:
+      label: Current Google ranking (if known)
+      placeholder: "Not ranked / Position 14"
+
+  - type: dropdown
+    id: opportunity-type
+    attributes:
+      label: Opportunity type
+      options:
+        - "New location page needed"
+        - "Existing page needs optimization"
+        - "Missing JSON-LD schema"
+        - "Core Web Vitals issue"
+        - "Missing FAQ content"
+        - "Competitor gap (they rank, we don't)"
+        - "New service type page needed"
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed-action
+    attributes:
+      label: Proposed action
+      placeholder: "Add a dedicated /virginia/richmond/commercial-paving page with LocalBusiness schema targeting commercial contractors..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Estimated business impact
+      options:
+        - "🐋 Whale — targets national/federal/commercial buyers"
+        - "🦈 Shark — targets regional commercial buyers"
+        - "🐟 Fish — targets residential buyers"
+    validations:
+      required: true
