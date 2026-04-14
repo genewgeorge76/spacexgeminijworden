@@ -41,6 +41,11 @@ export const JWORDENAI_Fiscal_Logic = {
   /**
    * Returns the applicable annual depreciation rate for a paved asset.
    *
+   * Depreciation is modelled as a flat annual rate for simplicity. Pavement age
+   * (`yearsSincePour`) is used to apply an accelerated-degradation multiplier
+   * after 15 years without a maintenance program — a well-documented inflection
+   * point in VDOT Pavement Management data.
+   *
    * @param yearsSincePour  - Age of the pavement surface in years
    * @param maintenanceHistory - `true` if site is enrolled in JWORDENAI maintenance program
    */
@@ -48,10 +53,6 @@ export const JWORDENAI_Fiscal_Logic = {
     yearsSincePour: number,
     maintenanceHistory: boolean
   ): AssetHealthResult => {
-    // yearsSincePour is accepted for future age-curve expansion (e.g., accelerated
-    // degradation after year 15 without maintenance).
-    void yearsSincePour;
-
     if (maintenanceHistory) {
       return {
         annualDepreciationRate: JWORDENAI_DEPRECIATION_RATE,
@@ -59,8 +60,15 @@ export const JWORDENAI_Fiscal_Logic = {
       };
     }
 
+    // After 15 years without maintenance, degradation accelerates — apply a 1.5×
+    // multiplier capped at 100 % to model the well-documented VDOT pavement
+    // management inflection point.
+    const accelerated = yearsSincePour > 15
+      ? Math.min(STANDARD_DEPRECIATION_RATE * 1.5, 1.0)
+      : STANDARD_DEPRECIATION_RATE;
+
     return {
-      annualDepreciationRate: STANDARD_DEPRECIATION_RATE,
+      annualDepreciationRate: accelerated,
       standard: "Generic / No Maintenance Program",
     };
   },
@@ -68,21 +76,23 @@ export const JWORDENAI_Fiscal_Logic = {
   /**
    * Generates a C-suite portfolio savings report.
    *
-   * Savings are calculated as one avoided full repave cycle per site —
-   * the JWORDENAI program makes the initial $76k investment a one-time event,
-   * not a recurring capital expense.
+   * **Simplified model**: savings represent one avoided full-repave cycle per
+   * site. The depreciation rates in `calculateAssetHealth` quantify the ongoing
+   * asset-value benefit; this method captures the discrete CapEx avoidance — i.e.
+   * the JWORDENAI program converts the initial investment into a one-time event
+   * rather than a recurring capital expense.
    *
    * @param storeCount - Number of locations in the client's portfolio
    */
   generateCEOReport: (storeCount: number): CEOPortfolioReport => {
     const savingsPerStore = REPAVE_COST_PER_SITE; // One full repave cycle avoided per site
     const totalPortfolioSavings = storeCount * savingsPerStore;
+    const costLabel = `$${(REPAVE_COST_PER_SITE / 1_000).toFixed(0)}k`;
 
     return {
       totalPortfolioSavings,
       savingsPerStore,
-      message:
-        "JWORDENAI makes the $76k investment a necessity of one, not a cycle of many.",
+      message: `JWORDENAI makes the ${costLabel} investment a necessity of one, not a cycle of many.`,
     };
   },
 } as const;
