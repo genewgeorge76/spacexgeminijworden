@@ -160,7 +160,6 @@ export function generateWeatherSchedule(city: string, stateCode: string): DaySch
     const precipPct = Math.round(r(3) * 80);
     const precipIn = precipPct > 40 ? parseFloat((r(4) * 1.2).toFixed(2)) : 0;
     const windMph = Math.round(r(5) * 28);
-    const conditions = ['Clear', 'Partly Cloudy', 'Overcast', 'Showers', 'Rain', 'Thunderstorms', 'Sunny', 'Fog'];
     const condition = precipPct > 60 ? 'Thunderstorms' : precipPct > 40 ? 'Showers' : precipPct > 20 ? 'Partly Cloudy' : 'Clear';
     const risk = inSeason ? assessRisk(ambientF, groundF, precipPct, precipIn, windMph) : 'HALT';
 
@@ -174,7 +173,7 @@ export function generateWeatherSchedule(city: string, stateCode: string): DaySch
       windMph,
       condition,
       risk,
-      recommendation: conditions[Math.floor(r(6) * conditions.length)], // placeholder
+      recommendation: '',
       wordenAction: '', // filled below
     });
   }

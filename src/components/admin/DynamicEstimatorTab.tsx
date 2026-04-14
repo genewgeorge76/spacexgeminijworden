@@ -11,9 +11,7 @@ import {
   OIL_SHIELD_BUFFER_PER_TON,
   type EstimateInput,
 } from '@/lib/dynamicEstimator';
-
-const fmt = (n: number) =>
-  n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(2)}M` : n >= 1_000 ? `$${(n / 1_000).toFixed(1)}K` : `$${n.toFixed(2)}`;
+import { fmt } from '@/lib/adminFmt';
 
 const STATE_CODES = Object.keys(STATE_PRICE_MULTIPLIER).sort();
 

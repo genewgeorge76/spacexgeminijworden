@@ -9,7 +9,7 @@
 
 // ── Worden Standard line items every bid MUST include ────────────────────────
 
-export interface WOrderStandardItem {
+export interface WordenStandardItem {
   id: string;
   category: string;
   requirement: string;
@@ -19,7 +19,7 @@ export interface WOrderStandardItem {
   question: string;            // the question to ask the competitor
 }
 
-export const WORDEN_STANDARD_ITEMS: WOrderStandardItem[] = [
+export const WORDEN_STANDARD_ITEMS: WordenStandardItem[] = [
   {
     id: 'compaction',
     category: 'Compaction',
@@ -109,7 +109,7 @@ export interface CompetitorBidInput {
 export interface CompetitorAnalysisResult {
   priceDifference: number;
   priceDifferencePct: number;
-  omittedItems: WOrderStandardItem[];
+  omittedItems: WordenStandardItem[];
   hiddenCostMin: number;
   hiddenCostMax: number;
   trueCompetitorCostLow: number;  // their price + min hidden costs

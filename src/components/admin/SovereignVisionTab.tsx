@@ -6,6 +6,7 @@
 import { useState, useCallback } from 'react';
 import { Camera, Upload, CheckCircle, Layers } from 'lucide-react';
 import { getLiveMaterialPrices } from '@/lib/dynamicEstimator';
+import { fmtInt as fmt } from '@/lib/adminFmt';
 
 // ── Damage type catalogue ────────────────────────────────────────────────────
 
@@ -168,9 +169,6 @@ function simulateCVAnalysis(filename: string, manualSqFt: number): CVAnalysisRes
   };
 }
 
-const fmt = (n: number) =>
-  n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(2)}M` : n >= 1_000 ? `$${(n / 1_000).toFixed(1)}K` : `$${n.toFixed(0)}`;
-
 // ── Component ────────────────────────────────────────────────────────────────
 
 export function SovereignVisionTab() {
@@ -185,7 +183,11 @@ export function SovereignVisionTab() {
     const f = e.dataTransfer.files[0];
     if (f && f.type.startsWith('image/')) {
       setFile(f);
-      setPreview(URL.createObjectURL(f));
+      const blobUrl = URL.createObjectURL(f);
+      // Only allow blob: URLs to prevent XSS via crafted URLs
+      if (blobUrl.startsWith('blob:')) {
+        setPreview(blobUrl);
+      }
       setResult(null);
     }
   }, []);
@@ -194,7 +196,11 @@ export function SovereignVisionTab() {
     const f = e.target.files?.[0];
     if (f) {
       setFile(f);
-      setPreview(URL.createObjectURL(f));
+      const blobUrl = URL.createObjectURL(f);
+      // Only allow blob: URLs to prevent XSS via crafted URLs
+      if (blobUrl.startsWith('blob:')) {
+        setPreview(blobUrl);
+      }
       setResult(null);
     }
   };

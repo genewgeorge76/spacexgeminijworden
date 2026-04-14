@@ -12,9 +12,7 @@ import {
   type CompletedJob,
   type MaintenanceWindow,
 } from '@/lib/industrialDigitalTwin';
-
-const fmt = (n: number) =>
-  n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(2)}M` : n >= 1_000 ? `$${(n / 1_000).toFixed(1)}K` : `$${n.toFixed(0)}`;
+import { fmtInt as fmt } from '@/lib/adminFmt';
 
 const windowLabels: Record<MaintenanceWindow, string> = {
   year1: '1-Yr Check',

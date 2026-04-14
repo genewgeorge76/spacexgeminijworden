@@ -195,7 +195,7 @@ function daysUntil(target: Date): number {
 function buildPingMessage(job: CompletedJob, window: MaintenanceWindow, scheduledDate: Date): string {
   const sched = MAINTENANCE_SCHEDULE[window];
   const dateStr = scheduledDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-  return `Dear ${job.clientName.split(' ')[0]}, your ${job.sqFt.toLocaleString()} sq ft pavement at ${job.propertyAddress} — installed by J. Worden & Sons in ${new Date(job.completionDate).getFullYear()} — is entering its ${sched.label}. Based on your ${new Date(job.completionDate).getFullYear()} pour specs (${job.compactionPct}% compaction, ${job.baseDepthIn}-inch VDOT base), we recommend: ${sched.action}. Please contact us to schedule your ${dateStr} maintenance window. 4th Generation Since 1984 — we built it right, we'll keep it right. 📞 804-446-1296`;
+  return `Dear ${job.clientName}, your ${job.sqFt.toLocaleString()} sq ft pavement at ${job.propertyAddress} — installed by J. Worden & Sons in ${new Date(job.completionDate).getFullYear()} — is entering its ${sched.label}. Based on your ${new Date(job.completionDate).getFullYear()} pour specs (${job.compactionPct}% compaction, ${job.baseDepthIn}-inch VDOT base), we recommend: ${sched.action}. Please contact us to schedule your ${dateStr} maintenance window. 4th Generation Since 1984 — we built it right, we'll keep it right. 📞 804-446-1296`;
 }
 
 /** Generate all pending and upcoming maintenance pings from a job ledger */

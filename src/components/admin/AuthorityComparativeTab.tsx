@@ -3,15 +3,13 @@
  * Competitor bid deconstruction UI.
  */
 import { useState, useMemo } from 'react';
-import { Shield, DollarSign, AlertTriangle, CheckCircle, ChevronDown, ChevronUp } from 'lucide-react';
+import { Shield, CheckCircle, ChevronDown, ChevronUp, DollarSign, AlertTriangle } from 'lucide-react';
 import {
   WORDEN_STANDARD_ITEMS,
   analyzeCompetitorBid,
   type CompetitorBidInput,
 } from '@/lib/authorityComparative';
-
-const fmt = (n: number) =>
-  n >= 1_000_000 ? `$${(n / 1_000_000).toFixed(2)}M` : n >= 1_000 ? `$${(n / 1_000).toFixed(1)}K` : `$${n.toFixed(2)}`;
+import { fmt } from '@/lib/adminFmt';
 
 export function AuthorityComparativeTab() {
   const [competitorName, setCompetitorName] = useState('');
