@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# Block internal/operational routes from public crawl
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /field
+Disallow: /dispatch
+Disallow: /dispatch-node
+Disallow: /profit-node
+Disallow: /payroll-treasury
+Disallow: /investor-roi
+Disallow: /pre-con-dashboard
+Disallow: /legal-compliance
+Disallow: /litigation
+Disallow: /command-bot
+Disallow: /login
+Disallow: /portal
+
 Sitemap: https://jwordenasphaltpaving.com/sitemap.xml
