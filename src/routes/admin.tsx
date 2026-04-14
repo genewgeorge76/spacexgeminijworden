@@ -25,6 +25,7 @@ import { WeatherGuardTab } from '@/components/admin/WeatherGuardTab';
 import { AuthorityComparativeTab } from '@/components/admin/AuthorityComparativeTab';
 import { SovereignVisionTab } from '@/components/admin/SovereignVisionTab';
 import { LifetimeTwinTab } from '@/components/admin/LifetimeTwinTab';
+import { OmegaTab } from '@/components/admin/OmegaTab';
 import { getAllSEOPages } from '../data/programmaticSEO';
 
 export const Route = createFileRoute('/admin')({
@@ -144,7 +145,7 @@ const alertColor = (tier: number) =>
 
 // ── Component ────────────────────────────────────────────────────────────────
 function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security' | 'twin' | 'estimator' | 'weather' | 'authority' | 'vision' | 'lifetime'>('bids');
+  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security' | 'twin' | 'estimator' | 'weather' | 'authority' | 'vision' | 'lifetime' | 'omega'>('bids');
   const [twinTick, setTwinTick] = useState(0);
 
   // Simulate live telemetry pulse every 8 seconds
@@ -218,6 +219,7 @@ function AdminDashboard() {
           ['authority', '⚔️ Authority Comparative'],
           ['vision', '👁️ Sovereign Vision'],
           ['lifetime', '♻️ Lifetime Twin'],
+          ['omega', '⚡ Omega Solidifier'],
         ] as const).map(([tab, label]) => (
           <button
             key={tab}
@@ -652,6 +654,9 @@ function AdminDashboard() {
 
         {/* ─── Lifetime Twin ─── */}
         {activeTab === 'lifetime' && <LifetimeTwinTab />}
+
+        {/* ─── Omega Solidifier ─── */}
+        {activeTab === 'omega' && <OmegaTab />}
       </div>
     </div>
   );
