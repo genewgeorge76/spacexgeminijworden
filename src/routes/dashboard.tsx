@@ -4,7 +4,6 @@ import {
   Activity,
   AlertTriangle,
   BarChart3,
-  Bot,
   Building2,
   CheckCircle,
   Construction,
@@ -13,9 +12,7 @@ import {
   HardHat,
   LogOut,
   MapPin,
-  Mic,
   Phone,
-  Radio,
   Shield,
   Star,
   TrendingUp,
@@ -25,11 +22,11 @@ import {
 } from 'lucide-react';
 import IronGridMap from '../components/IronGridMap';
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas';
-import { richmondVoiceHub } from '../utils/richmondVoiceHub';
 import { arEnforcer } from '../utils/arEnforcer';
 import { ironMatrix } from '../utils/ironMatrix';
 import { plantPulse } from '../utils/plantPulse';
 import { requireOwnerAccess } from '@/lib/accessControl';
+import { useAuth } from '@/lib/auth-context';
 
 export const Route = createFileRoute('/dashboard')({
   beforeLoad: () => {
@@ -39,34 +36,16 @@ export const Route = createFileRoute('/dashboard')({
 });
 
 // ── Richmond Voice Hub — demo intercept log ───────────────────────────────────
-const richmondVoiceHubDemoLog = [
-  {
-    time: '03:14 AM',
-    caller: 'Mike T.',
-    address: '4210 Midlothian Tpke, Richmond, VA',
-    cityNode: richmondVoiceHub.matchCityNode('Midlothian'),
-    sqft: '14,800 sqft',
-    status: 'AI-Qualified → Kickserv',
-    highlight: true,
-  },
-  {
-    time: '07:42 AM',
-    caller: 'Sandra J.',
-    address: '1020 Hull Street, Richmond, VA',
-    cityNode: richmondVoiceHub.matchCityNode('Richmond'),
-    sqft: '3,200 sqft',
-    status: 'AI-Qualified → Kickserv',
-    highlight: false,
-  },
-  {
-    time: '11:58 AM',
-    caller: 'Brandon K.',
-    address: '355 Colonial Ave, Petersburg, VA',
-    cityNode: richmondVoiceHub.matchCityNode('Petersburg'),
-    sqft: '8,600 sqft',
-    status: 'AI-Qualified → Kickserv',
-    highlight: false,
-  },
+// ── Ghost Protocol autonomous activity feed entries ──────────────────────────
+const ghostFeed = [
+  { time: '04:12', type: 'SCAN', color: 'text-cyan-400', msg: 'Scanned 14 municipal commercial permits.' },
+  { time: '04:14', type: 'BID', color: 'text-amber-400', msg: 'Calculated 42,000 sq ft for Plaza Street Partners (TX). 35% margin locked.' },
+  { time: '04:15', type: 'AUTO', color: 'text-green-400', msg: 'Commercial proposal generated & emailed to GC Estimating.' },
+  { time: '04:18', type: 'CREW', color: 'text-purple-400', msg: 'Job won. Dispatching GPS & 410-ton target to Crew Alpha.' },
+  { time: '04:22', type: 'PLANT', color: 'text-yellow-400', msg: 'Vulcan Materials Chester — 12 min wait. Selected.' },
+  { time: '04:25', type: 'WHALE', color: 'text-red-400', msg: 'New KFC permit detected — Colonial Heights VA. Proposal queued.' },
+  { time: '04:31', type: 'VDOT', color: 'text-green-400', msg: '96% Marshall compaction standard verified on JOB-2401.' },
+  { time: '04:38', type: 'SAM', color: 'text-amber-400', msg: 'Bid submitted: SAM.gov #VA-2024-8841 — $2.1M asphalt resurfacing.' },
 ];
 
 // ── Key Metrics ──────────────────────────────────────────────────────────────
@@ -203,6 +182,9 @@ function Dashboard() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [ghostMode, setGhostMode] = useState(false);
+  const isAutonomousMode = ghostMode;
+  const setIsAutonomousMode = setGhostMode;
+  const panelCls = ghostMode ? 'bg-[#0a0505]' : '';
 
   useEffect(() => {
     if (!user || user.role !== 'OWNER') {

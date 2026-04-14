@@ -57,7 +57,7 @@ export const ContractDocument = ({
       <View style={styles.header}>
         <View>
           <Text style={styles.brandTitle}>J. WORDEN & SONS PAVING</Text>
-          <Text style={styles.heritage}>{legacyData.heritage.toUpperCase()}</Text>
+          <Text style={styles.heritage}>{legacyData.heritage.title.toUpperCase()}</Text>
         </View>
         <View style={{ alignItems: 'flex-end' }}>
           <Text style={styles.text}>SUPREME COURT PRIME CONTRACTOR</Text>

@@ -8,7 +8,7 @@
 import { useState, useMemo } from 'react';
 import {
   Zap, Shield, Mic, Lock, AlertTriangle, CheckCircle,
-  XCircle, DollarSign, Search, Copy, ChevronDown, ChevronUp,
+  XCircle, Search, Copy, ChevronDown, ChevronUp,
   TrendingUp, Clock,
 } from 'lucide-react';
 import {
@@ -23,7 +23,7 @@ import {
   type VoiceCategory,
   MOBILIZATION_THRESHOLD,
 } from '@/lib/omegaSolidifier';
-import { fmt, fmtInt } from '@/lib/adminFmt';
+import { fmt } from '@/lib/adminFmt';
 
 // ─── helpers ─────────────────────────────────────────────────────────────────
 

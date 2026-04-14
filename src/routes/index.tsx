@@ -6,7 +6,6 @@ import XRayComparison from '../components/XRayComparison';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import CustomerQuoteForm from '../components/CustomerQuoteForm';
 import CommandBotUI from '../components/CommandBot';
-import PartnerPortal from '../components/PartnerPortal';
 
 export const Route = createFileRoute('/')({
   component: () => (
