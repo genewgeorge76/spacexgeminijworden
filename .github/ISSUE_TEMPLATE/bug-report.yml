@@ -1,0 +1,52 @@
+name: 🐛 Bug Report
+description: Something is broken in the JWORDENAI platform
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Report a bug in JWORDENAI.** Tag with business impact: `whale-impact`, `shark-impact`, `fish-impact`, or `security`.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Clear description of the bug.
+      placeholder: "The bid proposal generator returns an error when..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should have happened?
+      placeholder: "It should have returned a formatted proposal..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Go to /gc-bid\n2. Enter RFP text\n3. Click Generate\n4. See error"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Business impact
+      options:
+        - "🐋 Whale-impact (blocks $500K+ client work)"
+        - "🦈 Shark-impact (affects $100K–$499K work)"
+        - "🐟 Fish-impact (residential/small commercial)"
+        - "🛡️ Security vulnerability"
+        - "🌐 SEO issue"
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / Environment
+      placeholder: "Chrome 123 / Netlify prod"

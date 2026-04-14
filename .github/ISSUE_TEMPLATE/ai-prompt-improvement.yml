@@ -1,0 +1,59 @@
+name: 🤖 AI Prompt Improvement
+description: Improve JWORDENAI's response quality for a specific task type
+labels: ["ai-core", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Improve the AI engine.** Document the current behavior, desired behavior, and proposed prompt change.
+        All experiments must be logged in `research/experiments/AI-PROMPT-EXPERIMENTS.md` first.
+
+  - type: dropdown
+    id: task-type
+    attributes:
+      label: Task type
+      options:
+        - "bidding (Claude)"
+        - "specs (Gemini)"
+        - "scheduling (GPT-4)"
+        - "general"
+        - "voice interface"
+        - "RAG knowledge retrieval"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current behavior
+      placeholder: "When asked about Davis-Bacon rates, the AI gives generic information without citing specific wage determinations..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: desired
+    attributes:
+      label: Desired behavior
+      placeholder: "Should cite DOL General Decision number and specific hourly rates for the correct county..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis / proposed change
+      placeholder: "Adding the Davis-Bacon knowledge chunk to RAG retrieval for 'wage' queries should fix this..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: business-impact
+    attributes:
+      label: Business impact
+      options:
+        - "🐋 Whale — affects federal/government bid quality"
+        - "🦈 Shark — affects commercial proposal quality"
+        - "🐟 Fish — affects residential estimate quality"
+        - "General quality improvement"
+    validations:
+      required: true

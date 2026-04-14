@@ -1,0 +1,59 @@
+name: Weekly SEO Health Report
+
+on:
+  schedule:
+    # Every Monday at 7:00 AM UTC (3:00 AM Eastern)
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+
+jobs:
+  seo-report:
+    name: Generate SEO Health Report
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: SEO Structure Audit
+        run: |
+          echo "=== JWORDENAI SEO HEALTH REPORT ===" > seo-report.md
+          echo "Generated: $(date -u)" >> seo-report.md
+          echo "" >> seo-report.md
+
+          echo "## Route Coverage" >> seo-report.md
+          echo "Total route files:" >> seo-report.md
+          find src/routes -name "*.tsx" 2>/dev/null | wc -l >> seo-report.md
+
+          echo "" >> seo-report.md
+          echo "## Location Pages" >> seo-report.md
+          if [ -d "src/routes/locations" ]; then
+            find src/routes/locations -name "*.tsx" | wc -l >> seo-report.md
+          else
+            echo "0 (locations directory not found)" >> seo-report.md
+          fi
+
+          echo "" >> seo-report.md
+          echo "### Location pages list:" >> seo-report.md
+          if [ -d "src/routes/locations" ]; then
+            find src/routes/locations -name "*.tsx" | sed 's/src\/routes\/locations\//  - \/locations\//g' | sed 's/\.tsx//' >> seo-report.md
+          else
+            echo "  (none)" >> seo-report.md
+          fi
+
+          echo "" >> seo-report.md
+          echo "## JSON-LD Schema Blocks" >> seo-report.md
+          grep -r "application/ld+json" src/ --include="*.tsx" 2>/dev/null | wc -l >> seo-report.md
+
+          echo "" >> seo-report.md
+          echo "## AI Schema Signals" >> seo-report.md
+          grep -r "JWORDENAI\|jwordenai" src/ --include="*.tsx" --include="*.ts" -l 2>/dev/null | wc -l >> seo-report.md
+
+          cat seo-report.md
+
+      - name: Upload SEO Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-health-report-${{ github.run_number }}
+          path: seo-report.md
+          retention-days: 90

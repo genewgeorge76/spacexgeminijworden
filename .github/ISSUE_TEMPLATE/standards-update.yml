@@ -1,0 +1,66 @@
+name: 📋 Standards Update
+description: Update a Worden Engineering Standard or add a new one
+labels: ["enhancement", "whale-impact"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Update the Worden Engineering Standards.** All standard changes must include source authority and rationale.
+        Changes will also need to be reflected in `src/ai/RAGKnowledgeBase.ts`.
+
+  - type: dropdown
+    id: action
+    attributes:
+      label: Action
+      options:
+        - "Update existing standard"
+        - "Add new standard"
+        - "Add new reference (VDOT/ASTM/FAR)"
+    validations:
+      required: true
+
+  - type: input
+    id: standard-id
+    attributes:
+      label: Standard ID (e.g., WS-001)
+      placeholder: "WS-001"
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current standard text (if updating)
+      placeholder: "Minimum 96% of Marshall Unit Weight..."
+
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed new standard text
+    validations:
+      required: true
+
+  - type: input
+    id: authority
+    attributes:
+      label: Source / authority
+      placeholder: "AASHTO T245, VDOT Section 315, DOL Davis-Bacon..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale for change
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Update checklist
+      options:
+        - label: Updated `research/specs/WORDEN-ENGINEERING-STANDARDS.md`
+        - label: Updated `src/ai/RAGKnowledgeBase.ts` knowledge chunk
+        - label: Updated `GEMINI.md` if it's a core standard
+        - label: AI tested to confirm it cites the updated standard

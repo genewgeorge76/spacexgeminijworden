@@ -1,0 +1,65 @@
+name: 🐋 New Market Expansion
+description: Enter a new state/city market for programmatic SEO and bid targeting
+labels: ["seo", "whale-impact", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Expand JWORDENAI to a new market.** This adds SEO pages, JSON-LD schemas, and bid targeting for the new location.
+
+  - type: input
+    id: city
+    attributes:
+      label: City
+      placeholder: "Charlotte"
+    validations:
+      required: true
+
+  - type: input
+    id: state
+    attributes:
+      label: State (full name)
+      placeholder: "North Carolina"
+    validations:
+      required: true
+
+  - type: input
+    id: state-abbr
+    attributes:
+      label: State abbreviation
+      placeholder: "NC"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Market tier
+      description: Based on population and expected project size
+      options:
+        - "🐋 Whale — $500K+ expected projects"
+        - "🦈 Shark — $100K–$499K expected projects"
+        - "🐟 Fish — Residential/small commercial"
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why this market?
+      description: List any existing client relationships, bid opportunities, or strategic reasons.
+      placeholder: "KBP Foods has 3 locations opening in Charlotte Q3 2026..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Market entry checklist
+      options:
+        - label: Add to `PRIORITY_MARKETS` in `src/data/programmaticSEO.ts`
+        - label: Add to `SERVICE_AREAS_41` or equivalent constants
+        - label: Check Virginia prequalification reciprocity status
+        - label: Check state contractor license requirements
+        - label: Verify Davis-Bacon wage determinations if federal work expected
+        - label: Update `areaServed` in root JSON-LD schema
