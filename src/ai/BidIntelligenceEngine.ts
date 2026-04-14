@@ -88,7 +88,7 @@ export async function generateBidProposal(
   const score = scoreBidTier(`${rfpTitle} ${rfpDescription}`);
   const ragContext = buildRAGContext(`${rfpTitle} ${rfpDescription} paving standards compliance`);
 
-  const isGovernment = score.tier === 'whale' && WHALE_SIGNALS.some((s) => rfpDescription.toLowerCase().includes(s));
+  const isGovernment = WHALE_SIGNALS.some((s) => rfpDescription.toLowerCase().includes(s));
 
   const complianceRequirements = isGovernment
     ? `This is a GOVERNMENT CONTRACT. Include: Virginia Class A Contractor License, SAM.gov registration (UEI/CAGE), Davis-Bacon prevailing wage compliance acknowledgment, DBE participation plan, bid bond capacity, performance and payment bond capacity.`

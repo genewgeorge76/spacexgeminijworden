@@ -32,9 +32,12 @@ Oil Price Shield: ±$9/ton liquid asphalt buffer on all cost calculations.
 Client Tiers: Whale ($500K+ national/federal), Shark ($100K–$499K regional), Fish (<$100K residential).
 Always cite standards. Always protect margins. Always prioritize Whale clients.`;
 
+/** Sentinel value used when VITE_ANTHROPIC_API_KEY is not set */
+const STANDBY_MODE = 'STANDBY_MODE';
+
 async function callAnthropic(prompt: string, systemContext: string): Promise<string> {
   const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-  if (!apiKey || apiKey === 'STANDBY_MODE') return '[Anthropic API key not configured]';
+  if (!apiKey || apiKey === STANDBY_MODE) return '[Anthropic API key not configured]';
 
   const { default: Anthropic } = await import('@anthropic-ai/sdk');
   const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });

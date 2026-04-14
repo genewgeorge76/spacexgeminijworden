@@ -35,6 +35,8 @@ export const PRIORITY_MARKETS: Array<{
   population: number;
   priority: 'whale' | 'shark' | 'fish';
 }> = [
+  // Population data: U.S. Census Bureau 2023 estimates. Review annually.
+  // Priority classification: based on expected project size and market opportunity.
   // Virginia — Home State (Full Coverage)
   { state: 'Virginia', stateAbbr: 'VA', city: 'Richmond', population: 230000, priority: 'whale' },
   { state: 'Virginia', stateAbbr: 'VA', city: 'Chesterfield', population: 360000, priority: 'whale' },
