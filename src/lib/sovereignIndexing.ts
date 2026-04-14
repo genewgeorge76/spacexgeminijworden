@@ -2,7 +2,9 @@
  * JWORDENAI: Sovereign Priority Indexing Engine
  * -----------------------------------------------
  * Submits URLs to the Google Indexing API v3 for priority crawl scheduling.
- * Targets Texas and Virginia KFC/KBP "Whale" asset pages first.
+ * Targets Virginia, Texas, and Michigan KFC/KBP "Whale" asset pages first.
+ * Leverages jwordenasphaltpaving.com 2014 domain authority as the sovereign anchor
+ * for 50-state national indexing.
  *
  * Requirements:
  *   - Set GOOGLE_SERVICE_ACCOUNT_JSON env var to the JSON of a Google service account
@@ -64,6 +66,12 @@ export const WHALE_PRIORITY_URLS: string[] = [
   'https://jwordenasphaltpaving.com/locations/austin',
   'https://jwordenasphaltpaving.com/locations/san-antonio',
   'https://jwordenasphaltpaving.com/locations/fort-worth',
+  // Michigan KBP/KFC Whale Assets — leveraging 2014 domain authority
+  'https://jwordenasphaltpaving.com/locations/detroit',
+  'https://jwordenasphaltpaving.com/locations/grand-rapids',
+  'https://jwordenasphaltpaving.com/locations/lansing',
+  'https://jwordenasphaltpaving.com/locations/ann-arbor',
+  'https://jwordenasphaltpaving.com/locations/sterling-heights',
   // Core service pages
   'https://jwordenasphaltpaving.com/',
   'https://jwordenasphaltpaving.com/commercial',
