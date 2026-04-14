@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Activity,
   AlertTriangle,
@@ -7,11 +7,17 @@ import {
   Bot,
   CheckCircle,
   DollarSign,
+  Droplets,
+  Flame,
   Globe,
+  HardHat,
   Lock,
+  MapPin,
   Search,
   Shield,
+  Thermometer,
   TrendingUp,
+  Truck,
   Zap,
 } from 'lucide-react';
 import { getAllSEOPages } from '../data/programmaticSEO';
@@ -19,6 +25,82 @@ import { getAllSEOPages } from '../data/programmaticSEO';
 export const Route = createFileRoute('/admin')({
   component: AdminDashboard,
 });
+
+// ── Digital Twin seed data ────────────────────────────────────────────────────
+
+type EquipmentStatus = 'Operational' | 'Maintenance Due' | 'Down' | 'En Route';
+
+interface Equipment {
+  id: string;
+  name: string;
+  type: string;
+  location: string;
+  fuelPct: number;
+  engineHours: number;
+  status: EquipmentStatus;
+  lastPing: string;
+  maintenanceDue: number; // hours until next service
+}
+
+const FLEET: Equipment[] = [
+  { id: 'T-1', name: 'Black Hawk Paver', type: 'Asphalt Paver', location: 'Job: VDOT Rt 288', fuelPct: 74, engineHours: 4821, status: 'Operational', lastPing: '0m ago', maintenanceDue: 179 },
+  { id: 'T-2', name: 'Iron Duke Roller', type: 'Vibratory Compactor', location: 'Job: VDOT Rt 288', fuelPct: 61, engineHours: 3302, status: 'Operational', lastPing: '1m ago', maintenanceDue: 48 },
+  { id: 'T-3', name: 'Steelman Dump #1', type: 'Dump Truck', location: 'En Route — Asphalt Plant', fuelPct: 48, engineHours: 7140, status: 'En Route', lastPing: '2m ago', maintenanceDue: 312 },
+  { id: 'T-4', name: 'Steelman Dump #2', type: 'Dump Truck', location: 'Job: Henrico Schools', fuelPct: 82, engineHours: 5890, status: 'Operational', lastPing: '0m ago', maintenanceDue: 60 },
+  { id: 'T-5', name: 'Crusher Skid Steer', type: 'Skid Steer Loader', location: 'Yard — 7011 Wood Rd', fuelPct: 95, engineHours: 2140, status: 'Operational', lastPing: '4m ago', maintenanceDue: 260 },
+  { id: 'T-6', name: 'Titan Milling Machine', type: 'Cold Planer', location: 'IDLE — Yard', fuelPct: 100, engineHours: 1987, status: 'Maintenance Due', lastPing: '18m ago', maintenanceDue: -12 },
+];
+
+type JobProgress = 'On Track' | 'Ahead' | 'Delayed';
+
+interface ActiveJob {
+  id: string;
+  name: string;
+  client: string;
+  location: string;
+  progress: number; // 0–100
+  crewCount: number;
+  compaction: number; // % Marshall Unit Weight
+  tempF: number; // mat temp °F
+  weatherCondition: string;
+  status: JobProgress;
+  phase: string;
+}
+
+const ACTIVE_JOBS: ActiveJob[] = [
+  { id: 'J-001', name: 'Rt. 288 Repave — Phase 1', client: 'VDOT', location: 'Chesterfield, VA', progress: 34, crewCount: 9, compaction: 97.2, tempF: 312, weatherCondition: '☀️ Clear 68°F', status: 'On Track', phase: 'Base Course' },
+  { id: 'J-002', name: 'Henrico County Schools Lot', client: 'Henrico County', location: 'Glen Allen, VA', progress: 68, crewCount: 5, compaction: 96.8, tempF: 298, weatherCondition: '⛅ Partly Cloudy 71°F', status: 'Ahead', phase: 'Surface Course' },
+  { id: 'J-003', name: 'Commerce Park Access Road', client: 'Chesterfield Dev. LLC', location: 'Midlothian, VA', progress: 12, crewCount: 7, compaction: 96.1, tempF: 320, weatherCondition: '🌧️ Light Rain 62°F', status: 'Delayed', phase: 'Subgrade Prep' },
+  { id: 'J-004', name: 'Windsor Farms Driveway', client: 'Residential — Private', location: 'Richmond, VA', progress: 100, crewCount: 2, compaction: 97.5, tempF: 305, weatherCondition: '☀️ Sunny 73°F', status: 'Ahead', phase: 'Complete' },
+];
+
+interface MaterialStock {
+  id: string;
+  name: string;
+  unit: string;
+  onHand: number;
+  capacity: number;
+  criticalLevel: number;
+  spec: string;
+}
+
+const MATERIAL_YARD: MaterialStock[] = [
+  { id: 'M-1', name: 'SM-9.5A Surface Mix', unit: 'tons', onHand: 420, capacity: 800, criticalLevel: 150, spec: 'VDOT Sec 315' },
+  { id: 'M-2', name: 'BM-25.0 Base Mix', unit: 'tons', onHand: 680, capacity: 1200, criticalLevel: 200, spec: 'VDOT Sec 315' },
+  { id: 'M-3', name: '21A Crusher Run Base', unit: 'tons', onHand: 1050, capacity: 2000, criticalLevel: 300, spec: 'VDOT 21A Aggregate' },
+  { id: 'M-4', name: '#57 Stone (Drainage)', unit: 'tons', onHand: 380, capacity: 600, criticalLevel: 100, spec: 'VDOT Section 303' },
+  { id: 'M-5', name: 'Liquid Asphalt Binder PG 64-22', unit: 'gal', onHand: 8400, capacity: 15000, criticalLevel: 2500, spec: 'AASHTO M 320' },
+];
+
+// Oil price shield logic: baseline bid price + $9/ton buffer
+const OIL_SHIELD = {
+  baselinePricePerTon: 58.0,
+  currentMarketPrice: 61.5,
+  shieldBuffer: 9.0,
+  maxProtected: 67.0, // baseline + buffer
+  trend: '+$3.50/ton vs last week',
+  alert: false, // true when currentMarketPrice > maxProtected
+};
 
 // ── Seeded demo data ─────────────────────────────────────────────────────────
 const BID_PIPELINE = [
@@ -57,7 +139,28 @@ const alertColor = (tier: number) =>
 
 // ── Component ────────────────────────────────────────────────────────────────
 function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security'>('bids');
+  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security' | 'twin'>('bids');
+  const [twinTick, setTwinTick] = useState(0);
+
+  // Simulate live telemetry pulse every 8 seconds
+  useEffect(() => {
+    if (activeTab !== 'twin') return;
+    const id = setInterval(() => setTwinTick((t) => t + 1), 8000);
+    return () => clearInterval(id);
+  }, [activeTab]);
+
+  // Derive slightly jittered live values from tick (simulating IoT telemetry)
+  const liveFleet = FLEET.map((eq, i) => ({
+    ...eq,
+    fuelPct: Math.max(5, Math.min(100, eq.fuelPct + (((twinTick + i) % 3) - 1))),
+    lastPing: twinTick > 0 && eq.status !== 'Maintenance Due' ? `${(twinTick + i) % 5}m ago` : eq.lastPing,
+  }));
+
+  const liveJobs = ACTIVE_JOBS.map((job, i) => ({
+    ...job,
+    compaction: parseFloat((job.compaction + ((((twinTick + i) % 5) - 2) * 0.05)).toFixed(1)),
+    tempF: Math.round(job.tempF + (((twinTick + i) % 3) - 1) * 2),
+  }));
 
   const totalPipeline = BID_PIPELINE.reduce((s, b) => s + b.value, 0);
   const whaleCount = BID_PIPELINE.filter((b) => b.tier === '🐋').length;
@@ -98,12 +201,13 @@ function AdminDashboard() {
       </div>
 
       {/* Tab Nav */}
-      <div className="px-6 flex gap-1 border-b border-gray-800 mb-6">
+      <div className="px-6 flex gap-1 border-b border-gray-800 mb-6 overflow-x-auto">
         {([
           ['bids', '💼 Bid Pipeline'],
           ['seo', '🌐 SEO Coverage'],
           ['ai', '🤖 AI Metrics'],
           ['security', '🛡️ Security'],
+          ['twin', '🔮 Digital Twin'],
         ] as const).map(([tab, label]) => (
           <button
             key={tab}
@@ -281,6 +385,246 @@ function AdminDashboard() {
                 <CheckCircle size={16} /> YARD SECURE — No Tier 3 lockdown events in last 30 days.
               </p>
             </div>
+          </div>
+        )}
+        {/* ─── Digital Twin ─── */}
+        {activeTab === 'twin' && (
+          <div className="space-y-8">
+            {/* Header */}
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-black uppercase text-white flex items-center gap-2">
+                <Activity size={20} className="text-[#ffcc00]" /> Digital Twin — Live Asset Mirror
+              </h2>
+              <div className="flex items-center gap-2 text-xs text-green-400 font-black uppercase">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                Live Telemetry · Sync {twinTick > 0 ? `#${twinTick}` : 'Initializing…'}
+              </div>
+            </div>
+
+            {/* ── Oil Price Shield ── */}
+            <section>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <Flame size={14} className="text-orange-400" /> Liquid Asphalt · $9/Ton Oil-Price Shield
+              </h3>
+              <div className={`border p-5 grid grid-cols-2 md:grid-cols-4 gap-6 ${OIL_SHIELD.alert ? 'border-red-500 bg-red-950/20' : 'border-[#ffcc00]/40 bg-[#ffcc00]/5'}`}>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Baseline Bid Price</div>
+                  <div className="text-2xl font-black text-white">${OIL_SHIELD.baselinePricePerTon.toFixed(2)}<span className="text-sm text-gray-500">/ton</span></div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Current Market</div>
+                  <div className="text-2xl font-black text-orange-400">${OIL_SHIELD.currentMarketPrice.toFixed(2)}<span className="text-sm text-gray-500">/ton</span></div>
+                  <div className="text-xs text-orange-300 mt-0.5">{OIL_SHIELD.trend}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Shield Buffer</div>
+                  <div className="text-2xl font-black text-[#ffcc00]">+${OIL_SHIELD.shieldBuffer.toFixed(2)}<span className="text-sm text-gray-500">/ton</span></div>
+                  <div className="text-xs text-gray-500 mt-0.5">Per GEMINI.md standard</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider font-bold mb-1">Max Protected</div>
+                  <div className={`text-2xl font-black ${OIL_SHIELD.alert ? 'text-red-400' : 'text-green-400'}`}>${OIL_SHIELD.maxProtected.toFixed(2)}<span className="text-sm text-gray-500">/ton</span></div>
+                  <div className={`text-xs mt-0.5 font-bold ${OIL_SHIELD.alert ? 'text-red-400' : 'text-green-400'}`}>
+                    {OIL_SHIELD.alert ? '⚠️ SHIELD BREACHED — Reprice Bids' : '✅ SHIELD HOLDS — Margin Protected'}
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* ── Active Job Sites ── */}
+            <section>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <MapPin size={14} className="text-[#ffcc00]" /> Active Job Sites — Live Status
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {liveJobs.map((job) => {
+                  const compactionOk = job.compaction >= 96.0;
+                  const statusColor =
+                    job.status === 'Ahead' ? 'text-green-400 border-green-700' :
+                    job.status === 'Delayed' ? 'text-red-400 border-red-700' :
+                    'text-[#ffcc00] border-[#ffcc00]/40';
+                  return (
+                    <div key={job.id} className="bg-[#111] border border-gray-800 p-5 hover:border-gray-600 transition-colors">
+                      <div className="flex items-start justify-between mb-3">
+                        <div>
+                          <div className="text-white font-black text-sm">{job.name}</div>
+                          <div className="text-gray-500 text-xs mt-0.5">{job.client} · {job.location}</div>
+                        </div>
+                        <span className={`text-xs font-black uppercase px-2 py-1 border ${statusColor}`}>{job.status}</span>
+                      </div>
+
+                      {/* Progress bar */}
+                      <div className="mb-3">
+                        <div className="flex justify-between text-xs mb-1">
+                          <span className="text-gray-500 font-bold uppercase tracking-wider">Phase: {job.phase}</span>
+                          <span className="text-[#ffcc00] font-black">{job.progress}%</span>
+                        </div>
+                        <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                          <div
+                            className={`h-2 rounded-full transition-all duration-700 ${job.progress === 100 ? 'bg-green-500' : 'bg-[#ffcc00]'}`}
+                            style={{ width: `${job.progress}%` }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-3 gap-3 text-xs">
+                        <div className="bg-gray-900/60 px-2 py-2">
+                          <div className="text-gray-500 uppercase tracking-wider font-bold mb-0.5">Crew</div>
+                          <div className="text-white font-black flex items-center gap-1">
+                            <HardHat size={12} className="text-[#ffcc00]" /> {job.crewCount}
+                          </div>
+                        </div>
+                        <div className={`px-2 py-2 ${compactionOk ? 'bg-green-950/30' : 'bg-red-950/30'}`}>
+                          <div className="text-gray-500 uppercase tracking-wider font-bold mb-0.5">Compaction</div>
+                          <div className={`font-black ${compactionOk ? 'text-green-400' : 'text-red-400'}`}>
+                            {job.compaction}% MUW
+                          </div>
+                          {!compactionOk && <div className="text-red-400 text-xs">⚠️ Below 96% floor!</div>}
+                        </div>
+                        <div className="bg-gray-900/60 px-2 py-2">
+                          <div className="text-gray-500 uppercase tracking-wider font-bold mb-0.5">Mat Temp</div>
+                          <div className={`font-black flex items-center gap-1 ${job.tempF < 280 ? 'text-red-400' : 'text-white'}`}>
+                            <Thermometer size={12} className="text-orange-400" /> {job.tempF}°F
+                          </div>
+                          {job.tempF < 280 && <div className="text-red-400">⚠️ Low temp!</div>}
+                        </div>
+                      </div>
+
+                      <div className="mt-2 text-xs text-gray-500">{job.weatherCondition}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* ── Equipment Fleet Telemetry ── */}
+            <section>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <Truck size={14} className="text-[#ffcc00]" /> Equipment Fleet — Live Telemetry
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="border-b border-gray-800 text-gray-500 uppercase text-xs tracking-widest">
+                      <th className="text-left py-3 pr-4">Unit</th>
+                      <th className="text-left py-3 pr-4">Type</th>
+                      <th className="text-left py-3 pr-4">Location</th>
+                      <th className="text-left py-3 pr-4">Fuel</th>
+                      <th className="text-left py-3 pr-4">Engine Hrs</th>
+                      <th className="text-left py-3 pr-4">Next Svc</th>
+                      <th className="text-left py-3 pr-4">Ping</th>
+                      <th className="text-left py-3">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {liveFleet.map((eq) => {
+                      const statusColor =
+                        eq.status === 'Operational' ? 'text-green-400 bg-green-900/20' :
+                        eq.status === 'En Route' ? 'text-blue-400 bg-blue-900/20' :
+                        eq.status === 'Maintenance Due' ? 'text-red-400 bg-red-900/20' :
+                        'text-gray-400 bg-gray-900/20';
+                      const fuelColor = eq.fuelPct > 40 ? 'bg-green-500' : eq.fuelPct > 20 ? 'bg-yellow-500' : 'bg-red-500';
+                      return (
+                        <tr key={eq.id} className="border-b border-gray-900 hover:bg-gray-900/30 transition-colors">
+                          <td className="py-3 pr-4 font-black text-[#ffcc00]">{eq.id}</td>
+                          <td className="py-3 pr-4">
+                            <div className="text-white font-bold text-xs">{eq.name}</div>
+                            <div className="text-gray-500 text-xs">{eq.type}</div>
+                          </td>
+                          <td className="py-3 pr-4 text-gray-400 text-xs max-w-[140px]">{eq.location}</td>
+                          <td className="py-3 pr-4">
+                            <div className="flex items-center gap-2">
+                              <Droplets size={12} className="text-blue-400 shrink-0" />
+                              <div className="w-20">
+                                <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                                  <div className={`h-1.5 rounded-full ${fuelColor} transition-all duration-700`} style={{ width: `${eq.fuelPct}%` }} />
+                                </div>
+                                <div className="text-xs text-gray-400 mt-0.5">{eq.fuelPct}%</div>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="py-3 pr-4 text-gray-400 text-xs">{eq.engineHours.toLocaleString()} h</td>
+                          <td className="py-3 pr-4 text-xs">
+                            {eq.maintenanceDue < 0
+                              ? <span className="text-red-400 font-black">OVERDUE {Math.abs(eq.maintenanceDue)}h</span>
+                              : eq.maintenanceDue < 75
+                              ? <span className="text-yellow-400 font-bold">{eq.maintenanceDue}h</span>
+                              : <span className="text-gray-500">{eq.maintenanceDue}h</span>
+                            }
+                          </td>
+                          <td className="py-3 pr-4 text-gray-500 text-xs">{eq.lastPing}</td>
+                          <td className="py-3">
+                            <span className={`px-2 py-1 text-xs font-black uppercase tracking-wider ${statusColor}`}>{eq.status}</span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            {/* ── Material Yard Inventory ── */}
+            <section>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <HardHat size={14} className="text-[#ffcc00]" /> Material Yard — Inventory (7011 Wood Rd)
+              </h3>
+              <div className="space-y-3">
+                {MATERIAL_YARD.map((mat) => {
+                  const pct = Math.round((mat.onHand / mat.capacity) * 100);
+                  const critical = mat.onHand <= mat.criticalLevel;
+                  const barColor = critical ? 'bg-red-500' : pct < 50 ? 'bg-yellow-500' : 'bg-green-500';
+                  return (
+                    <div key={mat.id} className={`border px-4 py-3 ${critical ? 'border-red-700 bg-red-950/10' : 'border-gray-800 bg-[#111]'}`}>
+                      <div className="flex items-center justify-between mb-2">
+                        <div>
+                          <span className="text-white font-black text-sm">{mat.name}</span>
+                          <span className="ml-3 text-xs text-gray-500 font-mono">{mat.spec}</span>
+                        </div>
+                        <div className="text-right">
+                          <span className={`font-black text-sm ${critical ? 'text-red-400' : 'text-[#ffcc00]'}`}>
+                            {mat.onHand.toLocaleString()} {mat.unit}
+                          </span>
+                          <span className="text-gray-500 text-xs ml-1">/ {mat.capacity.toLocaleString()}</span>
+                          {critical && <div className="text-red-400 text-xs font-black">⚠️ REORDER NOW</div>}
+                        </div>
+                      </div>
+                      <div className="h-2 bg-gray-800 rounded-full overflow-hidden">
+                        <div className={`h-2 rounded-full transition-all duration-700 ${barColor}`} style={{ width: `${pct}%` }} />
+                      </div>
+                      <div className="flex justify-between text-xs mt-1 text-gray-600">
+                        <span>Critical: {mat.criticalLevel.toLocaleString()} {mat.unit}</span>
+                        <span>{pct}% of capacity</span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+
+            {/* ── Compaction Compliance Summary ── */}
+            <section>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+                <CheckCircle size={14} className="text-green-400" /> 96% Marshall Unit Weight — Compaction Compliance
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {liveJobs.map((job) => {
+                  const pass = job.compaction >= 96.0;
+                  return (
+                    <div key={job.id} className={`border p-4 ${pass ? 'border-green-800 bg-green-950/20' : 'border-red-700 bg-red-950/20'}`}>
+                      <div className={`text-2xl font-black ${pass ? 'text-green-400' : 'text-red-400'}`}>{job.compaction}%</div>
+                      <div className="text-xs text-gray-400 font-bold mt-1 leading-tight">{job.name.split('—')[0].trim()}</div>
+                      <div className={`text-xs font-black mt-2 ${pass ? 'text-green-400' : 'text-red-400'}`}>
+                        {pass ? '✅ PASS ≥96%' : '❌ FAIL <96%'}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-3 p-3 bg-[#ffcc00]/10 border border-[#ffcc00]/30 text-xs text-[#ffcc00] font-black">
+                ⚙️ Standard: 96% Marshall Unit Weight (AASHTO T245) — Worden Non-Negotiable Floor · VDOT Sec 315
+              </div>
+            </section>
           </div>
         )}
       </div>
