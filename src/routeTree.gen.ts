@@ -37,6 +37,7 @@ import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
@@ -239,6 +240,11 @@ const ConcreteRoute = ConcreteRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterRoute = CommandCenterRouteImport.update({
+  id: '/command-center',
+  path: '/command-center',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommandBotRoute = CommandBotRouteImport.update({
@@ -563,6 +569,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -656,6 +663,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -750,6 +758,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
@@ -845,6 +854,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/command-bot'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -938,6 +948,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/command-bot'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1031,6 +1042,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/command-bot'
+    | '/command-center'
     | '/commercial'
     | '/concrete'
     | '/contact'
@@ -1125,6 +1137,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   CommandBotRoute: typeof CommandBotRoute
+  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
   ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
@@ -1410,6 +1423,13 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center': {
+      id: '/command-center'
+      path: '/command-center'
+      fullPath: '/command-center'
+      preLoaderRoute: typeof CommandCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/command-bot': {
@@ -1861,6 +1881,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   CommandBotRoute: CommandBotRoute,
+  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
   ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,

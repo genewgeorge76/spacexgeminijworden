@@ -26,6 +26,7 @@ import { AuthorityComparativeTab } from '@/components/admin/AuthorityComparative
 import { SovereignVisionTab } from '@/components/admin/SovereignVisionTab';
 import { LifetimeTwinTab } from '@/components/admin/LifetimeTwinTab';
 import { OmegaTab } from '@/components/admin/OmegaTab';
+import { ClientHandoverTab } from '@/components/admin/ClientHandoverTab';
 import { getAllSEOPages } from '../data/programmaticSEO';
 
 export const Route = createFileRoute('/admin')({
@@ -145,7 +146,7 @@ const alertColor = (tier: number) =>
 
 // ── Component ────────────────────────────────────────────────────────────────
 function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security' | 'twin' | 'estimator' | 'weather' | 'authority' | 'vision' | 'lifetime' | 'omega'>('bids');
+  const [activeTab, setActiveTab] = useState<'bids' | 'seo' | 'ai' | 'security' | 'twin' | 'estimator' | 'weather' | 'authority' | 'vision' | 'lifetime' | 'omega' | 'handover'>('bids');
   const [twinTick, setTwinTick] = useState(0);
 
   // Simulate live telemetry pulse every 8 seconds
@@ -219,6 +220,7 @@ function AdminDashboard() {
           ['authority', '⚔️ Authority Comparative'],
           ['vision', '👁️ Sovereign Vision'],
           ['lifetime', '♻️ Lifetime Twin'],
+          ['handover', '📦 Client Handover'],
           ['omega', '⚡ Omega Solidifier'],
         ] as const).map(([tab, label]) => (
           <button
@@ -654,6 +656,9 @@ function AdminDashboard() {
 
         {/* ─── Lifetime Twin ─── */}
         {activeTab === 'lifetime' && <LifetimeTwinTab />}
+
+        {/* ─── Client Digital Twin Handover ─── */}
+        {activeTab === 'handover' && <ClientHandoverTab />}
 
         {/* ─── Omega Solidifier ─── */}
         {activeTab === 'omega' && <OmegaTab />}
