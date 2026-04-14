@@ -1,5 +1,5 @@
 /**
- * JWORDENAI Industrial Digital Twin — Job Record Ledger + Lifetime Revenue Engine
+ * JWORDENAI Asset Mirror — Job Record Ledger + Lifetime Revenue Engine
  * Every completed job is stored as a digital replica.
  * The engine pings property managers at 1-year, 3-year, and 5-year maintenance windows.
  *

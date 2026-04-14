@@ -178,16 +178,29 @@ export function SovereignVisionTab() {
   const [result, setResult] = useState<CVAnalysisResult | null>(null);
   const [analyzing, setAnalyzing] = useState(false);
 
+  /**
+   * Use FileReader.readAsDataURL() instead of URL.createObjectURL() so the
+   * preview src is always a same-origin data: URI validated against the
+   * image/* MIME type — eliminates the tainted-source XSS path.
+   */
+  function loadPreview(f: File) {
+    if (!f.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target?.result;
+      if (typeof dataUrl === 'string' && dataUrl.startsWith('data:image/')) {
+        setPreview(dataUrl);
+      }
+    };
+    reader.readAsDataURL(f);
+  }
+
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
     const f = e.dataTransfer.files[0];
     if (f && f.type.startsWith('image/')) {
       setFile(f);
-      const blobUrl = URL.createObjectURL(f);
-      // Only allow blob: URLs to prevent XSS via crafted URLs
-      if (blobUrl.startsWith('blob:')) {
-        setPreview(blobUrl);
-      }
+      loadPreview(f);
       setResult(null);
     }
   }, []);
@@ -196,11 +209,7 @@ export function SovereignVisionTab() {
     const f = e.target.files?.[0];
     if (f) {
       setFile(f);
-      const blobUrl = URL.createObjectURL(f);
-      // Only allow blob: URLs to prevent XSS via crafted URLs
-      if (blobUrl.startsWith('blob:')) {
-        setPreview(blobUrl);
-      }
+      loadPreview(f);
       setResult(null);
     }
   };

@@ -1,5 +1,5 @@
 /**
- * LifetimeTwinTab — Industrial Digital Twin Job Ledger + Maintenance Ping Engine
+ * LifetimeTwinTab — JWORDENAI Asset Mirror Job Ledger + Maintenance Ping Engine
  * Stores completed jobs and auto-generates 1/3/5/12-year maintenance revenue pings.
  */
 import { useState, useMemo } from 'react';
@@ -62,7 +62,7 @@ export function LifetimeTwinTab() {
     <div className="space-y-8">
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-black uppercase text-white flex items-center gap-2">
-          <Archive size={20} className="text-[#ffcc00]" /> Industrial Digital Twin — Lifetime Revenue Engine
+          <Archive size={20} className="text-[#ffcc00]" /> JWORDENAI Asset Mirror — Lifetime Revenue Engine
         </h2>
         <button
           onClick={() => setShowAddForm((v) => !v)}

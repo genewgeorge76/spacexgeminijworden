@@ -9,7 +9,7 @@
 
 // ── Worden Standard line items every bid MUST include ────────────────────────
 
-export interface WordenStandardItem {
+export interface JWORDENAI_Sovereign_StandardItem {
   id: string;
   category: string;
   requirement: string;
@@ -19,7 +19,7 @@ export interface WordenStandardItem {
   question: string;            // the question to ask the competitor
 }
 
-export const WORDEN_STANDARD_ITEMS: WordenStandardItem[] = [
+export const JWORDENAI_SOVEREIGN_STANDARD_ITEMS: JWORDENAI_Sovereign_StandardItem[] = [
   {
     id: 'compaction',
     category: 'Compaction',
@@ -100,7 +100,7 @@ export interface CompetitorBidInput {
   competitorName: string;
   theirPrice: number;
   wordenPrice: number;
-  /** IDs from WORDEN_STANDARD_ITEMS that the competitor likely omitted */
+  /** IDs from JWORDENAI_SOVEREIGN_STANDARD_ITEMS that the competitor likely omitted */
   omittedItemIds: string[];
   projectType: 'driveway' | 'parking-lot' | 'commercial' | 'government' | 'sealcoat';
   sqFt: number;
@@ -109,7 +109,7 @@ export interface CompetitorBidInput {
 export interface CompetitorAnalysisResult {
   priceDifference: number;
   priceDifferencePct: number;
-  omittedItems: WordenStandardItem[];
+  omittedItems: JWORDENAI_Sovereign_StandardItem[];
   hiddenCostMin: number;
   hiddenCostMax: number;
   trueCompetitorCostLow: number;  // their price + min hidden costs
@@ -121,7 +121,7 @@ export interface CompetitorAnalysisResult {
 
 /** Deconstruct a competitor bid and produce the interrogation script */
 export function analyzeCompetitorBid(input: CompetitorBidInput): CompetitorAnalysisResult {
-  const omittedItems = WORDEN_STANDARD_ITEMS.filter((item) => input.omittedItemIds.includes(item.id));
+  const omittedItems = JWORDENAI_SOVEREIGN_STANDARD_ITEMS.filter((item) => input.omittedItemIds.includes(item.id));
 
   // Estimate hidden cost range from omitted items
   const priceDifference = parseFloat((input.wordenPrice - input.theirPrice).toFixed(2));

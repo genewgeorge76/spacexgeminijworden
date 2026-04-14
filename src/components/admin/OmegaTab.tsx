@@ -224,7 +224,7 @@ function PriceLockPanel() {
     a === 'OPTIMAL' ? 'text-green-400' : a === 'MODERATE' ? 'text-yellow-400' : a === 'LIMITED' ? 'text-orange-400' : 'text-red-400';
 
   function copyLockId(id: string) {
-    navigator.clipboard.writeText(id).catch(() => {});
+    navigator.clipboard.writeText(id).catch(() => { /* clipboard unavailable in non-HTTPS or restricted contexts */ });
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
   }
@@ -342,7 +342,7 @@ function VoiceDispatcherPanel() {
   }, [activeCategory, searchQuery]);
 
   function copyScript(id: string, script: string) {
-    navigator.clipboard.writeText(script).catch(() => {});
+    navigator.clipboard.writeText(script).catch(() => { /* clipboard unavailable in non-HTTPS or restricted contexts */ });
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2500);
   }

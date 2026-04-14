@@ -32,7 +32,7 @@ export const Route = createFileRoute('/admin')({
   component: AdminDashboard,
 });
 
-// ── Digital Twin seed data ────────────────────────────────────────────────────
+// ── JWORDENAI Asset Mirror seed data ─────────────────────────────────────────────────
 
 type EquipmentStatus = 'Operational' | 'Maintenance Due' | 'Down' | 'En Route';
 
@@ -213,7 +213,7 @@ function AdminDashboard() {
           ['seo', '🌐 SEO Coverage'],
           ['ai', '🤖 AI Metrics'],
           ['security', '🛡️ Security'],
-          ['twin', '🔮 Digital Twin'],
+          ['twin', '🔮 JWORDENAI Asset Mirror'],
           ['estimator', '📐 Dynamic Estimator'],
           ['weather', '🌦️ Weather-Guard'],
           ['authority', '⚔️ Authority Comparative'],
@@ -399,17 +399,17 @@ function AdminDashboard() {
             </div>
           </div>
         )}
-        {/* ─── Digital Twin ─── */}
+        {/* ─── JWORDENAI Asset Mirror ─── */}
         {activeTab === 'twin' && (
           <div className="space-y-8">
             {/* Header */}
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-black uppercase text-white flex items-center gap-2">
-                <Activity size={20} className="text-[#ffcc00]" /> Digital Twin — Live Asset Mirror
+                <Activity size={20} className="text-[#ffcc00]" /> JWORDENAI Asset Mirror — Live Asset Mirror
               </h2>
               <div className="flex items-center gap-2 text-xs text-green-400 font-black uppercase">
                 <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                Live Telemetry · Sync {twinTick > 0 ? `#${twinTick}` : 'Initializing…'}
+                JWORDENAI Live Telemetry · Sync {twinTick > 0 ? `#${twinTick}` : 'Initializing…'}
               </div>
             </div>
 
@@ -512,7 +512,7 @@ function AdminDashboard() {
             {/* ── Equipment Fleet Telemetry ── */}
             <section>
               <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
-                <Truck size={14} className="text-[#ffcc00]" /> Equipment Fleet — Live Telemetry
+                <Truck size={14} className="text-[#ffcc00]" /> Equipment Fleet — JWORDENAI Live Telemetry
               </h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">

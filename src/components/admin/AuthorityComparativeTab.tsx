@@ -5,7 +5,7 @@
 import { useState, useMemo } from 'react';
 import { Shield, CheckCircle, ChevronDown, ChevronUp, DollarSign, AlertTriangle } from 'lucide-react';
 import {
-  WORDEN_STANDARD_ITEMS,
+  JWORDENAI_SOVEREIGN_STANDARD_ITEMS,
   analyzeCompetitorBid,
   type CompetitorBidInput,
 } from '@/lib/authorityComparative';
@@ -90,9 +90,9 @@ export function AuthorityComparativeTab() {
 
         {/* Omitted items checklist */}
         <div className="mb-4">
-          <label className="text-xs font-black uppercase text-gray-500 mb-2 block">What Worden Standard Items Did They Likely Omit?</label>
+          <label className="text-xs font-black uppercase text-gray-500 mb-2 block">What JWORDENAI Sovereign Standard Items Did They Likely Omit?</label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-            {WORDEN_STANDARD_ITEMS.map((item) => (
+            {JWORDENAI_SOVEREIGN_STANDARD_ITEMS.map((item) => (
               <label key={item.id} className={`flex items-center gap-2 text-xs font-bold cursor-pointer px-3 py-2 border ${omittedIds.includes(item.id) ? 'border-orange-600 bg-orange-950/20 text-orange-400' : 'border-gray-800 text-gray-400'}`}>
                 <input type="checkbox" checked={omittedIds.includes(item.id)} onChange={() => toggleOmitted(item.id)} className="accent-[#ffcc00]" />
                 {item.category}

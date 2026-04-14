@@ -280,7 +280,7 @@ export function lockMaterialPrice(tonnage: number, stateCode: string): PriceLock
   const expiryDate = new Date();
   expiryDate.setHours(expiryDate.getHours() + 48);
 
-  const lockId = `LOCK-${stateCode.toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
+  const lockId = `LOCK-${stateCode.toUpperCase()}-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).substring(2, 7).toUpperCase()}`;
 
   const warningIfUnavailable =
     plant.availability === 'LIMITED'
