@@ -556,7 +556,6 @@ function HeavyCivilView({ analysis }: { analysis: SiteAnalysis }) {
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function PreConOmniNode() {
-  const [address, setAddress] = useState('');
   const [inputValue, setInputValue] = useState('');
   const [scanning, setScanning] = useState(false);
   const [activeTab, setActiveTab] = useState<ActiveTab>('godmode');
@@ -567,7 +566,6 @@ export default function PreConOmniNode() {
     setScanning(true);
     setAnalysis(null);
     setTimeout(() => {
-      setAddress(inputValue.trim());
       setAnalysis(runAnalysis(inputValue.trim()));
       setScanning(false);
     }, 1800);

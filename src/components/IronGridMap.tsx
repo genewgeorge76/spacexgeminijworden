@@ -1,550 +1,476 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-// ── Types ─────────────────────────────────────────────────────────────────────
-interface JobNode {
-  id: string;
-  state: string;
-  x: number;
-  y: number;
-  type: 'gold' | 'amber' | 'red';
-  label: string;
-  cfoCfoMath?: {
-    client: string;
-    sqFt: number;
-    tons: number;
-    margin: string;
-    profit: string;
-  };
+// ── State centroid positions in 960×580 SVG viewport ──────────────────────────
+// Projection: x = (lon + 124.7) / 57.8 * 900 + 30
+//             y = (49.4 - lat)  / 24.9 * 530 + 25
+const STATES: { abbr: string; name: string; x: number; y: number }[] = [
+  { abbr: 'AL', name: 'Alabama',        x: 648, y: 410 },
+  { abbr: 'AK', name: 'Alaska',         x: 120, y: 520 },
+  { abbr: 'AZ', name: 'Arizona',        x: 218, y: 415 },
+  { abbr: 'AR', name: 'Arkansas',       x: 575, y: 375 },
+  { abbr: 'CA', name: 'California',     x: 111, y: 296 },
+  { abbr: 'CO', name: 'Colorado',       x: 320, y: 305 },
+  { abbr: 'CT', name: 'Connecticut',    x: 823, y: 192 },
+  { abbr: 'DE', name: 'Delaware',       x: 800, y: 243 },
+  { abbr: 'FL', name: 'Florida',        x: 699, y: 505 },
+  { abbr: 'GA', name: 'Georgia',        x: 681, y: 406 },
+  { abbr: 'HI', name: 'Hawaii',         x: 210, y: 540 },
+  { abbr: 'ID', name: 'Idaho',          x: 196, y: 178 },
+  { abbr: 'IL', name: 'Illinois',       x: 604, y: 278 },
+  { abbr: 'IN', name: 'Indiana',        x: 636, y: 270 },
+  { abbr: 'IA', name: 'Iowa',           x: 552, y: 238 },
+  { abbr: 'KS', name: 'Kansas',         x: 472, y: 310 },
+  { abbr: 'KY', name: 'Kentucky',       x: 668, y: 300 },
+  { abbr: 'LA', name: 'Louisiana',      x: 585, y: 455 },
+  { abbr: 'ME', name: 'Maine',          x: 862, y: 140 },
+  { abbr: 'MD', name: 'Maryland',       x: 777, y: 255 },
+  { abbr: 'MA', name: 'Massachusetts',  x: 837, y: 176 },
+  { abbr: 'MI', name: 'Michigan',       x: 638, y: 202 },
+  { abbr: 'MN', name: 'Minnesota',      x: 537, y: 155 },
+  { abbr: 'MS', name: 'Mississippi',    x: 614, y: 420 },
+  { abbr: 'MO', name: 'Missouri',       x: 568, y: 300 },
+  { abbr: 'MT', name: 'Montana',        x: 274, y: 140 },
+  { abbr: 'NE', name: 'Nebraska',       x: 452, y: 265 },
+  { abbr: 'NV', name: 'Nevada',         x: 169, y: 295 },
+  { abbr: 'NH', name: 'New Hampshire',  x: 845, y: 162 },
+  { abbr: 'NJ', name: 'New Jersey',     x: 809, y: 221 },
+  { abbr: 'NM', name: 'New Mexico',     x: 294, y: 395 },
+  { abbr: 'NY', name: 'New York',       x: 796, y: 184 },
+  { abbr: 'NC', name: 'N. Carolina',    x: 729, y: 333 },
+  { abbr: 'ND', name: 'North Dakota',   x: 431, y: 142 },
+  { abbr: 'OH', name: 'Ohio',           x: 682, y: 246 },
+  { abbr: 'OK', name: 'Oklahoma',       x: 477, y: 370 },
+  { abbr: 'OR', name: 'Oregon',         x: 141, y: 195 },
+  { abbr: 'PA', name: 'Pennsylvania',   x: 769, y: 220 },
+  { abbr: 'RI', name: 'Rhode Island',   x: 833, y: 186 },
+  { abbr: 'SC', name: 'S. Carolina',    x: 726, y: 370 },
+  { abbr: 'SD', name: 'South Dakota',   x: 431, y: 193 },
+  { abbr: 'TN', name: 'Tennessee',      x: 640, y: 340 },
+  { abbr: 'TX', name: 'Texas',          x: 416, y: 443 },
+  { abbr: 'UT', name: 'Utah',           x: 234, y: 305 },
+  { abbr: 'VT', name: 'Vermont',        x: 828, y: 159 },
+  { abbr: 'VA', name: 'Virginia',       x: 748, y: 289 },
+  { abbr: 'WA', name: 'Washington',     x: 155, y: 148 },
+  { abbr: 'WV', name: 'West Virginia',  x: 726, y: 268 },
+  { abbr: 'WI', name: 'Wisconsin',      x: 583, y: 193 },
+  { abbr: 'WY', name: 'Wyoming',        x: 302, y: 220 },
+];
+
+// ── Heat intensity per state (0–1). States not listed get 0. ──────────────────
+const HEAT: Record<string, number> = {
+  TX: 0.95, FL: 0.90, OH: 0.85, VA: 0.92,
+  NC: 0.78, GA: 0.74, MD: 0.72, PA: 0.68,
+  TN: 0.62, IL: 0.60, NY: 0.65, CA: 0.58,
+  SC: 0.55, WV: 0.52, KY: 0.50, NJ: 0.48,
+};
+
+// ── Live intercept feed data ──────────────────────────────────────────────────
+const INTERCEPTS = [
+  { city: 'Dallas, TX',      intent: '"Plaza Street Partners Asphalt Paving"',             status: 'JWORDENAI Auto-Targeted',          tier: 1 },
+  { city: 'Orlando, FL',     intent: '"50-State Commercial Paving Contractor"',             status: 'Dominance SEO Triggered',          tier: 1 },
+  { city: 'Columbus, OH',    intent: '"K-VA-T Food Stores Parking Lot Resurfacing"',        status: 'Proposal Queued',                  tier: 1 },
+  { city: 'Richmond, VA',    intent: '"J. Worden Sons National Paving"',                    status: 'Home Territory Lock — Confirmed',  tier: 1 },
+  { city: 'Charlotte, NC',   intent: '"Taco Bell NSO Paving Contractor"',                   status: 'GC Intercept · Bid Staged',        tier: 1 },
+  { city: 'Atlanta, GA',     intent: '"National Commercial Paving 50 States"',              status: 'JWORDENAI Auto-Targeted',          tier: 2 },
+  { city: 'Nashville, TN',   intent: '"KFC Restaurant Remodel Paving"',                    status: 'Franchise NSO Alert Fired',        tier: 2 },
+  { city: 'Philadelphia, PA',intent: '"VDOT-Grade Asphalt Infrastructure"',                status: 'Dominance SEO Triggered',          tier: 2 },
+  { city: 'Chicago, IL',     intent: '"Industrial Parking Lot Resurfacing GC"',            status: 'Proposal Queued',                  tier: 2 },
+  { city: 'Houston, TX',     intent: '"Fast Food Chain Paving Contractor National"',       status: 'JWORDENAI Auto-Targeted',          tier: 1 },
+  { city: 'Baltimore, MD',   intent: '"State DOT Asphalt Contractor Prequalified"',        status: 'Bid Pipeline Activated',           tier: 2 },
+  { city: 'Los Angeles, CA', intent: '"50-State Infrastructure Paving Firm"',              status: 'West Coast Intercept — Monitoring',tier: 2 },
+  { city: 'Tampa, FL',       intent: '"Chick-fil-A Site Development Paving"',              status: 'Franchise NSO Alert Fired',        tier: 1 },
+  { city: 'Cleveland, OH',   intent: '"K-VA-T Asphalt Infrastructure Partner"',            status: 'Proposal Queued',                  tier: 1 },
+  { city: 'Raleigh, NC',     intent: '"Commercial Parking Lot GC Virginia"',               status: 'Dominance SEO Triggered',          tier: 2 },
+];
+
+// ── Heat color mapping ────────────────────────────────────────────────────────
+function heatColor(h: number): string {
+  if (h >= 0.88) return '#ff2200'; // deep red
+  if (h >= 0.75) return '#ff5500'; // orange-red
+  if (h >= 0.60) return '#ff8800'; // amber-orange
+  if (h >= 0.48) return '#ffaa00'; // amber
+  return '#ffcc00';                 // gold
 }
 
-// ── US State Dot Positions (SVG 800×480 viewport) ────────────────────────────
-const STATE_DOTS: { abbr: string; x: number; y: number }[] = [
-  { abbr: 'WA', x: 78, y: 60 },
-  { abbr: 'OR', x: 74, y: 100 },
-  { abbr: 'CA', x: 68, y: 170 },
-  { abbr: 'NV', x: 95, y: 145 },
-  { abbr: 'ID', x: 115, y: 90 },
-  { abbr: 'MT', x: 148, y: 65 },
-  { abbr: 'WY', x: 168, y: 105 },
-  { abbr: 'UT', x: 132, y: 145 },
-  { abbr: 'AZ', x: 130, y: 195 },
-  { abbr: 'CO', x: 178, y: 155 },
-  { abbr: 'NM', x: 170, y: 200 },
-  { abbr: 'ND', x: 230, y: 62 },
-  { abbr: 'SD', x: 235, y: 90 },
-  { abbr: 'NE', x: 238, y: 118 },
-  { abbr: 'KS', x: 248, y: 148 },
-  { abbr: 'OK', x: 260, y: 178 },
-  { abbr: 'TX', x: 255, y: 228 },
-  { abbr: 'MN', x: 295, y: 68 },
-  { abbr: 'IA', x: 305, y: 112 },
-  { abbr: 'MO', x: 315, y: 148 },
-  { abbr: 'AR', x: 318, y: 182 },
-  { abbr: 'LA', x: 325, y: 222 },
-  { abbr: 'WI', x: 338, y: 82 },
-  { abbr: 'IL', x: 342, y: 128 },
-  { abbr: 'MS', x: 348, y: 205 },
-  { abbr: 'MI', x: 370, y: 85 },
-  { abbr: 'IN', x: 368, y: 128 },
-  { abbr: 'TN', x: 380, y: 178 },
-  { abbr: 'AL', x: 378, y: 208 },
-  { abbr: 'OH', x: 400, y: 118 },
-  { abbr: 'KY', x: 398, y: 158 },
-  { abbr: 'GA', x: 408, y: 210 },
-  { abbr: 'FL', x: 415, y: 260 },
-  { abbr: 'WV', x: 428, y: 142 },
-  { abbr: 'VA', x: 448, y: 155 },
-  { abbr: 'NC', x: 452, y: 178 },
-  { abbr: 'SC', x: 448, y: 200 },
-  { abbr: 'PA', x: 450, y: 115 },
-  { abbr: 'NY', x: 468, y: 92 },
-  { abbr: 'MD', x: 468, y: 138 },
-  { abbr: 'DE', x: 478, y: 128 },
-  { abbr: 'NJ', x: 482, y: 115 },
-  { abbr: 'CT', x: 494, y: 100 },
-  { abbr: 'RI', x: 502, y: 100 },
-  { abbr: 'MA', x: 498, y: 88 },
-  { abbr: 'VT', x: 492, y: 75 },
-  { abbr: 'NH', x: 502, y: 75 },
-  { abbr: 'ME', x: 514, y: 65 },
-];
-
-// ── War Room Job Nodes ────────────────────────────────────────────────────────
-const JOB_NODES: JobNode[] = [
-  {
-    id: 'va-1',
-    state: 'VA',
-    x: 448,
-    y: 155,
-    type: 'gold',
-    label: 'Richmond Corridor',
-    cfoCfoMath: {
-      client: 'K-VA-T Food Stores — VA',
-      sqFt: 38000,
-      tons: 370,
-      margin: '35%',
-      profit: '$12,800',
-    },
-  },
-  {
-    id: 'nc-1',
-    state: 'NC',
-    x: 452,
-    y: 178,
-    type: 'gold',
-    label: 'Charlotte Metro',
-    cfoCfoMath: {
-      client: 'Plaza Street Partners — NC',
-      sqFt: 28500,
-      tons: 278,
-      margin: '35%',
-      profit: '$9,650',
-    },
-  },
-  {
-    id: 'tx-1',
-    state: 'TX',
-    x: 255,
-    y: 228,
-    type: 'gold',
-    label: 'Dallas Expansion',
-    cfoCfoMath: {
-      client: 'Plaza Street Partners — TX',
-      sqFt: 42000,
-      tons: 410,
-      margin: '35%',
-      profit: '$14,500',
-    },
-  },
-  // Amber plant pulse nodes near active job zones
-  {
-    id: 'va-plant',
-    state: 'VA',
-    x: 438,
-    y: 148,
-    type: 'amber',
-    label: 'Mauldin Plant — Richmond',
-  },
-  {
-    id: 'nc-plant',
-    state: 'NC',
-    x: 462,
-    y: 185,
-    type: 'amber',
-    label: 'Vulcan Plant — Charlotte',
-  },
-  {
-    id: 'tx-plant',
-    state: 'TX',
-    x: 245,
-    y: 235,
-    type: 'amber',
-    label: 'Martin Marietta — Dallas',
-  },
-  // Red Ghost Protocol bid nodes
-  {
-    id: 'fl-ghost',
-    state: 'FL',
-    x: 415,
-    y: 260,
-    type: 'red',
-    label: 'Ghost Protocol Active — FL',
-  },
-  {
-    id: 'oh-ghost',
-    state: 'OH',
-    x: 400,
-    y: 118,
-    type: 'red',
-    label: 'Ghost Protocol Active — OH',
-  },
-  {
-    id: 'ga-ghost',
-    state: 'GA',
-    x: 408,
-    y: 210,
-    type: 'red',
-    label: 'Ghost Protocol Dispatch — GA',
-  },
-];
-
-// ── Animated Laser Lines between Ghost nodes and HQ ──────────────────────────
-const HQ = { x: 448, y: 155 }; // VA HQ
-const GHOST_LINES = [
-  { id: 'fl-line', x1: HQ.x, y1: HQ.y, x2: 415, y2: 260 },
-  { id: 'oh-line', x1: HQ.x, y1: HQ.y, x2: 400, y2: 118 },
-  { id: 'ga-line', x1: HQ.x, y1: HQ.y, x2: 408, y2: 210 },
-];
-
-// ── Popover Component ─────────────────────────────────────────────────────────
-function JobPopover({ node, onClose }: { node: JobNode; onClose: () => void }) {
-  const math = node.cfoCfoMath;
-  if (!math) return null;
-
-  // Position popover intelligently — shift left if near right edge
-  const popLeft = node.x > 380 ? node.x - 220 : node.x + 18;
-  const popTop = node.y - 50;
-
-  return (
-    <g>
-      {/* Backdrop */}
-      <rect
-        x={popLeft}
-        y={popTop}
-        width={210}
-        height={130}
-        rx={6}
-        fill="rgba(9,9,11,0.96)"
-        stroke="#ffcc00"
-        strokeWidth={1}
-        filter="url(#glow-gold)"
-      />
-      {/* Header bar */}
-      <rect x={popLeft} y={popTop} width={210} height={22} rx={6} fill="#ffcc00" />
-      <text x={popLeft + 8} y={popTop + 14} fill="black" fontSize={8} fontWeight="900" textAnchor="start" style={{ textTransform: 'uppercase', letterSpacing: 1 }}>
-        {node.label.toUpperCase()} · ACTIVE JOB
-      </text>
-      {/* Close button */}
-      <text
-        x={popLeft + 196}
-        y={popTop + 14}
-        fill="black"
-        fontSize={9}
-        fontWeight="900"
-        style={{ cursor: 'pointer' }}
-        onClick={onClose}
-      >
-        ✕
-      </text>
-      {/* Body content */}
-      <text x={popLeft + 8} y={popTop + 38} fill="#aaa" fontSize={7} fontWeight="bold">CLIENT</text>
-      <text x={popLeft + 8} y={popTop + 48} fill="white" fontSize={8} fontWeight="900">{math.client}</text>
-
-      <text x={popLeft + 8} y={popTop + 63} fill="#aaa" fontSize={7} fontWeight="bold">SQ FT</text>
-      <text x={popLeft + 55} y={popTop + 63} fill="#aaa" fontSize={7} fontWeight="bold">TONS</text>
-      <text x={popLeft + 105} y={popTop + 63} fill="#aaa" fontSize={7} fontWeight="bold">MARGIN</text>
-      <text x={popLeft + 158} y={popTop + 63} fill="#aaa" fontSize={7} fontWeight="bold">PROFIT</text>
-
-      <text x={popLeft + 8} y={popTop + 75} fill="#ffcc00" fontSize={9} fontWeight="900">{math.sqFt.toLocaleString()}</text>
-      <text x={popLeft + 55} y={popTop + 75} fill="#ffcc00" fontSize={9} fontWeight="900">{math.tons}</text>
-      <text x={popLeft + 105} y={popTop + 75} fill="#22c55e" fontSize={9} fontWeight="900">{math.margin}</text>
-      <text x={popLeft + 158} y={popTop + 75} fill="#22c55e" fontSize={9} fontWeight="900">{math.profit}</text>
-
-      <rect x={popLeft + 8} y={popTop + 86} width={194} height={1} fill="#333" />
-
-      <text x={popLeft + 8} y={popTop + 98} fill="#555" fontSize={6.5} fontWeight="bold">96% MARSHALL · VDOT SEC 315 · $9/TON SHIELD</text>
-      <text x={popLeft + 8} y={popTop + 110} fill="#ffcc00" fontSize={6.5} fontWeight="bold">J. WORDEN &amp; SONS · 4TH GEN · EST. 1984</text>
-      <text x={popLeft + 8} y={popTop + 122} fill="#22c55e" fontSize={6.5} fontWeight="bold">STATUS: CREW DEPLOYED · VDOT COMPLIANT</text>
-    </g>
-  );
-}
-
-// ── Main Component ────────────────────────────────────────────────────────────
+// ── Component ─────────────────────────────────────────────────────────────────
 export default function IronGridMap() {
-  const [activeNode, setActiveNode] = useState<JobNode | null>(null);
+  const [tick, setTick] = useState(0);
+  const [pulse, setPulse] = useState(false);
+  const [feedIdx, setFeedIdx] = useState(0);
+  const [visibleItems, setVisibleItems] = useState<number[]>([0, 1, 2]);
+  const feedRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Pulse animation driver
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTick((t) => t + 1);
+      setPulse((p) => !p);
+    }, 1400);
+    return () => clearInterval(id);
+  }, []);
+
+  // Intercept feed — add one new entry every 2.8 s
+  useEffect(() => {
+    feedRef.current = setInterval(() => {
+      setFeedIdx((i) => (i + 1) % INTERCEPTS.length);
+    }, 2800);
+    return () => { if (feedRef.current) clearInterval(feedRef.current); };
+  }, []);
+
+  // Rolling window of 6 visible feed entries
+  useEffect(() => {
+    setVisibleItems((prev) => {
+      const next = [...prev, feedIdx].slice(-6);
+      return next;
+    });
+  }, [feedIdx]);
+
+  // For animated glow radius
+  const glowScale = pulse ? 1.0 : 0.85;
 
   return (
-    <div className="bg-zinc-950 border border-zinc-800 rounded-2xl overflow-hidden relative"
-      style={{ boxShadow: '0 0 40px rgba(255,204,0,0.08), inset 0 0 60px rgba(0,0,0,0.6)' }}
-    >
-      {/* Header bar */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-800/60 bg-black/60">
-        <div className="flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
-          <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ffcc00]">
-            THE IRON GRID — 50-STATE WAR ROOM
-          </span>
+    <section className="py-12 px-6 border-b border-zinc-900 bg-[#060609]">
+      <div className="max-w-7xl mx-auto">
+
+        {/* Section header */}
+        <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+          <div className="flex items-center gap-3">
+            <span
+              className="inline-block w-2.5 h-2.5 rounded-full bg-red-500"
+              style={{ boxShadow: '0 0 8px 3px #ff220066', animation: 'pulse 1.4s ease-in-out infinite' }}
+            />
+            <span className="text-[10px] font-black uppercase tracking-[0.45em] text-red-400">
+              LIVE · Search Intent Heatmap
+            </span>
+          </div>
+          <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-widest">
+            <span className="text-zinc-600">
+              Intercepted Queries: <span className="text-[#ffcc00]">{(tick * 7 + 1402).toLocaleString()}</span>
+            </span>
+            <span className="text-zinc-600">
+              Auto-Proposals Fired: <span className="text-green-400">{(tick * 2 + 348).toLocaleString()}</span>
+            </span>
+            <span className="bg-red-900/30 border border-red-700/40 text-red-400 px-3 py-1 rounded-full animate-pulse">
+              AI DOMINANCE ACTIVE
+            </span>
+          </div>
         </div>
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#ffcc00] animate-pulse" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-[#ffcc00]/70">3 Active Crews</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-amber-500" style={{ boxShadow: '0 0 6px #f59e0b' }} />
-            <span className="text-[9px] font-black uppercase tracking-widest text-amber-400/70">3 Plant Links</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-[9px] font-black uppercase tracking-widest text-red-400/70">3 Ghost Bids Active</span>
-          </div>
-        </div>
-      </div>
 
-      {/* SVG Map */}
-      <div className="relative w-full" style={{ paddingBottom: '60%' }}>
-        <svg
-          viewBox="0 0 545 328"
-          className="absolute inset-0 w-full h-full"
-          style={{ background: 'transparent' }}
-          aria-label="Iron Grid 50-State War Room Map"
-        >
-          <defs>
-            {/* Gold glow filter */}
-            <filter id="glow-gold" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            {/* Amber glow filter */}
-            <filter id="glow-amber" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="2.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            {/* Red glow filter */}
-            <filter id="glow-red" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3.5" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-            {/* Red dashed line animation */}
-            <style>{`
-              @keyframes dashMove {
-                from { stroke-dashoffset: 24; }
-                to   { stroke-dashoffset: 0; }
-              }
-              @keyframes goldPulse {
-                0%, 100% { r: 5; opacity: 1; }
-                50% { r: 9; opacity: 0.3; }
-              }
-              @keyframes amberGlow {
-                0%, 100% { opacity: 0.9; }
-                50% { opacity: 0.4; }
-              }
-              @keyframes redFlash {
-                0%, 100% { r: 4; opacity: 1; }
-                50% { r: 7; opacity: 0.25; }
-              }
-              .gold-pulse-outer { animation: goldPulse 1.8s ease-in-out infinite; }
-              .amber-glow { animation: amberGlow 2.2s ease-in-out infinite; }
-              .red-flash { animation: redFlash 1.2s ease-in-out infinite; }
-              .laser-line { animation: dashMove 0.6s linear infinite; }
-            `}</style>
-          </defs>
+        {/* Title */}
+        <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white mb-1">
+          Iron Grid <span className="text-red-500">War Room</span>{' '}
+          <span className="text-zinc-600 text-lg">— National Search Intercept Map</span>
+        </h2>
+        <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wider mb-8">
+          Real-time SEO dominance radar · JWORDENAI detecting high commercial search intent across 50 states
+        </p>
 
-          {/* ── Dark map background ── */}
-          <rect width="545" height="328" fill="#09090b" />
+        {/* Two-column layout: map + feed */}
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-6">
 
-          {/* Grid lines */}
-          {Array.from({ length: 11 }).map((_, i) => (
-            <line
-              key={`h${i}`}
-              x1={0} y1={i * 32} x2={545} y2={i * 32}
-              stroke="rgba(255,204,0,0.04)"
-              strokeWidth={0.5}
-            />
-          ))}
-          {Array.from({ length: 18 }).map((_, i) => (
-            <line
-              key={`v${i}`}
-              x1={i * 32} y1={0} x2={i * 32} y2={328}
-              stroke="rgba(255,204,0,0.04)"
-              strokeWidth={0.5}
-            />
-          ))}
+          {/* ── The Iron Grid Map ─────────────────────────────────────────── */}
+          <div
+            className="relative rounded-xl overflow-hidden border border-zinc-800"
+            style={{
+              background: 'linear-gradient(145deg, #07070f 0%, #0a0a14 60%, #0d0a08 100%)',
+              boxShadow: '0 0 40px 4px #ff220012, inset 0 0 80px #00000080',
+            }}
+          >
+            {/* Corner decorations */}
+            <div className="absolute top-0 left-0 w-16 h-16 border-t-2 border-l-2 border-[#ffcc00]/30 rounded-tl-xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-16 h-16 border-t-2 border-r-2 border-[#ffcc00]/30 rounded-tr-xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-16 h-16 border-b-2 border-l-2 border-[#ffcc00]/30 rounded-bl-xl pointer-events-none" />
+            <div className="absolute bottom-0 right-0 w-16 h-16 border-b-2 border-r-2 border-[#ffcc00]/30 rounded-br-xl pointer-events-none" />
 
-          {/* Subtle diagonal scan line */}
-          <line x1={0} y1={0} x2={545} y2={328} stroke="rgba(255,204,0,0.02)" strokeWidth={60} />
+            {/* Map header bar */}
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-zinc-800/80 bg-black/40">
+              <span className="text-[9px] font-black uppercase tracking-[0.5em] text-[#ffcc00]/60">
+                JWORDENAI · SEARCH DOMINANCE GRID · CONTIG. USA
+              </span>
+              <span className="ml-auto flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-green-500">
+                <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                LIVE
+              </span>
+            </div>
 
-          {/* ── All state dots (background grid nodes) ── */}
-          {STATE_DOTS.map((s) => {
-            const isActiveNode = JOB_NODES.some((n) => n.state === s.abbr && n.type !== 'amber');
-            if (isActiveNode) return null; // rendered separately
-            return (
-              <g key={s.abbr}>
-                <circle cx={s.x} cy={s.y} r={2.5} fill="rgba(255,255,255,0.08)" />
-                <text
-                  x={s.x}
-                  y={s.y + 8}
-                  textAnchor="middle"
-                  fill="rgba(255,255,255,0.18)"
-                  fontSize={5}
-                  fontWeight="bold"
-                >
-                  {s.abbr}
-                </text>
-              </g>
-            );
-          })}
+            {/* SVG map */}
+            <svg
+              viewBox="30 110 870 450"
+              className="w-full"
+              style={{ display: 'block' }}
+              aria-label="US Search Intent Heatmap"
+            >
+              <defs>
+                {/* Glow filters for each heat tier */}
+                <filter id="glow-critical" x="-100%" y="-100%" width="300%" height="300%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur" />
+                  <feColorMatrix in="blur" type="matrix"
+                    values="1 0 0 0 1  0 0.1 0 0 0  0 0 0 0 0  0 0 0 0.7 0" result="colored" />
+                  <feMerge><feMergeNode in="colored" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="glow-high" x="-80%" y="-80%" width="260%" height="260%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="14" result="blur" />
+                  <feColorMatrix in="blur" type="matrix"
+                    values="1 0.3 0 0 0.9  0 0.2 0 0 0.1  0 0 0 0 0  0 0 0 0.6 0" result="colored" />
+                  <feMerge><feMergeNode in="colored" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="glow-med" x="-60%" y="-60%" width="220%" height="220%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                  <feColorMatrix in="blur" type="matrix"
+                    values="1 0.5 0 0 0.8  0.3 0.3 0 0 0.2  0 0 0 0 0  0 0 0 0.5 0" result="colored" />
+                  <feMerge><feMergeNode in="colored" /><feMergeNode in="SourceGraphic" /></feMerge>
+                </filter>
+                <filter id="dot-glow" x="-200%" y="-200%" width="500%" height="500%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="4" />
+                </filter>
 
-          {/* ── Ghost Protocol laser lines (red animated dashes) ── */}
-          {GHOST_LINES.map((line) => (
-            <line
-              key={line.id}
-              className="laser-line"
-              x1={line.x1}
-              y1={line.y1}
-              x2={line.x2}
-              y2={line.y2}
-              stroke="rgba(239,68,68,0.7)"
-              strokeWidth={1}
-              strokeDasharray="6 6"
-              filter="url(#glow-red)"
-            />
-          ))}
+                {/* Heatmap radial gradients for hot states */}
+                {STATES.filter((s) => HEAT[s.abbr] !== undefined).map((s) => {
+                  const h = HEAT[s.abbr]!;
+                  const col = heatColor(h);
+                  return (
+                    <radialGradient key={`grad-${s.abbr}`} id={`heat-${s.abbr}`} cx="50%" cy="50%" r="50%">
+                      <stop offset="0%" stopColor={col} stopOpacity={0.45 * h} />
+                      <stop offset="55%" stopColor={col} stopOpacity={0.18 * h} />
+                      <stop offset="100%" stopColor={col} stopOpacity={0} />
+                    </radialGradient>
+                  );
+                })}
+              </defs>
 
-          {/* ── Amber Plant Pulse Nodes ── */}
-          {JOB_NODES.filter((n) => n.type === 'amber').map((node) => (
-            <g key={node.id}>
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={6}
-                fill="rgba(245,158,11,0.15)"
-                stroke="#f59e0b"
-                strokeWidth={1}
-                className="amber-glow"
-              />
-              <circle cx={node.x} cy={node.y} r={2.5} fill="#f59e0b" filter="url(#glow-amber)" />
-              <text
-                x={node.x}
-                y={node.y - 10}
-                textAnchor="middle"
-                fill="rgba(245,158,11,0.8)"
-                fontSize={5}
-                fontWeight="bold"
-              >
-                ⬡ PLANT
-              </text>
-            </g>
-          ))}
-
-          {/* ── Red Ghost Protocol Bid Nodes ── */}
-          {JOB_NODES.filter((n) => n.type === 'red').map((node) => (
-            <g key={node.id}>
-              {/* Outer pulse ring */}
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={8}
-                fill="rgba(239,68,68,0.1)"
-                stroke="rgba(239,68,68,0.4)"
-                strokeWidth={1}
-                className="red-flash"
-              />
-              <circle
-                cx={node.x}
-                cy={node.y}
-                r={4}
-                fill="rgba(239,68,68,0.8)"
-                filter="url(#glow-red)"
-              />
-              <text
-                x={node.x}
-                y={node.y - 12}
-                textAnchor="middle"
-                fill="rgba(239,68,68,0.9)"
-                fontSize={5.5}
-                fontWeight="900"
-                letterSpacing={0.5}
-              >
-                ◉ GHOST
-              </text>
-            </g>
-          ))}
-
-          {/* ── Gold Active Job Nodes (clickable) ── */}
-          {JOB_NODES.filter((n) => n.type === 'gold').map((node) => {
-            const isActive = activeNode?.id === node.id;
-            return (
-              <g
-                key={node.id}
-                onClick={() => setActiveNode(isActive ? null : node)}
-                style={{ cursor: 'pointer' }}
-              >
-                {/* Outer pulse ring */}
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={12}
-                  fill="rgba(255,204,0,0.08)"
-                  stroke="rgba(255,204,0,0.3)"
-                  strokeWidth={1}
-                  className="gold-pulse-outer"
+              {/* Fine grid background */}
+              {Array.from({ length: 30 }).map((_, i) => (
+                <line
+                  key={`gx-${i}`}
+                  x1={30 + i * 30} y1={110}
+                  x2={30 + i * 30} y2={560}
+                  stroke="#ffcc0008" strokeWidth="1"
                 />
-                {/* Inner glow */}
-                <circle
-                  cx={node.x}
-                  cy={node.y}
-                  r={5}
-                  fill={isActive ? '#fff' : '#ffcc00'}
-                  filter="url(#glow-gold)"
+              ))}
+              {Array.from({ length: 16 }).map((_, i) => (
+                <line
+                  key={`gy-${i}`}
+                  x1={30} y1={110 + i * 30}
+                  x2={900} y2={110 + i * 30}
+                  stroke="#ffcc0008" strokeWidth="1"
                 />
-                {/* State label */}
-                <text
-                  x={node.x}
-                  y={node.y - 16}
-                  textAnchor="middle"
-                  fill="#ffcc00"
-                  fontSize={6.5}
-                  fontWeight="900"
-                >
-                  ★ {node.state}
-                </text>
-                <text
-                  x={node.x}
-                  y={node.y + 20}
-                  textAnchor="middle"
-                  fill="rgba(255,204,0,0.6)"
-                  fontSize={5}
-                  fontWeight="bold"
-                >
-                  {node.label.toUpperCase()}
-                </text>
-              </g>
-            );
-          })}
+              ))}
 
-          {/* ── Active Popover ── */}
-          {activeNode?.type === 'gold' && (
-            <JobPopover node={activeNode} onClose={() => setActiveNode(null)} />
-          )}
+              {/* Heatmap glow blobs — drawn first (behind state dots) */}
+              {STATES.filter((s) => HEAT[s.abbr] !== undefined).map((s) => {
+                const h = HEAT[s.abbr]!;
+                const r = (48 + h * 48) * glowScale;
+                return (
+                  <ellipse
+                    key={`heat-${s.abbr}`}
+                    cx={s.x} cy={s.y}
+                    rx={r * 1.2} ry={r}
+                    fill={`url(#heat-${s.abbr})`}
+                    style={{ transition: 'rx 0.7s ease, ry 0.7s ease' }}
+                  />
+                );
+              })}
 
-          {/* ── HQ Marker (Richmond, VA) ── */}
-          <g>
-            <rect x={HQ.x - 18} y={HQ.y + 8} width={36} height={9} rx={2} fill="rgba(255,204,0,0.15)" stroke="rgba(255,204,0,0.3)" strokeWidth={0.5} />
-            <text x={HQ.x} y={HQ.y + 15} textAnchor="middle" fill="#ffcc00" fontSize={5.5} fontWeight="900">HQ · RVA</text>
-          </g>
+              {/* State dots + labels */}
+              {STATES.map((s) => {
+                const h = HEAT[s.abbr] ?? 0;
+                const isHot = h >= 0.48;
+                const col = h > 0 ? heatColor(h) : '#334155';
+                const r = isHot ? 5 : 3;
 
-          {/* ── Legend ── */}
-          <g transform="translate(8, 280)">
-            <rect width={210} height={40} rx={4} fill="rgba(0,0,0,0.7)" stroke="rgba(255,255,255,0.06)" strokeWidth={0.5} />
-            <circle cx={12} cy={11} r={4} fill="#ffcc00" filter="url(#glow-gold)" />
-            <text x={20} y={14} fill="#ffcc00" fontSize={6} fontWeight="900">ACTIVE CREW</text>
-            <circle cx={82} cy={11} r={3} fill="#f59e0b" filter="url(#glow-amber)" />
-            <text x={90} y={14} fill="#f59e0b" fontSize={6} fontWeight="900">PLANT LINK</text>
-            <circle cx={148} cy={11} r={3} fill="#ef4444" filter="url(#glow-red)" />
-            <text x={156} y={14} fill="#ef4444" fontSize={6} fontWeight="900">GHOST BID</text>
-            <text x={8} y={30} fill="rgba(255,204,0,0.4)" fontSize={5.5} fontWeight="bold">TAP GOLD NODE FOR CFO MATH · J. WORDEN &amp; SONS · EST. 1984</text>
-          </g>
+                return (
+                  <g key={s.abbr}>
+                    {/* Outer glow ring for hot states */}
+                    {isHot && (
+                      <circle
+                        cx={s.x} cy={s.y}
+                        r={r + 6 + (pulse ? 3 : 0)}
+                        fill="none"
+                        stroke={col}
+                        strokeWidth="1"
+                        opacity={0.3}
+                        style={{ transition: 'r 0.7s ease, opacity 0.7s ease' }}
+                      />
+                    )}
+                    {/* Core dot */}
+                    <circle
+                      cx={s.x} cy={s.y} r={r}
+                      fill={col}
+                      opacity={isHot ? 0.95 : 0.45}
+                      filter={isHot ? (h >= 0.88 ? 'url(#glow-critical)' : h >= 0.72 ? 'url(#glow-high)' : 'url(#glow-med)') : undefined}
+                    />
+                    {/* State abbreviation */}
+                    <text
+                      x={s.x} y={s.y + (isHot ? 16 : 12)}
+                      textAnchor="middle"
+                      fontSize={isHot ? '8' : '7'}
+                      fontFamily="monospace"
+                      fontWeight={isHot ? 'bold' : 'normal'}
+                      fill={isHot ? col : '#475569'}
+                      opacity={isHot ? 1 : 0.7}
+                    >
+                      {s.abbr}
+                    </text>
+                  </g>
+                );
+              })}
 
-          {/* ── Scan sweep effect ── */}
-          <g opacity={0.04}>
-            <circle cx={HQ.x} cy={HQ.y} r={200} fill="none" stroke="#ffcc00" strokeWidth={0.5} />
-            <circle cx={HQ.x} cy={HQ.y} r={150} fill="none" stroke="#ffcc00" strokeWidth={0.5} />
-            <circle cx={HQ.x} cy={HQ.y} r={100} fill="none" stroke="#ffcc00" strokeWidth={0.5} />
-            <circle cx={HQ.x} cy={HQ.y} r={50} fill="none" stroke="#ffcc00" strokeWidth={0.5} />
-          </g>
-        </svg>
-      </div>
+              {/* VA home-base star marker */}
+              {(() => {
+                const va = STATES.find((s) => s.abbr === 'VA')!;
+                return (
+                  <text
+                    x={va.x} y={va.y - 10}
+                    textAnchor="middle"
+                    fontSize="12"
+                    fill="#ffcc00"
+                    style={{ filter: 'drop-shadow(0 0 6px #ffcc00)' }}
+                  >
+                    ★
+                  </text>
+                );
+              })()}
+            </svg>
 
-      {/* Bottom status bar */}
-      <div className="flex items-center justify-between px-5 py-2 border-t border-zinc-800/60 bg-black/40">
-        <div className="flex items-center gap-4">
-          <span className="text-[9px] font-black uppercase tracking-widest text-zinc-600">JWORDENAI v4</span>
-          <span className="text-[9px] font-bold text-zinc-700">VDOT SEC 315 · AASHTO T245 · $9/TON SHIELD</span>
+            {/* Legend */}
+            <div className="flex flex-wrap items-center gap-4 px-4 pb-3 pt-1 border-t border-zinc-800/60">
+              {[
+                { col: '#ff2200', label: 'Critical Intent (95%+)' },
+                { col: '#ff5500', label: 'High Intent (75–94%)' },
+                { col: '#ff8800', label: 'Med Intent (60–74%)' },
+                { col: '#ffcc00', label: 'Emerging (48–59%)' },
+                { col: '#334155', label: 'Monitoring' },
+              ].map(({ col, label }) => (
+                <div key={label} className="flex items-center gap-1.5">
+                  <span
+                    className="inline-block w-2.5 h-2.5 rounded-full"
+                    style={{ background: col, boxShadow: `0 0 6px 1px ${col}66` }}
+                  />
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">{label}</span>
+                </div>
+              ))}
+              <span className="ml-auto text-[9px] font-bold uppercase tracking-widest text-[#ffcc00]/50">
+                ★ HQ — Richmond, VA
+              </span>
+            </div>
+          </div>
+
+          {/* ── Intercept Feed (The Radar) ─────────────────────────────────── */}
+          <div
+            className="flex flex-col rounded-xl border border-zinc-800 overflow-hidden"
+            style={{
+              background: 'linear-gradient(180deg, #070b07 0%, #07090b 100%)',
+              boxShadow: '0 0 24px 2px #00ff4408, inset 0 0 40px #00000060',
+            }}
+          >
+            {/* Feed header */}
+            <div className="flex items-center gap-2 px-4 py-2.5 border-b border-zinc-800/80 bg-black/40">
+              <span
+                className="inline-block w-2 h-2 rounded-full bg-green-400"
+                style={{ boxShadow: '0 0 6px 2px #22c55e80', animation: 'pulse 1s ease-in-out infinite' }}
+              />
+              <span className="text-[9px] font-black uppercase tracking-[0.45em] text-green-500/80">
+                SEARCH INTERCEPT RADAR
+              </span>
+              <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-zinc-600">
+                [{INTERCEPTS.length} STREAMS]
+              </span>
+            </div>
+
+            {/* Sub-header */}
+            <div className="px-4 py-2 border-b border-zinc-900 bg-black/20">
+              <div className="text-[8px] font-black uppercase tracking-[0.4em] text-zinc-600">
+                &gt;&gt; JWORDENAI · REAL-TIME SEO DOMINANCE ENGINE · LIVE FEED
+              </div>
+            </div>
+
+            {/* Feed entries */}
+            <div className="flex-1 overflow-hidden px-3 py-3 space-y-2">
+              {visibleItems.map((idx, pos) => {
+                const item = INTERCEPTS[idx % INTERCEPTS.length];
+                const isNew = pos === visibleItems.length - 1;
+                const tierColor = item.tier === 1 ? 'text-red-400' : 'text-amber-400';
+                const tierBorder = item.tier === 1 ? 'border-red-700/40' : 'border-amber-700/30';
+                const tierBg = item.tier === 1 ? 'bg-red-950/20' : 'bg-amber-950/10';
+                return (
+                  <div
+                    key={`${idx}-${pos}`}
+                    className={`border ${tierBorder} ${tierBg} rounded px-3 py-2 transition-all duration-700`}
+                    style={{ opacity: isNew ? 1 : 0.55 + pos * 0.07 }}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className={`text-[8px] font-black uppercase tracking-[0.4em] ${tierColor}`}>
+                        ▶ INTERCEPTED
+                      </span>
+                      <span className={`text-[8px] font-black uppercase tracking-widest ${tierColor} opacity-70`}>
+                        TIER-{item.tier}
+                      </span>
+                    </div>
+                    <div className="text-[9px] font-black text-green-300 font-mono mb-1">
+                      IP ORIGIN: {item.city}
+                    </div>
+                    <div className="text-[9px] text-zinc-300 font-mono mb-1 leading-snug">
+                      QUERY: {item.intent}
+                    </div>
+                    <div className="text-[8px] font-black uppercase tracking-widest text-green-500/80">
+                      STATUS: {item.status}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Feed footer stats */}
+            <div className="border-t border-zinc-800/80 px-4 py-3 bg-black/30 space-y-1.5">
+              <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
+                <span className="text-zinc-600">Queries / Hour</span>
+                <span className="text-green-400 font-mono">{(2847 + tick * 3).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
+                <span className="text-zinc-600">Proposals Auto-Fired</span>
+                <span className="text-[#ffcc00] font-mono">{(348 + tick * 2).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
+                <span className="text-zinc-600">Hot Zones Active</span>
+                <span className="text-red-400 font-mono">
+                  {Object.values(HEAT).filter((h) => h >= 0.75).length} STATES
+                </span>
+              </div>
+              <div className="mt-2 text-[8px] font-black uppercase tracking-[0.5em] text-zinc-700 text-center">
+                ██████████ SEO DOMINANCE: {Math.min(100, 72 + tick % 12)}% ██████████
+              </div>
+            </div>
+          </div>
         </div>
-        <span className="text-[9px] font-black uppercase tracking-widest text-[#ffcc00]/40">
-          50-STATE COVERAGE INITIATED
-        </span>
+
+        {/* Bottom status bar */}
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3 px-4 py-2 rounded-lg bg-zinc-950 border border-zinc-900">
+          <div className="flex items-center gap-3">
+            {['TX', 'FL', 'OH', 'VA', 'NC'].map((st) => {
+              const s = STATES.find((x) => x.abbr === st)!;
+              const h = HEAT[st] ?? 0;
+              const col = heatColor(h);
+              return (
+                <div key={st} className="flex items-center gap-1.5">
+                  <span
+                    className="inline-block w-2 h-2 rounded-full"
+                    style={{ background: col, boxShadow: `0 0 4px 1px ${col}` }}
+                  />
+                  <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">
+                    {s.name}
+                  </span>
+                  <span className="text-[9px] font-mono" style={{ color: col }}>
+                    {Math.round(h * 100)}%
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+          <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600">
+            JWORDENAI Search Radar · Updated every 2.8s · 50-State Coverage
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }

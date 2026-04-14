@@ -19,7 +19,7 @@ export const coastalEmpire = {
     return coastalEmpire.zonePremiums[zone as keyof typeof coastalEmpire.zonePremiums] ?? 1;
   },
   injectLocalSignals: function(stateCode: string) {
-    const hub = coastalEmpire.hubs[stateCode as keyof typeof coastalEmpire.hubs];
+    const hub = this.hubs[stateCode as keyof typeof this.hubs];
     if (hub) {
       return {
         schemaLandmark: hub.landmark,

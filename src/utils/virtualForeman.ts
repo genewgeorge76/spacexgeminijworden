@@ -1,73 +1,63 @@
 /**
  * JWORDENAI Voice Assistant v1.0
  * Logic: AI-Foreman Persona + Satellite Trigger
+ * Node: Chester, VA HQ — 1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836
  */
 
-// Mock APIs for demonstration
-const satelliteAPI = {
-  measure: (_address: string) => Math.floor(Math.random() * 14200 + 800), // Returns 800-15000 sqft
-};
+export interface LeadInfo {
+  callerName: string;
+  address: string;
+  phone: string;
+}
 
-const historyDatabase = {
-  findNearby: (_address: string) => ({ city: 'Chester, VA', project: '3-inch Heavy Duty Overlay', year: 2023 }),
-};
-
-interface KickservLeadData {
+export interface KickservPayload {
   name: string;
   address: string;
   sqft: number;
-  proofSent: { city: string; project: string; year: number };
+  proofCity: string;
   status: string;
 }
 
-const kickserv = {
-  createLead: (data: KickservLeadData) =>
-    console.log(`[KICKSERV-SYNC]: Lead created for ${data.name} at ${data.address}`),
-};
+// Mock satellite measurement — returns estimated sq ft based on address keyword
+function satelliteMeasure(address: string): number {
+  const commercialKeywords = ['blvd', 'pkwy', 'plaza', 'way', 'dr', 'commercial', 'industrial'];
+  const isCommercial = commercialKeywords.some((kw) => address.toLowerCase().includes(kw));
+  return isCommercial ? Math.floor(Math.random() * 40000) + 10000 : Math.floor(Math.random() * 5000) + 1200;
+}
 
-export interface CallLogEntry {
-  callerID: string;
-  callerName: string;
-  address: string;
-  sqft: number;
-  socialProof: { city: string; project: string; year: number };
-  result: string;
-  timestamp: string;
+// Mock history lookup — returns a nearby city name for social proof
+function findNearbyHistory(address: string): string {
+  const cities = ['Chester', 'Richmond', 'Midlothian', 'Chesterfield', 'Hopewell'];
+  return cities.find((city) => address.includes(city)) ?? 'Chester';
+}
+
+// Mock Kickserv injection
+function createKickservLead(payload: KickservPayload): void {
+  console.log('[JWORDENAI → Kickserv] Lead injected:', payload);
 }
 
 export const virtualForeman = {
   voiceModel: 'Industrial-Professional-Male',
   hq: '1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836',
 
-  // Logic for the 'After-Hours' Lead Lock
-  onIncomingCall: function (callerID: string, callerName: string, address: string): CallLogEntry {
-    console.log(`[JWORDENAI-VOICE]: Incoming call from ${callerName} (${callerID})`);
+  onIncomingCall: function (
+    callerID: string,
+    callerName: string,
+    address: string,
+  ): string {
+    console.log(`[JWORDENAI Voice]: Incoming call from ${callerID} — ${callerName}`);
 
-    // ACTION 1: Run Satellite Measure
-    const sqft = satelliteAPI.measure(address);
+    const sqft = satelliteMeasure(address);
+    const proofCity = findNearbyHistory(address);
 
-    // ACTION 2: Cross-Reference 30-Year History
-    const localSocialProof = historyDatabase.findNearby(address);
-
-    // ACTION 3: Inject to Kickserv with CFO-Math
-    kickserv.createLead({
+    createKickservLead({
       name: callerName,
-      address: address,
-      sqft: sqft,
-      proofSent: localSocialProof,
+      address,
+      sqft,
+      proofCity,
       status: 'AI-Qualified',
     });
 
-    const result = `Lead secured. ${sqft} sqft measured via Satellite API. Proof of work in ${localSocialProof.city} cited.`;
-
-    return {
-      callerID,
-      callerName,
-      address,
-      sqft,
-      socialProof: localSocialProof,
-      result,
-      timestamp: new Date().toISOString(),
-    };
+    return `Lead secured. ${sqft.toLocaleString()} sqft measured. Proof of work in ${proofCity} cited.`;
   },
 };

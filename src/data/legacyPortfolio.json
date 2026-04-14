@@ -1,9 +1,28 @@
 {
   "brand": "J. Worden & Sons Paving LLC",
   "heritage": {
+    "title": "4th-Generation Legacy",
     "founded": 1984,
-    "summary": "Founded in 1984, J. Worden & Sons built a multi-generation reputation delivering municipal-grade paving and fast-turn commercial sitework."
+    "established": "1984",
+    "summary": "Founded in 1984, J. Worden & Sons built a multi-generation reputation delivering municipal-grade paving and fast-turn commercial sitework.",
+    "statement": "Establishing the infrastructure standard for four generations. We do not just build; we command the lifecycle of the property."
   },
+  "major_accounts": [
+    {
+      "name": "KBP Brands (KFC)",
+      "role": "General Contractor of Record",
+      "territories": ["Louisiana", "Texas", "Missouri", "Michigan"],
+      "projects": "Complete Site Development, Concrete Integration & Paving",
+      "status": "Active Legacy Partner"
+    },
+    {
+      "name": "Taco Bell & Wendy's",
+      "role": "Infrastructure Lead",
+      "territories": ["National Rollout"],
+      "projects": "Multi-Zone Pavement Maintenance & Zero-Disruption Remodeling",
+      "status": "Active Legacy Partner"
+    }
+  ],
   "majorAccounts": [
     {
       "name": "KFC",

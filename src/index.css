@@ -1,4 +1,17 @@
 @import "tailwindcss";
+@import "./styles/sovereign-2026.css";
+
+/* J. WORDEN & SONS - PREMIUM AUTHORITY STYLING
+   Version: 10.0 (Million Dollar Build)
+*/
+
+:root {
+  --jworden-dark: #121212;        /* Deep Industrial Charcoal */
+  --jworden-slate: #1e1e24;       /* Secondary Surface */
+  --jworden-gold: #ffc107;        /* Safety Gold Call-to-Action */
+  --jworden-white: #f5f5f5;       /* Premium Text */
+  --jworden-accent: #37474f;      /* Heavy Equipment Slate */
+}
 
 @theme {
   --color-obsidian: #0a0a0c;
@@ -29,4 +42,23 @@ body {
   background-image: radial-gradient(circle at 50% 0%, var(--color-vdot-gray) 0%, transparent 70%), linear-gradient(to bottom, transparent, var(--color-obsidian) 100%);
   min-height: 100vh;
   margin: 0;
+}
+
+@layer base {
+  body {
+    background-color: var(--jworden-dark);
+    color: var(--jworden-white);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@keyframes ghost-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.15), inset 0 0 0 1px rgba(249, 115, 22, 0.08); }
+  50%       { box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.30), inset 0 0 0 1px rgba(239, 68, 68, 0.15); }
+}
+
+.ghost-protocol-panel {
+  animation: ghost-pulse 2.4s ease-in-out infinite;
 }

@@ -60,6 +60,14 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
 
   return (
     <div className="min-h-screen p-8 radar-sweep relative">
+      {/* Sovereign VPC Edge Intelligence Banner */}
+      <div className="w-full bg-[#0a0a0c] border-b border-[#d4af37]/30 text-center py-1 mb-6 flex justify-center items-center space-x-3">
+        <span className="flex h-2 w-2 relative">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#d4af37]"></span>
+        </span>
+        <span className="text-[10px] text-[#d4af37] font-mono tracking-[0.3em] uppercase">VPC ENCLAVE SECURED • SWARM INTELLIGENCE ACTIVE • VLA ORBITAL SYNC ONLINE</span>
+      </div>
       <header className="flex justify-between items-center mb-10 pb-4 border-b border-white/10 flex-wrap gap-4">
         <div>
           <h1 className="text-3xl font-black text-[#d4af37] tracking-tighter text-glow uppercase">

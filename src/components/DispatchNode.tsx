@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react';
+import type { ReactElement } from 'react';
 import { AlertTriangle, CheckCircle, XCircle, CloudRain, Wind, Thermometer, DollarSign, TrendingDown, TrendingUp, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
@@ -530,7 +531,7 @@ export default function DispatchNode() {
             {(() => {
               const firstDay = currentMonthData[0]?.day.date;
               const offset = firstDay ? firstDay.getDay() : 0; // Sunday = 0
-              const cells: JSX.Element[] = [];
+              const cells: ReactElement[] = [];
               for (let i = 0; i < offset; i++) {
                 cells.push(<div key={`blank-${i}`} />);
               }

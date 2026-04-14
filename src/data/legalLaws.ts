@@ -534,9 +534,6 @@ export const STATE_LAWS: Record<string, StateLaw> = {
   },
 };
 
-// Add remaining states with default structure
-const DEFAULT_STATES: Omit<StateLaw, 'stateCode' | 'stateName'>[] = [];
-
 const REMAINING_STATES: Array<[string, string]> = [
   ['AL', 'Alabama'], ['AK', 'Alaska'], ['AZ', 'Arizona'], ['AR', 'Arkansas'],
   ['CO', 'Colorado'], ['CT', 'Connecticut'], ['DE', 'Delaware'],
