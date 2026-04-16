@@ -42,7 +42,10 @@ import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as VirginiaRichmond23221PavingRouteImport } from './routes/virginia/richmond-23221-paving'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
+import { Route as MinnesotaMspAirportAsphaltRouteImport } from './routes/minnesota/msp-airport-asphalt'
+import { Route as MarylandBaltimoreIndustrialSealcoatingRouteImport } from './routes/maryland/baltimore-industrial-sealcoating'
 import { Route as LocationsWindsorFarmsRouteImport } from './routes/locations/windsor-farms'
 import { Route as LocationsWilliamsburgRouteImport } from './routes/locations/williamsburg'
 import { Route as LocationsWesthamParkwayRouteImport } from './routes/locations/westham-parkway'
@@ -101,6 +104,7 @@ import { Route as LocationsCarolineRouteImport } from './routes/locations/caroli
 import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
+import { Route as IllinoisChicagoCommercialPavingRouteImport } from './routes/illinois/chicago-commercial-paving'
 
 const WhaleHunterRoute = WhaleHunterRouteImport.update({
   id: '/whale-hunter',
@@ -267,11 +271,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VirginiaRichmond23221PavingRoute =
+  VirginiaRichmond23221PavingRouteImport.update({
+    id: '/virginia/richmond-23221-paving',
+    path: '/virginia/richmond-23221-paving',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
   path: '/products/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MinnesotaMspAirportAsphaltRoute =
+  MinnesotaMspAirportAsphaltRouteImport.update({
+    id: '/minnesota/msp-airport-asphalt',
+    path: '/minnesota/msp-airport-asphalt',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const MarylandBaltimoreIndustrialSealcoatingRoute =
+  MarylandBaltimoreIndustrialSealcoatingRouteImport.update({
+    id: '/maryland/baltimore-industrial-sealcoating',
+    path: '/maryland/baltimore-industrial-sealcoating',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LocationsWindsorFarmsRoute = LocationsWindsorFarmsRouteImport.update({
   id: '/locations/windsor-farms',
   path: '/locations/windsor-farms',
@@ -563,6 +585,12 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
   path: '/locations/amelia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IllinoisChicagoCommercialPavingRoute =
+  IllinoisChicagoCommercialPavingRouteImport.update({
+    id: '/illinois/chicago-commercial-paving',
+    path: '/illinois/chicago-commercial-paving',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -598,6 +626,7 @@ export interface FileRoutesByFullPath {
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
+  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -656,7 +685,10 @@ export interface FileRoutesByFullPath {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
+  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
+  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -692,6 +724,7 @@ export interface FileRoutesByTo {
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
+  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -750,7 +783,10 @@ export interface FileRoutesByTo {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
+  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
+  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -787,6 +823,7 @@ export interface FileRoutesById {
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
+  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -845,7 +882,10 @@ export interface FileRoutesById {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
+  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
+  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
+  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -883,6 +923,7 @@ export interface FileRouteTypes {
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
+    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -941,7 +982,10 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
+    | '/maryland/baltimore-industrial-sealcoating'
+    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
+    | '/virginia/richmond-23221-paving'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -977,6 +1021,7 @@ export interface FileRouteTypes {
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
+    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -1035,7 +1080,10 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
+    | '/maryland/baltimore-industrial-sealcoating'
+    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
+    | '/virginia/richmond-23221-paving'
   id:
     | '__root__'
     | '/'
@@ -1071,6 +1119,7 @@ export interface FileRouteTypes {
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
+    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -1129,7 +1178,10 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
+    | '/maryland/baltimore-industrial-sealcoating'
+    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
+    | '/virginia/richmond-23221-paving'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -1166,6 +1218,7 @@ export interface RootRouteChildren {
   StandardsRoute: typeof StandardsRoute
   WeatherIntelRoute: typeof WeatherIntelRoute
   WhaleHunterRoute: typeof WhaleHunterRoute
+  IllinoisChicagoCommercialPavingRoute: typeof IllinoisChicagoCommercialPavingRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
@@ -1224,7 +1277,10 @@ export interface RootRouteChildren {
   LocationsWesthamParkwayRoute: typeof LocationsWesthamParkwayRoute
   LocationsWilliamsburgRoute: typeof LocationsWilliamsburgRoute
   LocationsWindsorFarmsRoute: typeof LocationsWindsorFarmsRoute
+  MarylandBaltimoreIndustrialSealcoatingRoute: typeof MarylandBaltimoreIndustrialSealcoatingRoute
+  MinnesotaMspAirportAsphaltRoute: typeof MinnesotaMspAirportAsphaltRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
+  VirginiaRichmond23221PavingRoute: typeof VirginiaRichmond23221PavingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -1460,11 +1516,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/virginia/richmond-23221-paving': {
+      id: '/virginia/richmond-23221-paving'
+      path: '/virginia/richmond-23221-paving'
+      fullPath: '/virginia/richmond-23221-paving'
+      preLoaderRoute: typeof VirginiaRichmond23221PavingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/$productId': {
       id: '/products/$productId'
       path: '/products/$productId'
       fullPath: '/products/$productId'
       preLoaderRoute: typeof ProductsProductIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minnesota/msp-airport-asphalt': {
+      id: '/minnesota/msp-airport-asphalt'
+      path: '/minnesota/msp-airport-asphalt'
+      fullPath: '/minnesota/msp-airport-asphalt'
+      preLoaderRoute: typeof MinnesotaMspAirportAsphaltRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/maryland/baltimore-industrial-sealcoating': {
+      id: '/maryland/baltimore-industrial-sealcoating'
+      path: '/maryland/baltimore-industrial-sealcoating'
+      fullPath: '/maryland/baltimore-industrial-sealcoating'
+      preLoaderRoute: typeof MarylandBaltimoreIndustrialSealcoatingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/windsor-farms': {
@@ -1873,6 +1950,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsAmeliaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/illinois/chicago-commercial-paving': {
+      id: '/illinois/chicago-commercial-paving'
+      path: '/illinois/chicago-commercial-paving'
+      fullPath: '/illinois/chicago-commercial-paving'
+      preLoaderRoute: typeof IllinoisChicagoCommercialPavingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1910,6 +1994,7 @@ const rootRouteChildren: RootRouteChildren = {
   StandardsRoute: StandardsRoute,
   WeatherIntelRoute: WeatherIntelRoute,
   WhaleHunterRoute: WhaleHunterRoute,
+  IllinoisChicagoCommercialPavingRoute: IllinoisChicagoCommercialPavingRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,
@@ -1968,7 +2053,11 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsWesthamParkwayRoute: LocationsWesthamParkwayRoute,
   LocationsWilliamsburgRoute: LocationsWilliamsburgRoute,
   LocationsWindsorFarmsRoute: LocationsWindsorFarmsRoute,
+  MarylandBaltimoreIndustrialSealcoatingRoute:
+    MarylandBaltimoreIndustrialSealcoatingRoute,
+  MinnesotaMspAirportAsphaltRoute: MinnesotaMspAirportAsphaltRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
+  VirginiaRichmond23221PavingRoute: VirginiaRichmond23221PavingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
