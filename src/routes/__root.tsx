@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import DispatchTicker from '../components/DispatchTicker'
 import SocialTracking from '../components/SocialTracking'
+import GoogleIntelligence from '../components/GoogleIntelligence'
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
 
 const pavingContractorSchema = {
@@ -271,6 +272,7 @@ const jwordenAISchema = {
 export const Route = createRootRoute({
   component: () => (
     <>
+      <GoogleIntelligence />
       <SocialTracking />
       <DispatchTicker />
       <Header />
