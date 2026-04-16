@@ -1,8 +1,38 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+const COMMERCIAL_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://jwordenasphaltpaving.com/commercial#service',
+  name: 'Commercial Asphalt Paving',
+  description: 'National commercial asphalt paving for parking lots, QSR fast-track developments, and municipal infrastructure. VDOT Section 315 compliant with 96% Marshall compaction standard.',
+  url: 'https://jwordenasphaltpaving.com/commercial',
+  serviceType: 'Commercial Asphalt Paving',
+  provider: {
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://jwordenasphaltpaving.com/#business',
+    name: 'J. Worden & Sons Asphalt Paving',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Commercial Paving Services',
+    itemListElement: [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Commercial Parking Lot Installation', description: 'Full-depth commercial asphalt parking lot installation to VDOT Section 315 specifications with 96% Marshall compaction.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: "QSR Fast-Track Development (90-Day)", description: "90-day turnkey paving for quick-service restaurant developments (KFC, Arby's, Taco Bell)." } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'ADA Compliance Paving', description: 'ADA-compliant paving including accessible parking, curb cuts, and surface grading.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Municipal-Grade Sealcoating', description: 'Coal-tar or asphalt emulsion sealcoating for commercial surfaces.' } },
+    ],
+  },
+};
+
 export const Route = createFileRoute('/commercial')({
   component: () => (
     <main className="min-h-screen bg-zinc-950 font-sans text-white selection:bg-[#ffcc00] selection:text-black">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(COMMERCIAL_SCHEMA) }} />
 
       {/* COMMERCIAL HERO: NATIONAL SCALE */}
       <section className="relative py-36 px-6 lg:px-12 bg-black border-b-[12px] border-[#ffcc00] overflow-hidden">

@@ -1,8 +1,38 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+const ROOFING_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://jwordenasphaltpaving.com/roofing#service',
+  name: 'Commercial Roofing — TPO, EPDM & Modified Bitumen',
+  description: 'Commercial and industrial roofing systems including TPO, EPDM, and modified bitumen membranes. FM Global RoofNav compliant. UL Listed assemblies. CSI Division 07 thermal & moisture protection.',
+  url: 'https://jwordenasphaltpaving.com/roofing',
+  serviceType: 'Commercial Roofing',
+  provider: {
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://jwordenasphaltpaving.com/#business',
+    name: 'J. Worden & Sons Asphalt Paving',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'United States',
+  },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Roofing Services',
+    itemListElement: [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'TPO Roofing Installation', description: 'Thermoplastic polyolefin (TPO) single-ply roofing membrane installation for commercial buildings.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'EPDM Roofing Installation', description: 'Ethylene propylene diene monomer (EPDM) rubber roofing for flat and low-slope commercial roofs.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Modified Bitumen Roofing', description: 'Modified bitumen roofing system installation — torch-applied and cold-applied options.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Roof Waterproofing & Insulation', description: 'Commercial roof insulation and waterproofing per NRCA guidelines.' } },
+    ],
+  },
+};
+
 export const Route = createFileRoute('/roofing')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ROOFING_SCHEMA) }} />
       {/* Hero */}
       <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
         <div className="max-w-7xl mx-auto relative z-10 text-left">

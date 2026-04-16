@@ -7,9 +7,12 @@ import SocialTracking from '../components/SocialTracking'
 import GoogleIntelligence from '../components/GoogleIntelligence'
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
 
+const BUSINESS_ID = "https://jwordenasphaltpaving.com/#business";
+
 const pavingContractorSchema = {
   "@context": "https://schema.org",
-  "@type": "PavingContractor",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": BUSINESS_ID,
   "name": "J. Worden & Sons Asphalt Paving",
   "legalName": "J. Worden & Sons Paving LLC",
   "telephone": "804-446-1296",
@@ -17,6 +20,7 @@ const pavingContractorSchema = {
   "logo": "https://jwordenasphaltpaving.com/logo.png",
   "image": "https://jwordenasphaltpaving.com/images/hero-paving.jpg",
   "description": "4th-generation municipal-grade asphalt paving contractor serving Richmond VA and 41 surrounding cities. Signature 6-inch structural stone base standard. KFC, Arby's, and Taco Bell vetted.",
+  "foundingDate": "1984",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "1601 Ware Bottom Springs Rd",
@@ -46,12 +50,20 @@ const pavingContractorSchema = {
     }
   })),
   "priceRange": "$$$",
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "opens": "07:00",
-    "closes": "19:00"
-  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "07:00",
+      "closes": "17:00"
+    }
+  ],
   "sameAs": [
     "https://www.houzz.com/pro/jwordenandsonspaving/j-worden-sons-paving-l-l-c",
     "https://www.bbb.org/us/va/chester/profile/paving-contractors/j-worden-and-sons-paving-llc"
@@ -61,11 +73,13 @@ const pavingContractorSchema = {
     "name": "Asphalt Paving Services",
     "itemListElement": [
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "6-Inch Structural Base Paving", "description": "Premium industrial-grade asphalt foundation for residential and commercial properties in Central Virginia.", "serviceType": "Paving", "areaServed": "Richmond, VA Metro" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Parking Lot Installation" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Precision Residential Driveways" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Municipal-Grade Sealcoating" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "QSR Fast-Track Development (90-Day)" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tar & Chip / Macadam Paving" } }
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Parking Lot Installation", "description": "Full-depth commercial asphalt parking lot installation to VDOT Section 315 specifications." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Precision Residential Driveways", "description": "Residential asphalt driveway installation with 6-inch compacted stone base." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Municipal-Grade Sealcoating", "description": "Coal-tar or asphalt emulsion sealcoating for commercial and residential surfaces." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "QSR Fast-Track Development (90-Day)", "description": "90-day turnkey paving solution for quick-service restaurant developments (KFC, Arby's, Taco Bell)." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tar & Chip / Macadam Paving", "description": "Decorative tar-and-chip (macadam) surface treatment for driveways and private roads." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Masonry & Brick Paver Installation", "description": "Cobblestone, brick paver, and natural stone apron installation on structural base." } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing — TPO, EPDM, Modified Bitumen", "description": "Commercial and residential roofing systems including TPO, EPDM, and modified bitumen per FM Global standards." } }
     ]
   }
 };
@@ -158,7 +172,8 @@ const speakableSchema = {
 
 const reviewSchema = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "HomeAndConstructionBusiness",
+  "@id": BUSINESS_ID,
   "name": "J. Worden & Sons Asphalt Paving",
   "review": [
     {
@@ -215,7 +230,8 @@ const reviewSchema = {
 
 const nationalCorporationSchema = {
   "@context": "https://schema.org",
-  "@type": ["Corporation", "GeneralContractor"],
+  "@type": ["Corporation", "HomeAndConstructionBusiness"],
+  "@id": BUSINESS_ID,
   "name": "J. Worden & Sons Asphalt Paving",
   "legalName": "J. Worden & Sons Paving LLC",
   "foundingDate": "1984",
@@ -225,7 +241,7 @@ const nationalCorporationSchema = {
   "telephone": "804-446-1296",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1601 Ware Bottom Springs Rd, Suite 214",
+    "streetAddress": "1601 Ware Bottom Springs Rd",
     "addressLocality": "Chester",
     "addressRegion": "VA",
     "postalCode": "23836",
