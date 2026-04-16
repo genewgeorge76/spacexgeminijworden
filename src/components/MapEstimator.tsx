@@ -151,6 +151,11 @@ export default function MapEstimator({
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`,
+        {
+          headers: {
+            'User-Agent': 'jwordenasphaltpaving.com/estimator (contact@jwordenasphaltpaving.com)',
+          },
+        },
       );
       const results = await response.json();
       if (results.length > 0) {

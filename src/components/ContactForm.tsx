@@ -3,6 +3,29 @@ import { useState } from 'react';
 // Netlify Function proxy — forwards leads to Kickserv server-side to avoid browser CORS
 const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
 
+// GA4 Measurement ID — set VITE_GA4_MEASUREMENT_ID in Netlify dashboard environment variables
+const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined;
+
+// Simple validation helpers
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^[\d\s().+\-]{7,20}$/;
+
+function validateForm(
+  fullName: string,
+  phone: string,
+  email: string,
+  address: string,
+): string | null {
+  if (!fullName.trim() || fullName.trim().length < 2) return 'Please enter your full name.';
+  if (fullName.length > 120) return 'Name is too long (max 120 characters).';
+  if (!PHONE_RE.test(phone)) return 'Please enter a valid phone number.';
+  if (!EMAIL_RE.test(email)) return 'Please enter a valid email address.';
+  if (email.length > 254) return 'Email address is too long.';
+  if (!address.trim() || address.trim().length < 5) return 'Please enter a project site address.';
+  if (address.length > 300) return 'Address is too long (max 300 characters).';
+  return null;
+}
+
 interface BidMetrics {
   asphaltTons: number;
   stoneTons: number;
@@ -20,6 +43,7 @@ export default function ContactForm() {
   const [city, setCity] = useState('');
   const [kickservLoading, setKickservLoading] = useState(false);
   const [kickservError, setKickservError] = useState<string | null>(null);
+  const [validationError, setValidationError] = useState<string | null>(null);
   const [bidLoading, setBidLoading] = useState(false);
   const [bidResult, setBidResult] = useState<BidResult | null>(null);
   const [bidError, setBidError] = useState<string | null>(null);
@@ -43,6 +67,14 @@ export default function ContactForm() {
     const nameParts = fullName.trim().split(/\s+/);
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
+
+    // Client-side validation — fast feedback before any network call
+    const validErr = validateForm(fullName, phone, email, addressVal);
+    if (validErr) {
+      setValidationError(validErr);
+      return;
+    }
+    setValidationError(null);
 
     // Detect city for analytics
     const cityMatch = addressVal.match(/,\s*([^,]+),?\s*VA/i);
@@ -88,9 +120,8 @@ export default function ContactForm() {
       }
       kickservOk = true;
       // Fire GA conversion event on successful dispatch
-      // TODO: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID (set in Netlify dashboard)
-      if (typeof window !== 'undefined' && win.gtag) {
-        win.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: 'G-XXXXXXXXXX' });
+      if (typeof window !== 'undefined' && win.gtag && GA4_MEASUREMENT_ID) {
+        win.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: GA4_MEASUREMENT_ID });
       }
       setSubmitted(true);
     } catch (err) {
@@ -188,7 +219,7 @@ export default function ContactForm() {
             Secured by Kickserv · Same-day response · We respect your privacy.
           </p>
           <button
-            onClick={() => { setSubmitted(false); setBidResult(null); setBidError(null); setKickservError(null); }}
+            onClick={() => { setSubmitted(false); setBidResult(null); setBidError(null); setKickservError(null); setValidationError(null); }}
             className="mt-4 text-zinc-600 hover:text-zinc-400 text-xs uppercase tracking-widest font-bold transition-colors"
           >
             ← Submit Another Request
@@ -292,6 +323,13 @@ export default function ContactForm() {
           <label htmlFor="message" className="block text-xs font-black uppercase tracking-widest text-[#ffcc00] mb-3">Project Details / Deadlines</label>
           <textarea id="message" name="message" rows={4} className="w-full bg-black border border-zinc-800 text-white p-4 focus:border-[#ffcc00] outline-none transition-colors shadow-inner font-medium" placeholder="Tell us about your project..."></textarea>
         </div>
+
+        {/* Client-side validation error */}
+        {validationError && (
+          <div className="mb-6 p-4 border border-yellow-500/50 bg-yellow-900/10">
+            <p className="text-yellow-400 font-bold text-sm">⚠️ {validationError}</p>
+          </div>
+        )}
 
         {/* Kickserv submission error */}
         {kickservError && (

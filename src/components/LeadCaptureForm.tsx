@@ -5,8 +5,11 @@ import { formatLeadForPipeline } from '@/lib/estimator-engine';
 /**
  * LeadCaptureForm — Contact info capture with Whale/Shark/Fish classification.
  * Appears after the user draws their project area and sees the estimate.
- * Formats leads for the lead_scoring.py pipeline.
+ * Formats leads for the lead_scoring.py pipeline and submits to Kickserv via
+ * the server-side Netlify Function proxy (avoids browser CORS).
  */
+
+const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
 
 interface LeadCaptureFormProps {
   result: MapEstimateResult;
@@ -21,10 +24,12 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
   const [address, setAddress] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
+    setSubmitError(null);
 
     const lead: LeadCapture = {
       name,
@@ -39,14 +44,48 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
       timestamp: new Date().toISOString(),
     };
 
-    // Format for the pipeline
+    // Format for the pipeline (also used as job description for Kickserv)
     const pipelineLead = formatLeadForPipeline(lead);
 
-    // TODO: POST to API endpoint (e.g., /.netlify/functions/lead-capture)
-    // In production, this would submit the lead to Kickserv/CRM.
-    // For now, lead is formatted and ready for the lead_scoring.py pipeline.
-    void pipelineLead;
-    // Fire analytics event
+    // Build job description from pipeline lead fields
+    const jobDescription = [
+      `Service: ${pipelineLead.serviceType}`,
+      `Area: ${pipelineLead.sqFt} sq ft`,
+      `State: ${pipelineLead.stateCode}`,
+      `Tier: ${pipelineLead.tier}`,
+      `Estimate: $${result.estimate.finalBidPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}`,
+    ].join(' | ');
+
+    // Split name into first / last (best-effort)
+    const nameParts = name.trim().split(/\s+/);
+    const firstName = nameParts[0] || '';
+    const lastName = nameParts.slice(1).join(' ') || '';
+
+    try {
+      // POST lead to Kickserv via Netlify Function proxy (server-side, no CORS)
+      const res = await fetch(KICKSERV_PROXY, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          phone,
+          email,
+          serviceAddress: address,
+          jobDescription,
+        }),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({})) as { error?: string };
+        throw new Error(data.error || `Server error ${res.status}`);
+      }
+    } catch (err) {
+      // Surface error but still allow the thank-you state so the user
+      // can call directly — do not block them with a hard failure
+      setSubmitError(err instanceof Error ? err.message : 'Submission failed. Please call 804-446-1296.');
+    }
+
+    // Fire analytics event regardless of Kickserv outcome
     const win = window as unknown as { gtag?: (...args: unknown[]) => void };
     if (typeof window !== 'undefined' && win.gtag) {
       win.gtag('event', 'generate_lead', {
@@ -56,8 +95,6 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
       });
     }
 
-    // Simulate submission delay
-    await new Promise((resolve) => setTimeout(resolve, 800));
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -69,6 +106,13 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
         <h3 className="text-2xl font-black uppercase text-white mb-2">
           Request Submitted!
         </h3>
+        {submitError && (
+          <div className="mb-4 p-4 border border-yellow-500/50 bg-yellow-900/10 text-left">
+            <p className="text-yellow-400 font-bold text-sm">
+              ⚠️ Note: {submitError}
+            </p>
+          </div>
+        )}
         <p className="text-zinc-400 font-bold text-sm mb-6">
           A Worden estimator will contact you within 24 hours{' '}
           {result.tier === 'whale' && '(Priority dispatch — Whale-tier project)'}
