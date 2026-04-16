@@ -114,6 +114,13 @@ export default function HeaderNav({ isOpen, onClose }: HeaderNavProps) {
             Our Standard
           </Link>
           <Link
+            to="/estimate"
+            onClick={onClose}
+            className="text-[#c8a84b] text-[0.9rem] uppercase tracking-wider hover:text-white transition-colors py-3 px-2 border-b border-[#333] font-bold"
+          >
+            📐 3D Estimator
+          </Link>
+          <Link
             to="/"
             hash="contact"
             onClick={onClose}

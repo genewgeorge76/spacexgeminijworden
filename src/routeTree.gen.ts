@@ -31,6 +31,7 @@ import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as FieldRouteImport } from './routes/field'
 import { Route as EstimatorRouteImport } from './routes/estimator'
+import { Route as EstimateRouteImport } from './routes/estimate'
 import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
 import { Route as DispatchRouteImport } from './routes/dispatch'
 import { Route as DashboardRouteImport } from './routes/dashboard'
@@ -214,6 +215,11 @@ const FieldRoute = FieldRouteImport.update({
 const EstimatorRoute = EstimatorRouteImport.update({
   id: '/estimator',
   path: '/estimator',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EstimateRoute = EstimateRouteImport.update({
+  id: '/estimate',
+  path: '/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DispatchNodeRoute = DispatchNodeRouteImport.update({
@@ -604,6 +610,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
+  '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
   '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
@@ -702,6 +709,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
+  '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
   '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
@@ -801,6 +809,7 @@ export interface FileRoutesById {
   '/dashboard': typeof DashboardRoute
   '/dispatch': typeof DispatchRoute
   '/dispatch-node': typeof DispatchNodeRoute
+  '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
   '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
@@ -901,6 +910,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
+    | '/estimate'
     | '/estimator'
     | '/field'
     | '/gallery'
@@ -999,6 +1009,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
+    | '/estimate'
     | '/estimator'
     | '/field'
     | '/gallery'
@@ -1097,6 +1108,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/dispatch'
     | '/dispatch-node'
+    | '/estimate'
     | '/estimator'
     | '/field'
     | '/gallery'
@@ -1196,6 +1208,7 @@ export interface RootRouteChildren {
   DashboardRoute: typeof DashboardRoute
   DispatchRoute: typeof DispatchRoute
   DispatchNodeRoute: typeof DispatchNodeRoute
+  EstimateRoute: typeof EstimateRoute
   EstimatorRoute: typeof EstimatorRoute
   FieldRoute: typeof FieldRoute
   GalleryRoute: typeof GalleryRoute
@@ -1437,6 +1450,13 @@ declare module '@tanstack/react-router' {
       path: '/estimator'
       fullPath: '/estimator'
       preLoaderRoute: typeof EstimatorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/estimate': {
+      id: '/estimate'
+      path: '/estimate'
+      fullPath: '/estimate'
+      preLoaderRoute: typeof EstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dispatch-node': {
@@ -1972,6 +1992,7 @@ const rootRouteChildren: RootRouteChildren = {
   DashboardRoute: DashboardRoute,
   DispatchRoute: DispatchRoute,
   DispatchNodeRoute: DispatchNodeRoute,
+  EstimateRoute: EstimateRoute,
   EstimatorRoute: EstimatorRoute,
   FieldRoute: FieldRoute,
   GalleryRoute: GalleryRoute,
