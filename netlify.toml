@@ -2,58 +2,12 @@
   command = "npm run build"
   publish = "dist"
 
-  [build.environment]
-    NODE_VERSION = "22"
-    # Public site URL — used for GA4 canonical page_view reporting
-    VITE_SITE_URL = "https://jwordenasphaltpaving.com"
-    # ⚠️  VITE_GA4_MEASUREMENT_ID must be set in the Netlify dashboard
-    #     (Site settings → Environment variables) — format: G-XXXXXXXXXX
-    #     It is intentionally omitted here so it is never accidentally
-    #     overwritten or exposed in source control.
-
-[[redirects]]
-  from = "/command-center"
-  to = "/index.html"
-  status = 200
-
-# ─── JWORDENAI: 50-STATE SEO REDIRECTS ──────────────────────
-# Funneling regional domain authority to the Sovereign Anchor
-
-[[redirects]]
-  from = "https://savannahasphaltpaving.com/*"
-  to = "https://www.jwordenasphaltpaving.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://michiganasphaltpavingpros.com/*"
-  to = "https://www.jwordenasphaltpaving.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://carolinablacktop.com/*"
-  to = "https://www.jwordenasphaltpaving.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://thewordenstandard.com/*"
-  to = "https://www.jwordenasphaltpaving.com/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://asphaltpavingkansascity.com/*"
-  to = "https://www.jwordenasphaltpaving.com/:splat"
-  status = 301
-  force = true
+[build.environment]
+  NODE_VERSION = "20"
+  # This keeps the site URL anchored for your SEO
+  VITE_SITE_URL = "https://jwordenasphaltpaving.com"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[[edge_functions]]
-  path = "/*"
-  function = "geo-intercept"
