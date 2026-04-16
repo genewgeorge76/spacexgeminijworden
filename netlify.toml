@@ -16,7 +16,44 @@
   to = "/index.html"
   status = 200
 
+# ─── JWORDENAI: 50-STATE SEO REDIRECTS ──────────────────────
+# Funneling regional domain authority to the Sovereign Anchor
+
+[[redirects]]
+  from = "https://savannahasphaltpaving.com/*"
+  to = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://michiganasphaltpavingpros.com/*"
+  to = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://carolinablacktop.com/*"
+  to = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://thewordenstandard.com/*"
+  to = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://asphaltpavingkansascity.com/*"
+  to = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[[edge_functions]]
+  path = "/*"
+  function = "geo-intercept"
