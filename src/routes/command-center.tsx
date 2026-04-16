@@ -15,6 +15,7 @@ import {
   Globe,
   Wrench,
 } from 'lucide-react';
+import SovereignAssetAnalysis from '@/components/SovereignAssetAnalysis';
 
 export const Route = createFileRoute('/command-center')({
   component: CommandCenterRoute,
@@ -282,6 +283,9 @@ function CommandCenter({ onLock }: { onLock: () => void }) {
             JWORDENAI™ v1.0.0
           </div>
         </div>
+
+        {/* Sovereign Asset Analysis — ROI calculator */}
+        <SovereignAssetAnalysis />
 
         {/* Module grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
