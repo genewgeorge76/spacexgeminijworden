@@ -4,6 +4,12 @@
 
   [build.environment]
     NODE_VERSION = "22"
+    # Public site URL — used for GA4 canonical page_view reporting
+    VITE_SITE_URL = "https://jwordenasphaltpaving.com"
+    # ⚠️  VITE_GA4_MEASUREMENT_ID must be set in the Netlify dashboard
+    #     (Site settings → Environment variables) — format: G-XXXXXXXXXX
+    #     It is intentionally omitted here so it is never accidentally
+    #     overwritten or exposed in source control.
 
 [[redirects]]
   from = "/command-center"
