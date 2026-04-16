@@ -1,8 +1,39 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+const MASONRY_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://jwordenasphaltpaving.com/masonry#service',
+  name: 'Masonry & Brick Paver Installation',
+  description: 'Cobblestone driveways, brick paver walkways, and natural stone aprons engineered on a 6-inch structural stone base. ASTM C270 mortar standards. 4th-generation masonry craftsmanship.',
+  url: 'https://jwordenasphaltpaving.com/masonry',
+  serviceType: 'Masonry',
+  provider: {
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://jwordenasphaltpaving.com/#business',
+    name: 'J. Worden & Sons Asphalt Paving',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Richmond', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Chester', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Midlothian', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Masonry Services',
+    itemListElement: [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Cobblestone Driveway Installation', description: 'Natural cobblestone driveway installation on compacted structural stone base.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Brick Paver Walkways & Patios', description: 'Brick and paver walkway, patio, and courtyard installation per ASTM C270 standards.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Natural Stone Aprons', description: 'Natural stone apron and entrance installation at driveway approaches.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'CMU Block & Retaining Walls', description: 'Concrete masonry unit (CMU) block walls and retaining structures per TMS 402/602.' } },
+    ],
+  },
+};
+
 export const Route = createFileRoute('/masonry')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(MASONRY_SCHEMA) }} />
       <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#c8a84b] overflow-hidden text-left">
         <div className="max-w-7xl mx-auto relative z-10 text-left">
           <span className="bg-[#c8a84b] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.4em] mb-8 inline-block shadow-2xl">

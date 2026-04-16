@@ -43,6 +43,7 @@ export default function Header() {
             <Link to="/gallery" className="hover:text-white transition-colors">Gallery</Link>
             <Link to="/about" className="hover:text-white transition-colors">About</Link>
             <Link to="/estimator" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">Free Estimate</Link>
+            <Link to="/estimate" className="hover:text-[#ffcc00] transition-colors text-[#ffcc00]/70">📐 3D Estimator</Link>
           </nav>
 
           <div className="flex items-center gap-4">
