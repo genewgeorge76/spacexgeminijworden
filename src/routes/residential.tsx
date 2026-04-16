@@ -1,8 +1,40 @@
 import { createFileRoute } from '@tanstack/react-router';
 
+const RESIDENTIAL_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://jwordenasphaltpaving.com/residential#service',
+  name: 'Residential Asphalt Driveway Paving',
+  description: 'Estate-grade residential asphalt driveway installation with 6-inch structural stone base. 4th-generation craftsmanship serving Richmond VA and surrounding areas.',
+  url: 'https://jwordenasphaltpaving.com/residential',
+  serviceType: 'Residential Asphalt Paving',
+  provider: {
+    '@type': 'HomeAndConstructionBusiness',
+    '@id': 'https://jwordenasphaltpaving.com/#business',
+    name: 'J. Worden & Sons Asphalt Paving',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Richmond', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Chester', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Midlothian', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Glen Allen', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+    { '@type': 'City', name: 'Chesterfield', containedInPlace: { '@type': 'State', name: 'Virginia' } },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Residential Paving Services',
+    itemListElement: [
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Residential Driveway Installation', description: 'New asphalt driveway installation on 6-inch compacted stone base.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Driveway Resurfacing & Overlay', description: 'Asphalt overlay and resurfacing for existing residential driveways.' } },
+      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Tar & Chip / Macadam Paving', description: 'Decorative tar-and-chip surface treatment for private driveways and roads.' } },
+    ],
+  },
+};
+
 export const Route = createFileRoute('/residential')({
   component: () => (
     <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(RESIDENTIAL_SCHEMA) }} />
       <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
         <div className="max-w-7xl mx-auto relative z-10 text-left">
           <span className="bg-[#ffcc00] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.4em] mb-8 inline-block shadow-2xl">
