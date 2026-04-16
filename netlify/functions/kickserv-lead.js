@@ -25,10 +25,10 @@ exports.handler = async (event) => {
   let payload;
   try {
     payload = JSON.parse(event.body);
-  } catch (_e) {
+  } catch (err) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: 'Invalid JSON body' }),
+      body: JSON.stringify({ error: 'Invalid JSON body', detail: err instanceof Error ? err.message : String(err) }),
     };
   }
 

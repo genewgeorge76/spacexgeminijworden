@@ -6,12 +6,15 @@
  */
 import type { Context } from "https://edge.netlify.com";
 
+const DEFAULT_CITY = "Richmond";
+const DEFAULT_REGION = "VA";
+
 export default async (request: Request, context: Context) => {
   const response = await context.next();
 
   // Extract location or default to Corporate HQ location
-  const city = context.geo?.city || "Richmond";
-  const region = context.geo?.subdivision?.code || "VA";
+  const city = context.geo?.city || DEFAULT_CITY;
+  const region = context.geo?.subdivision?.code || DEFAULT_REGION;
 
   // Inject the location into a secure cookie for the frontend to read
   response.headers.append(
