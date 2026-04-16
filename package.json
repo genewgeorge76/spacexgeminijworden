@@ -10,7 +10,7 @@
     "build-sitemaps": "node scripts/build-sitemaps.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.89.0",
+    "@anthropic-ai/sdk": "^0.90.0",
     "@react-pdf/renderer": "^4.5.1",
     "@tanstack/react-router": "^1.168.10",
     "@tanstack/react-start": "latest",
