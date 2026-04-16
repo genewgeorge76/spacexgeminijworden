@@ -19,22 +19,20 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+          if (!id.includes('node_modules/')) return
+          if (id.includes('/react/') || id.includes('/react-dom/')) {
             return 'vendor-react'
           }
-          if (id.includes('node_modules/@tanstack/react-router') || id.includes('node_modules/@tanstack/router')) {
+          if (id.includes('/@tanstack/react-router') || id.includes('/@tanstack/router')) {
             return 'vendor-router'
           }
-          if (id.includes('node_modules/leaflet')) {
+          if (id.includes('/leaflet/')) {
             return 'vendor-leaflet'
           }
-          if (id.includes('node_modules/@react-pdf')) {
+          if (id.includes('/@react-pdf/')) {
             return 'vendor-pdf'
           }
-          if (id.includes('node_modules/@anthropic-ai') || id.includes('node_modules/googleapis') || id.includes('node_modules/axios')) {
-            return 'vendor-api'
-          }
-          if (id.includes('node_modules/lucide-react')) {
+          if (id.includes('/lucide-react/')) {
             return 'vendor-icons'
           }
         },
