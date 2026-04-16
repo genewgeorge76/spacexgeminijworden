@@ -6,6 +6,7 @@ import XRayComparison from '../components/XRayComparison';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import CustomerQuoteForm from '../components/CustomerQuoteForm';
 import CommandBotUI from '../components/CommandBot';
+import GlobalGrid from '../components/GlobalGrid';
 
 export const Route = createFileRoute('/')({
   component: () => (
@@ -313,6 +314,9 @@ export const Route = createFileRoute('/')({
           </div>
         </div>
       </section>
+
+      {/* Global Grid — 50-State Footprint with Chester HQ Anchor */}
+      <GlobalGrid />
 
       {/* Location Focus Section */}
       <section className="py-24 px-6 lg:px-12 bg-zinc-900 border-t border-white/5">
