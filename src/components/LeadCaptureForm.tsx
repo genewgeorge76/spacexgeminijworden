@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import type { MapEstimateResult, LeadCapture } from '@/lib/estimator-engine';
-import { formatLeadForPipeline } from '@/lib/estimator-engine';
 
 /**
  * LeadCaptureForm — Contact info capture with Whale/Shark/Fish classification.
@@ -44,15 +43,12 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
       timestamp: new Date().toISOString(),
     };
 
-    // Format for the pipeline (also used as job description for Kickserv)
-    const pipelineLead = formatLeadForPipeline(lead);
-
-    // Build job description from pipeline lead fields
+    // Build job description from lead fields
     const jobDescription = [
-      `Service: ${pipelineLead.serviceType}`,
-      `Area: ${pipelineLead.sqFt} sq ft`,
-      `State: ${pipelineLead.stateCode}`,
-      `Tier: ${pipelineLead.tier}`,
+      `Service: ${lead.serviceType}`,
+      `Area: ${lead.sqFt} sq ft`,
+      `State: ${lead.stateCode}`,
+      `Tier: ${lead.tier}`,
       `Estimate: $${result.estimate.finalBidPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}`,
     ].join(' | ');
 
