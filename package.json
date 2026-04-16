@@ -5,9 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "bash scripts/preflight-audit.sh",
     "build": "vite build",
     "preview": "vite preview",
-    "build-sitemaps": "node scripts/build-sitemaps.mjs"
+    "build-sitemaps": "node scripts/build-sitemaps.mjs",
+    "preflight": "bash scripts/preflight-audit.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.89.0",
