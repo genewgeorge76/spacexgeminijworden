@@ -50,13 +50,13 @@ export default function ContactForm() {
     setCity(detectedCity);
 
     // Build a human-readable job description combining all extra fields
-    const jobParts: string[] = [
+    const jobParts = [
       service && `Service: ${service}`,
       sqftVal > 0 && `Area: ${sqftVal} sq ft`,
       soilTypeVal && `Soil: ${soilTypeVal}`,
       regionVal && `Region: ${regionVal}`,
       message && `Notes: ${message}`,
-    ].filter(Boolean) as string[];
+    ].filter(Boolean);
     const jobDescription = jobParts.join(' | ');
 
     // Fire GA events
@@ -89,6 +89,7 @@ export default function ContactForm() {
       }
       kickservOk = true;
       // Fire GA conversion event on successful dispatch
+      // TODO: Replace G-XXXXXXXXXX with your actual GA4 Measurement ID (set in Netlify dashboard)
       if (typeof window !== 'undefined' && win.gtag) {
         win.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: 'G-XXXXXXXXXX' });
       }
