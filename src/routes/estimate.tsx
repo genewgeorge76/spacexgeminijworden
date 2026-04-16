@@ -198,11 +198,12 @@ function EstimatePage() {
                 onClear={handleClear}
               />
 
-              {/* Cross Section */}
+              {/* Cross Section — live polygon extrusion from map */}
               <CrossSectionViewer
                 surfaceDepthIn={config.surfaceDepthIn}
                 includeBase={config.includeBase}
                 includeSeal={config.includeSeal}
+                polygonCoords={polygonCoords.length >= 3 ? polygonCoords : undefined}
               />
             </div>
 
