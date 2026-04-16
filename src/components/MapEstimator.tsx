@@ -29,8 +29,9 @@ export default function MapEstimator({
   const [isDrawing, setIsDrawing] = useState(true);
   const [mapLoaded, setMapLoaded] = useState(false);
   const [address, setAddress] = useState('');
+  const [addressError, setAddressError] = useState('');
 
-  // Initialize Leaflet map
+  // Initialize Leaflet map (center/zoom are initial values only — not reactive)
   useEffect(() => {
     if (!mapContainerRef.current || mapRef.current) return;
 
@@ -146,6 +147,7 @@ export default function MapEstimator({
   // Geocode address to center the map
   const handleAddressSearch = useCallback(async () => {
     if (!address.trim() || !mapRef.current) return;
+    setAddressError('');
     try {
       const response = await fetch(
         `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&limit=1`,
@@ -154,9 +156,11 @@ export default function MapEstimator({
       if (results.length > 0) {
         const { lat, lon } = results[0];
         mapRef.current.setView([parseFloat(lat), parseFloat(lon)], 19);
+      } else {
+        setAddressError('Address not found — try a more specific address or pan the map manually.');
       }
     } catch {
-      // Geocoding failed — user can still pan manually
+      setAddressError('Could not search address — please pan the map manually.');
     }
   }, [address]);
 
@@ -180,6 +184,11 @@ export default function MapEstimator({
           Go
         </button>
       </div>
+
+      {/* Address error */}
+      {addressError && (
+        <p className="text-red-400 text-xs font-bold px-1">{addressError}</p>
+      )}
 
       {/* Drawing instructions */}
       <div className="bg-zinc-900/80 border border-zinc-700 px-4 py-3 text-xs text-zinc-400">

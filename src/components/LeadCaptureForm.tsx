@@ -42,6 +42,10 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
     // Format for the pipeline
     const pipelineLead = formatLeadForPipeline(lead);
 
+    // TODO: POST to API endpoint (e.g., /.netlify/functions/lead-capture)
+    // In production, this would submit the lead to Kickserv/CRM.
+    // For now, lead is formatted and ready for the lead_scoring.py pipeline.
+    void pipelineLead;
     // Fire analytics event
     const win = window as unknown as { gtag?: (...args: unknown[]) => void };
     if (typeof window !== 'undefined' && win.gtag) {
@@ -51,9 +55,6 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
         value: result.estimate.finalBidPrice,
       });
     }
-
-    // Log the lead (in production this would POST to an API)
-    console.log('[3D Estimator] Lead captured:', pipelineLead);
 
     // Simulate submission delay
     await new Promise((resolve) => setTimeout(resolve, 800));

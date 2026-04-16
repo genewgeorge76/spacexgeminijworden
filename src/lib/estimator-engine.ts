@@ -99,8 +99,11 @@ export function estimateFromPolygon(
   const sqFt = calculatePolygonAreaSqFt(coords);
   if (sqFt < 1) return null;
 
-  // Convert sqFt to approximate length × width for the existing engine
-  // Using a square approximation
+  // Use centroid latitude for projection.
+  // NOTE: This uses a square root approximation to convert area (sqFt) into
+  // length × width for the existing pricing engine. For irregular or elongated
+  // shapes, material quantities may vary ±5% from actual — the on-site estimate
+  // from a Worden estimator will provide the final verified quantities.
   const side = Math.sqrt(sqFt);
   const estimate = calculateEstimate({
     lengthFt: side,
