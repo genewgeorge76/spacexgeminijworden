@@ -1,0 +1,5 @@
+{
+      "richmond": {"name": "Richmond", "claySaturation": 92},
+      "fredericksburg": {"name": "Fredericksburg", "claySaturation": 88},
+      "chester": {"name": "Chester", "claySaturation": 90}
+    }
