@@ -1,0 +1,57 @@
+name: AI Lead Gatekeeper
+
+on:
+  schedule:
+    # Runs every hour at :00 (UTC)
+    - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      lead_input_file:
+        description: "Path to the JSON leads inbox file (relative to repo root)"
+        required: false
+        default: "data/leads_inbox.json"
+
+permissions:
+  contents: write   # allows committing scored output back to the repo
+  actions: read
+
+jobs:
+  score-leads:
+    name: "Score & Qualify Commercial Paving Leads"
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run lead scoring
+        env:
+          LEAD_INPUT_FILE: ${{ github.event.inputs.lead_input_file || 'data/leads_inbox.json' }}
+          LEAD_OUTPUT_FILE: data/leads_scored.json
+        run: python scripts/lead_scoring.py
+
+      - name: Upload scored leads artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: leads-scored-${{ github.run_id }}
+          path: data/leads_scored.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Commit scored results (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/leads_scored.json || true
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "chore(leads): update scored leads [skip ci]"
+            git push
+          fi
