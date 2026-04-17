@@ -14,6 +14,12 @@ export const OIL_SHIELD_BUFFER_PER_TON = 9.0;
 /** 96% Marshall Unit Weight minimum compaction floor */
 export const WORDEN_COMPACTION_FLOOR_PCT = 96.0;
 
+/** Compacted HMA unit weight used in Marshall tonnage math (lb/ft³) */
+export const MARSHALL_DENSITY_LB_PER_CF = 148;
+
+/** Sovereign Buffer applied on top of Marshall tonnage (5% safety factor) */
+export const SOVEREIGN_BUFFER_PCT = 5;
+
 /** Sovereign 6-inch VDOT-grade structural base depth (inches) */
 export const SOVEREIGN_BASE_DEPTH_IN = 6;
 
@@ -188,9 +194,11 @@ export interface EstimateOutput {
   timestamp: string;
 }
 
-/** Calculate tons of asphalt mix needed (industry formula: area × depth × 110 lb/ft³ ÷ 2000) */
+/** Calculate tons of asphalt mix (96% Marshall: 148 lb/cf compacted density + 5% Sovereign Buffer) */
 function calcTons(sqFt: number, depthIn: number): number {
-  return parseFloat(((sqFt * (depthIn / 12) * 110) / 2000).toFixed(2));
+  const rawTons = (sqFt * (depthIn / 12) * MARSHALL_DENSITY_LB_PER_CF) / 2000;
+  const withBuffer = rawTons * (1 + SOVEREIGN_BUFFER_PCT / 100);
+  return parseFloat(withBuffer.toFixed(2));
 }
 
 /** Calculate tons of 21A stone base (VDOT 6-inch = 125 lb/ft³) */
@@ -206,6 +214,7 @@ export function calculateEstimate(input: EstimateInput): EstimateOutput {
   const lineItems: EstimateLineItem[] = [];
   const complianceNotes: string[] = [
     `96% Marshall Unit Weight compaction minimum — AASHTO T245 (non-negotiable)`,
+    `Marshall tonnage math: ${MARSHALL_DENSITY_LB_PER_CF} lb/cf compacted density + ${SOVEREIGN_BUFFER_PCT}% Sovereign Buffer`,
     `VDOT-grade structural stone base — Section 315 aggregate (non-negotiable)`,
     `$${OIL_SHIELD_BUFFER_PER_TON}/ton oil-price shield applied to all asphalt materials`,
   ];

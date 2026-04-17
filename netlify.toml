@@ -15,6 +15,6 @@
   package = "@netlify/plugin-sitemap"
   [plugins.inputs]
     baseUrl = "https://jwordenasphaltpaving.com"
-    distPath = "dist"
+    buildDir = "dist"
     # This ensures your 41-city grid is indexed
-    prettyUrls = true
+    prettyURLs = true
