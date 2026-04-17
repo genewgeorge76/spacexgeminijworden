@@ -1,26 +1,26 @@
-/**
- * JWORDENAI: 50-STATE GEO-INTERCEPTOR
- * -----------------------------------
- * Runs on Netlify's Edge network. Detects user IP location in milliseconds
- * and passes the market data to the React front-end for shape-shifting.
- */
-import type { Context } from "https://edge.netlify.com";
+import type { Context } from "@netlify/edge-functions";
 
-const DEFAULT_CITY = "Richmond";
-const DEFAULT_REGION = "VA";
-
+// Routes /strike/* — geo-annotates the SPA response so the client can
+// render the correct regional landing content for rapid-dispatch sprints.
+// The actual page is served by the SPA (index.html via the catch-all
+// redirect); this function just attaches geo headers and passes through.
 export default async (request: Request, context: Context) => {
   const response = await context.next();
+  const geo = context.geo ?? {};
+  const headers = new Headers(response.headers);
 
-  // Extract location or default to Corporate HQ location
-  const city = context.geo?.city || DEFAULT_CITY;
-  const region = context.geo?.subdivision?.code || DEFAULT_REGION;
+  headers.set("x-worden-geo-country", geo.country?.code ?? "");
+  headers.set("x-worden-geo-subdivision", geo.subdivision?.code ?? "");
+  headers.set("x-worden-geo-city", geo.city ?? "");
+  headers.set("Cache-Control", "no-cache");
 
-  // Inject the location into a secure cookie for the frontend to read
-  response.headers.append(
-    "Set-Cookie",
-    `jworden_market=${city}|${region}; Path=/; Secure; SameSite=Lax`
-  );
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+};
 
-  return response;
+export const config = {
+  path: "/strike/*",
 };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { MapEstimateResult, LeadCapture } from '@/lib/estimator-engine';
+import SuccessScreen from '@/components/SuccessScreen';
 
 /**
  * LeadCaptureForm — Contact info capture with Whale/Shark/Fish classification.
@@ -96,53 +97,38 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
   };
 
   if (submitted) {
-    return (
-      <div className="bg-zinc-900 border-2 border-green-500 p-8 text-center">
-        <div className="text-5xl mb-4">✅</div>
-        <h3 className="text-2xl font-black uppercase text-white mb-2">
-          Request Submitted!
-        </h3>
-        {submitError && (
-          <div className="mb-4 p-4 border border-yellow-500/50 bg-yellow-900/10 text-left">
-            <p className="text-yellow-400 font-bold text-sm">
-              ⚠️ Note: {submitError}
-            </p>
-          </div>
-        )}
-        <p className="text-zinc-400 font-bold text-sm mb-6">
-          A Worden estimator will contact you within 24 hours{' '}
-          {result.tier === 'whale' && '(Priority dispatch — Whale-tier project)'}
-          {result.tier === 'shark' && '(Commercial priority)'}
-        </p>
-        <div className="bg-zinc-800 p-4 inline-block">
-          <p className="text-[#ffcc00] font-black text-xl">
-            Your Estimate: ${result.estimate.finalBidPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}
-          </p>
-          <p className="text-zinc-500 text-xs mt-1">
-            {result.sqFt.toLocaleString()} sq ft · {result.tierEmoji} {result.tierLabel}
-          </p>
-        </div>
+    const tierNote =
+      result.tier === 'whale'
+        ? 'Priority dispatch — Whale-tier project. A senior estimator will contact you within 4 hours.'
+        : result.tier === 'shark'
+          ? 'Commercial priority routing — a Worden estimator will contact you within 24 hours.'
+          : 'A Worden estimator will contact you within 24 hours.';
 
-        <div className="mt-8">
-          <a
-            href="tel:8044461296"
-            className="inline-block bg-[#ffcc00] text-black font-black uppercase tracking-widest text-sm px-8 py-4 hover:bg-white transition-colors"
-          >
-            Call Now: 804-446-1296
-          </a>
-        </div>
-        <p className="text-zinc-600 text-xs mt-4 italic">
-          Or complete your dispatch at{' '}
-          <a
-            href="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#ffcc00] underline"
-          >
-            Kickserv
-          </a>
-        </p>
-      </div>
+    const subtitle = submitError
+      ? `${tierNote} Note: ${submitError}`
+      : tierNote;
+
+    return (
+      <SuccessScreen
+        title="Estimate Locked In"
+        subtitle={subtitle}
+        primaryMetricLabel="Your Estimate"
+        primaryMetricValue={`$${result.estimate.finalBidPrice.toLocaleString('en-US', { maximumFractionDigits: 0 })}`}
+        ctaHref="tel:8044461296"
+        ctaLabel="Call Now: 804-446-1296"
+        footnote={`${result.sqFt.toLocaleString()} sq ft &middot; ${result.tierEmoji} ${result.tierLabel} &middot; 4th Generation Since 1984`}
+      >
+        Or complete your dispatch at{' '}
+        <a
+          href="https://app.kickserv.com/jwordenandsonspaving/self_service/requests/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: '#D4AF37', textDecoration: 'underline' }}
+        >
+          Kickserv
+        </a>
+        .
+      </SuccessScreen>
     );
   }
 
