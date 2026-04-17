@@ -5,16 +5,14 @@
 [build.environment]
   NODE_VERSION = "22"
 
-[[redirects]]
-  # This is critical for TanStack Router to prevent 404s on page refresh
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
 [[plugins]]
   package = "@netlify/plugin-sitemap"
   [plugins.inputs]
     baseUrl = "https://jwordenasphaltpaving.com"
-    distPath = "dist"
-    # This ensures your 41-city grid is indexed
-    prettyUrls = true
+    buildDir = "dist"
+    prettyURLs = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
