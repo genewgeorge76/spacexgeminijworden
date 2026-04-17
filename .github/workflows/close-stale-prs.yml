@@ -1,0 +1,40 @@
+# ============================================================================
+# close-stale-prs.yml — One-click cleanup of old experimental PRs
+# ============================================================================
+# Manually triggered workflow to close stale PRs that clutter the repo.
+# Go to Actions → "Close Stale PRs" → "Run workflow" to execute.
+# ============================================================================
+
+name: Close Stale PRs
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (true = preview only, false = actually close)"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-stale-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Run cleanup script
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [[ "${{ inputs.dry_run }}" == "true" ]]; then
+            ./scripts/close-stale-prs.sh
+          else
+            ./scripts/close-stale-prs.sh --execute
+          fi
