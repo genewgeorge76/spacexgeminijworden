@@ -109,7 +109,7 @@ for pr in "${CLOSE_PRS[@]}"; do
     echo "  🔴 PR #$pr — would close"
   else
     echo -n "  Closing PR #$pr... "
-    if gh pr close "$pr" --repo "$REPO" --comment "Closing as part of job-site cleanup. This experimental branch is superseded by the Sovereign Master Engine on main. Branch code is preserved — reopen if needed." 2>/dev/null; then
+    if gh pr close "$pr" --repo "$REPO" --comment "🧹 **Job-site cleanup.** This experimental branch is superseded by the Sovereign Master Engine on \`main\`. Branch code is preserved — reopen if needed." 2>/dev/null; then
       echo "✅ closed"
       ((CLOSED++))
     else
