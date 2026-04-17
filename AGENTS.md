@@ -71,7 +71,7 @@ Because this is an SPA, `netlify.toml` includes a `/*  →  /index.html  200` re
 
 Anything that needs server credentials or cross-origin calls goes in `netlify/functions/`. Client code calls these via `/.netlify/functions/<name>`. `ContactForm.tsx` and `LeadCaptureForm.tsx` are the current callers.
 
-There are **no edge functions** — an earlier `geo-intercept` edge function was removed. If geo routing is reintroduced, restore both the file under `netlify/edge-functions/` and the `[[edge_functions]]` block in `netlify.toml`.
+Edge functions live under `netlify/edge-functions/`. `geo-intercept` handles `/strike/*` — it reads `context.geo` and annotates the SPA response with `x-worden-geo-*` headers for regional rapid-dispatch landing pages. The route is registered in the `[[edge_functions]]` block in `netlify.toml`.
 
 ### AI
 
