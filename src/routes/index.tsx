@@ -13,17 +13,13 @@ export const Route = createFileRoute('/')({
     <main className="min-h-screen bg-zinc-950 text-zinc-100 font-sans selection:bg-amber-400 selection:text-black">
       {/* Hero Section — Video Background */}
       <section className="relative py-48 md:py-64 px-6 lg:px-12 overflow-hidden flex items-center justify-center min-h-[80vh] border-b border-amber-400/20">
-        {/* 4K Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        {/* Cinematic Background */}
+        <img
+          src="/asphalt-paving-with-paver.jpg"
+          alt=""
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover z-0"
-          poster="/asphalt-paving-with-paver.jpg"
-        >
-          <source src="/videos/industrial-paving-hero.mp4" type="video/mp4" />
-        </video>
+        />
         {/* Deep cinematic overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-zinc-950/95 z-[1]"></div>
         {/* Subtle grid pattern */}

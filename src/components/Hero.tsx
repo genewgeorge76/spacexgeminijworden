@@ -154,16 +154,12 @@ const Hero = () => {
 
   return (
     <section style={styles.wrapper} aria-label="J. Worden & Sons Hero">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
+      <img
+        src="/asphalt-paving-with-paver.jpg"
+        alt=""
+        aria-hidden="true"
         style={styles.video}
-        poster="/asphalt-paving-with-paver.jpg"
-      >
-        <source src="/videos/industrial-paving-hero.mp4" type="video/mp4" />
-      </video>
+      />
       <div style={styles.overlay} aria-hidden="true" />
       <div style={styles.grid} aria-hidden="true" />
       <div style={styles.glow} aria-hidden="true" />
