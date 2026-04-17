@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
+import { Route as SovereignMasterRouteImport } from './routes/sovereign-master'
+import { Route as SovereignRouteImport } from './routes/sovereign'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
 import { Route as SafetyRouteImport } from './routes/safety'
@@ -22,6 +24,7 @@ import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
 import { Route as PreConRouteImport } from './routes/pre-con'
 import { Route as PortalRouteImport } from './routes/portal'
 import { Route as PayrollTreasuryRouteImport } from './routes/payroll-treasury'
+import { Route as MrWorden3dRouteImport } from './routes/mr-worden-3d'
 import { Route as MasonryRouteImport } from './routes/masonry'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LitigationRouteImport } from './routes/litigation'
@@ -122,6 +125,16 @@ const StandardsRoute = StandardsRouteImport.update({
   path: '/standards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SovereignMasterRoute = SovereignMasterRouteImport.update({
+  id: '/sovereign-master',
+  path: '/sovereign-master',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SovereignRoute = SovereignRouteImport.update({
+  id: '/sovereign',
+  path: '/sovereign',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
@@ -170,6 +183,11 @@ const PortalRoute = PortalRouteImport.update({
 const PayrollTreasuryRoute = PayrollTreasuryRouteImport.update({
   id: '/payroll-treasury',
   path: '/payroll-treasury',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MrWorden3dRoute = MrWorden3dRouteImport.update({
+  id: '/mr-worden-3d',
+  path: '/mr-worden-3d',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MasonryRoute = MasonryRouteImport.update({
@@ -620,6 +638,7 @@ export interface FileRoutesByFullPath {
   '/litigation': typeof LitigationRoute
   '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
+  '/mr-worden-3d': typeof MrWorden3dRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
   '/pre-con': typeof PreConRoute
@@ -630,6 +649,8 @@ export interface FileRoutesByFullPath {
   '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
+  '/sovereign': typeof SovereignRoute
+  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
@@ -719,6 +740,7 @@ export interface FileRoutesByTo {
   '/litigation': typeof LitigationRoute
   '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
+  '/mr-worden-3d': typeof MrWorden3dRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
   '/pre-con': typeof PreConRoute
@@ -729,6 +751,8 @@ export interface FileRoutesByTo {
   '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
+  '/sovereign': typeof SovereignRoute
+  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
@@ -819,6 +843,7 @@ export interface FileRoutesById {
   '/litigation': typeof LitigationRoute
   '/login': typeof LoginRoute
   '/masonry': typeof MasonryRoute
+  '/mr-worden-3d': typeof MrWorden3dRoute
   '/payroll-treasury': typeof PayrollTreasuryRoute
   '/portal': typeof PortalRoute
   '/pre-con': typeof PreConRoute
@@ -829,6 +854,8 @@ export interface FileRoutesById {
   '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
+  '/sovereign': typeof SovereignRoute
+  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
   '/whale-hunter': typeof WhaleHunterRoute
@@ -920,6 +947,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/login'
     | '/masonry'
+    | '/mr-worden-3d'
     | '/payroll-treasury'
     | '/portal'
     | '/pre-con'
@@ -930,6 +958,8 @@ export interface FileRouteTypes {
     | '/safety'
     | '/sealcoating'
     | '/services'
+    | '/sovereign'
+    | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
@@ -1019,6 +1049,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/login'
     | '/masonry'
+    | '/mr-worden-3d'
     | '/payroll-treasury'
     | '/portal'
     | '/pre-con'
@@ -1029,6 +1060,8 @@ export interface FileRouteTypes {
     | '/safety'
     | '/sealcoating'
     | '/services'
+    | '/sovereign'
+    | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
@@ -1118,6 +1151,7 @@ export interface FileRouteTypes {
     | '/litigation'
     | '/login'
     | '/masonry'
+    | '/mr-worden-3d'
     | '/payroll-treasury'
     | '/portal'
     | '/pre-con'
@@ -1128,6 +1162,8 @@ export interface FileRouteTypes {
     | '/safety'
     | '/sealcoating'
     | '/services'
+    | '/sovereign'
+    | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
     | '/whale-hunter'
@@ -1218,6 +1254,7 @@ export interface RootRouteChildren {
   LitigationRoute: typeof LitigationRoute
   LoginRoute: typeof LoginRoute
   MasonryRoute: typeof MasonryRoute
+  MrWorden3dRoute: typeof MrWorden3dRoute
   PayrollTreasuryRoute: typeof PayrollTreasuryRoute
   PortalRoute: typeof PortalRoute
   PreConRoute: typeof PreConRoute
@@ -1228,6 +1265,8 @@ export interface RootRouteChildren {
   SafetyRoute: typeof SafetyRoute
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
+  SovereignRoute: typeof SovereignRoute
+  SovereignMasterRoute: typeof SovereignMasterRoute
   StandardsRoute: typeof StandardsRoute
   WeatherIntelRoute: typeof WeatherIntelRoute
   WhaleHunterRoute: typeof WhaleHunterRoute
@@ -1319,6 +1358,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StandardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sovereign-master': {
+      id: '/sovereign-master'
+      path: '/sovereign-master'
+      fullPath: '/sovereign-master'
+      preLoaderRoute: typeof SovereignMasterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sovereign': {
+      id: '/sovereign'
+      path: '/sovereign'
+      fullPath: '/sovereign'
+      preLoaderRoute: typeof SovereignRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
@@ -1387,6 +1440,13 @@ declare module '@tanstack/react-router' {
       path: '/payroll-treasury'
       fullPath: '/payroll-treasury'
       preLoaderRoute: typeof PayrollTreasuryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mr-worden-3d': {
+      id: '/mr-worden-3d'
+      path: '/mr-worden-3d'
+      fullPath: '/mr-worden-3d'
+      preLoaderRoute: typeof MrWorden3dRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/masonry': {
@@ -2002,6 +2062,7 @@ const rootRouteChildren: RootRouteChildren = {
   LitigationRoute: LitigationRoute,
   LoginRoute: LoginRoute,
   MasonryRoute: MasonryRoute,
+  MrWorden3dRoute: MrWorden3dRoute,
   PayrollTreasuryRoute: PayrollTreasuryRoute,
   PortalRoute: PortalRoute,
   PreConRoute: PreConRoute,
@@ -2012,6 +2073,8 @@ const rootRouteChildren: RootRouteChildren = {
   SafetyRoute: SafetyRoute,
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
+  SovereignRoute: SovereignRoute,
+  SovereignMasterRoute: SovereignMasterRoute,
   StandardsRoute: StandardsRoute,
   WeatherIntelRoute: WeatherIntelRoute,
   WhaleHunterRoute: WhaleHunterRoute,
