@@ -1,0 +1,81 @@
+# ============================================================================
+# close-stale-prs.yml — One-click cleanup of old experimental PRs
+# ============================================================================
+# Manually triggered workflow to close stale PRs that clutter the repo.
+# Go to Actions → "Close Stale PRs" → "Run workflow" to execute.
+# ============================================================================
+
+name: Close Stale PRs
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (true = preview only, false = actually close)"
+        required: true
+        default: "true"
+        type: choice
+        options:
+          - "true"
+          - "false"
+
+permissions:
+  pull-requests: write
+
+jobs:
+  close-stale-prs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Close stale experimental PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          REPO="${{ github.repository }}"
+          DRY_RUN="${{ inputs.dry_run }}"
+
+          # PRs to close — old experiments superseded by Sovereign Master Engine
+          CLOSE_PRS=(
+            156 155 154 153 151 149 148 147   # Apr 17 deployment attempts
+            142 136 132                         # Apr 16 features
+            129 124 121                         # Apr 14 redirects & dependabot
+            117 116 115 114 111 110             # Apr 13 pixel/security/dashboards
+            104 102                             # Apr 12 SEO & merge conflicts
+            101 100 99 97 96 95 94 93 92 91 90 89 88 81  # Apr 11 bulk features
+          )
+
+          echo "═══════════════════════════════════════════════"
+          echo "  J. Worden & Sons — PR Cleanup"
+          echo "  Repo: $REPO | Dry Run: $DRY_RUN"
+          echo "═══════════════════════════════════════════════"
+
+          CLOSED=0
+          SKIPPED=0
+          for pr in "${CLOSE_PRS[@]}"; do
+            # Check if PR is still open
+            STATE=$(gh pr view "$pr" --repo "$REPO" --json state --jq '.state' 2>/dev/null || echo "NOT_FOUND")
+
+            if [[ "$STATE" != "OPEN" ]]; then
+              echo "⏭️  PR #$pr — already $STATE, skipping"
+              ((SKIPPED++))
+              continue
+            fi
+
+            if [[ "$DRY_RUN" == "true" ]]; then
+              echo "🔴 PR #$pr — would close (dry run)"
+            else
+              echo -n "  Closing PR #$pr... "
+              gh pr close "$pr" --repo "$REPO" \
+                --comment "🧹 **Job-site cleanup.** This experimental branch is superseded by the Sovereign Master Engine on \`main\`. Branch code is preserved — reopen if needed." \
+                && echo "✅" && ((CLOSED++)) \
+                || echo "❌ failed"
+            fi
+          done
+
+          echo ""
+          echo "═══════════════════════════════════════════════"
+          if [[ "$DRY_RUN" == "true" ]]; then
+            echo "DRY RUN complete. Re-run with dry_run=false to execute."
+          else
+            echo "DONE: $CLOSED closed, $SKIPPED skipped"
+          fi
+          echo "═══════════════════════════════════════════════"
