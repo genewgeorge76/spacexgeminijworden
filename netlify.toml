@@ -3,30 +3,15 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
-  # This keeps the site URL anchored for your SEO
-  VITE_SITE_URL = "https://jwordenasphaltpaving.com"
+  NODE_VERSION = "22"
 
-# Security headers on every response. No Cache-Control here — the SPA
-# shell must be revalidated on each visit so deploys reach users.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-# Vite emits content-hashed files into /assets/* — safe to cache forever.
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Geo-aware rapid-dispatch landing paths. The edge function reads the
-# visitor's region and annotates the response before the SPA renders.
-[[edge_functions]]
-  path = "/strike/*"
-  function = "geo-intercept"
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+  [plugins.inputs]
+    baseUrl = "https://jwordenasphaltpaving.com"
+    # This ensures TanStack's dist folder is crawled perfectly
+    distPath = "dist"
+    prettyUrls = true
 
 [[redirects]]
   from = "/*"
