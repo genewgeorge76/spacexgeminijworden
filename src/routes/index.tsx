@@ -11,6 +11,7 @@ import {
   matchAddressToGrid,
   type DispatchMatch,
 } from '@/lib/sovereignDispatcher';
+import { useMandateConfig } from '@/lib/sovereignMandate';
 
 export const Route = createFileRoute('/')({
   component: SovereignPowerhouse,
@@ -127,6 +128,23 @@ function SovereignPowerhouse() {
   const heroRef = useRef<HTMLElement | null>(null);
   const heroProgress = useScrollProgress(heroRef);
   const navigate = useNavigate();
+  // Live mandate dial values from the /sovereign-command master remote.
+  const mandate = useMandateConfig();
+  const baseIn = mandate.baseInchesStandard;
+  const baseWord = (() => {
+    if (!Number.isInteger(baseIn)) return `${baseIn}`;
+    switch (baseIn) {
+      case 4: return 'four';
+      case 5: return 'five';
+      case 6: return 'six';
+      case 7: return 'seven';
+      case 8: return 'eight';
+      case 9: return 'nine';
+      case 10: return 'ten';
+      default: return `${baseIn}`;
+    }
+  })();
+  const baseWordCaps = baseWord.toUpperCase();
 
   return (
     <main style={styles.container}>
@@ -161,7 +179,7 @@ function SovereignPowerhouse() {
           </h1>
           <p style={styles.heroLede}>
             A four-generation civil &amp; general-contracting house operating on a single mandate:
-            <strong style={{ color: IVORY }}> a six-inch compacted stone base, every driveway, every lot, every time.</strong>
+            <strong style={{ color: IVORY }}> a {baseWord}-inch compacted stone base, every driveway, every lot, every time.</strong>
             &nbsp;Award-winning infrastructure for national franchise rollouts, historic Richmond restorations,
             and Windsor Farms estates.
           </p>
@@ -209,7 +227,7 @@ function SovereignPowerhouse() {
 
         <h2 style={styles.anchorHeadline}>
           THE FAMILY THAT LAID<br/>
-          <span className="pvd-gold-text" style={styles.anchorHeadlineAccent}>THE FIRST SIX INCHES.</span>
+          <span className="pvd-gold-text" style={styles.anchorHeadlineAccent}>THE FIRST {baseWordCaps} INCHES.</span>
         </h2>
 
         <p style={styles.legacyStatement}>
@@ -229,7 +247,7 @@ function SovereignPowerhouse() {
             <div style={styles.personaCell}>
               <div style={styles.personaCaptionTop}>
                 <span style={styles.personaBadge}>PATRIARCH</span>
-                <span style={styles.personaMeta}>CH. 01 · THE SIX-INCH MANDATE</span>
+                <span style={styles.personaMeta}>CH. 01 · THE {baseWordCaps}-INCH MANDATE</span>
               </div>
               <MrWordenPersona3D height={460} parallaxStrength={36} />
               <blockquote style={styles.personaQuote}>
@@ -438,18 +456,18 @@ function SovereignPowerhouse() {
           <div style={styles.standardGoldRail} aria-hidden="true" />
           <div style={styles.standardTopTag}>A PROMISE, NOT A SPEC</div>
           <h2 style={styles.standardHeadline}>
-            THE <span className="pvd-gold-text">6-INCH</span> COMPACTED AGGREGATE BASE.
+            THE <span className="pvd-gold-text">{baseIn}-INCH</span> COMPACTED AGGREGATE BASE.
           </h2>
           <div style={styles.mandateRow}>
             <div style={styles.mandateBody}>
               <p style={styles.standardBody}>
-                Every Worden driveway, lot, and roadway is built on a six-inch compacted aggregate base —
+                Every Worden driveway, lot, and roadway is built on a {baseWord}-inch compacted aggregate base —
                 laid, leveled, and compacted to 96% Marshall before a single ton of asphalt ever touches
                 the surface. It is the reason our 1984 installations still carry weight in 2026. It is
                 not a spec. It is a promise from this family to yours.
               </p>
               <p style={styles.standardBodyStrong}>
-                Six inches of stone. No shortcuts. No substitutions. No exceptions.
+                {baseWordCaps} inches of stone. No shortcuts. No substitutions. No exceptions.
               </p>
             </div>
 
@@ -571,6 +589,7 @@ function HomepageEstimatorSection() {
   const [dispatching, setDispatching] = useState(false);
   const [match, setMatch] = useState<DispatchMatch | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const mandate = useMandateConfig();
 
   const handleSpecChange = useCallback((next: EstimatorSpec) => {
     setSpec(next);
@@ -611,7 +630,7 @@ function HomepageEstimatorSection() {
       </h2>
       <p style={styles.estimatorLede}>
         A live 4D sandbox: slide the square footage, toggle Standard vs. Heavy Duty load, and watch the
-        six-inch compacted stone base render in real time. Drop a site address and the Sovereign
+        {' '}{mandate.baseInchesStandard}-inch compacted stone base render in real time. Drop a site address and the Sovereign
         Dispatcher generates a branded J. Worden Preliminary Site Report on the spot — no form, no wait.
       </p>
 
@@ -648,11 +667,17 @@ function HomepageEstimatorSection() {
             <div
               style={{
                 ...styles.estimatorGridChip,
-                color: preview.inGrid ? '#8be29a' : PVD_GOLD,
+                color: preview.inGrid
+                  ? '#8be29a'
+                  : preview.valveClosed
+                  ? '#ffb0b0'
+                  : PVD_GOLD,
               }}
             >
               {preview.inGrid
                 ? `● Grid confirmed · Hub: ${preview.matchedCity}`
+                : preview.valveClosed
+                ? `● Valve closed · ${preview.matchedCity} paused by Sovereign Command`
                 : '◌ Outside core 41-city grid — coastal track still available'}
             </div>
           )}

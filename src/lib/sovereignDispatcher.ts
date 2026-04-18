@@ -10,6 +10,7 @@ import React from 'react';
 import { pdf } from '@react-pdf/renderer';
 import SiteReportDocument, { type SiteReportProps } from '@/components/SiteReportDocument';
 import { SERVICE_AREAS_41 } from '@/constants/serviceAreas';
+import { getMandate } from '@/lib/sovereignMandate';
 import {
   computeEstimatorSpec,
   type EstimatorSpec,
@@ -23,8 +24,11 @@ export interface DispatchMatch {
   matchedCity: string | null;
   /** Fallback region label when no city matched but the state is served. */
   region: string;
-  /** True when the address sits inside the 41-city Sovereign Grid. */
+  /** True when the address sits inside the 41-city Sovereign Grid *and* the
+   *  Sovereign Command lead valve for that city is open. */
   inGrid: boolean;
+  /** True when the city matched but the master remote has closed its valve. */
+  valveClosed: boolean;
 }
 
 /** Detect which 41-city hub an address belongs to. Tolerant of punctuation / casing. */
@@ -42,10 +46,13 @@ export function matchAddressToGrid(address: string): DispatchMatch {
     }
   }
 
-  const inGrid = matchedCity !== null;
+  const mandate = getMandate();
+  const valveOpen = matchedCity !== null && mandate.activeCities.includes(matchedCity);
+  const inGrid = matchedCity !== null && valveOpen;
+  const valveClosed = matchedCity !== null && !valveOpen;
   const region = matchedCity ?? (haystack.includes('va') ? 'Virginia' : 'Regional');
 
-  return { address, matchedCity, region, inGrid };
+  return { address, matchedCity, region, inGrid, valveClosed };
 }
 
 export interface DispatchSpec {

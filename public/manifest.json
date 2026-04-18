@@ -1,24 +1,48 @@
 {
-  "name": "JWORDENAI",
-  "short_name": "JWORDENAI",
-  "description": "J. Worden & Sons Command Center — 4th Generation Paving & General Contracting",
-  "start_url": "/dashboard",
+  "name": "JWORDENAI Sovereign Command",
+  "short_name": "JWCommand",
+  "description": "J. Worden & Sons Sovereign Command — master remote for the 4th-generation paving powerhouse.",
+  "start_url": "/sovereign-command",
+  "scope": "/",
+  "id": "/sovereign-command",
   "display": "standalone",
-  "background_color": "#09090b",
-  "theme_color": "#f59e0b",
+  "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait-primary",
+  "background_color": "#05060a",
+  "theme_color": "#D4A844",
+  "categories": ["business", "productivity", "utilities"],
   "icons": [
     {
-      "src": "/logo.png",
+      "src": "/icons/jw-icon-192.svg",
       "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "/logo.png",
+      "src": "/icons/jw-icon-512.svg",
       "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/jw-icon-maskable.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Sovereign Command",
+      "short_name": "Command",
+      "description": "Open the master remote cockpit.",
+      "url": "/sovereign-command"
+    },
+    {
+      "name": "3D Estimator",
+      "short_name": "Estimator",
+      "description": "Dial in the mandate.",
+      "url": "/contact"
     }
   ]
 }

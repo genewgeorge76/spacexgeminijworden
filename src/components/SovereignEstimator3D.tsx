@@ -15,6 +15,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { ContactShadows, Environment, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 import TactileButton from './TactileButton';
+import { getMandate, useMandateConfig } from '@/lib/sovereignMandate';
 
 export type LoadClass = 'standard' | 'heavy';
 
@@ -46,7 +47,8 @@ const STEEL_MID = '#8a8a8a';
 
 /** Compute materials + money from user inputs. Kept pure so tests/chat reuse it. */
 export function computeEstimatorSpec(sqft: number, loadClass: LoadClass): EstimatorSpec {
-  const baseInches = loadClass === 'heavy' ? 8 : 6;
+  const mandate = getMandate();
+  const baseInches = loadClass === 'heavy' ? mandate.baseInchesHeavy : mandate.baseInchesStandard;
   const asphaltInches = loadClass === 'heavy' ? 4 : 2.5;
 
   // Conversions using industry-standard densities.
@@ -56,9 +58,15 @@ export function computeEstimatorSpec(sqft: number, loadClass: LoadClass): Estima
   const stoneTons = (sqft * baseInches * 100) / 2000;
 
   const materialBase = asphaltTons * 110 + stoneTons * 38;
-  const laborMultiplier = loadClass === 'heavy' ? 2.6 : 1.9;
-  const estimateLow = Math.round((materialBase * laborMultiplier) / 100) * 100;
-  const estimateHigh = Math.round((materialBase * (laborMultiplier + 0.7)) / 100) * 100;
+  const baseLaborMultiplier = 1.9;
+  const loadSurcharge = loadClass === 'heavy' ? mandate.heavyDutySurcharge : 1.0;
+  const laborMultiplier = baseLaborMultiplier * loadSurcharge * (1 + mandate.marginDial);
+  const estimateLow = Math.round(
+    (materialBase * laborMultiplier * mandate.priceMultiplier) / 100,
+  ) * 100;
+  const estimateHigh = Math.round(
+    (materialBase * (laborMultiplier + 0.7) * mandate.priceMultiplier) / 100,
+  ) * 100;
 
   return {
     sqft,
@@ -82,8 +90,15 @@ export default function SovereignEstimator3D({
 }: SovereignEstimator3DProps) {
   const [sqft, setSqft] = useState<number>(initialSqft);
   const [loadClass, setLoadClass] = useState<LoadClass>(initialLoad);
+  // Subscribe to Sovereign Command mandate changes so the estimator re-computes
+  // whenever the master remote commits new pricing/base-inch dials.
+  const mandate = useMandateConfig();
 
-  const spec = useMemo(() => computeEstimatorSpec(sqft, loadClass), [sqft, loadClass]);
+  const spec = useMemo(
+    () => computeEstimatorSpec(sqft, loadClass),
+    // mandate.updatedAt gates re-computation on Sovereign Command commits.
+    [sqft, loadClass, mandate.updatedAt],
+  );
 
   useEffect(() => {
     onSpecChange?.(spec);
@@ -336,13 +351,13 @@ export default function SovereignEstimator3D({
                 active={loadClass === 'standard'}
                 onClick={() => setLoadClass('standard')}
                 label="Standard"
-                meta="6&quot; Stone · 2.5&quot; HMA"
+                meta={`${mandate.baseInchesStandard}" Stone · 2.5" HMA`}
               />
               <LoadPill
                 active={loadClass === 'heavy'}
                 onClick={() => setLoadClass('heavy')}
                 label="Heavy Duty"
-                meta="8&quot; Stone · 4&quot; HMA"
+                meta={`${mandate.baseInchesHeavy}" Stone · 4" HMA`}
               />
             </div>
           </div>
@@ -398,7 +413,8 @@ function PavementStack({
 }) {
   const group = useRef<THREE.Group>(null);
 
-  // Animate scale on mount / change.
+  // Map physical inches to world units so any commanded depth (4"–12")
+  // expands the stack proportionally.
   const baseHeightTarget = (baseInches / 6) * 0.55;
   const asphaltHeightTarget = (asphaltInches / 2.5) * 0.16;
 

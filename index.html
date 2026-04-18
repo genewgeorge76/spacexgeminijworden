@@ -2,10 +2,22 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>J. Worden & Sons | Sovereign Asphalt Authority</title>
   <meta name="description" content="4th-Generation Richmond Paving. NASCLA Certified, VA Class A. 2026 Top Contractor & 4-Time Best of Houzz. Specialized in zero-downtime medical facility paving.">
   <meta name="google-site-verification" content="REPLACE_WITH_GOOGLE_VERIFICATION_CODE" />
+
+  <!-- PWA — install to home screen as a native-style app -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#D4A844" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="JWCommand" />
+  <meta name="application-name" content="JWORDENAI Sovereign Command" />
+  <link rel="apple-touch-icon" href="/icons/jw-icon-192.svg" />
+  <link rel="icon" type="image/svg+xml" sizes="192x192" href="/icons/jw-icon-192.svg" />
+  <link rel="icon" type="image/svg+xml" sizes="512x512" href="/icons/jw-icon-512.svg" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -43,5 +55,16 @@
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
+  <script>
+    // Register the Sovereign Command service worker so the site installs to
+    // a phone's home screen as a native-style PWA icon.
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function () {
+          /* registration failure is non-fatal */
+        });
+      });
+    }
+  </script>
 </body>
 </html>
