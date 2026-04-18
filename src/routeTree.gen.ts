@@ -13,6 +13,7 @@ import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
 import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
 import { Route as SovereignMasterRouteImport } from './routes/sovereign-master'
+import { Route as SovereignCommandRouteImport } from './routes/sovereign-command'
 import { Route as SovereignRouteImport } from './routes/sovereign'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
@@ -45,7 +46,6 @@ import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as IndexRouteImport } from './routes/index'
 import { Route as VirginiaRichmond23221PavingRouteImport } from './routes/virginia/richmond-23221-paving'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 import { Route as MinnesotaMspAirportAsphaltRouteImport } from './routes/minnesota/msp-airport-asphalt'
@@ -128,6 +128,11 @@ const StandardsRoute = StandardsRouteImport.update({
 const SovereignMasterRoute = SovereignMasterRouteImport.update({
   id: '/sovereign-master',
   path: '/sovereign-master',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SovereignCommandRoute = SovereignCommandRouteImport.update({
+  id: '/sovereign-command',
+  path: '/sovereign-command',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SovereignRoute = SovereignRouteImport.update({
@@ -288,11 +293,6 @@ const AdminRoute = AdminRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VirginiaRichmond23221PavingRoute =
@@ -617,7 +617,6 @@ const IllinoisChicagoCommercialPavingRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -650,6 +649,7 @@ export interface FileRoutesByFullPath {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/sovereign': typeof SovereignRoute
+  '/sovereign-command': typeof SovereignCommandRoute
   '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
@@ -719,7 +719,6 @@ export interface FileRoutesByFullPath {
   '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -752,6 +751,7 @@ export interface FileRoutesByTo {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/sovereign': typeof SovereignRoute
+  '/sovereign-command': typeof SovereignCommandRoute
   '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
@@ -822,7 +822,6 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -855,6 +854,7 @@ export interface FileRoutesById {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/sovereign': typeof SovereignRoute
+  '/sovereign-command': typeof SovereignCommandRoute
   '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
   '/weather-intel': typeof WeatherIntelRoute
@@ -926,7 +926,6 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -959,6 +958,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/sovereign'
+    | '/sovereign-command'
     | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
@@ -1028,7 +1028,6 @@ export interface FileRouteTypes {
     | '/virginia/richmond-23221-paving'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -1061,6 +1060,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/sovereign'
+    | '/sovereign-command'
     | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
@@ -1130,7 +1130,6 @@ export interface FileRouteTypes {
     | '/virginia/richmond-23221-paving'
   id:
     | '__root__'
-    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -1163,6 +1162,7 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/sovereign'
+    | '/sovereign-command'
     | '/sovereign-master'
     | '/standards'
     | '/weather-intel'
@@ -1233,7 +1233,6 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   CommandBotRoute: typeof CommandBotRoute
@@ -1266,6 +1265,7 @@ export interface RootRouteChildren {
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
   SovereignRoute: typeof SovereignRoute
+  SovereignCommandRoute: typeof SovereignCommandRoute
   SovereignMasterRoute: typeof SovereignMasterRoute
   StandardsRoute: typeof StandardsRoute
   WeatherIntelRoute: typeof WeatherIntelRoute
@@ -1363,6 +1363,13 @@ declare module '@tanstack/react-router' {
       path: '/sovereign-master'
       fullPath: '/sovereign-master'
       preLoaderRoute: typeof SovereignMasterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sovereign-command': {
+      id: '/sovereign-command'
+      path: '/sovereign-command'
+      fullPath: '/sovereign-command'
+      preLoaderRoute: typeof SovereignCommandRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/sovereign': {
@@ -1587,13 +1594,6 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/virginia/richmond-23221-paving': {
@@ -2041,7 +2041,6 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   CommandBotRoute: CommandBotRoute,
@@ -2074,6 +2073,7 @@ const rootRouteChildren: RootRouteChildren = {
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
   SovereignRoute: SovereignRoute,
+  SovereignCommandRoute: SovereignCommandRoute,
   SovereignMasterRoute: SovereignMasterRoute,
   StandardsRoute: StandardsRoute,
   WeatherIntelRoute: WeatherIntelRoute,
