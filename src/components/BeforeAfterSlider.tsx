@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { sharpImage, sharpSrcSet, GALLERY_SIZES } from '@/lib/sharpImage';
 
 interface BeforeAfterSliderProps {
   beforeSrc: string;
@@ -53,11 +54,14 @@ export default function BeforeAfterSlider({
       {/* After image (base layer) */}
       <figure className="absolute inset-0 m-0">
         <img
-          src={afterSrc}
+          src={sharpImage(afterSrc, { width, height, fit: 'cover', quality: 86 })}
+          srcSet={sharpSrcSet(afterSrc, undefined, { height, fit: 'cover', quality: 86 })}
+          sizes={GALLERY_SIZES}
           alt={afterAlt}
           width={width}
           height={height}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
           draggable={false}
         />
@@ -70,11 +74,14 @@ export default function BeforeAfterSlider({
         style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
       >
         <img
-          src={beforeSrc}
+          src={sharpImage(beforeSrc, { width, height, fit: 'cover', quality: 86 })}
+          srcSet={sharpSrcSet(beforeSrc, undefined, { height, fit: 'cover', quality: 86 })}
+          sizes={GALLERY_SIZES}
           alt={beforeAlt}
           width={width}
           height={height}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover"
           draggable={false}
         />

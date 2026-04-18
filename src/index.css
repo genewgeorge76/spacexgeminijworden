@@ -2,7 +2,7 @@
 @import "./styles/sovereign-2026.css";
 
 /* J. WORDEN & SONS - PREMIUM AUTHORITY STYLING
-   Version: 10.0 (Million Dollar Build)
+   Version: 11.0 (Premium Polish — Steel & Gold)
 */
 
 :root {
@@ -11,7 +11,140 @@
   --jworden-gold: #ffc107;        /* Safety Gold Call-to-Action */
   --jworden-white: #f5f5f5;       /* Premium Text */
   --jworden-accent: #37474f;      /* Heavy Equipment Slate */
+
+  /* Steel & Gold — Premium Polish */
+  --pvd-gold-a: #f6d97a;          /* bright highlight */
+  --pvd-gold-b: #d4a844;          /* core gold */
+  --pvd-gold-c: #8c6a1f;          /* shadow */
+  --pvd-gold-ink: #b88827;        /* signature ink */
+  --charcoal-a: #2a2d33;
+  --charcoal-b: #14161a;
+  --charcoal-c: #05060a;
+  --steel-rim: rgba(210, 180, 110, 0.35);
+
+  --pvd-gold-gradient: linear-gradient(135deg, var(--pvd-gold-a) 0%, var(--pvd-gold-b) 45%, var(--pvd-gold-c) 100%);
+  --pvd-gold-sheen: linear-gradient(110deg, #fff4c2 0%, #f6d97a 22%, #d4a844 48%, #8c6a1f 78%, #f6d97a 100%);
+  --charcoal-steel-gradient: linear-gradient(160deg, var(--charcoal-a) 0%, var(--charcoal-b) 55%, var(--charcoal-c) 100%);
+
+  --glass-surface: linear-gradient(155deg, rgba(40,40,46,0.55) 0%, rgba(18,18,22,0.55) 55%, rgba(6,6,10,0.7) 100%);
+  --glass-border: 1px solid rgba(210,180,110,0.22);
+  --glass-shadow: 0 30px 80px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.06), 0 0 0 1px rgba(246,217,122,0.08);
+  --glass-glow: 0 40px 90px -30px rgba(212,168,68,0.32), 0 0 0 1px rgba(246,217,122,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
 }
+
+/* ════════════════ Premium Polish utilities ════════════════ */
+.pvd-gold-text {
+  background: var(--pvd-gold-sheen);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: pvd-sheen 9s linear infinite;
+}
+
+.pvd-gold-fill {
+  background: var(--pvd-gold-gradient);
+  color: #0a0a0a;
+}
+
+.glass-card {
+  background: var(--glass-surface);
+  backdrop-filter: blur(22px) saturate(130%);
+  -webkit-backdrop-filter: blur(22px) saturate(130%);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.5s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.5s cubic-bezier(0.2,0.8,0.2,1), border-color 0.5s ease;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(246,217,122,0.55);
+  box-shadow: var(--glass-glow);
+  transform: translateY(-4px);
+}
+
+.steel-gradient {
+  background: var(--charcoal-steel-gradient);
+}
+
+@keyframes pvd-sheen {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes pvd-shine-sweep {
+  0%   { transform: translateX(-100%); }
+  60%  { transform: translateX(200%); }
+  100% { transform: translateX(200%); }
+}
+
+/* ════════════════ Parallax (prefers-reduced-motion safe) ════════════════ */
+.parallax-target {
+  will-change: transform;
+  transition: transform 120ms linear;
+}
+@media (prefers-reduced-motion: reduce) {
+  .parallax-target { transform: none !important; transition: none !important; }
+}
+
+/* ════════════════ Gene W. George — signed-in-gold-ink ════════════════ */
+.gw-signature {
+  --sig-progress: 0;            /* 0 → 1 (driven by JS scroll) */
+  overflow: visible;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.15)) drop-shadow(0 0 18px rgba(212,168,68,0.35));
+}
+
+.gw-signature path.ink {
+  stroke: url(#gw-ink-gradient);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  stroke-dasharray: var(--sig-length, 2000);
+  stroke-dashoffset: calc(var(--sig-length, 2000) * (1 - var(--sig-progress)));
+  transition: stroke-dashoffset 180ms linear;
+}
+
+.gw-signature .sig-flourish {
+  stroke: url(#gw-ink-gradient);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: var(--flourish-length, 400);
+  stroke-dashoffset: calc(var(--flourish-length, 400) * (1 - var(--sig-progress)));
+  transition: stroke-dashoffset 200ms linear;
+}
+
+.gw-signature .sig-nib {
+  opacity: calc(var(--sig-progress) * (1 - var(--sig-progress)) * 4);
+  transition: opacity 120ms linear;
+}
+
+/* ════════════════ Service Tile hover glow ════════════════ */
+.service-tile {
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.4s cubic-bezier(0.2,0.8,0.2,1), border-color 0.4s ease;
+}
+.service-tile::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(246,217,122,0.0) 0%, rgba(246,217,122,0.7) 50%, rgba(140,106,31,0.0) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.service-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 40px 80px -28px rgba(0,0,0,0.9), 0 0 0 1px rgba(246,217,122,0.55), 0 0 40px -5px rgba(212,168,68,0.35);
+  border-color: rgba(246,217,122,0.55);
+}
+.service-tile:hover::before { opacity: 1; }
 
 @theme {
   --color-obsidian: #0a0a0c;
@@ -62,3 +195,148 @@ body {
 .ghost-protocol-panel {
   animation: ghost-pulse 2.4s ease-in-out infinite;
 }
+
+/* ════════════════ Tactile UI — metallic 3D buttons with haptic feedback ════════════════ */
+.tactile-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border: 1px solid rgba(246,217,122,0.55);
+  border-radius: 10px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #0a0a0a;
+  cursor: pointer;
+  user-select: none;
+  text-decoration: none;
+  transform: translateZ(0);
+  transition: transform 90ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 120ms cubic-bezier(0.4, 0, 0.2, 1),
+              filter 120ms ease;
+  /* Three-stop PVD-gold face with a brushed-steel micro-texture */
+  background:
+    radial-gradient(120% 180% at 50% -40%, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 45%),
+    linear-gradient(180deg, #fde58f 0%, #d4a844 38%, #a6821f 72%, #f0cd6a 100%);
+  box-shadow:
+    0 1px 0 #fff9d5 inset,
+    0 -1px 0 #5a3f07 inset,
+    0 0 0 1px rgba(140,106,31,0.45),
+    0 6px 0 #3a2a08,          /* bevel stem — the "depth" of the key */
+    0 18px 30px -6px rgba(0,0,0,0.55),
+    0 28px 50px -12px rgba(212,168,68,0.35);
+  font-family: inherit;
+}
+.tactile-btn::before {
+  content: '';
+  position: absolute;
+  inset: 2px 2px auto 2px;
+  height: 42%;
+  border-radius: 8px 8px 3px 3px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0) 100%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+.tactile-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 3px);
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+.tactile-btn:hover {
+  filter: brightness(1.06) saturate(1.08);
+  transform: translateY(-1px);
+  box-shadow:
+    0 1px 0 #fff9d5 inset,
+    0 -1px 0 #5a3f07 inset,
+    0 0 0 1px rgba(140,106,31,0.6),
+    0 7px 0 #3a2a08,
+    0 22px 34px -6px rgba(0,0,0,0.6),
+    0 36px 60px -10px rgba(212,168,68,0.55);
+}
+.tactile-btn:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(246,217,122,0.55),
+    0 1px 0 #fff9d5 inset,
+    0 -1px 0 #5a3f07 inset,
+    0 6px 0 #3a2a08,
+    0 22px 34px -6px rgba(0,0,0,0.6);
+}
+.tactile-btn:active,
+.tactile-btn.is-pressed {
+  transform: translateY(5px);
+  box-shadow:
+    0 1px 0 #fff9d5 inset,
+    0 -1px 0 #5a3f07 inset,
+    0 0 0 1px rgba(140,106,31,0.5),
+    0 1px 0 #3a2a08,           /* stem collapses — the key depresses */
+    0 8px 14px -4px rgba(0,0,0,0.6),
+    0 10px 20px -6px rgba(212,168,68,0.35);
+  filter: brightness(0.97) saturate(1.05);
+}
+.tactile-btn[disabled],
+.tactile-btn[aria-disabled="true"] {
+  cursor: not-allowed;
+  filter: grayscale(0.55) brightness(0.85);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.2) inset,
+    0 6px 0 #2a2012,
+    0 12px 18px -6px rgba(0,0,0,0.5);
+}
+
+/* Variant: charcoal face for secondary / ghost actions */
+.tactile-btn.tactile-steel {
+  color: #f6d97a;
+  background:
+    radial-gradient(120% 180% at 50% -40%, rgba(246,217,122,0.28) 0%, rgba(246,217,122,0) 45%),
+    linear-gradient(180deg, #3a3e46 0%, #1d2026 50%, #0a0c10 100%);
+  border: 1px solid rgba(246,217,122,0.35);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.08) inset,
+    0 -1px 0 rgba(0,0,0,0.6) inset,
+    0 0 0 1px rgba(246,217,122,0.18),
+    0 6px 0 #010204,
+    0 16px 28px -8px rgba(0,0,0,0.7),
+    0 22px 36px -14px rgba(246,217,122,0.2);
+}
+.tactile-btn.tactile-steel:active,
+.tactile-btn.tactile-steel.is-pressed {
+  transform: translateY(4px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06) inset,
+    0 -1px 0 rgba(0,0,0,0.6) inset,
+    0 0 0 1px rgba(246,217,122,0.28),
+    0 2px 0 #010204,
+    0 6px 12px -4px rgba(0,0,0,0.7);
+}
+
+/* Ripple wave produced on tactile feedback */
+.tactile-wave {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%);
+  transform: scale(0);
+  animation: tactile-ripple 520ms cubic-bezier(0.2,0.8,0.2,1) forwards;
+  mix-blend-mode: screen;
+}
+@keyframes tactile-ripple {
+  from { transform: scale(0); opacity: 0.85; }
+  to   { transform: scale(4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tactile-btn,
+  .tactile-wave { transition: none; animation: none; }
+}
+

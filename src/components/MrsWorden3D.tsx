@@ -1,12 +1,13 @@
 import { useState, type CSSProperties, type MouseEvent as ReactMouseEvent, type TouchEvent as ReactTouchEvent } from 'react';
 
-const GOLD = '#D4AF37';
+const ROSE_GOLD = '#E8B4A0';
+const IVORY = '#F5E6D3';
 
 const floatingContainer: CSSProperties = {
   perspective: '1000px',
   position: 'fixed',
   bottom: '20px',
-  right: '20px',
+  left: '20px',
   zIndex: 1000,
 };
 
@@ -27,33 +28,33 @@ const styles = {
   wordenCard: {
     width: '320px',
     maxWidth: '100%',
-    background: 'rgba(18, 18, 18, 0.92)',
+    background: 'rgba(22, 18, 18, 0.92)',
     backdropFilter: 'blur(15px)',
     WebkitBackdropFilter: 'blur(15px)',
-    border: `1px solid ${GOLD}4D`,
+    border: `1px solid ${ROSE_GOLD}4D`,
     borderRadius: '24px',
     padding: '20px',
     transition: 'transform 0.1s ease-out',
-    boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px ${GOLD}22`,
+    boxShadow: `0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 0 1px ${ROSE_GOLD}22`,
     willChange: 'transform',
     fontFamily: '"Inter", sans-serif',
     position: 'relative',
     zIndex: 51,
   } satisfies CSSProperties,
-  goldGlow: {
-    color: GOLD,
-    textShadow: `0 0 10px ${GOLD}80`,
+  roseGlow: {
+    color: ROSE_GOLD,
+    textShadow: `0 0 10px ${ROSE_GOLD}66`,
     fontWeight: 900,
     letterSpacing: '1px',
     margin: 0,
   } as CSSProperties,
 } as const;
 
-interface MrWorden3DProps {
+interface MrsWorden3DProps {
   inline?: boolean;
 }
 
-const MrWorden3D = ({ inline = false }: MrWorden3DProps = {}) => {
+const MrsWorden3D = ({ inline = false }: MrsWorden3DProps = {}) => {
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -92,31 +93,32 @@ const MrWorden3D = ({ inline = false }: MrWorden3DProps = {}) => {
       onTouchMove={handleTouchMove}
       onTouchEnd={reset}
       onTouchCancel={reset}
-      aria-label="Mr. Worden sovereign status card"
+      aria-label="Mrs. Betty Worden visionary companion card"
     >
       <div style={cardStyle}>
-        <div style={{ fontSize: '10px', color: '#888', marginBottom: '5px', letterSpacing: '2px' }}>
-          SOVEREIGN PATRIARCH
+        <div style={{ fontSize: '10px', color: '#B89A8A', marginBottom: '5px', letterSpacing: '2px' }}>
+          VISIONARY COMPANION &bull; EST. 1984
         </div>
-        <h2 style={styles.goldGlow}>MR. WORDEN</h2>
-        <div style={{ fontSize: '14px', lineHeight: 1.4, marginTop: '10px', color: '#EEE' }}>
-          &ldquo;The &rsquo;04 Mack is on the ground in Charlotte. I&rsquo;m researching the red clay
-          expansion for you while we prep for the Richmond 23221 sprint. Shall we audit the subgrade?&rdquo;
+        <h2 style={styles.roseGlow}>MRS. BETTY WORDEN</h2>
+        <div style={{ fontSize: '14px', lineHeight: 1.4, marginTop: '10px', color: IVORY }}>
+          &ldquo;John laid the stone; I made sure the house was worth coming home to.
+          Four decades of Sunday dinners, finished details, and families we still greet by name.
+          The curb is his — the couch is mine.&rdquo;
         </div>
         <div
           style={{
             marginTop: '20px',
-            borderTop: '1px solid #333',
+            borderTop: '1px solid #3a2d2d',
             paddingTop: '10px',
             fontSize: '12px',
-            color: '#CCC',
+            color: '#D8C5B5',
           }}
         >
-          <span style={{ color: '#00FF00' }}>&bull;</span> 50-STATE RESEARCH ACTIVE
+          <span style={{ color: ROSE_GOLD }}>&bull;</span> LEGACY OF HOSPITALITY &middot; 1984 &ndash; TODAY
         </div>
       </div>
     </div>
   );
 };
 
-export default MrWorden3D;
+export default MrsWorden3D;

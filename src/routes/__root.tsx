@@ -5,7 +5,7 @@ import Footer from '../components/Footer'
 import DispatchTicker from '../components/DispatchTicker'
 import SocialTracking from '../components/SocialTracking'
 import GoogleIntelligence from '../components/GoogleIntelligence'
-import JarvisForeman from '../components/JarvisForeman'
+import SovereignAuthorityChat from '../components/SovereignAuthorityChat'
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
 
 const BUSINESS_ID = "https://jwordenasphaltpaving.com/#business";
@@ -298,7 +298,7 @@ export const Route = createRootRoute({
       </main>
       <Footer />
 
-      <JarvisForeman />
+      <SovereignAuthorityChat />
 
       {/* MASTER AUTHORITY SCHEMA — PavingContractor + AggregateRating + 41-City ServiceArea */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pavingContractorSchema) }} />

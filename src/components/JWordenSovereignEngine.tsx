@@ -63,7 +63,7 @@ const JWordenSovereignEngine = () => {
     const handshake = setTimeout(() => {
       setJarvisOpen(true);
       sendJarvisMessage(
-        'Good day. I am Jarvis, the Worden Digital Foreman. Mr. George is overseeing the fleet at our Chester HQ, but I am authorized to walk you through our Gold Standard protocols. We are currently active in our April 2026 Richmond sprint. Are we discussing a national commercial asset or a private estate today?',
+        'Good day. I am J. Worden, the Sovereign Authority. I am personally overseeing operations from our Chester headquarters and will walk you through our Gold Standard protocols. We are currently active in our April 2026 Richmond sprint. Are we discussing a national commercial asset or a private estate today?',
       );
     }, 1500);
     return () => clearTimeout(handshake);
@@ -237,7 +237,7 @@ const JWordenSovereignEngine = () => {
           <div style={s.card}>
             <h1 style={{ color: THEME.gold }}>ACCORD SEALED</h1>
             <p>
-              Your property is now scheduled for the April 18-19 Priority Sprint. Jarvis is
+              Your property is now scheduled for the April 18-19 Priority Sprint. J. Worden is
               preparing your logistics log.
             </p>
             <button style={s.button} onClick={() => setView('MAIN')}>
@@ -248,7 +248,7 @@ const JWordenSovereignEngine = () => {
       )}
 
       {jarvisOpen && (
-        <div style={s.jarvis} role="dialog" aria-label="Jarvis Digital Foreman">
+        <div style={s.jarvis} role="dialog" aria-label="J. Worden Sovereign Authority">
           <div
             style={{
               padding: '15px',
@@ -269,7 +269,7 @@ const JWordenSovereignEngine = () => {
               }}
               aria-hidden="true"
             />
-            JARVIS | DIGITAL FOREMAN
+            J. WORDEN | SOVEREIGN AUTHORITY
           </div>
           <div
             style={{
@@ -299,7 +299,7 @@ const JWordenSovereignEngine = () => {
             ))}
             {isTyping && (
               <div style={{ color: THEME.muted, fontSize: '12px' }}>
-                Foreman is calculating...
+                J. Worden is calculating...
               </div>
             )}
             <div ref={chatEndRef} />
@@ -326,8 +326,8 @@ const JWordenSovereignEngine = () => {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') processInput(inputValue);
               }}
-              placeholder="Speak with the Foreman..."
-              aria-label="Message the Foreman"
+              placeholder="Speak with the Sovereign Authority..."
+              aria-label="Message J. Worden"
             />
             <button style={s.button} onClick={() => processInput(inputValue)}>
               SEND

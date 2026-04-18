@@ -13,7 +13,7 @@ interface JarvisResponse {
 
 export const jarvisLogic = {
   getInitialGreeting: (): string => {
-    return "Good day. I am Jarvis, the Worden Digital Foreman. Mr. George is currently overseeing our premium fleet, but I am authorized to walk you through our Gold Standard. Are we discussing a commercial asset or a private estate today?";
+    return "Good day. I am J. Worden, the Sovereign Authority. I am personally overseeing operations from our Chester headquarters and will walk you through our Gold Standard. Are we discussing a commercial asset or a private estate today?";
   },
 
   processResponse: (input: string): JarvisResponse => {

@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import { ExternalLink, Award, CheckCircle, X } from 'lucide-react';
 import BeforeAfterSlider from '../components/BeforeAfterSlider';
+import SharpImage from '../components/SharpImage';
+import { sharpImage } from '@/lib/sharpImage';
 
 export const Route = createFileRoute('/gallery')({
   component: AuthorityVault,
@@ -198,12 +200,14 @@ function AuthorityVault() {
               onClick={() => setLightbox(project)}
             >
               <div className="aspect-video relative overflow-hidden">
-                <img
+                <SharpImage
                   src={project.src}
                   alt={project.alt}
                   width={800}
                   height={533}
                   loading={i === 0 ? 'eager' : 'lazy'}
+                  fit="cover"
+                  quality={86}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
@@ -309,11 +313,12 @@ function AuthorityVault() {
           </button>
           <figure className="max-w-5xl w-full m-0" onClick={(e) => e.stopPropagation()}>
             <img
-              src={lightbox.src}
+              src={sharpImage(lightbox.src, { width: 1600, height: 1067, fit: 'contain', quality: 92 })}
               alt={lightbox.alt}
               width={1200}
               height={800}
               loading="eager"
+              decoding="async"
               className="w-full h-auto max-h-[80vh] object-contain rounded-xl shadow-2xl"
             />
             <figcaption className="text-center mt-4">

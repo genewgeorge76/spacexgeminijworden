@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react';
+import { sharpImage, sharpSrcSet, GALLERY_SIZES } from '@/lib/sharpImage';
 
 type Project = {
   id: string;
@@ -257,10 +258,13 @@ const Portfolio = () => {
           <article key={p.id} style={styles.card}>
             <div style={styles.imageWrap}>
               <img
-                src={p.img}
+                src={sharpImage(p.img, { width: 800, height: 533, fit: 'cover', quality: 86 })}
+                srcSet={sharpSrcSet(p.img, undefined, { fit: 'cover', quality: 86 })}
+                sizes={GALLERY_SIZES}
                 alt={`${p.client} — ${p.location}`}
                 style={styles.image}
                 loading="lazy"
+                decoding="async"
               />
             </div>
             <div style={styles.caption}>

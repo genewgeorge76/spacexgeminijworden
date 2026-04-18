@@ -3,7 +3,7 @@ import type { CSSProperties, ReactNode } from 'react';
 /**
  * SuccessScreen — Porsche-grade gold-on-black confirmation panel shown after
  * a visitor completes a high-intent action (lead capture, contract ready,
- * site-visit scheduled). Matches the JarvisForeman / CommandCenter aesthetic.
+ * site-visit scheduled). Matches the Sovereign Authority / CommandCenter aesthetic.
  */
 
 interface SuccessScreenProps {

@@ -54,7 +54,7 @@ const JWordenSovereignMaster = () => {
   useEffect(() => {
     const greeting = setTimeout(() => {
       jarvisSpeak(
-        'Good day. I am Jarvis, the Worden Digital Foreman. Mr. George is currently at the Chester HQ, but I am authorized to walk you through our Sovereign protocols. From our 1984 foundation to our national KBP sprints of 2024-2025, we remain the only Gold Standard in the US. Are we discussing your property\u2019s 30-year legacy today?',
+        'Good day. I am J. Worden, the Sovereign Authority. I am personally overseeing operations from our Chester headquarters and will walk you through our Sovereign protocols. From our 1984 foundation to our national KBP sprints of 2024-2025, we remain the only Gold Standard in the US. Are we discussing your property\u2019s 30-year legacy today?',
       );
     }, 1000);
     return () => clearTimeout(greeting);
@@ -283,7 +283,7 @@ const JWordenSovereignMaster = () => {
                 &#9679; SYSTEM STATUS: ALL 50 STATES RESEARCHED FOR 2026 SPRINT
               </div>
               <p style={{ fontSize: '14px' }}>
-                Jarvis is currently verifying contract law updates for upcoming Texas and
+                J. Worden is currently verifying contract law updates for upcoming Texas and
                 Michigan projects.
               </p>
             </div>
@@ -295,7 +295,7 @@ const JWordenSovereignMaster = () => {
       </main>
 
       {jarvisOpen && (
-        <div style={styles.jarvis} role="dialog" aria-label="Jarvis Foreman">
+        <div style={styles.jarvis} role="dialog" aria-label="J. Worden Sovereign Authority">
           <div
             style={{
               padding: '15px',
@@ -305,7 +305,7 @@ const JWordenSovereignMaster = () => {
               borderRadius: '20px 20px 0 0',
             }}
           >
-            JARVIS FOREMAN | WORDEN AI
+            J. WORDEN | SOVEREIGN AUTHORITY
           </div>
           <div
             style={{
@@ -335,7 +335,7 @@ const JWordenSovereignMaster = () => {
             ))}
             {isTyping && (
               <div style={{ fontSize: '12px', color: THEME.gold }}>
-                Foreman is calculating legacy data...
+                J. Worden is calculating legacy data...
               </div>
             )}
             <div ref={chatEndRef} />
@@ -355,8 +355,8 @@ const JWordenSovereignMaster = () => {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') handleInput(inputValue);
               }}
-              placeholder="Speak with the Foreman..."
-              aria-label="Message the Foreman"
+              placeholder="Speak with the Sovereign Authority..."
+              aria-label="Message J. Worden"
             />
             <button
               style={{
