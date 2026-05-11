@@ -10,11 +10,11 @@
     "build-sitemaps": "node scripts/build-sitemaps.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.90.0",
+    "@anthropic-ai/sdk": "^0.95.1",
     "@react-pdf/renderer": "^4.5.1",
-    "@tanstack/react-router": "^1.168.23",
+    "@tanstack/react-router": "^1.169.2",
     "@types/leaflet": "^1.9.21",
-    "@types/three": "^0.184.0",
+    "@types/three": "^0.184.1",
     "googleapis": "^171.4.0",
     "leaflet": "^1.9.4",
     "lucide-react": "latest",
@@ -25,7 +25,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "latest",
     "@tanstack/router-plugin": "latest",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.6.2",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
