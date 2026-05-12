@@ -34,6 +34,17 @@
   </script>
 </head>
 <body>
+  <!-- Netlify Forms detection (build-time scan). Hidden from users; React form posts here at runtime. -->
+  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+    <input type="text" name="bot-field" />
+    <input type="text" name="firstName" />
+    <input type="text" name="lastName" />
+    <input type="tel"  name="phone" />
+    <input type="email" name="email" />
+    <input type="text" name="serviceAddress" />
+    <textarea name="jobDescription"></textarea>
+  </form>
+
   <div id="root"></div>
   <script type="module" src="/src/main.tsx"></script>
 </body>

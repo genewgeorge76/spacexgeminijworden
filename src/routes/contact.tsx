@@ -27,36 +27,43 @@ function ContactPage() {
     setStatus('sending');
     setErrorMsg('');
 
-    const data = new FormData(e.currentTarget);
-    const payload = {
-      firstName: String(data.get('firstName') || '').trim(),
-      lastName: String(data.get('lastName') || '').trim(),
-      phone: String(data.get('phone') || '').trim(),
-      email: String(data.get('email') || '').trim(),
-      serviceAddress: String(data.get('serviceAddress') || '').trim(),
-      jobDescription: String(data.get('jobDescription') || '').trim(),
-    };
+    const form = e.currentTarget;
+    const data = new FormData(form);
 
-    if (!payload.firstName || !payload.phone || !payload.jobDescription) {
+    const firstName = String(data.get('firstName') || '').trim();
+    const phone = String(data.get('phone') || '').trim();
+    const jobDescription = String(data.get('jobDescription') || '').trim();
+
+    if (!firstName || !phone || !jobDescription) {
       setStatus('error');
       setErrorMsg('Please include at least your first name, phone, and a short description.');
       return;
     }
 
+    // Honeypot — bots fill this; humans don't see it.
+    if (data.get('bot-field')) {
+      setStatus('sent');
+      return;
+    }
+
+    // Encode for Netlify Forms (application/x-www-form-urlencoded).
+    const params = new URLSearchParams();
+    params.append('form-name', 'contact');
+    for (const [k, v] of data.entries()) {
+      params.append(k, typeof v === 'string' ? v : '');
+    }
+
     try {
-      const res = await fetch('/.netlify/functions/kickserv-lead', {
+      const res = await fetch('/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString(),
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body.error || `Server returned ${res.status}`);
-      }
+      if (!res.ok) throw new Error(`Server returned ${res.status}`);
       setStatus('sent');
       const w = window as unknown as { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'kickserv' });
+        w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'netlify_forms' });
       }
     } catch (err) {
       setStatus('error');
@@ -126,7 +133,20 @@ function ContactPage() {
                 </Link>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                data-netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <p hidden>
+                  <label>
+                    Don&rsquo;t fill this out: <input name="bot-field" />
+                  </label>
+                </p>
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <Field name="firstName" label="First name" required autoComplete="given-name" />
                   <Field name="lastName" label="Last name" autoComplete="family-name" />
