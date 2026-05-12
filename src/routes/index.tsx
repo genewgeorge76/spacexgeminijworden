@@ -11,15 +11,13 @@ const PHONE_HREF = 'tel:+18044461296';
 
 /**
  * Drop video files into /public/video/ and they'll auto-load.
- * Recommended: 6–12s seamless loop, 1920×1080, ~3–6 MB MP4 (H.264) + WebM (AV1/VP9).
- * If neither file exists at build time, the hero falls back to the still poster.
+ * To add a smaller WebM later: re-encode and uncomment the line below.
  */
 const HERO_VIDEO_SOURCES = [
-  // Browser tries these in order. Smallest/best-compressed first.
-  { src: '/video/hero-paving.webm', type: 'video/webm' },
+  // { src: '/video/hero-paving.webm', type: 'video/webm' },
   { src: '/video/hero-paving.mp4', type: 'video/mp4' },
 ];
-const HERO_POSTER = '/asphalt-paving-with-paver.jpg';
+const HERO_POSTER = '/video/hero-paving-poster.jpg';
 
 function Home() {
   useSeo({
@@ -35,7 +33,7 @@ function Home() {
       <VideoHero
         sources={HERO_VIDEO_SOURCES}
         poster={HERO_POSTER}
-        posterAlt="Fresh asphalt paving in Chester, Virginia"
+        posterAlt="Asphalt milling machine on a J. Worden & Sons jobsite in Virginia"
         overlayOpacity={60}
         className="border-b border-white/10"
       >
