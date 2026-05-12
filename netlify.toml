@@ -1,11 +1,21 @@
 [build]
-  publish = "."
+  command  = "npm run build"
+  publish  = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
 
 [[redirects]]
   from = "https://jwordenasphaltpaving.com/*"
   to   = "https://www.jwordenasphaltpaving.com/:splat"
   status = 301
   force  = true
+
+# SPA fallback so client-side routes (e.g. /residential, /contact) work on direct hit / refresh
+[[redirects]]
+  from = "/*"
+  to   = "/index.html"
+  status = 200
 
 [[headers]]
   for = "/*"

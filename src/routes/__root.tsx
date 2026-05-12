@@ -2,10 +2,8 @@ import { createRootRoute, Outlet } from '@tanstack/react-router'
 import '../index.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import DispatchTicker from '../components/DispatchTicker'
 import SocialTracking from '../components/SocialTracking'
 import GoogleIntelligence from '../components/GoogleIntelligence'
-import JarvisForeman from '../components/JarvisForeman'
 import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
 
 const BUSINESS_ID = "https://jwordenasphaltpaving.com/#business";
@@ -291,14 +289,11 @@ export const Route = createRootRoute({
     <>
       <GoogleIntelligence />
       <SocialTracking />
-      <DispatchTicker />
       <Header />
-      <main className="min-h-screen bg-[#0a0a0a]">
+      <main className="min-h-screen bg-black text-white">
         <Outlet />
       </main>
       <Footer />
-
-      <JarvisForeman />
 
       {/* MASTER AUTHORITY SCHEMA — PavingContractor + AggregateRating + 41-City ServiceArea */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pavingContractorSchema) }} />

@@ -9,47 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
-import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
-import { Route as SovereignMasterRouteImport } from './routes/sovereign-master'
-import { Route as SovereignCommandRouteImport } from './routes/sovereign-command'
-import { Route as SovereignRouteImport } from './routes/sovereign'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
-import { Route as SafetyRouteImport } from './routes/safety'
-import { Route as RoofingRouteImport } from './routes/roofing'
 import { Route as ResidentialRouteImport } from './routes/residential'
-import { Route as ProfitNodeRouteImport } from './routes/profit-node'
-import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
-import { Route as PreConRouteImport } from './routes/pre-con'
-import { Route as PortalRouteImport } from './routes/portal'
-import { Route as PayrollTreasuryRouteImport } from './routes/payroll-treasury'
-import { Route as MrWorden3dRouteImport } from './routes/mr-worden-3d'
-import { Route as MasonryRouteImport } from './routes/masonry'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as LitigationRouteImport } from './routes/litigation'
-import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
-import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
-import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as FieldRouteImport } from './routes/field'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as EstimateRouteImport } from './routes/estimate'
-import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
-import { Route as DispatchRouteImport } from './routes/dispatch'
-import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ConcreteRouteImport } from './routes/concrete'
 import { Route as CommercialRouteImport } from './routes/commercial'
-import { Route as CommandCenterRouteImport } from './routes/command-center'
-import { Route as CommandBotRouteImport } from './routes/command-bot'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
-import { Route as VirginiaRichmond23221PavingRouteImport } from './routes/virginia/richmond-23221-paving'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
-import { Route as MinnesotaMspAirportAsphaltRouteImport } from './routes/minnesota/msp-airport-asphalt'
-import { Route as MarylandBaltimoreIndustrialSealcoatingRouteImport } from './routes/maryland/baltimore-industrial-sealcoating'
 import { Route as LocationsWindsorFarmsRouteImport } from './routes/locations/windsor-farms'
 import { Route as LocationsWilliamsburgRouteImport } from './routes/locations/williamsburg'
 import { Route as LocationsWesthamParkwayRouteImport } from './routes/locations/westham-parkway'
@@ -59,25 +30,20 @@ import { Route as LocationsTuckahoeRouteImport } from './routes/locations/tuckah
 import { Route as LocationsSussexRouteImport } from './routes/locations/sussex'
 import { Route as LocationsSuffolkRouteImport } from './routes/locations/suffolk'
 import { Route as LocationsStratfordHillsRouteImport } from './routes/locations/stratford-hills'
-import { Route as LocationsStandardsRouteImport } from './routes/locations/standards'
 import { Route as LocationsStaffordRouteImport } from './routes/locations/stafford'
 import { Route as LocationsSpotsylvaniaRouteImport } from './routes/locations/spotsylvania'
 import { Route as LocationsShortPumpRouteImport } from './routes/locations/short-pump'
 import { Route as LocationsSandstonRouteImport } from './routes/locations/sandston'
 import { Route as LocationsRichmondRouteImport } from './routes/locations/richmond'
-import { Route as LocationsResidentialRouteImport } from './routes/locations/residential'
 import { Route as LocationsPrinceWilliamRouteImport } from './routes/locations/prince-william'
 import { Route as LocationsPrinceGeorgeRouteImport } from './routes/locations/prince-george'
 import { Route as LocationsPowhatanRouteImport } from './routes/locations/powhatan'
 import { Route as LocationsPortsmouthRouteImport } from './routes/locations/portsmouth'
 import { Route as LocationsPetersburgRouteImport } from './routes/locations/petersburg'
-import { Route as LocationsOverlandParkRouteImport } from './routes/locations/overland-park'
 import { Route as LocationsOrangeRouteImport } from './routes/locations/orange'
-import { Route as LocationsOlatheRouteImport } from './routes/locations/olathe'
 import { Route as LocationsNorfolkRouteImport } from './routes/locations/norfolk'
 import { Route as LocationsNewportnewsRouteImport } from './routes/locations/newportnews'
 import { Route as LocationsNewKentRouteImport } from './routes/locations/new-kent'
-import { Route as LocationsNapervilleRouteImport } from './routes/locations/naperville'
 import { Route as LocationsMoseleyRouteImport } from './routes/locations/moseley'
 import { Route as LocationsMidlothianRouteImport } from './routes/locations/midlothian'
 import { Route as LocationsMechanicsvilleRouteImport } from './routes/locations/mechanicsville'
@@ -86,7 +52,6 @@ import { Route as LocationsLouisaRouteImport } from './routes/locations/louisa'
 import { Route as LocationsLakesideRouteImport } from './routes/locations/lakeside'
 import { Route as LocationsKingWilliamRouteImport } from './routes/locations/king-william'
 import { Route as LocationsKingGeorgeRouteImport } from './routes/locations/king-george'
-import { Route as LocationsKansasCityRouteImport } from './routes/locations/kansas-city'
 import { Route as LocationsHopewellRouteImport } from './routes/locations/hopewell'
 import { Route as LocationsHenricoRouteImport } from './routes/locations/henrico'
 import { Route as LocationsHanoverRouteImport } from './routes/locations/hanover'
@@ -99,7 +64,6 @@ import { Route as LocationsDinwiddieRouteImport } from './routes/locations/dinwi
 import { Route as LocationsCumberlandRouteImport } from './routes/locations/cumberland'
 import { Route as LocationsCulpeperRouteImport } from './routes/locations/culpeper'
 import { Route as LocationsColonialHeightsRouteImport } from './routes/locations/colonial-heights'
-import { Route as LocationsChicagoRouteImport } from './routes/locations/chicago'
 import { Route as LocationsChesterfieldRouteImport } from './routes/locations/chesterfield'
 import { Route as LocationsChesterRouteImport } from './routes/locations/chester'
 import { Route as LocationsChesapeakeRouteImport } from './routes/locations/chesapeake'
@@ -108,36 +72,10 @@ import { Route as LocationsCarolineRouteImport } from './routes/locations/caroli
 import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
-import { Route as IllinoisChicagoCommercialPavingRouteImport } from './routes/illinois/chicago-commercial-paving'
 
-const WhaleHunterRoute = WhaleHunterRouteImport.update({
-  id: '/whale-hunter',
-  path: '/whale-hunter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WeatherIntelRoute = WeatherIntelRouteImport.update({
-  id: '/weather-intel',
-  path: '/weather-intel',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StandardsRoute = StandardsRouteImport.update({
   id: '/standards',
   path: '/standards',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignMasterRoute = SovereignMasterRouteImport.update({
-  id: '/sovereign-master',
-  path: '/sovereign-master',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignCommandRoute = SovereignCommandRouteImport.update({
-  id: '/sovereign-command',
-  path: '/sovereign-command',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignRoute = SovereignRouteImport.update({
-  id: '/sovereign',
-  path: '/sovereign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -150,89 +88,14 @@ const SealcoatingRoute = SealcoatingRouteImport.update({
   path: '/sealcoating',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SafetyRoute = SafetyRouteImport.update({
-  id: '/safety',
-  path: '/safety',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RoofingRoute = RoofingRouteImport.update({
-  id: '/roofing',
-  path: '/roofing',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ResidentialRoute = ResidentialRouteImport.update({
   id: '/residential',
   path: '/residential',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfitNodeRoute = ProfitNodeRouteImport.update({
-  id: '/profit-node',
-  path: '/profit-node',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreConDashboardRoute = PreConDashboardRouteImport.update({
-  id: '/pre-con-dashboard',
-  path: '/pre-con-dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreConRoute = PreConRouteImport.update({
-  id: '/pre-con',
-  path: '/pre-con',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortalRoute = PortalRouteImport.update({
-  id: '/portal',
-  path: '/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PayrollTreasuryRoute = PayrollTreasuryRouteImport.update({
-  id: '/payroll-treasury',
-  path: '/payroll-treasury',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MrWorden3dRoute = MrWorden3dRouteImport.update({
-  id: '/mr-worden-3d',
-  path: '/mr-worden-3d',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MasonryRoute = MasonryRouteImport.update({
-  id: '/masonry',
-  path: '/masonry',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LitigationRoute = LitigationRouteImport.update({
-  id: '/litigation',
-  path: '/litigation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalComplianceRoute = LegalComplianceRouteImport.update({
-  id: '/legal-compliance',
-  path: '/legal-compliance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InvestorRoiRoute = InvestorRoiRouteImport.update({
-  id: '/investor-roi',
-  path: '/investor-roi',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GcBidRoute = GcBidRouteImport.update({
-  id: '/gc-bid',
-  path: '/gc-bid',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FieldRoute = FieldRouteImport.update({
-  id: '/field',
-  path: '/field',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstimatorRoute = EstimatorRouteImport.update({
@@ -245,29 +108,9 @@ const EstimateRoute = EstimateRouteImport.update({
   path: '/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DispatchNodeRoute = DispatchNodeRouteImport.update({
-  id: '/dispatch-node',
-  path: '/dispatch-node',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DispatchRoute = DispatchRouteImport.update({
-  id: '/dispatch',
-  path: '/dispatch',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ConcreteRoute = ConcreteRouteImport.update({
-  id: '/concrete',
-  path: '/concrete',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommercialRoute = CommercialRouteImport.update({
@@ -275,49 +118,21 @@ const CommercialRoute = CommercialRouteImport.update({
   path: '/commercial',
   getParentRoute: () => rootRouteImport,
 } as any)
-const CommandCenterRoute = CommandCenterRouteImport.update({
-  id: '/command-center',
-  path: '/command-center',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommandBotRoute = CommandBotRouteImport.update({
-  id: '/command-bot',
-  path: '/command-bot',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VirginiaRichmond23221PavingRoute =
-  VirginiaRichmond23221PavingRouteImport.update({
-    id: '/virginia/richmond-23221-paving',
-    path: '/virginia/richmond-23221-paving',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ProductsProductIdRoute = ProductsProductIdRouteImport.update({
   id: '/products/$productId',
   path: '/products/$productId',
   getParentRoute: () => rootRouteImport,
 } as any)
-const MinnesotaMspAirportAsphaltRoute =
-  MinnesotaMspAirportAsphaltRouteImport.update({
-    id: '/minnesota/msp-airport-asphalt',
-    path: '/minnesota/msp-airport-asphalt',
-    getParentRoute: () => rootRouteImport,
-  } as any)
-const MarylandBaltimoreIndustrialSealcoatingRoute =
-  MarylandBaltimoreIndustrialSealcoatingRouteImport.update({
-    id: '/maryland/baltimore-industrial-sealcoating',
-    path: '/maryland/baltimore-industrial-sealcoating',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const LocationsWindsorFarmsRoute = LocationsWindsorFarmsRouteImport.update({
   id: '/locations/windsor-farms',
   path: '/locations/windsor-farms',
@@ -363,11 +178,6 @@ const LocationsStratfordHillsRoute = LocationsStratfordHillsRouteImport.update({
   path: '/locations/stratford-hills',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LocationsStandardsRoute = LocationsStandardsRouteImport.update({
-  id: '/locations/standards',
-  path: '/locations/standards',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LocationsStaffordRoute = LocationsStaffordRouteImport.update({
   id: '/locations/stafford',
   path: '/locations/stafford',
@@ -391,11 +201,6 @@ const LocationsSandstonRoute = LocationsSandstonRouteImport.update({
 const LocationsRichmondRoute = LocationsRichmondRouteImport.update({
   id: '/locations/richmond',
   path: '/locations/richmond',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsResidentialRoute = LocationsResidentialRouteImport.update({
-  id: '/locations/residential',
-  path: '/locations/residential',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsPrinceWilliamRoute = LocationsPrinceWilliamRouteImport.update({
@@ -423,19 +228,9 @@ const LocationsPetersburgRoute = LocationsPetersburgRouteImport.update({
   path: '/locations/petersburg',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LocationsOverlandParkRoute = LocationsOverlandParkRouteImport.update({
-  id: '/locations/overland-park',
-  path: '/locations/overland-park',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LocationsOrangeRoute = LocationsOrangeRouteImport.update({
   id: '/locations/orange',
   path: '/locations/orange',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsOlatheRoute = LocationsOlatheRouteImport.update({
-  id: '/locations/olathe',
-  path: '/locations/olathe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsNorfolkRoute = LocationsNorfolkRouteImport.update({
@@ -451,11 +246,6 @@ const LocationsNewportnewsRoute = LocationsNewportnewsRouteImport.update({
 const LocationsNewKentRoute = LocationsNewKentRouteImport.update({
   id: '/locations/new-kent',
   path: '/locations/new-kent',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsNapervilleRoute = LocationsNapervilleRouteImport.update({
-  id: '/locations/naperville',
-  path: '/locations/naperville',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsMoseleyRoute = LocationsMoseleyRouteImport.update({
@@ -496,11 +286,6 @@ const LocationsKingWilliamRoute = LocationsKingWilliamRouteImport.update({
 const LocationsKingGeorgeRoute = LocationsKingGeorgeRouteImport.update({
   id: '/locations/king-george',
   path: '/locations/king-george',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LocationsKansasCityRoute = LocationsKansasCityRouteImport.update({
-  id: '/locations/kansas-city',
-  path: '/locations/kansas-city',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsHopewellRoute = LocationsHopewellRouteImport.update({
@@ -564,11 +349,6 @@ const LocationsColonialHeightsRoute =
     path: '/locations/colonial-heights',
     getParentRoute: () => rootRouteImport,
   } as any)
-const LocationsChicagoRoute = LocationsChicagoRouteImport.update({
-  id: '/locations/chicago',
-  path: '/locations/chicago',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const LocationsChesterfieldRoute = LocationsChesterfieldRouteImport.update({
   id: '/locations/chesterfield',
   path: '/locations/chesterfield',
@@ -609,52 +389,19 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
   path: '/locations/amelia',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IllinoisChicagoCommercialPavingRoute =
-  IllinoisChicagoCommercialPavingRouteImport.update({
-    id: '/illinois/chicago-commercial-paving',
-    path: '/illinois/chicago-commercial-paving',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
-  '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/masonry': typeof MasonryRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/roofing': typeof RoofingRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
-  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -663,7 +410,6 @@ export interface FileRoutesByFullPath {
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
-  '/locations/chicago': typeof LocationsChicagoRoute
   '/locations/colonial-heights': typeof LocationsColonialHeightsRoute
   '/locations/culpeper': typeof LocationsCulpeperRoute
   '/locations/cumberland': typeof LocationsCumberlandRoute
@@ -676,7 +422,6 @@ export interface FileRoutesByFullPath {
   '/locations/hanover': typeof LocationsHanoverRoute
   '/locations/henrico': typeof LocationsHenricoRoute
   '/locations/hopewell': typeof LocationsHopewellRoute
-  '/locations/kansas-city': typeof LocationsKansasCityRoute
   '/locations/king-george': typeof LocationsKingGeorgeRoute
   '/locations/king-william': typeof LocationsKingWilliamRoute
   '/locations/lakeside': typeof LocationsLakesideRoute
@@ -685,25 +430,20 @@ export interface FileRoutesByFullPath {
   '/locations/mechanicsville': typeof LocationsMechanicsvilleRoute
   '/locations/midlothian': typeof LocationsMidlothianRoute
   '/locations/moseley': typeof LocationsMoseleyRoute
-  '/locations/naperville': typeof LocationsNapervilleRoute
   '/locations/new-kent': typeof LocationsNewKentRoute
   '/locations/newportnews': typeof LocationsNewportnewsRoute
   '/locations/norfolk': typeof LocationsNorfolkRoute
-  '/locations/olathe': typeof LocationsOlatheRoute
   '/locations/orange': typeof LocationsOrangeRoute
-  '/locations/overland-park': typeof LocationsOverlandParkRoute
   '/locations/petersburg': typeof LocationsPetersburgRoute
   '/locations/portsmouth': typeof LocationsPortsmouthRoute
   '/locations/powhatan': typeof LocationsPowhatanRoute
   '/locations/prince-george': typeof LocationsPrinceGeorgeRoute
   '/locations/prince-william': typeof LocationsPrinceWilliamRoute
-  '/locations/residential': typeof LocationsResidentialRoute
   '/locations/richmond': typeof LocationsRichmondRoute
   '/locations/sandston': typeof LocationsSandstonRoute
   '/locations/short-pump': typeof LocationsShortPumpRoute
   '/locations/spotsylvania': typeof LocationsSpotsylvaniaRoute
   '/locations/stafford': typeof LocationsStaffordRoute
-  '/locations/standards': typeof LocationsStandardsRoute
   '/locations/stratford-hills': typeof LocationsStratfordHillsRoute
   '/locations/suffolk': typeof LocationsSuffolkRoute
   '/locations/sussex': typeof LocationsSussexRoute
@@ -713,50 +453,20 @@ export interface FileRoutesByFullPath {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
-  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
-  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
-  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
-  '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/masonry': typeof MasonryRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/roofing': typeof RoofingRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
-  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -765,7 +475,6 @@ export interface FileRoutesByTo {
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
-  '/locations/chicago': typeof LocationsChicagoRoute
   '/locations/colonial-heights': typeof LocationsColonialHeightsRoute
   '/locations/culpeper': typeof LocationsCulpeperRoute
   '/locations/cumberland': typeof LocationsCumberlandRoute
@@ -778,7 +487,6 @@ export interface FileRoutesByTo {
   '/locations/hanover': typeof LocationsHanoverRoute
   '/locations/henrico': typeof LocationsHenricoRoute
   '/locations/hopewell': typeof LocationsHopewellRoute
-  '/locations/kansas-city': typeof LocationsKansasCityRoute
   '/locations/king-george': typeof LocationsKingGeorgeRoute
   '/locations/king-william': typeof LocationsKingWilliamRoute
   '/locations/lakeside': typeof LocationsLakesideRoute
@@ -787,25 +495,20 @@ export interface FileRoutesByTo {
   '/locations/mechanicsville': typeof LocationsMechanicsvilleRoute
   '/locations/midlothian': typeof LocationsMidlothianRoute
   '/locations/moseley': typeof LocationsMoseleyRoute
-  '/locations/naperville': typeof LocationsNapervilleRoute
   '/locations/new-kent': typeof LocationsNewKentRoute
   '/locations/newportnews': typeof LocationsNewportnewsRoute
   '/locations/norfolk': typeof LocationsNorfolkRoute
-  '/locations/olathe': typeof LocationsOlatheRoute
   '/locations/orange': typeof LocationsOrangeRoute
-  '/locations/overland-park': typeof LocationsOverlandParkRoute
   '/locations/petersburg': typeof LocationsPetersburgRoute
   '/locations/portsmouth': typeof LocationsPortsmouthRoute
   '/locations/powhatan': typeof LocationsPowhatanRoute
   '/locations/prince-george': typeof LocationsPrinceGeorgeRoute
   '/locations/prince-william': typeof LocationsPrinceWilliamRoute
-  '/locations/residential': typeof LocationsResidentialRoute
   '/locations/richmond': typeof LocationsRichmondRoute
   '/locations/sandston': typeof LocationsSandstonRoute
   '/locations/short-pump': typeof LocationsShortPumpRoute
   '/locations/spotsylvania': typeof LocationsSpotsylvaniaRoute
   '/locations/stafford': typeof LocationsStaffordRoute
-  '/locations/standards': typeof LocationsStandardsRoute
   '/locations/stratford-hills': typeof LocationsStratfordHillsRoute
   '/locations/suffolk': typeof LocationsSuffolkRoute
   '/locations/sussex': typeof LocationsSussexRoute
@@ -815,51 +518,21 @@ export interface FileRoutesByTo {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
-  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
-  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
-  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
-  '/concrete': typeof ConcreteRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/masonry': typeof MasonryRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/roofing': typeof RoofingRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
-  '/illinois/chicago-commercial-paving': typeof IllinoisChicagoCommercialPavingRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -868,7 +541,6 @@ export interface FileRoutesById {
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
-  '/locations/chicago': typeof LocationsChicagoRoute
   '/locations/colonial-heights': typeof LocationsColonialHeightsRoute
   '/locations/culpeper': typeof LocationsCulpeperRoute
   '/locations/cumberland': typeof LocationsCumberlandRoute
@@ -881,7 +553,6 @@ export interface FileRoutesById {
   '/locations/hanover': typeof LocationsHanoverRoute
   '/locations/henrico': typeof LocationsHenricoRoute
   '/locations/hopewell': typeof LocationsHopewellRoute
-  '/locations/kansas-city': typeof LocationsKansasCityRoute
   '/locations/king-george': typeof LocationsKingGeorgeRoute
   '/locations/king-william': typeof LocationsKingWilliamRoute
   '/locations/lakeside': typeof LocationsLakesideRoute
@@ -890,25 +561,20 @@ export interface FileRoutesById {
   '/locations/mechanicsville': typeof LocationsMechanicsvilleRoute
   '/locations/midlothian': typeof LocationsMidlothianRoute
   '/locations/moseley': typeof LocationsMoseleyRoute
-  '/locations/naperville': typeof LocationsNapervilleRoute
   '/locations/new-kent': typeof LocationsNewKentRoute
   '/locations/newportnews': typeof LocationsNewportnewsRoute
   '/locations/norfolk': typeof LocationsNorfolkRoute
-  '/locations/olathe': typeof LocationsOlatheRoute
   '/locations/orange': typeof LocationsOrangeRoute
-  '/locations/overland-park': typeof LocationsOverlandParkRoute
   '/locations/petersburg': typeof LocationsPetersburgRoute
   '/locations/portsmouth': typeof LocationsPortsmouthRoute
   '/locations/powhatan': typeof LocationsPowhatanRoute
   '/locations/prince-george': typeof LocationsPrinceGeorgeRoute
   '/locations/prince-william': typeof LocationsPrinceWilliamRoute
-  '/locations/residential': typeof LocationsResidentialRoute
   '/locations/richmond': typeof LocationsRichmondRoute
   '/locations/sandston': typeof LocationsSandstonRoute
   '/locations/short-pump': typeof LocationsShortPumpRoute
   '/locations/spotsylvania': typeof LocationsSpotsylvaniaRoute
   '/locations/stafford': typeof LocationsStaffordRoute
-  '/locations/standards': typeof LocationsStandardsRoute
   '/locations/stratford-hills': typeof LocationsStratfordHillsRoute
   '/locations/suffolk': typeof LocationsSuffolkRoute
   '/locations/sussex': typeof LocationsSussexRoute
@@ -918,52 +584,22 @@ export interface FileRoutesById {
   '/locations/westham-parkway': typeof LocationsWesthamParkwayRoute
   '/locations/williamsburg': typeof LocationsWilliamsburgRoute
   '/locations/windsor-farms': typeof LocationsWindsorFarmsRoute
-  '/maryland/baltimore-industrial-sealcoating': typeof MarylandBaltimoreIndustrialSealcoatingRoute
-  '/minnesota/msp-airport-asphalt': typeof MinnesotaMspAirportAsphaltRoute
   '/products/$productId': typeof ProductsProductIdRoute
-  '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
-    | '/concrete'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/masonry'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/roofing'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
-    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -972,7 +608,6 @@ export interface FileRouteTypes {
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
-    | '/locations/chicago'
     | '/locations/colonial-heights'
     | '/locations/culpeper'
     | '/locations/cumberland'
@@ -985,7 +620,6 @@ export interface FileRouteTypes {
     | '/locations/hanover'
     | '/locations/henrico'
     | '/locations/hopewell'
-    | '/locations/kansas-city'
     | '/locations/king-george'
     | '/locations/king-william'
     | '/locations/lakeside'
@@ -994,25 +628,20 @@ export interface FileRouteTypes {
     | '/locations/mechanicsville'
     | '/locations/midlothian'
     | '/locations/moseley'
-    | '/locations/naperville'
     | '/locations/new-kent'
     | '/locations/newportnews'
     | '/locations/norfolk'
-    | '/locations/olathe'
     | '/locations/orange'
-    | '/locations/overland-park'
     | '/locations/petersburg'
     | '/locations/portsmouth'
     | '/locations/powhatan'
     | '/locations/prince-george'
     | '/locations/prince-william'
-    | '/locations/residential'
     | '/locations/richmond'
     | '/locations/sandston'
     | '/locations/short-pump'
     | '/locations/spotsylvania'
     | '/locations/stafford'
-    | '/locations/standards'
     | '/locations/stratford-hills'
     | '/locations/suffolk'
     | '/locations/sussex'
@@ -1022,50 +651,20 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
-    | '/maryland/baltimore-industrial-sealcoating'
-    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
-    | '/virginia/richmond-23221-paving'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
-    | '/concrete'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/masonry'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/roofing'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
-    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -1074,7 +673,6 @@ export interface FileRouteTypes {
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
-    | '/locations/chicago'
     | '/locations/colonial-heights'
     | '/locations/culpeper'
     | '/locations/cumberland'
@@ -1087,7 +685,6 @@ export interface FileRouteTypes {
     | '/locations/hanover'
     | '/locations/henrico'
     | '/locations/hopewell'
-    | '/locations/kansas-city'
     | '/locations/king-george'
     | '/locations/king-william'
     | '/locations/lakeside'
@@ -1096,25 +693,20 @@ export interface FileRouteTypes {
     | '/locations/mechanicsville'
     | '/locations/midlothian'
     | '/locations/moseley'
-    | '/locations/naperville'
     | '/locations/new-kent'
     | '/locations/newportnews'
     | '/locations/norfolk'
-    | '/locations/olathe'
     | '/locations/orange'
-    | '/locations/overland-park'
     | '/locations/petersburg'
     | '/locations/portsmouth'
     | '/locations/powhatan'
     | '/locations/prince-george'
     | '/locations/prince-william'
-    | '/locations/residential'
     | '/locations/richmond'
     | '/locations/sandston'
     | '/locations/short-pump'
     | '/locations/spotsylvania'
     | '/locations/stafford'
-    | '/locations/standards'
     | '/locations/stratford-hills'
     | '/locations/suffolk'
     | '/locations/sussex'
@@ -1124,50 +716,20 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
-    | '/maryland/baltimore-industrial-sealcoating'
-    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
-    | '/virginia/richmond-23221-paving'
   id:
     | '__root__'
+    | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
-    | '/concrete'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/masonry'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/roofing'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
-    | '/illinois/chicago-commercial-paving'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -1176,7 +738,6 @@ export interface FileRouteTypes {
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
-    | '/locations/chicago'
     | '/locations/colonial-heights'
     | '/locations/culpeper'
     | '/locations/cumberland'
@@ -1189,7 +750,6 @@ export interface FileRouteTypes {
     | '/locations/hanover'
     | '/locations/henrico'
     | '/locations/hopewell'
-    | '/locations/kansas-city'
     | '/locations/king-george'
     | '/locations/king-william'
     | '/locations/lakeside'
@@ -1198,25 +758,20 @@ export interface FileRouteTypes {
     | '/locations/mechanicsville'
     | '/locations/midlothian'
     | '/locations/moseley'
-    | '/locations/naperville'
     | '/locations/new-kent'
     | '/locations/newportnews'
     | '/locations/norfolk'
-    | '/locations/olathe'
     | '/locations/orange'
-    | '/locations/overland-park'
     | '/locations/petersburg'
     | '/locations/portsmouth'
     | '/locations/powhatan'
     | '/locations/prince-george'
     | '/locations/prince-william'
-    | '/locations/residential'
     | '/locations/richmond'
     | '/locations/sandston'
     | '/locations/short-pump'
     | '/locations/spotsylvania'
     | '/locations/stafford'
-    | '/locations/standards'
     | '/locations/stratford-hills'
     | '/locations/suffolk'
     | '/locations/sussex'
@@ -1226,51 +781,21 @@ export interface FileRouteTypes {
     | '/locations/westham-parkway'
     | '/locations/williamsburg'
     | '/locations/windsor-farms'
-    | '/maryland/baltimore-industrial-sealcoating'
-    | '/minnesota/msp-airport-asphalt'
     | '/products/$productId'
-    | '/virginia/richmond-23221-paving'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
-  CommandBotRoute: typeof CommandBotRoute
-  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
-  ConcreteRoute: typeof ConcreteRoute
   ContactRoute: typeof ContactRoute
-  DashboardRoute: typeof DashboardRoute
-  DispatchRoute: typeof DispatchRoute
-  DispatchNodeRoute: typeof DispatchNodeRoute
   EstimateRoute: typeof EstimateRoute
   EstimatorRoute: typeof EstimatorRoute
-  FieldRoute: typeof FieldRoute
   GalleryRoute: typeof GalleryRoute
-  GcBidRoute: typeof GcBidRoute
-  InvestorRoiRoute: typeof InvestorRoiRoute
-  LegalComplianceRoute: typeof LegalComplianceRoute
-  LitigationRoute: typeof LitigationRoute
-  LoginRoute: typeof LoginRoute
-  MasonryRoute: typeof MasonryRoute
-  MrWorden3dRoute: typeof MrWorden3dRoute
-  PayrollTreasuryRoute: typeof PayrollTreasuryRoute
-  PortalRoute: typeof PortalRoute
-  PreConRoute: typeof PreConRoute
-  PreConDashboardRoute: typeof PreConDashboardRoute
-  ProfitNodeRoute: typeof ProfitNodeRoute
   ResidentialRoute: typeof ResidentialRoute
-  RoofingRoute: typeof RoofingRoute
-  SafetyRoute: typeof SafetyRoute
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
-  SovereignRoute: typeof SovereignRoute
-  SovereignCommandRoute: typeof SovereignCommandRoute
-  SovereignMasterRoute: typeof SovereignMasterRoute
   StandardsRoute: typeof StandardsRoute
-  WeatherIntelRoute: typeof WeatherIntelRoute
-  WhaleHunterRoute: typeof WhaleHunterRoute
-  IllinoisChicagoCommercialPavingRoute: typeof IllinoisChicagoCommercialPavingRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
@@ -1279,7 +804,6 @@ export interface RootRouteChildren {
   LocationsChesapeakeRoute: typeof LocationsChesapeakeRoute
   LocationsChesterRoute: typeof LocationsChesterRoute
   LocationsChesterfieldRoute: typeof LocationsChesterfieldRoute
-  LocationsChicagoRoute: typeof LocationsChicagoRoute
   LocationsColonialHeightsRoute: typeof LocationsColonialHeightsRoute
   LocationsCulpeperRoute: typeof LocationsCulpeperRoute
   LocationsCumberlandRoute: typeof LocationsCumberlandRoute
@@ -1292,7 +816,6 @@ export interface RootRouteChildren {
   LocationsHanoverRoute: typeof LocationsHanoverRoute
   LocationsHenricoRoute: typeof LocationsHenricoRoute
   LocationsHopewellRoute: typeof LocationsHopewellRoute
-  LocationsKansasCityRoute: typeof LocationsKansasCityRoute
   LocationsKingGeorgeRoute: typeof LocationsKingGeorgeRoute
   LocationsKingWilliamRoute: typeof LocationsKingWilliamRoute
   LocationsLakesideRoute: typeof LocationsLakesideRoute
@@ -1301,25 +824,20 @@ export interface RootRouteChildren {
   LocationsMechanicsvilleRoute: typeof LocationsMechanicsvilleRoute
   LocationsMidlothianRoute: typeof LocationsMidlothianRoute
   LocationsMoseleyRoute: typeof LocationsMoseleyRoute
-  LocationsNapervilleRoute: typeof LocationsNapervilleRoute
   LocationsNewKentRoute: typeof LocationsNewKentRoute
   LocationsNewportnewsRoute: typeof LocationsNewportnewsRoute
   LocationsNorfolkRoute: typeof LocationsNorfolkRoute
-  LocationsOlatheRoute: typeof LocationsOlatheRoute
   LocationsOrangeRoute: typeof LocationsOrangeRoute
-  LocationsOverlandParkRoute: typeof LocationsOverlandParkRoute
   LocationsPetersburgRoute: typeof LocationsPetersburgRoute
   LocationsPortsmouthRoute: typeof LocationsPortsmouthRoute
   LocationsPowhatanRoute: typeof LocationsPowhatanRoute
   LocationsPrinceGeorgeRoute: typeof LocationsPrinceGeorgeRoute
   LocationsPrinceWilliamRoute: typeof LocationsPrinceWilliamRoute
-  LocationsResidentialRoute: typeof LocationsResidentialRoute
   LocationsRichmondRoute: typeof LocationsRichmondRoute
   LocationsSandstonRoute: typeof LocationsSandstonRoute
   LocationsShortPumpRoute: typeof LocationsShortPumpRoute
   LocationsSpotsylvaniaRoute: typeof LocationsSpotsylvaniaRoute
   LocationsStaffordRoute: typeof LocationsStaffordRoute
-  LocationsStandardsRoute: typeof LocationsStandardsRoute
   LocationsStratfordHillsRoute: typeof LocationsStratfordHillsRoute
   LocationsSuffolkRoute: typeof LocationsSuffolkRoute
   LocationsSussexRoute: typeof LocationsSussexRoute
@@ -1329,54 +847,16 @@ export interface RootRouteChildren {
   LocationsWesthamParkwayRoute: typeof LocationsWesthamParkwayRoute
   LocationsWilliamsburgRoute: typeof LocationsWilliamsburgRoute
   LocationsWindsorFarmsRoute: typeof LocationsWindsorFarmsRoute
-  MarylandBaltimoreIndustrialSealcoatingRoute: typeof MarylandBaltimoreIndustrialSealcoatingRoute
-  MinnesotaMspAirportAsphaltRoute: typeof MinnesotaMspAirportAsphaltRoute
   ProductsProductIdRoute: typeof ProductsProductIdRoute
-  VirginiaRichmond23221PavingRoute: typeof VirginiaRichmond23221PavingRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/whale-hunter': {
-      id: '/whale-hunter'
-      path: '/whale-hunter'
-      fullPath: '/whale-hunter'
-      preLoaderRoute: typeof WhaleHunterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/weather-intel': {
-      id: '/weather-intel'
-      path: '/weather-intel'
-      fullPath: '/weather-intel'
-      preLoaderRoute: typeof WeatherIntelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/standards': {
       id: '/standards'
       path: '/standards'
       fullPath: '/standards'
       preLoaderRoute: typeof StandardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign-master': {
-      id: '/sovereign-master'
-      path: '/sovereign-master'
-      fullPath: '/sovereign-master'
-      preLoaderRoute: typeof SovereignMasterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign-command': {
-      id: '/sovereign-command'
-      path: '/sovereign-command'
-      fullPath: '/sovereign-command'
-      preLoaderRoute: typeof SovereignCommandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign': {
-      id: '/sovereign'
-      path: '/sovereign'
-      fullPath: '/sovereign'
-      preLoaderRoute: typeof SovereignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1393,20 +873,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SealcoatingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/safety': {
-      id: '/safety'
-      path: '/safety'
-      fullPath: '/safety'
-      preLoaderRoute: typeof SafetyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/roofing': {
-      id: '/roofing'
-      path: '/roofing'
-      fullPath: '/roofing'
-      preLoaderRoute: typeof RoofingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/residential': {
       id: '/residential'
       path: '/residential'
@@ -1414,102 +880,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResidentialRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profit-node': {
-      id: '/profit-node'
-      path: '/profit-node'
-      fullPath: '/profit-node'
-      preLoaderRoute: typeof ProfitNodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pre-con-dashboard': {
-      id: '/pre-con-dashboard'
-      path: '/pre-con-dashboard'
-      fullPath: '/pre-con-dashboard'
-      preLoaderRoute: typeof PreConDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pre-con': {
-      id: '/pre-con'
-      path: '/pre-con'
-      fullPath: '/pre-con'
-      preLoaderRoute: typeof PreConRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portal': {
-      id: '/portal'
-      path: '/portal'
-      fullPath: '/portal'
-      preLoaderRoute: typeof PortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payroll-treasury': {
-      id: '/payroll-treasury'
-      path: '/payroll-treasury'
-      fullPath: '/payroll-treasury'
-      preLoaderRoute: typeof PayrollTreasuryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mr-worden-3d': {
-      id: '/mr-worden-3d'
-      path: '/mr-worden-3d'
-      fullPath: '/mr-worden-3d'
-      preLoaderRoute: typeof MrWorden3dRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/masonry': {
-      id: '/masonry'
-      path: '/masonry'
-      fullPath: '/masonry'
-      preLoaderRoute: typeof MasonryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/litigation': {
-      id: '/litigation'
-      path: '/litigation'
-      fullPath: '/litigation'
-      preLoaderRoute: typeof LitigationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal-compliance': {
-      id: '/legal-compliance'
-      path: '/legal-compliance'
-      fullPath: '/legal-compliance'
-      preLoaderRoute: typeof LegalComplianceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/investor-roi': {
-      id: '/investor-roi'
-      path: '/investor-roi'
-      fullPath: '/investor-roi'
-      preLoaderRoute: typeof InvestorRoiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gc-bid': {
-      id: '/gc-bid'
-      path: '/gc-bid'
-      fullPath: '/gc-bid'
-      preLoaderRoute: typeof GcBidRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/field': {
-      id: '/field'
-      path: '/field'
-      fullPath: '/field'
-      preLoaderRoute: typeof FieldRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estimator': {
@@ -1526,39 +901,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dispatch-node': {
-      id: '/dispatch-node'
-      path: '/dispatch-node'
-      fullPath: '/dispatch-node'
-      preLoaderRoute: typeof DispatchNodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dispatch': {
-      id: '/dispatch'
-      path: '/dispatch'
-      fullPath: '/dispatch'
-      preLoaderRoute: typeof DispatchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/concrete': {
-      id: '/concrete'
-      path: '/concrete'
-      fullPath: '/concrete'
-      preLoaderRoute: typeof ConcreteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/commercial': {
@@ -1568,27 +915,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CommercialRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/command-center': {
-      id: '/command-center'
-      path: '/command-center'
-      fullPath: '/command-center'
-      preLoaderRoute: typeof CommandCenterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/command-bot': {
-      id: '/command-bot'
-      path: '/command-bot'
-      fullPath: '/command-bot'
-      preLoaderRoute: typeof CommandBotRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -1596,11 +922,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/virginia/richmond-23221-paving': {
-      id: '/virginia/richmond-23221-paving'
-      path: '/virginia/richmond-23221-paving'
-      fullPath: '/virginia/richmond-23221-paving'
-      preLoaderRoute: typeof VirginiaRichmond23221PavingRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$productId': {
@@ -1608,20 +934,6 @@ declare module '@tanstack/react-router' {
       path: '/products/$productId'
       fullPath: '/products/$productId'
       preLoaderRoute: typeof ProductsProductIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/minnesota/msp-airport-asphalt': {
-      id: '/minnesota/msp-airport-asphalt'
-      path: '/minnesota/msp-airport-asphalt'
-      fullPath: '/minnesota/msp-airport-asphalt'
-      preLoaderRoute: typeof MinnesotaMspAirportAsphaltRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/maryland/baltimore-industrial-sealcoating': {
-      id: '/maryland/baltimore-industrial-sealcoating'
-      path: '/maryland/baltimore-industrial-sealcoating'
-      fullPath: '/maryland/baltimore-industrial-sealcoating'
-      preLoaderRoute: typeof MarylandBaltimoreIndustrialSealcoatingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/windsor-farms': {
@@ -1687,13 +999,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsStratfordHillsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/locations/standards': {
-      id: '/locations/standards'
-      path: '/locations/standards'
-      fullPath: '/locations/standards'
-      preLoaderRoute: typeof LocationsStandardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/locations/stafford': {
       id: '/locations/stafford'
       path: '/locations/stafford'
@@ -1727,13 +1032,6 @@ declare module '@tanstack/react-router' {
       path: '/locations/richmond'
       fullPath: '/locations/richmond'
       preLoaderRoute: typeof LocationsRichmondRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/residential': {
-      id: '/locations/residential'
-      path: '/locations/residential'
-      fullPath: '/locations/residential'
-      preLoaderRoute: typeof LocationsResidentialRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/prince-william': {
@@ -1771,25 +1069,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsPetersburgRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/locations/overland-park': {
-      id: '/locations/overland-park'
-      path: '/locations/overland-park'
-      fullPath: '/locations/overland-park'
-      preLoaderRoute: typeof LocationsOverlandParkRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/locations/orange': {
       id: '/locations/orange'
       path: '/locations/orange'
       fullPath: '/locations/orange'
       preLoaderRoute: typeof LocationsOrangeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/olathe': {
-      id: '/locations/olathe'
-      path: '/locations/olathe'
-      fullPath: '/locations/olathe'
-      preLoaderRoute: typeof LocationsOlatheRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/norfolk': {
@@ -1811,13 +1095,6 @@ declare module '@tanstack/react-router' {
       path: '/locations/new-kent'
       fullPath: '/locations/new-kent'
       preLoaderRoute: typeof LocationsNewKentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/naperville': {
-      id: '/locations/naperville'
-      path: '/locations/naperville'
-      fullPath: '/locations/naperville'
-      preLoaderRoute: typeof LocationsNapervilleRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/moseley': {
@@ -1874,13 +1151,6 @@ declare module '@tanstack/react-router' {
       path: '/locations/king-george'
       fullPath: '/locations/king-george'
       preLoaderRoute: typeof LocationsKingGeorgeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/locations/kansas-city': {
-      id: '/locations/kansas-city'
-      path: '/locations/kansas-city'
-      fullPath: '/locations/kansas-city'
-      preLoaderRoute: typeof LocationsKansasCityRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations/hopewell': {
@@ -1967,13 +1237,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsColonialHeightsRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/locations/chicago': {
-      id: '/locations/chicago'
-      path: '/locations/chicago'
-      fullPath: '/locations/chicago'
-      preLoaderRoute: typeof LocationsChicagoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/locations/chesterfield': {
       id: '/locations/chesterfield'
       path: '/locations/chesterfield'
@@ -2030,55 +1293,21 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsAmeliaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/illinois/chicago-commercial-paving': {
-      id: '/illinois/chicago-commercial-paving'
-      path: '/illinois/chicago-commercial-paving'
-      fullPath: '/illinois/chicago-commercial-paving'
-      preLoaderRoute: typeof IllinoisChicagoCommercialPavingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
-  CommandBotRoute: CommandBotRoute,
-  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
-  ConcreteRoute: ConcreteRoute,
   ContactRoute: ContactRoute,
-  DashboardRoute: DashboardRoute,
-  DispatchRoute: DispatchRoute,
-  DispatchNodeRoute: DispatchNodeRoute,
   EstimateRoute: EstimateRoute,
   EstimatorRoute: EstimatorRoute,
-  FieldRoute: FieldRoute,
   GalleryRoute: GalleryRoute,
-  GcBidRoute: GcBidRoute,
-  InvestorRoiRoute: InvestorRoiRoute,
-  LegalComplianceRoute: LegalComplianceRoute,
-  LitigationRoute: LitigationRoute,
-  LoginRoute: LoginRoute,
-  MasonryRoute: MasonryRoute,
-  MrWorden3dRoute: MrWorden3dRoute,
-  PayrollTreasuryRoute: PayrollTreasuryRoute,
-  PortalRoute: PortalRoute,
-  PreConRoute: PreConRoute,
-  PreConDashboardRoute: PreConDashboardRoute,
-  ProfitNodeRoute: ProfitNodeRoute,
   ResidentialRoute: ResidentialRoute,
-  RoofingRoute: RoofingRoute,
-  SafetyRoute: SafetyRoute,
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
-  SovereignRoute: SovereignRoute,
-  SovereignCommandRoute: SovereignCommandRoute,
-  SovereignMasterRoute: SovereignMasterRoute,
   StandardsRoute: StandardsRoute,
-  WeatherIntelRoute: WeatherIntelRoute,
-  WhaleHunterRoute: WhaleHunterRoute,
-  IllinoisChicagoCommercialPavingRoute: IllinoisChicagoCommercialPavingRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,
@@ -2087,7 +1316,6 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsChesapeakeRoute: LocationsChesapeakeRoute,
   LocationsChesterRoute: LocationsChesterRoute,
   LocationsChesterfieldRoute: LocationsChesterfieldRoute,
-  LocationsChicagoRoute: LocationsChicagoRoute,
   LocationsColonialHeightsRoute: LocationsColonialHeightsRoute,
   LocationsCulpeperRoute: LocationsCulpeperRoute,
   LocationsCumberlandRoute: LocationsCumberlandRoute,
@@ -2100,7 +1328,6 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsHanoverRoute: LocationsHanoverRoute,
   LocationsHenricoRoute: LocationsHenricoRoute,
   LocationsHopewellRoute: LocationsHopewellRoute,
-  LocationsKansasCityRoute: LocationsKansasCityRoute,
   LocationsKingGeorgeRoute: LocationsKingGeorgeRoute,
   LocationsKingWilliamRoute: LocationsKingWilliamRoute,
   LocationsLakesideRoute: LocationsLakesideRoute,
@@ -2109,25 +1336,20 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsMechanicsvilleRoute: LocationsMechanicsvilleRoute,
   LocationsMidlothianRoute: LocationsMidlothianRoute,
   LocationsMoseleyRoute: LocationsMoseleyRoute,
-  LocationsNapervilleRoute: LocationsNapervilleRoute,
   LocationsNewKentRoute: LocationsNewKentRoute,
   LocationsNewportnewsRoute: LocationsNewportnewsRoute,
   LocationsNorfolkRoute: LocationsNorfolkRoute,
-  LocationsOlatheRoute: LocationsOlatheRoute,
   LocationsOrangeRoute: LocationsOrangeRoute,
-  LocationsOverlandParkRoute: LocationsOverlandParkRoute,
   LocationsPetersburgRoute: LocationsPetersburgRoute,
   LocationsPortsmouthRoute: LocationsPortsmouthRoute,
   LocationsPowhatanRoute: LocationsPowhatanRoute,
   LocationsPrinceGeorgeRoute: LocationsPrinceGeorgeRoute,
   LocationsPrinceWilliamRoute: LocationsPrinceWilliamRoute,
-  LocationsResidentialRoute: LocationsResidentialRoute,
   LocationsRichmondRoute: LocationsRichmondRoute,
   LocationsSandstonRoute: LocationsSandstonRoute,
   LocationsShortPumpRoute: LocationsShortPumpRoute,
   LocationsSpotsylvaniaRoute: LocationsSpotsylvaniaRoute,
   LocationsStaffordRoute: LocationsStaffordRoute,
-  LocationsStandardsRoute: LocationsStandardsRoute,
   LocationsStratfordHillsRoute: LocationsStratfordHillsRoute,
   LocationsSuffolkRoute: LocationsSuffolkRoute,
   LocationsSussexRoute: LocationsSussexRoute,
@@ -2137,11 +1359,7 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsWesthamParkwayRoute: LocationsWesthamParkwayRoute,
   LocationsWilliamsburgRoute: LocationsWilliamsburgRoute,
   LocationsWindsorFarmsRoute: LocationsWindsorFarmsRoute,
-  MarylandBaltimoreIndustrialSealcoatingRoute:
-    MarylandBaltimoreIndustrialSealcoatingRoute,
-  MinnesotaMspAirportAsphaltRoute: MinnesotaMspAirportAsphaltRoute,
   ProductsProductIdRoute: ProductsProductIdRoute,
-  VirginiaRichmond23221PavingRoute: VirginiaRichmond23221PavingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,80 +1,64 @@
 import { createFileRoute } from '@tanstack/react-router';
-
-const RESIDENTIAL_SCHEMA = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  '@id': 'https://jwordenasphaltpaving.com/residential#service',
-  name: 'Residential Asphalt Driveway Paving',
-  description: 'Estate-grade residential asphalt driveway installation with 6-inch structural stone base. 4th-generation craftsmanship serving Richmond VA and surrounding areas.',
-  url: 'https://jwordenasphaltpaving.com/residential',
-  serviceType: 'Residential Asphalt Paving',
-  provider: {
-    '@type': 'HomeAndConstructionBusiness',
-    '@id': 'https://jwordenasphaltpaving.com/#business',
-    name: 'J. Worden & Sons Asphalt Paving',
-  },
-  areaServed: [
-    { '@type': 'City', name: 'Richmond', containedInPlace: { '@type': 'State', name: 'Virginia' } },
-    { '@type': 'City', name: 'Chester', containedInPlace: { '@type': 'State', name: 'Virginia' } },
-    { '@type': 'City', name: 'Midlothian', containedInPlace: { '@type': 'State', name: 'Virginia' } },
-    { '@type': 'City', name: 'Glen Allen', containedInPlace: { '@type': 'State', name: 'Virginia' } },
-    { '@type': 'City', name: 'Chesterfield', containedInPlace: { '@type': 'State', name: 'Virginia' } },
-  ],
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Residential Paving Services',
-    itemListElement: [
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Residential Driveway Installation', description: 'New asphalt driveway installation on 6-inch compacted stone base.' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Driveway Resurfacing & Overlay', description: 'Asphalt overlay and resurfacing for existing residential driveways.' } },
-      { '@type': 'Offer', 'itemOffered': { '@type': 'Service', name: 'Tar & Chip / Macadam Paving', description: 'Decorative tar-and-chip surface treatment for private driveways and roads.' } },
-    ],
-  },
-};
+import ServiceDetailPage from '../components/ServiceDetailPage';
+import { useSeo } from '../lib/useSeo';
 
 export const Route = createFileRoute('/residential')({
-  component: () => (
-    <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(RESIDENTIAL_SCHEMA) }} />
-      <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
-        <div className="max-w-7xl mx-auto relative z-10 text-left">
-          <span className="bg-[#ffcc00] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.4em] mb-8 inline-block shadow-2xl">
-            4th Generation Residential Authority | Dispatching from Chester HQ
-          </span>
-          <h1 className="text-8xl font-black uppercase text-[#ffcc00] leading-[0.9] tracking-tighter text-left">
-            ESTATE-GRADE <br /> <span className="text-white italic">DRIVEWAYS</span>
-          </h1>
-          <p className="text-3xl text-gray-400 italic font-bold mt-10 max-w-4xl leading-snug text-left">
-            From our Chester headquarters to the estates of Windsor Farms and Fairfax, we engineer high-load thoroughfares built on a 6-inch structural stone foundation.
-          </p>
-        </div>
-      </section>
-
-      <section className="py-24 px-6 bg-black text-left">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <div className="space-y-12">
-            <h2 className="text-6xl font-black uppercase text-white leading-none italic underline decoration-[#ffcc00] underline-offset-8">The <span className="text-[#ffcc00]">Premium</span> Build</h2>
-            <div className="space-y-10">
-              <div className="text-left font-bold">
-                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2">01. Sub-Grade Stabilization</h4>
-                <p className="text-gray-400 leading-relaxed">We assess local soil density—from Chester clay to Richmond urban fill—before the first stone is dropped to prevent sinking.</p>
-              </div>
-              <div className="text-left font-bold">
-                <h4 className="text-xl font-black uppercase text-[#ffcc00] mb-2">02. 6-Inch Compacted Stone Base</h4>
-                <p className="text-gray-400 leading-relaxed">Our structural standard across the 41-city circle. We use heavy-duty compaction for a base that supports heavy SUVs without rutting.</p>
-              </div>
-            </div>
-          </div>
-          <div className="bg-[#1a1a1a] p-12 border-l-[10px] border-[#ffcc00] shadow-2xl self-center text-left">
-            <h3 className="text-3xl font-black uppercase text-white mb-6 italic tracking-tighter">The J. Worden Vow:</h3>
-            <p className="text-gray-300 font-bold leading-relaxed mb-8 uppercase tracking-tighter italic">
-              "We aren't a 'drive-by' crew. We are a Chester-based legacy business that treats every project like a long-term structural investment."
-            </p>
-            <div className="text-left font-black">
-               <a href="tel:8044461296" className="text-4xl font-black text-[#ffcc00] hover:text-white underline decoration-4 underline-offset-8 transition-colors">804-446-1296</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  ),
+  component: ResidentialPage,
 });
+
+function ResidentialPage() {
+  useSeo({
+    title: 'Residential Asphalt Driveway Paving',
+    description:
+      'Asphalt driveway installation, replacement, and historic estate paving across Richmond, Chesterfield, Henrico, and Central Virginia. 6-inch stone base on every driveway. Call 804-446-1296.',
+    path: '/residential',
+  });
+
+  return (
+    <ServiceDetailPage
+      eyebrow="Residential paving"
+      hero="A driveway built to outlast the mortgage."
+      intro="Family-owned residential asphalt driveway installation and replacement in Central Virginia. The same engineered base and density standards we lay for commercial clients."
+      features={[
+        {
+          title: 'New driveway installation',
+          body: 'Custom driveways from cottage to estate. Existing surface removal, grading, base, paving, and clean edges.',
+        },
+        {
+          title: 'Driveway replacement',
+          body: 'Full tear-out and rebuild for failing driveways. We diagnose drainage and base issues before laying anything new.',
+        },
+        {
+          title: '6-inch compacted stone base',
+          body: 'The Worden minimum. Required on every job. The single biggest factor in whether your driveway lasts 10 years or 40.',
+        },
+        {
+          title: 'Estate & historic properties',
+          body: 'Long drives, complex grades, brick or stone aprons, and historic preservation considerations welcomed.',
+        },
+        {
+          title: 'Sealcoating add-on',
+          body: 'Optional sealcoat at the right cure window to lock in the new surface and double its service life.',
+        },
+        {
+          title: 'Family-owned, four generations',
+          body: 'No call center, no commissioned salesman. A Worden walks the job and quotes the job.',
+        },
+      ]}
+      faqs={[
+        {
+          q: 'How much does an asphalt driveway cost in Virginia?',
+          a: 'Residential asphalt driveways in Central Virginia typically run $3.50 to $7.00 per square foot installed, depending on size, accessibility, base condition, and grade. We provide free on-site estimates.',
+        },
+        {
+          q: 'How long should I stay off a new asphalt driveway?',
+          a: 'Foot traffic the next day, light vehicle traffic after 24–48 hours, and avoid sharp turns or stationary heavy loads for the first 14 days while the asphalt fully cures.',
+        },
+        {
+          q: 'When can I sealcoat a brand-new driveway?',
+          a: 'Wait 6 to 12 months. New asphalt needs to cure and shed surface oils before a sealcoat will properly bond.',
+        },
+      ]}
+    />
+  );
+}

@@ -1,48 +1,64 @@
 import { createFileRoute } from '@tanstack/react-router';
+import ServiceDetailPage from '../components/ServiceDetailPage';
+import { useSeo } from '../lib/useSeo';
 
 export const Route = createFileRoute('/sealcoating')({
-  component: () => (
-    <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
-      {/* HERO: THE BRANDED NAME */}
-      <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
-        <div className="max-w-7xl mx-auto relative z-10 text-left">
-          <span className="bg-[#ffcc00] text-black px-6 py-1.5 font-black uppercase text-xs tracking-[0.3em] mb-8 inline-block shadow-xl">
-            Industrial Maintenance Division
-          </span>
-          <h1 className="text-8xl font-black uppercase text-[#ffcc00] leading-[0.9] tracking-tighter text-left">
-            ARMOR-KOTE™ <br /> <span className="text-white italic text-left">MOLECULAR DEFENSE</span>
-          </h1>
-          <p className="text-2xl text-gray-400 italic font-bold mt-10 max-w-4xl leading-snug text-left">
-            Standard sealants sit on the surface. **Armor-Kote™** penetrates the aggregate to restore the bitumen oils lost to Virginia’s UV exposure and salt-air oxidation.
-          </p>
-        </div>
-      </section>
-
-      {/* THE COMPLIANCE SHIELD */}
-      <section className="py-24 px-6 bg-black text-left">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center text-left">
-          <div className="bg-[#1a1a1a] p-12 border-l-[10px] border-[#ffcc00] shadow-2xl text-left">
-            <h3 className="text-3xl font-black uppercase text-[#ffcc00] mb-6 italic tracking-tighter text-left">The $5,500 Lawsuit Shield</h3>
-            <p className="text-gray-300 font-bold leading-relaxed mb-8 text-left">
-              "Drive-by" ADA lawsuits target non-compliant striping and faded markings. We provide factual project history for national retail hubs—ensuring your lot is not just beautiful, but courtroom-defensible.
-            </p>
-            <div className="flex flex-wrap gap-4 text-left">
-               <span className="text-[10px] font-black px-3 py-1 bg-black border border-gray-800 text-[#ffcc00]">ADA Ramps</span>
-               <span className="text-[10px] font-black px-3 py-1 bg-black border border-gray-800 text-[#ffcc00]">Van Accessibility</span>
-               <span className="text-[10px] font-black px-3 py-1 bg-black border border-gray-800 text-[#ffcc00]">Bollard Install</span>
-            </div>
-          </div>
-          <div className="space-y-6 text-left">
-            <h2 className="text-5xl font-black uppercase text-white leading-none text-left">The <span className="text-[#ffcc00]">Daily Choice</span> of National Brands</h2>
-            <p className="text-gray-400 font-bold italic text-left leading-relaxed">
-              From Richmond pharmacy hubs to the I-64 logistics corridor, J. Worden & Sons is the turn-key partner for regional asset management.
-            </p>
-            <div className="pt-6 text-left">
-               <a href="tel:8044461296" className="text-4xl font-black text-[#ffcc00] hover:text-white underline decoration-4 underline-offset-8 transition-colors text-left">804-446-1296</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-  ),
+  component: SealcoatingPage,
 });
+
+function SealcoatingPage() {
+  useSeo({
+    title: 'Asphalt Sealcoating Contractor',
+    description:
+      'Commercial and residential sealcoating across Virginia and the Mid-Atlantic. Coal-tar and asphalt-emulsion. Crack-fill, striping, and ADA included. Call 804-446-1296.',
+    path: '/sealcoating',
+  });
+
+  return (
+    <ServiceDetailPage
+      eyebrow="Sealcoating"
+      hero="Sealcoat protects what you already paid for."
+      intro="Sealcoating doubles the service life of asphalt by sealing the surface against UV, oxidation, fuel spills, and water. We apply commercial and residential sealcoat the right way, on the right cure window."
+      features={[
+        {
+          title: 'Coal-tar emulsion',
+          body: 'Maximum chemical resistance. Standard for parking lots, drive-thrus, and fueling pads.',
+        },
+        {
+          title: 'Asphalt emulsion',
+          body: 'Lower-VOC alternative for residential driveways and HOA-restricted areas.',
+        },
+        {
+          title: 'Crack-fill first',
+          body: 'Hot-applied rubberized crack sealant before sealcoat. Skip this step and water still gets to your base.',
+        },
+        {
+          title: 'Striping & stencils',
+          body: 'Re-stripe lines, accessible parking, fire lanes, stop bars, and directional arrows after the seal cures.',
+        },
+        {
+          title: 'Cure-window scheduling',
+          body: 'New asphalt needs 6–12 months to cure before sealing. We won’t take a job that won’t last.',
+        },
+        {
+          title: 'Maintenance programs',
+          body: 'Multi-site portfolios? We build a 3- to 5-year reseal and crack-fill schedule with budgeted line items.',
+        },
+      ]}
+      faqs={[
+        {
+          q: 'How often should asphalt be sealcoated?',
+          a: 'Every 2 to 4 years for commercial lots, every 3 to 5 years for residential driveways. Wait at least 6–12 months after a fresh paving job.',
+        },
+        {
+          q: 'How long does sealcoat take to dry?',
+          a: 'Foot traffic the same day. Vehicle traffic after 24 hours in good weather. We block the lot during application and post clear re-open times.',
+        },
+        {
+          q: 'Coal-tar or asphalt emulsion — which is better?',
+          a: 'Coal-tar is more durable and chemical-resistant; asphalt emulsion is greener and lower-odor. We recommend coal-tar for commercial and asphalt emulsion for most residential. We’ll quote either.',
+        },
+      ]}
+    />
+  );
+}
