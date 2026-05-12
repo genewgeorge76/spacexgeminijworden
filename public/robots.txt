@@ -10,11 +10,22 @@ Disallow: /dispatch-node
 Disallow: /profit-node
 Disallow: /payroll-treasury
 Disallow: /investor-roi
+Disallow: /pre-con
 Disallow: /pre-con-dashboard
 Disallow: /legal-compliance
 Disallow: /litigation
 Disallow: /command-bot
-Disallow: /login
+Disallow: /command-center
+Disallow: /sovereign
+Disallow: /sovereign-master
+Disallow: /sovereign-command
+Disallow: /whale-hunter
+Disallow: /weather-intel
+Disallow: /mr-worden-3d
+Disallow: /gc-bid
+Disallow: /safety
 Disallow: /portal
+Disallow: /login
+Disallow: /products
 
 Sitemap: https://jwordenasphaltpaving.com/sitemap.xml
