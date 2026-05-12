@@ -9,39 +9,15 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as WhaleHunterRouteImport } from './routes/whale-hunter'
-import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as StandardsRouteImport } from './routes/standards'
-import { Route as SovereignMasterRouteImport } from './routes/sovereign-master'
-import { Route as SovereignCommandRouteImport } from './routes/sovereign-command'
-import { Route as SovereignRouteImport } from './routes/sovereign'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
-import { Route as SafetyRouteImport } from './routes/safety'
 import { Route as ResidentialRouteImport } from './routes/residential'
-import { Route as ProfitNodeRouteImport } from './routes/profit-node'
-import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
-import { Route as PreConRouteImport } from './routes/pre-con'
-import { Route as PortalRouteImport } from './routes/portal'
-import { Route as PayrollTreasuryRouteImport } from './routes/payroll-treasury'
-import { Route as MrWorden3dRouteImport } from './routes/mr-worden-3d'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as LitigationRouteImport } from './routes/litigation'
-import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
-import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
-import { Route as GcBidRouteImport } from './routes/gc-bid'
 import { Route as GalleryRouteImport } from './routes/gallery'
-import { Route as FieldRouteImport } from './routes/field'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as EstimateRouteImport } from './routes/estimate'
-import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
-import { Route as DispatchRouteImport } from './routes/dispatch'
-import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommercialRouteImport } from './routes/commercial'
-import { Route as CommandCenterRouteImport } from './routes/command-center'
-import { Route as CommandBotRouteImport } from './routes/command-bot'
-import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
@@ -97,34 +73,9 @@ import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 
-const WhaleHunterRoute = WhaleHunterRouteImport.update({
-  id: '/whale-hunter',
-  path: '/whale-hunter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WeatherIntelRoute = WeatherIntelRouteImport.update({
-  id: '/weather-intel',
-  path: '/weather-intel',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StandardsRoute = StandardsRouteImport.update({
   id: '/standards',
   path: '/standards',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignMasterRoute = SovereignMasterRouteImport.update({
-  id: '/sovereign-master',
-  path: '/sovereign-master',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignCommandRoute = SovereignCommandRouteImport.update({
-  id: '/sovereign-command',
-  path: '/sovereign-command',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SovereignRoute = SovereignRouteImport.update({
-  id: '/sovereign',
-  path: '/sovereign',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ServicesRoute = ServicesRouteImport.update({
@@ -137,79 +88,14 @@ const SealcoatingRoute = SealcoatingRouteImport.update({
   path: '/sealcoating',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SafetyRoute = SafetyRouteImport.update({
-  id: '/safety',
-  path: '/safety',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ResidentialRoute = ResidentialRouteImport.update({
   id: '/residential',
   path: '/residential',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProfitNodeRoute = ProfitNodeRouteImport.update({
-  id: '/profit-node',
-  path: '/profit-node',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreConDashboardRoute = PreConDashboardRouteImport.update({
-  id: '/pre-con-dashboard',
-  path: '/pre-con-dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PreConRoute = PreConRouteImport.update({
-  id: '/pre-con',
-  path: '/pre-con',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PortalRoute = PortalRouteImport.update({
-  id: '/portal',
-  path: '/portal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PayrollTreasuryRoute = PayrollTreasuryRouteImport.update({
-  id: '/payroll-treasury',
-  path: '/payroll-treasury',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MrWorden3dRoute = MrWorden3dRouteImport.update({
-  id: '/mr-worden-3d',
-  path: '/mr-worden-3d',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LitigationRoute = LitigationRouteImport.update({
-  id: '/litigation',
-  path: '/litigation',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LegalComplianceRoute = LegalComplianceRouteImport.update({
-  id: '/legal-compliance',
-  path: '/legal-compliance',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const InvestorRoiRoute = InvestorRoiRouteImport.update({
-  id: '/investor-roi',
-  path: '/investor-roi',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const GcBidRoute = GcBidRouteImport.update({
-  id: '/gc-bid',
-  path: '/gc-bid',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FieldRoute = FieldRouteImport.update({
-  id: '/field',
-  path: '/field',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstimatorRoute = EstimatorRouteImport.update({
@@ -222,21 +108,6 @@ const EstimateRoute = EstimateRouteImport.update({
   path: '/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DispatchNodeRoute = DispatchNodeRouteImport.update({
-  id: '/dispatch-node',
-  path: '/dispatch-node',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DispatchRoute = DispatchRouteImport.update({
-  id: '/dispatch',
-  path: '/dispatch',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -245,21 +116,6 @@ const ContactRoute = ContactRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommandCenterRoute = CommandCenterRouteImport.update({
-  id: '/command-center',
-  path: '/command-center',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CommandBotRoute = CommandBotRouteImport.update({
-  id: '/command-bot',
-  path: '/command-bot',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -537,39 +393,15 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -626,39 +458,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -716,39 +524,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/admin': typeof AdminRoute
-  '/command-bot': typeof CommandBotRoute
-  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
-  '/dashboard': typeof DashboardRoute
-  '/dispatch': typeof DispatchRoute
-  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
-  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
-  '/gc-bid': typeof GcBidRoute
-  '/investor-roi': typeof InvestorRoiRoute
-  '/legal-compliance': typeof LegalComplianceRoute
-  '/litigation': typeof LitigationRoute
-  '/login': typeof LoginRoute
-  '/mr-worden-3d': typeof MrWorden3dRoute
-  '/payroll-treasury': typeof PayrollTreasuryRoute
-  '/portal': typeof PortalRoute
-  '/pre-con': typeof PreConRoute
-  '/pre-con-dashboard': typeof PreConDashboardRoute
-  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
-  '/safety': typeof SafetyRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
-  '/sovereign': typeof SovereignRoute
-  '/sovereign-command': typeof SovereignCommandRoute
-  '/sovereign-master': typeof SovereignMasterRoute
   '/standards': typeof StandardsRoute
-  '/weather-intel': typeof WeatherIntelRoute
-  '/whale-hunter': typeof WhaleHunterRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -807,39 +591,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -896,39 +656,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -985,39 +721,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
-    | '/admin'
-    | '/command-bot'
-    | '/command-center'
     | '/commercial'
     | '/contact'
-    | '/dashboard'
-    | '/dispatch'
-    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
-    | '/field'
     | '/gallery'
-    | '/gc-bid'
-    | '/investor-roi'
-    | '/legal-compliance'
-    | '/litigation'
-    | '/login'
-    | '/mr-worden-3d'
-    | '/payroll-treasury'
-    | '/portal'
-    | '/pre-con'
-    | '/pre-con-dashboard'
-    | '/profit-node'
     | '/residential'
-    | '/safety'
     | '/sealcoating'
     | '/services'
-    | '/sovereign'
-    | '/sovereign-command'
-    | '/sovereign-master'
     | '/standards'
-    | '/weather-intel'
-    | '/whale-hunter'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -1075,39 +787,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  AdminRoute: typeof AdminRoute
-  CommandBotRoute: typeof CommandBotRoute
-  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
   ContactRoute: typeof ContactRoute
-  DashboardRoute: typeof DashboardRoute
-  DispatchRoute: typeof DispatchRoute
-  DispatchNodeRoute: typeof DispatchNodeRoute
   EstimateRoute: typeof EstimateRoute
   EstimatorRoute: typeof EstimatorRoute
-  FieldRoute: typeof FieldRoute
   GalleryRoute: typeof GalleryRoute
-  GcBidRoute: typeof GcBidRoute
-  InvestorRoiRoute: typeof InvestorRoiRoute
-  LegalComplianceRoute: typeof LegalComplianceRoute
-  LitigationRoute: typeof LitigationRoute
-  LoginRoute: typeof LoginRoute
-  MrWorden3dRoute: typeof MrWorden3dRoute
-  PayrollTreasuryRoute: typeof PayrollTreasuryRoute
-  PortalRoute: typeof PortalRoute
-  PreConRoute: typeof PreConRoute
-  PreConDashboardRoute: typeof PreConDashboardRoute
-  ProfitNodeRoute: typeof ProfitNodeRoute
   ResidentialRoute: typeof ResidentialRoute
-  SafetyRoute: typeof SafetyRoute
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
-  SovereignRoute: typeof SovereignRoute
-  SovereignCommandRoute: typeof SovereignCommandRoute
-  SovereignMasterRoute: typeof SovereignMasterRoute
   StandardsRoute: typeof StandardsRoute
-  WeatherIntelRoute: typeof WeatherIntelRoute
-  WhaleHunterRoute: typeof WhaleHunterRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
@@ -1164,46 +852,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/whale-hunter': {
-      id: '/whale-hunter'
-      path: '/whale-hunter'
-      fullPath: '/whale-hunter'
-      preLoaderRoute: typeof WhaleHunterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/weather-intel': {
-      id: '/weather-intel'
-      path: '/weather-intel'
-      fullPath: '/weather-intel'
-      preLoaderRoute: typeof WeatherIntelRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/standards': {
       id: '/standards'
       path: '/standards'
       fullPath: '/standards'
       preLoaderRoute: typeof StandardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign-master': {
-      id: '/sovereign-master'
-      path: '/sovereign-master'
-      fullPath: '/sovereign-master'
-      preLoaderRoute: typeof SovereignMasterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign-command': {
-      id: '/sovereign-command'
-      path: '/sovereign-command'
-      fullPath: '/sovereign-command'
-      preLoaderRoute: typeof SovereignCommandRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sovereign': {
-      id: '/sovereign'
-      path: '/sovereign'
-      fullPath: '/sovereign'
-      preLoaderRoute: typeof SovereignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/services': {
@@ -1220,13 +873,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SealcoatingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/safety': {
-      id: '/safety'
-      path: '/safety'
-      fullPath: '/safety'
-      preLoaderRoute: typeof SafetyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/residential': {
       id: '/residential'
       path: '/residential'
@@ -1234,95 +880,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResidentialRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/profit-node': {
-      id: '/profit-node'
-      path: '/profit-node'
-      fullPath: '/profit-node'
-      preLoaderRoute: typeof ProfitNodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pre-con-dashboard': {
-      id: '/pre-con-dashboard'
-      path: '/pre-con-dashboard'
-      fullPath: '/pre-con-dashboard'
-      preLoaderRoute: typeof PreConDashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/pre-con': {
-      id: '/pre-con'
-      path: '/pre-con'
-      fullPath: '/pre-con'
-      preLoaderRoute: typeof PreConRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/portal': {
-      id: '/portal'
-      path: '/portal'
-      fullPath: '/portal'
-      preLoaderRoute: typeof PortalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/payroll-treasury': {
-      id: '/payroll-treasury'
-      path: '/payroll-treasury'
-      fullPath: '/payroll-treasury'
-      preLoaderRoute: typeof PayrollTreasuryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/mr-worden-3d': {
-      id: '/mr-worden-3d'
-      path: '/mr-worden-3d'
-      fullPath: '/mr-worden-3d'
-      preLoaderRoute: typeof MrWorden3dRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/litigation': {
-      id: '/litigation'
-      path: '/litigation'
-      fullPath: '/litigation'
-      preLoaderRoute: typeof LitigationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/legal-compliance': {
-      id: '/legal-compliance'
-      path: '/legal-compliance'
-      fullPath: '/legal-compliance'
-      preLoaderRoute: typeof LegalComplianceRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/investor-roi': {
-      id: '/investor-roi'
-      path: '/investor-roi'
-      fullPath: '/investor-roi'
-      preLoaderRoute: typeof InvestorRoiRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/gc-bid': {
-      id: '/gc-bid'
-      path: '/gc-bid'
-      fullPath: '/gc-bid'
-      preLoaderRoute: typeof GcBidRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/field': {
-      id: '/field'
-      path: '/field'
-      fullPath: '/field'
-      preLoaderRoute: typeof FieldRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estimator': {
@@ -1339,27 +901,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dispatch-node': {
-      id: '/dispatch-node'
-      path: '/dispatch-node'
-      fullPath: '/dispatch-node'
-      preLoaderRoute: typeof DispatchNodeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dispatch': {
-      id: '/dispatch'
-      path: '/dispatch'
-      fullPath: '/dispatch'
-      preLoaderRoute: typeof DispatchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -1372,27 +913,6 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/command-center': {
-      id: '/command-center'
-      path: '/command-center'
-      fullPath: '/command-center'
-      preLoaderRoute: typeof CommandCenterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/command-bot': {
-      id: '/command-bot'
-      path: '/command-bot'
-      fullPath: '/command-bot'
-      preLoaderRoute: typeof CommandBotRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1779,39 +1299,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  AdminRoute: AdminRoute,
-  CommandBotRoute: CommandBotRoute,
-  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
   ContactRoute: ContactRoute,
-  DashboardRoute: DashboardRoute,
-  DispatchRoute: DispatchRoute,
-  DispatchNodeRoute: DispatchNodeRoute,
   EstimateRoute: EstimateRoute,
   EstimatorRoute: EstimatorRoute,
-  FieldRoute: FieldRoute,
   GalleryRoute: GalleryRoute,
-  GcBidRoute: GcBidRoute,
-  InvestorRoiRoute: InvestorRoiRoute,
-  LegalComplianceRoute: LegalComplianceRoute,
-  LitigationRoute: LitigationRoute,
-  LoginRoute: LoginRoute,
-  MrWorden3dRoute: MrWorden3dRoute,
-  PayrollTreasuryRoute: PayrollTreasuryRoute,
-  PortalRoute: PortalRoute,
-  PreConRoute: PreConRoute,
-  PreConDashboardRoute: PreConDashboardRoute,
-  ProfitNodeRoute: ProfitNodeRoute,
   ResidentialRoute: ResidentialRoute,
-  SafetyRoute: SafetyRoute,
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
-  SovereignRoute: SovereignRoute,
-  SovereignCommandRoute: SovereignCommandRoute,
-  SovereignMasterRoute: SovereignMasterRoute,
   StandardsRoute: StandardsRoute,
-  WeatherIntelRoute: WeatherIntelRoute,
-  WhaleHunterRoute: WhaleHunterRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,
