@@ -38,7 +38,7 @@ function SealcoatingPage() {
         },
         {
           title: 'Cure-window scheduling',
-          body: 'New asphalt needs 6\u201312 months to cure before sealing. We won\u2019t take a job that won\u2019t last.',
+          body: 'New asphalt needs 6–12 months to cure before sealing. We won’t take a job that won’t last.',
         },
         {
           title: 'Maintenance programs',
@@ -48,15 +48,15 @@ function SealcoatingPage() {
       faqs={[
         {
           q: 'How often should asphalt be sealcoated?',
-          a: 'Every 2 to 4 years for commercial lots, every 3 to 5 years for residential driveways. Wait at least 6\u201312 months after a fresh paving job.',
+          a: 'Every 2 to 4 years for commercial lots, every 3 to 5 years for residential driveways. Wait at least 6–12 months after a fresh paving job.',
         },
         {
           q: 'How long does sealcoat take to dry?',
           a: 'Foot traffic the same day. Vehicle traffic after 24 hours in good weather. We block the lot during application and post clear re-open times.',
         },
         {
-          q: 'Coal-tar or asphalt emulsion \u2014 which is better?',
-          a: 'Coal-tar is more durable and chemical-resistant; asphalt emulsion is greener and lower-odor. We recommend coal-tar for commercial and asphalt emulsion for most residential. We\u2019ll quote either.',
+          q: 'Coal-tar or asphalt emulsion — which is better?',
+          a: 'Coal-tar is more durable and chemical-resistant; asphalt emulsion is greener and lower-odor. We recommend coal-tar for commercial and asphalt emulsion for most residential. We’ll quote either.',
         },
       ]}
     />

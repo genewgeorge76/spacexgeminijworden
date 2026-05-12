@@ -12,14 +12,14 @@ const TIMELINE = [
   { year: '1984', label: 'Founded in Chester, Virginia.' },
   { year: '1994', label: 'BBB A+ accreditation. Class A Virginia license.' },
   { year: '2014', label: 'First of four Best of Houzz awards.' },
-  { year: '2018', label: 'Crossed 100 franchise sites paved (KFC, Taco Bell, Arby\u2019s).' },
+  { year: '2018', label: 'Crossed 100 franchise sites paved (KFC, Taco Bell, Arby’s).' },
   { year: '2026', label: '4th-generation operation. 50-state licensure footprint.' },
 ];
 
 const STANDARDS = [
   {
     title: '6-inch structural stone base',
-    body: 'Required on every job. Not an upsell. It\u2019s the difference between pavement that lasts decades and pavement that fails in one freeze.',
+    body: 'Required on every job. Not an upsell. It’s the difference between pavement that lasts decades and pavement that fails in one freeze.',
   },
   {
     title: '96% Marshall compaction',
@@ -39,7 +39,7 @@ function AboutPage() {
   useSeo({
     title: 'About J. Worden & Sons',
     description:
-      'Four generations of asphalt paving in Virginia. Class A licensed, BBB A+, 4-time Best of Houzz. KFC, Taco Bell, and Arby\u2019s preferred contractor.',
+      'Four generations of asphalt paving in Virginia. Class A licensed, BBB A+, 4-time Best of Houzz. KFC, Taco Bell, and Arby’s preferred contractor.',
     path: '/about',
   });
 
@@ -52,8 +52,8 @@ function AboutPage() {
             Four generations laying the same standard.
           </h1>
           <p className="mt-8 max-w-3xl text-lg text-white/60 md:text-xl">
-            J. Worden &amp; Sons has paved Central Virginia since 1984. We don\u2019t take corner-cutting jobs and we don\u2019t
-            quote work we won\u2019t stand behind for thirty years.
+            J. Worden &amp; Sons has paved Central Virginia since 1984. We don’t take corner-cutting jobs and we don’t
+            quote work we won’t stand behind for thirty years.
           </p>
         </div>
       </section>

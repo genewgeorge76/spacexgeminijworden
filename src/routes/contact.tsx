@@ -136,7 +136,7 @@ function ContactPage() {
                   <Field name="email" label="Email" type="email" autoComplete="email" />
                 </div>
                 <Field name="serviceAddress" label="Service address" autoComplete="street-address" />
-                <FieldArea name="jobDescription" label="Job description" required rows={5} placeholder="Driveway, parking lot, sealcoat, square footage, timing\u2026" />
+                <FieldArea name="jobDescription" label="Job description" required rows={5} placeholder="Driveway, parking lot, sealcoat, square footage, timing…" />
 
                 {status === 'error' && (
                   <p className="text-sm text-red-400">{errorMsg}</p>
@@ -147,7 +147,7 @@ function ContactPage() {
                   disabled={status === 'sending'}
                   className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90 disabled:opacity-50"
                 >
-                  {status === 'sending' ? 'Sending\u2026' : 'Request estimate'}
+                  {status === 'sending' ? 'Sending…' : 'Request estimate'}
                 </button>
                 <p className="text-xs text-white/40">
                   Or call {PHONE} for the fastest response.

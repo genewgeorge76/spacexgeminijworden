@@ -10,7 +10,7 @@ function CommercialPage() {
   useSeo({
     title: 'Commercial Asphalt Paving Contractor',
     description:
-      'Commercial parking lot paving, drive-thru lanes, and multi-site rollouts in Virginia, Maryland, and the Mid-Atlantic. KFC, Taco Bell, and Arby\u2019s preferred contractor. Call 804-446-1296.',
+      'Commercial parking lot paving, drive-thru lanes, and multi-site rollouts in Virginia, Maryland, and the Mid-Atlantic. KFC, Taco Bell, and Arby’s preferred contractor. Call 804-446-1296.',
     path: '/commercial',
   });
 
@@ -26,7 +26,7 @@ function CommercialPage() {
         },
         {
           title: 'National multi-site rollouts',
-          body: '100+ franchise sites delivered for KFC, Taco Bell, Arby\u2019s, CVS and more. One PM, one schedule, one invoice.',
+          body: '100+ franchise sites delivered for KFC, Taco Bell, Arby’s, CVS and more. One PM, one schedule, one invoice.',
         },
         {
           title: '6-inch structural stone base',
@@ -48,7 +48,7 @@ function CommercialPage() {
       faqs={[
         {
           q: 'How long does a commercial parking lot take to pave?',
-          a: 'A typical 30,000\u201350,000 sq ft lot is 3\u20135 working days for full-depth installation including base, binder, and surface course. Phased after-hours work extends that timeline but keeps the business open.',
+          a: 'A typical 30,000–50,000 sq ft lot is 3–5 working days for full-depth installation including base, binder, and surface course. Phased after-hours work extends that timeline but keeps the business open.',
         },
         {
           q: 'Do you handle multi-state rollouts?',

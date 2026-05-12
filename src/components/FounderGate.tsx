@@ -103,7 +103,7 @@ function FounderGate({ children }: FounderGateProps) {
       setError('');
       setIsAuthorized(true);
     } else {
-      setError('Access Denied \u2014 Integrity check failed.');
+      setError('Access Denied — Integrity check failed.');
       setPassphrase('');
     }
   };

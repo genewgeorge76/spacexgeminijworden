@@ -96,7 +96,7 @@ export default function LocationPage({ city, nearby }: Props) {
         name: 'Are you licensed and insured in Virginia?',
         acceptedAnswer: {
           '@type': 'Answer',
-          text: 'Yes. J. Worden & Sons holds a Class A Virginia Contractor license, BBB A+ rating since 1994, and carries full liability and workers\u2019 compensation insurance.',
+          text: 'Yes. J. Worden & Sons holds a Class A Virginia Contractor license, BBB A+ rating since 1994, and carries full liability and workers’ compensation insurance.',
         },
       },
     ],

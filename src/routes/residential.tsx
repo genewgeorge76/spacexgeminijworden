@@ -52,7 +52,7 @@ function ResidentialPage() {
         },
         {
           q: 'How long should I stay off a new asphalt driveway?',
-          a: 'Foot traffic the next day, light vehicle traffic after 24\u201348 hours, and avoid sharp turns or stationary heavy loads for the first 14 days while the asphalt fully cures.',
+          a: 'Foot traffic the next day, light vehicle traffic after 24–48 hours, and avoid sharp turns or stationary heavy loads for the first 14 days while the asphalt fully cures.',
         },
         {
           q: 'When can I sealcoat a brand-new driveway?',

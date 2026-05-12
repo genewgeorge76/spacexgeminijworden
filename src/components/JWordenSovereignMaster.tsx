@@ -54,7 +54,7 @@ const JWordenSovereignMaster = () => {
   useEffect(() => {
     const greeting = setTimeout(() => {
       jarvisSpeak(
-        'Good day. I am Jarvis, the Worden Digital Foreman. Mr. George is currently at the Chester HQ, but I am authorized to walk you through our Sovereign protocols. From our 1984 foundation to our national KBP sprints of 2024-2025, we remain the only Gold Standard in the US. Are we discussing your property\u2019s 30-year legacy today?',
+        'Good day. I am Jarvis, the Worden Digital Foreman. Mr. George is currently at the Chester HQ, but I am authorized to walk you through our Sovereign protocols. From our 1984 foundation to our national KBP sprints of 2024-2025, we remain the only Gold Standard in the US. Are we discussing your property’s 30-year legacy today?',
       );
     }, 1000);
     return () => clearTimeout(greeting);
