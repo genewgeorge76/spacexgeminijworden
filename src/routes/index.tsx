@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSeo } from '../lib/useSeo';
+import { VideoHero } from '../components/VideoHero';
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -7,6 +8,18 @@ export const Route = createFileRoute('/')({
 
 const PHONE = '804-446-1296';
 const PHONE_HREF = 'tel:+18044461296';
+
+/**
+ * Drop video files into /public/video/ and they'll auto-load.
+ * Recommended: 6–12s seamless loop, 1920×1080, ~3–6 MB MP4 (H.264) + WebM (AV1/VP9).
+ * If neither file exists at build time, the hero falls back to the still poster.
+ */
+const HERO_VIDEO_SOURCES = [
+  // Browser tries these in order. Smallest/best-compressed first.
+  { src: '/video/hero-paving.webm', type: 'video/webm' },
+  { src: '/video/hero-paving.mp4', type: 'video/mp4' },
+];
+const HERO_POSTER = '/asphalt-paving-with-paver.jpg';
 
 function Home() {
   useSeo({
@@ -19,15 +32,21 @@ function Home() {
   return (
     <main className="bg-black text-white antialiased">
       {/* HERO */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-32 md:py-48">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+      <VideoHero
+        sources={HERO_VIDEO_SOURCES}
+        poster={HERO_POSTER}
+        posterAlt="Fresh asphalt paving in Chester, Virginia"
+        overlayOpacity={60}
+        className="border-b border-white/10"
+      >
+        <div className="mx-auto w-full max-w-7xl px-6 py-32 md:py-48">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/70">
             Asphalt Paving &middot; Established 1984
           </p>
           <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
             Pavement engineered to outlast the building on top of it.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg text-white/60 md:text-xl">
+          <p className="mt-8 max-w-2xl text-lg text-white/80 md:text-xl">
             Commercial and residential asphalt paving and sealcoating across Virginia, Maryland, and the
             Mid-Atlantic. Family-owned for four generations.
           </p>
@@ -40,13 +59,13 @@ function Home() {
             </a>
             <Link
               to="/contact"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
+              className="rounded-full border border-white/30 px-6 py-3 text-sm font-medium text-white hover:bg-white/10"
             >
               Request online &rarr;
             </Link>
           </div>
         </div>
-      </section>
+      </VideoHero>
 
       {/* PROOF */}
       <section className="border-b border-white/10">
