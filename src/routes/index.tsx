@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { createFileRoute } from '@tanstack/react-router';
 
 // ====================================================================
 // JWORDEN-AI: THE SOVEREIGN ASPHALT & INFRASTRUCTURE ENGINE
@@ -8,7 +9,11 @@ import React, { useState } from 'react';
 // PERSONALITY: MR. WORDEN (PAVING KING) & MRS. WORDEN (DESIGN QUEEN)
 // ====================================================================
 
-export default function SovereignPowerhouse() {
+export const Route = createFileRoute('/')({
+  component: SovereignPowerhouse,
+});
+
+function SovereignPowerhouse() {
   const [sector, setSector] = useState<'initial' | 'paving' | 'construction'>('initial');
   const [stage, setStage] = useState<'intro' | 'structural' | 'finish'>('intro');
   const [sqft, setSqft] = useState(0);

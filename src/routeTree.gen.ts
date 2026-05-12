@@ -46,6 +46,7 @@ import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as CommandBotRouteImport } from './routes/command-bot'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as VirginiaRichmond23221PavingRouteImport } from './routes/virginia/richmond-23221-paving'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
 import { Route as MinnesotaMspAirportAsphaltRouteImport } from './routes/minnesota/msp-airport-asphalt'
@@ -293,6 +294,11 @@ const AdminRoute = AdminRouteImport.update({
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VirginiaRichmond23221PavingRoute =
@@ -617,6 +623,7 @@ const IllinoisChicagoCommercialPavingRoute =
   } as any)
 
 export interface FileRoutesByFullPath {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -719,6 +726,7 @@ export interface FileRoutesByFullPath {
   '/virginia/richmond-23221-paving': typeof VirginiaRichmond23221PavingRoute
 }
 export interface FileRoutesByTo {
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -822,6 +830,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/command-bot': typeof CommandBotRoute
@@ -926,6 +935,7 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
+    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -1028,6 +1038,7 @@ export interface FileRouteTypes {
     | '/virginia/richmond-23221-paving'
   fileRoutesByTo: FileRoutesByTo
   to:
+    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -1130,6 +1141,7 @@ export interface FileRouteTypes {
     | '/virginia/richmond-23221-paving'
   id:
     | '__root__'
+    | '/'
     | '/about'
     | '/admin'
     | '/command-bot'
@@ -1233,6 +1245,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   CommandBotRoute: typeof CommandBotRoute
@@ -1594,6 +1607,13 @@ declare module '@tanstack/react-router' {
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/virginia/richmond-23221-paving': {
@@ -2041,6 +2061,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
+  IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   CommandBotRoute: CommandBotRoute,
