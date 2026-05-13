@@ -1,13 +1,15 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useSeo } from '../lib/useSeo';
+import SectionBackdrop from '../components/SectionBackdrop';
+import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, HOURS_DISPLAY } from '../lib/businessInfo';
 
 export const Route = createFileRoute('/contact')({
   component: ContactPage,
 });
 
-const PHONE = '804-446-1296';
-const PHONE_HREF = 'tel:+18044461296';
+/** FastAPI lead webhook (standalone repo). Empty string = disabled. */
+const LEADS_API_URL = (import.meta.env.VITE_LEADS_API_URL as string | undefined) ?? '';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -15,7 +17,7 @@ function ContactPage() {
   useSeo({
     title: 'Contact J. Worden & Sons',
     description:
-      'Request an asphalt paving estimate in Virginia, Maryland, or the Mid-Atlantic. Call 804-446-1296 or use the form. A Worden picks up.',
+      'Request an asphalt paving estimate in Virginia, Maryland, or the Mid-Atlantic. Call 804-446-1296 or use the form. A J. Worden picks up.',
     path: '/contact',
   });
 
@@ -54,12 +56,29 @@ function ContactPage() {
     }
 
     try {
+      // 1) Netlify Forms (always on — customer-safe persistent log)
       const res = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString(),
       });
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
+
+      // 2) Mirror the lead to the FastAPI ops backend (best-effort, non-blocking)
+      if (LEADS_API_URL) {
+        const payload: Record<string, string> = {};
+        for (const [k, v] of data.entries()) payload[k] = typeof v === 'string' ? v : '';
+        payload.source = 'gemni-investigate';
+        payload.path = '/contact';
+        // Fire-and-forget; if backend is down the customer's lead is still safe in Netlify Forms.
+        void fetch(LEADS_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+          keepalive: true,
+        }).catch(() => undefined);
+      }
+
       setStatus('sent');
       const w = window as unknown as { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
@@ -72,9 +91,10 @@ function ContactPage() {
   }
 
   return (
-    <main className="bg-black text-white">
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-32 md:py-40">
+    <main className="bg-premium-black grain text-white antialiased">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04]">
+        <SectionBackdrop video="/video/bg-reviews.mp4" opacity={0.6} />
+        <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">Contact</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
             Tell us about the job.
@@ -86,7 +106,7 @@ function ContactPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/10">
+      <section className="border-b border-white/[0.04]">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-24 lg:grid-cols-[1fr_1.4fr]">
           {/* LEFT: contact details */}
           <div>
@@ -97,12 +117,12 @@ function ContactPage() {
             >
               {PHONE}
             </a>
-            <p className="mt-2 text-sm text-white/50">Mon&ndash;Fri 7am&ndash;7pm &middot; Sat 7am&ndash;5pm</p>
+            <p className="mt-2 text-sm text-white/50">{HOURS_DISPLAY}</p>
 
             <div className="mt-12 border-t border-white/10 pt-10">
               <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Headquarters</p>
-              <p className="mt-3 text-base text-white">1601 Ware Bottom Springs Rd, Suite 214</p>
-              <p className="text-base text-white">Chester, VA 23836</p>
+              <p className="mt-3 text-base text-white">{ADDRESS.streetAddress}</p>
+              <p className="text-base text-white">{ADDRESS.addressLocality}, {ADDRESS.addressRegion} {ADDRESS.postalCode}</p>
             </div>
 
             <div className="mt-10 border-t border-white/10 pt-10">

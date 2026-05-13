@@ -5,6 +5,15 @@
 [build.environment]
   NODE_VERSION = "22"
 
+# Production-only env. While api.jwordenasphaltpaving.com DNS is pointed at
+# AWS (404), bridge directly to the Railway-hosted FastAPI ops backend so
+# the contact form's mirror call and the JarvisChat widget both work.
+# Once the api.* CNAME is moved back to Railway, replace these with the
+# clean api.jwordenasphaltpaving.com URLs.
+[context.production.environment]
+  VITE_LEADS_API_URL = "https://codexbuildfreeofbase44-production.up.railway.app/api/v1/leads/website"
+  VITE_AI_CHAT_URL   = "https://codexbuildfreeofbase44-production.up.railway.app/api/v1/public/chat"
+
 [[redirects]]
   from = "https://jwordenasphaltpaving.com/*"
   to   = "https://www.jwordenasphaltpaving.com/:splat"

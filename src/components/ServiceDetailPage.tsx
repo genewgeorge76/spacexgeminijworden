@@ -1,8 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
-
-const PHONE = '804-446-1296';
-const PHONE_HREF = 'tel:+18044461296';
+import SectionBackdrop from './SectionBackdrop';
+import { PHONE_DISPLAY as PHONE, PHONE_HREF } from '../lib/businessInfo';
 
 interface FeatureItem {
   title: string;
@@ -57,35 +56,30 @@ export default function ServiceDetailPage({
       : null);
 
   return (
-    <main className="bg-black text-white">
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-32 md:py-40">
+    <main className="bg-premium-black grain text-white antialiased">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <SectionBackdrop video="/video/parking-lot.mp4" opacity={0.7} />
+        <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">{eyebrow}</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">{hero}</h1>
           <p className="mt-8 max-w-3xl text-lg text-white/60 md:text-xl">{intro}</p>
           <div className="mt-12 flex flex-wrap gap-4">
-            <a
-              href={PHONE_HREF}
-              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90"
-            >
+            <a href={PHONE_HREF} className="btn-primary">
               Call for an estimate
             </a>
-            <Link
-              to="/contact"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
-            >
+            <Link to="/contact" className="btn-ghost">
               Request online &rarr;
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-24">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <div className="relative mx-auto max-w-7xl px-6 py-24">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">What&rsquo;s included</p>
-          <div className="mt-12 grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2">
+          <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             {features.map((f) => (
-              <div key={f.title} className="bg-black p-10 md:p-12">
+              <div key={f.title} className="surface-glass lift-hover p-10 md:p-12">
                 <div className="text-xl font-medium">{f.title}</div>
                 <p className="mt-4 text-sm leading-relaxed text-white/60">{f.body}</p>
               </div>
@@ -95,10 +89,11 @@ export default function ServiceDetailPage({
       </section>
 
       {faqs.length > 0 && (
-        <section className="border-b border-white/10">
-          <div className="mx-auto max-w-4xl px-6 py-24">
+        <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+          <SectionBackdrop video="/video/bg-proof.mp4" opacity={0.5} />
+          <div className="relative mx-auto max-w-4xl px-6 py-24">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Frequently asked</p>
-            <dl className="mt-10 divide-y divide-white/10 border-y border-white/10">
+            <dl className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
               {faqs.map((f) => (
                 <div key={f.q} className="py-8">
                   <dt className="text-lg font-medium text-white">{f.q}</dt>
@@ -111,15 +106,15 @@ export default function ServiceDetailPage({
       )}
 
       {relatedCities.length > 0 && (
-        <section className="border-b border-white/10">
-          <div className="mx-auto max-w-7xl px-6 py-20">
+        <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+          <div className="relative mx-auto max-w-7xl px-6 py-20">
             <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Service area</p>
             <div className="mt-8 flex flex-wrap gap-2 text-sm">
               {relatedCities.map((city) => (
                 <Link
                   key={city}
                   to={`/locations/${slug(city)}` as string}
-                  className="rounded-full border border-white/15 px-4 py-2 text-white/70 hover:bg-white/5 hover:text-white"
+                  className="rounded-full border border-white/15 bg-black/30 backdrop-blur px-4 py-2 text-white/70 hover:bg-white/10 hover:text-white"
                 >
                   {city}
                 </Link>
@@ -129,16 +124,14 @@ export default function ServiceDetailPage({
         </section>
       )}
 
-      <section>
-        <div className="mx-auto max-w-7xl px-6 py-32">
+      <section className="relative isolate overflow-hidden">
+        <SectionBackdrop video="/video/bg-awards.mp4" opacity={0.7} />
+        <div className="relative mx-auto max-w-7xl px-6 py-32">
           <h2 className="max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
             Ready for a real number?
           </h2>
-          <p className="mt-6 max-w-xl text-lg text-white/60">Call {PHONE}. A Worden picks up.</p>
-          <a
-            href={PHONE_HREF}
-            className="mt-10 inline-block rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90"
-          >
+          <p className="mt-6 max-w-xl text-lg text-white/60">Call {PHONE}. A J. Worden picks up.</p>
+          <a href={PHONE_HREF} className="btn-primary mt-10">
             Call {PHONE}
           </a>
         </div>

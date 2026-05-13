@@ -1,44 +1,99 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import '../index.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import SocialTracking from '../components/SocialTracking'
 import GoogleIntelligence from '../components/GoogleIntelligence'
-import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
+import PageLoadCurtain from '../components/PageLoadCurtain'
+import SectionReveal from '../components/SectionReveal'
+import SmoothScroll from '../components/SmoothScroll'
 
-const BUSINESS_ID = "https://jwordenasphaltpaving.com/#business";
+// Lazy-load Jarvis concierge so the floating widget never blocks LCP.
+// Mount is deferred to first idle (or after 2s) on the client.
+const JarvisChat = lazy(() => import('../components/JarvisChat'))
+
+function DeferredJarvisChat() {
+  const [ready, setReady] = useState(false)
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const w = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number }
+    if (typeof w.requestIdleCallback === 'function') {
+      const id = w.requestIdleCallback(() => setReady(true), { timeout: 2500 })
+      return () => {
+        const cancel = (window as unknown as { cancelIdleCallback?: (handle: number) => void }).cancelIdleCallback
+        if (typeof cancel === 'function') cancel(id)
+      }
+    }
+    const t = window.setTimeout(() => setReady(true), 2000)
+    return () => window.clearTimeout(t)
+  }, [])
+  if (!ready) return null
+  return (
+    <Suspense fallback={null}>
+      <JarvisChat />
+    </Suspense>
+  )
+}
+import { SERVICE_AREAS_41 } from '../constants/serviceAreas'
+import {
+  SCHEMA_IDS,
+  BUSINESS_NAME,
+  BUSINESS_LEGAL_NAME,
+  BUSINESS_DESCRIPTION,
+  BUSINESS_FOUNDING_YEAR,
+  ALTERNATE_NAMES,
+  FOUNDER,
+  TAX_ID_EIN,
+  PHONE_DISPLAY,
+  SITE_URL,
+  ADDRESS,
+  GEO,
+  AGGREGATE_RATING,
+  PRICE_RANGE,
+  SAME_AS,
+} from '../lib/businessInfo'
+
+const BUSINESS_ID = SCHEMA_IDS.business;
 
 const pavingContractorSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "@id": BUSINESS_ID,
-  "name": "J. Worden & Sons Asphalt Paving",
-  "legalName": "J. Worden & Sons Paving LLC",
-  "telephone": "804-446-1296",
-  "url": "https://jwordenasphaltpaving.com",
-  "logo": "https://jwordenasphaltpaving.com/logo.png",
-  "image": "https://jwordenasphaltpaving.com/images/hero-paving.jpg",
-  "description": "4th-generation municipal-grade asphalt paving contractor serving Richmond VA and 41 surrounding cities. Signature 6-inch structural stone base standard. KFC, Arby's, and Taco Bell vetted.",
-  "foundingDate": "1984",
+  "name": BUSINESS_NAME,
+  "legalName": BUSINESS_LEGAL_NAME,
+  "alternateName": [...ALTERNATE_NAMES],
+  "telephone": PHONE_DISPLAY,
+  "url": SITE_URL,
+  "logo": `${SITE_URL}/logo.png`,
+  "image": `${SITE_URL}/images/hero-paving.jpg`,
+  "description": BUSINESS_DESCRIPTION,
+  "foundingDate": BUSINESS_FOUNDING_YEAR,
+  "founder": {
+    "@type": "Person",
+    "name": FOUNDER.name,
+    "jobTitle": FOUNDER.jobTitle
+  },
+  "taxID": TAX_ID_EIN,
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1601 Ware Bottom Springs Rd",
-    "addressLocality": "Chester",
-    "addressRegion": "VA",
-    "postalCode": "23836",
-    "addressCountry": "US"
+    "streetAddress": ADDRESS.streetAddress,
+    "addressLocality": ADDRESS.addressLocality,
+    "addressRegion": ADDRESS.addressRegion,
+    "postalCode": ADDRESS.postalCode,
+    "addressCountry": ADDRESS.addressCountry
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 37.3592,
-    "longitude": -77.3986
+    "latitude": GEO.latitude,
+    "longitude": GEO.longitude
   },
   "aggregateRating": {
     "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "reviewCount": "127",
-    "bestRating": "5",
-    "worstRating": "1"
+    "ratingValue": AGGREGATE_RATING.ratingValue,
+    "reviewCount": AGGREGATE_RATING.reviewCount,
+    "bestRating": AGGREGATE_RATING.bestRating,
+    "worstRating": AGGREGATE_RATING.worstRating
   },
   "areaServed": SERVICE_AREAS_41.map((city) => ({
     "@type": "City",
@@ -48,7 +103,7 @@ const pavingContractorSchema = {
       "name": "Virginia"
     }
   })),
-  "priceRange": "$$$",
+  "priceRange": PRICE_RANGE,
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -63,10 +118,7 @@ const pavingContractorSchema = {
       "closes": "17:00"
     }
   ],
-  "sameAs": [
-    "https://www.houzz.com/pro/jwordenandsonspaving/j-worden-sons-paving-l-l-c",
-    "https://www.bbb.org/us/va/chester/profile/paving-contractors/j-worden-and-sons-paving-llc"
-  ],
+  "sameAs": [...SAME_AS],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Asphalt Paving Services",
@@ -287,13 +339,17 @@ const jwordenAISchema = {
 export const Route = createRootRoute({
   component: () => (
     <>
+      <PageLoadCurtain />
+      <SmoothScroll />
+      <SectionReveal />
       <GoogleIntelligence />
       <SocialTracking />
       <Header />
-      <main className="min-h-screen bg-black text-white">
+      <main className="min-h-screen bg-premium-black grain text-white">
         <Outlet />
       </main>
       <Footer />
+      <DeferredJarvisChat />
 
       {/* MASTER AUTHORITY SCHEMA — PavingContractor + AggregateRating + 41-City ServiceArea */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(pavingContractorSchema) }} />

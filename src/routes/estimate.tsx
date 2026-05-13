@@ -1,9 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { useState, useCallback } from 'react';
-import MapEstimator from '@/components/MapEstimator';
+import { useState, useCallback, lazy, Suspense } from 'react';
 import EstimatePricePanel from '@/components/EstimatePricePanel';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
-import CrossSectionViewer from '@/components/CrossSectionViewer';
 import {
   estimateFromPolygon,
   STATE_PRICE_MULTIPLIER,
@@ -13,6 +11,19 @@ import {
   type ServiceType,
   DEFAULT_CONFIG,
 } from '@/lib/estimator-engine';
+
+// Heavy vendors — leaflet (~150kB gz) and three.js (~140kB gz). Code-split
+// so the rest of the site never pays for them.
+const MapEstimator = lazy(() => import('@/components/MapEstimator'));
+const CrossSectionViewer = lazy(() => import('@/components/CrossSectionViewer'));
+
+function LazyPanelFallback({ label }: { label: string }) {
+  return (
+    <div className="flex h-[420px] items-center justify-center border border-zinc-800 bg-zinc-950/40 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+      Loading {label}…
+    </div>
+  );
+}
 
 const SERVICE_OPTIONS: { value: ServiceType; label: string }[] = [
   { value: 'new-install', label: 'New Asphalt Installation' },
@@ -68,7 +79,7 @@ function EstimatePage() {
     SERVICE_OPTIONS.find((s) => s.value === config.serviceType)?.label ?? 'Estimate';
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white font-sans pt-28">
+    <main className="min-h-screen bg-premium-black grain text-white font-sans pt-28">
       {/* Hero */}
       <section className="relative py-20 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
@@ -193,18 +204,22 @@ function EstimatePage() {
               <h2 className="text-2xl font-black uppercase text-white tracking-tight">
                 📍 Draw Your Project Area
               </h2>
-              <MapEstimator
-                onPolygonChange={handlePolygonChange}
-                onClear={handleClear}
-              />
+              <Suspense fallback={<LazyPanelFallback label="map" />}>
+                <MapEstimator
+                  onPolygonChange={handlePolygonChange}
+                  onClear={handleClear}
+                />
+              </Suspense>
 
               {/* Cross Section — live polygon extrusion from map */}
-              <CrossSectionViewer
-                surfaceDepthIn={config.surfaceDepthIn}
-                includeBase={config.includeBase}
-                includeSeal={config.includeSeal}
-                polygonCoords={polygonCoords.length >= 3 ? polygonCoords : undefined}
-              />
+              <Suspense fallback={<LazyPanelFallback label="3D viewer" />}>
+                <CrossSectionViewer
+                  surfaceDepthIn={config.surfaceDepthIn}
+                  includeBase={config.includeBase}
+                  includeSeal={config.includeSeal}
+                  polygonCoords={polygonCoords.length >= 3 ? polygonCoords : undefined}
+                />
+              </Suspense>
             </div>
 
             {/* Price Panel + Lead Capture — takes 2 columns */}

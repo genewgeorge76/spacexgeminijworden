@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TheWordenStandardRouteImport } from './routes/the-worden-standard'
+import { Route as TarAndChipRouteImport } from './routes/tar-and-chip'
 import { Route as StandardsRouteImport } from './routes/standards'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
@@ -72,7 +74,18 @@ import { Route as LocationsCarolineRouteImport } from './routes/locations/caroli
 import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
 import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland'
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
+import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
+const TheWordenStandardRoute = TheWordenStandardRouteImport.update({
+  id: '/the-worden-standard',
+  path: '/the-worden-standard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TarAndChipRoute = TarAndChipRouteImport.update({
+  id: '/tar-and-chip',
+  path: '/tar-and-chip',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StandardsRoute = StandardsRouteImport.update({
   id: '/standards',
   path: '/standards',
@@ -389,6 +402,11 @@ const LocationsAmeliaRoute = LocationsAmeliaRouteImport.update({
   path: '/locations/amelia',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -402,6 +420,9 @@ export interface FileRoutesByFullPath {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/tar-and-chip': typeof TarAndChipRoute
+  '/the-worden-standard': typeof TheWordenStandardRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -467,6 +488,9 @@ export interface FileRoutesByTo {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/tar-and-chip': typeof TarAndChipRoute
+  '/the-worden-standard': typeof TheWordenStandardRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -533,6 +557,9 @@ export interface FileRoutesById {
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
+  '/tar-and-chip': typeof TarAndChipRoute
+  '/the-worden-standard': typeof TheWordenStandardRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
@@ -600,6 +627,9 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/tar-and-chip'
+    | '/the-worden-standard'
+    | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -665,6 +695,9 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/tar-and-chip'
+    | '/the-worden-standard'
+    | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -730,6 +763,9 @@ export interface FileRouteTypes {
     | '/sealcoating'
     | '/services'
     | '/standards'
+    | '/tar-and-chip'
+    | '/the-worden-standard'
+    | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
@@ -796,6 +832,9 @@ export interface RootRouteChildren {
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
   StandardsRoute: typeof StandardsRoute
+  TarAndChipRoute: typeof TarAndChipRoute
+  TheWordenStandardRoute: typeof TheWordenStandardRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
@@ -852,6 +891,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/the-worden-standard': {
+      id: '/the-worden-standard'
+      path: '/the-worden-standard'
+      fullPath: '/the-worden-standard'
+      preLoaderRoute: typeof TheWordenStandardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tar-and-chip': {
+      id: '/tar-and-chip'
+      path: '/tar-and-chip'
+      fullPath: '/tar-and-chip'
+      preLoaderRoute: typeof TarAndChipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/standards': {
       id: '/standards'
       path: '/standards'
@@ -1293,6 +1346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsAmeliaRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -1308,6 +1368,9 @@ const rootRouteChildren: RootRouteChildren = {
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
   StandardsRoute: StandardsRoute,
+  TarAndChipRoute: TarAndChipRoute,
+  TheWordenStandardRoute: TheWordenStandardRoute,
+  BlogSlugRoute: BlogSlugRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,

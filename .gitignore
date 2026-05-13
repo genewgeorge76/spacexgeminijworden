@@ -5,3 +5,12 @@ dist
 
 .tools/
 
+# Local env (VITE_* keys; production env lives in netlify.toml / Netlify dashboard)
+.env
+.env.local
+.env.*.local
+
+# Playwright artifacts
+test-results/
+playwright-report/
+playwright-out.txt

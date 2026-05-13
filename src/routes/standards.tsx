@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/standards')({
   component: () => (
-    <main className="min-h-screen bg-[#111111] font-sans text-white">
+    <main className="min-h-screen bg-premium-black grain font-sans text-white">
       {/* HERO SECTION */}
       <section className="py-24 px-6 bg-[#1a1a1a] border-b-[10px] border-[#ffcc00]">
         <div className="max-w-7xl mx-auto">

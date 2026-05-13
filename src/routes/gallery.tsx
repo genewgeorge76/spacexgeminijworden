@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSeo } from '../lib/useSeo';
+import SectionBackdrop from '../components/SectionBackdrop';
 
 export const Route = createFileRoute('/gallery')({
   component: GalleryPage,
@@ -63,9 +64,10 @@ function GalleryPage() {
   });
 
   return (
-    <main className="bg-black text-white">
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-32 md:py-40">
+    <main className="bg-premium-black grain text-white antialiased">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04]">
+        <SectionBackdrop video="/video/driveway-paving.mp4" opacity={0.65} />
+        <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">Work</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
             Forty years of asphalt across Central Virginia.
@@ -76,7 +78,7 @@ function GalleryPage() {
         </div>
       </section>
 
-      <section className="border-b border-white/10">
+      <section className="border-b border-white/[0.04]">
         <div className="mx-auto max-w-7xl px-6 py-16">
           <div className="grid grid-cols-1 gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-3">
             {PROJECTS.map((p) => (

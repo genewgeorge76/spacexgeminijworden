@@ -6,7 +6,10 @@ import { resolve } from 'path'
 
 export default defineConfig({
   plugins: [
-    TanStackRouterVite(),
+    // autoCodeSplitting moves each route's component into its own lazy chunk,
+    // so the 41 location pages + heavy LocationPage component no longer ship
+    // in the initial bundle. Verified safe with TanStack Router v1.
+    TanStackRouterVite({ autoCodeSplitting: true }),
     tailwindcss(),
     react(),
   ],
@@ -29,8 +32,14 @@ export default defineConfig({
           if (id.includes('/leaflet/')) {
             return 'vendor-leaflet'
           }
+          if (id.includes('/three/')) {
+            return 'vendor-three'
+          }
           if (id.includes('/@react-pdf/')) {
             return 'vendor-pdf'
+          }
+          if (id.includes('/@sentry/') || id.includes('/sentry-')) {
+            return 'vendor-sentry'
           }
           if (id.includes('/lucide-react/')) {
             return 'vendor-icons'

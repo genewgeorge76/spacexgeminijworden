@@ -1,6 +1,17 @@
 import React from 'react'
-import { pdf } from '@react-pdf/renderer'
-import { ContractDocument } from '../components/ContractDocument'
+
+/**
+ * @react-pdf/renderer pulls ~400 kB of WASM/canvas glue. Defer loading
+ * until the user actually clicks "download contract" — keeps it out of
+ * the initial bundle entirely.
+ */
+async function loadPdfDeps() {
+  const [{ pdf }, { ContractDocument }] = await Promise.all([
+    import('@react-pdf/renderer'),
+    import('../components/ContractDocument'),
+  ])
+  return { pdf, ContractDocument }
+}
 
 export class ContractGenerator {
   static async downloadSupremeCourtPDF(
@@ -9,6 +20,8 @@ export class ContractGenerator {
     aiProposal: string,
   ) {
     console.log(`Compiling 4K PDF Contract for ${targetAddress}...`)
+
+    const { pdf, ContractDocument } = await loadPdfDeps()
 
     const contractDoc = React.createElement(ContractDocument, {
       targetAddress,

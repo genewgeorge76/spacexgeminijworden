@@ -1,56 +1,55 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSeo } from '../lib/useSeo';
 import { CITIES } from '../data/cities';
+import SectionBackdrop from '../components/SectionBackdrop';
+import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, PHONE_SCHEMA, SITE_URL } from '../lib/businessInfo';
 
 export const Route = createFileRoute('/services')({
   component: ServicesPage,
 });
 
-const PHONE = '804-446-1296';
-const PHONE_HREF = 'tel:+18044461296';
-
 const SERVICES = [
   {
-    name: 'Commercial parking lots',
-    desc: 'Retail, restaurant, medical, industrial. Multi-site rollouts. Phased after-hours work to keep the business open.',
+    name: 'Commercial Asphalt Paving',
+    desc: 'New construction, full-depth replacement, and parking-lot expansions for retail centers, restaurants, medical campuses, distribution yards, and HOA roadways. Phased night-shift mobilization keeps your doors open and your traffic moving across Richmond, Chesterfield, and Henrico.',
     to: '/commercial',
-    keywords: 'parking lot paving Richmond, commercial asphalt Chesterfield',
+    keywords: 'commercial asphalt paving Richmond VA, parking lot contractor Chesterfield, retail center paving Henrico',
   },
   {
-    name: 'Residential driveways',
-    desc: 'New asphalt driveways, replacements, and estate work across the Greater Richmond region.',
+    name: 'Residential Driveway Paving',
+    desc: 'Hot-mix asphalt driveways engineered for Virginia clay: 6-inch compacted #21A stone base, 2 to 3-inch wear course, hand-formed edges, and finish-graded approaches. New installs, full tear-out replacements, widenings, and estate-grade circular drives.',
     to: '/residential',
-    keywords: 'driveway paving Midlothian, residential asphalt Chester VA',
+    keywords: 'driveway paving Midlothian VA, residential asphalt contractor Chester, asphalt driveway installation Richmond',
   },
   {
-    name: 'Sealcoating & striping',
-    desc: 'Coal-tar and asphalt-emulsion sealcoat, crack-fill, ADA striping, parking-lot restoration.',
+    name: 'Sealcoating & Pavement Maintenance',
+    desc: 'Commercial-grade coal-tar and asphalt-emulsion sealcoats, hot-pour rubberized crack fill, infrared patching, and ADA-compliant restriping. A planned maintenance cycle every 24\u201336 months can double pavement life and defer six-figure replacement bids.',
     to: '/sealcoating',
-    keywords: 'sealcoating Richmond VA, parking lot striping Chesterfield',
+    keywords: 'sealcoating Richmond VA, parking lot striping Chesterfield, asphalt maintenance program Henrico',
   },
   {
-    name: 'Tar & chip / chip seal',
-    desc: 'The right surface for long farm lanes, ranch driveways, and country roads. Lower cost than full asphalt with a rugged, traction-rich finish that handles tractors, trailers, and trucks.',
-    to: '/services',
-    keywords: 'tar and chip driveway Powhatan, chip seal Goochland farm road, rural driveway Hanover',
+    name: 'Tar & Chip / Chip Seal',
+    desc: 'Bituminous surface treatment over a prepared aggregate base \u2014 the durable, lower-cost surface for long farm lanes, equestrian properties, vineyard access, and private rural roads. Outperforms gravel on washout, traction, and dust control.',
+    to: '/tar-and-chip',
+    keywords: 'tar and chip driveway Powhatan VA, chip seal Goochland farm road, rural driveway Hanover County',
   },
   {
-    name: 'Patching & pothole repair',
-    desc: 'Saw-cut full-depth patches, base-failure remediation, and drive-thru lane repair without ripping the whole lot.',
+    name: 'Asphalt Patching & Pothole Repair',
+    desc: 'Saw-cut, full-depth patching tied flush to surrounding pavement. Base-failure remediation, drive-thru lane repair, utility-cut restoration, and emergency mobilization for property managers, municipalities, and industrial sites.',
     to: '/services',
-    keywords: 'asphalt patching Henrico, pothole repair Richmond VA',
+    keywords: 'asphalt patching Henrico VA, pothole repair Richmond, commercial pavement repair Chesterfield',
   },
   {
-    name: 'Milling & overlay',
-    desc: 'Mill-and-fill resurfacing for parking lots and roadways. Tied-in transitions, no lip, no trip hazard.',
+    name: 'Milling & Asphalt Overlay',
+    desc: 'Cold-planed mill-and-fill resurfacing for parking lots, drive aisles, and private roads. Tied-in transitions to existing curb, gutter, and concrete pads \u2014 no lip, no trip hazard, no pooling water.',
     to: '/services',
-    keywords: 'asphalt milling Chesterfield, parking lot overlay Richmond',
+    keywords: 'asphalt milling Chesterfield VA, parking lot overlay Richmond, asphalt resurfacing Henrico',
   },
   {
-    name: 'Line striping & ADA layout',
-    desc: 'Latex traffic paint, thermoplastic on request, ADA van-accessible stalls done to code the first time.',
+    name: 'Line Striping & ADA Layout',
+    desc: 'High-build latex traffic paint, thermoplastic on request, and full ADA layout including van-accessible stalls, access aisles, fire lanes, and directional arrows. Engineered to current Virginia and federal accessibility code on the first pass.',
     to: '/services',
-    keywords: 'parking lot striping Richmond, ADA striping Virginia',
+    keywords: 'parking lot striping Richmond VA, ADA striping Virginia, fire lane painting Chesterfield',
   },
 ];
 
@@ -59,9 +58,9 @@ const RURAL = ['powhatan', 'goochland', 'hanover', 'new-kent', 'amelia', 'cumber
 
 function ServicesPage() {
   useSeo({
-    title: 'Asphalt Paving Services in Chester & Greater Richmond, VA',
+    title: 'Asphalt Paving Services in Chester, VA | Driveways, Parking Lots, Sealcoating | J. Worden & Sons',
     description:
-      'Family-owned asphalt paving in Chester, VA serving Chesterfield, Richmond, Midlothian, Henrico and surrounding counties. Driveways, parking lots, sealcoating, tar & chip for farms. Call 804-446-1296.',
+      'Class A licensed asphalt paving contractor headquartered in Chester, VA. Commercial parking lots, residential driveways, sealcoating, milling & overlay, ADA striping, and tar & chip throughout Chesterfield, Richmond, Henrico, Midlothian, Powhatan, Goochland, and Hanover. Family-owned since 1984. Call 804-446-1296.',
     path: '/services',
   });
 
@@ -71,15 +70,15 @@ function ServicesPage() {
     '@id': 'https://jwordenasphaltpaving.com/services#contractor',
     name: 'J. Worden & Sons Asphalt Paving',
     image: 'https://jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
-    telephone: '+1-804-446-1296',
+    telephone: PHONE_SCHEMA,
     priceRange: '$$$',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: '1601 Ware Bottom Springs Rd, Suite 214',
-      addressLocality: 'Chester',
-      addressRegion: 'VA',
-      postalCode: '23836',
-      addressCountry: 'US',
+      streetAddress: ADDRESS.streetAddress,
+      addressLocality: ADDRESS.addressLocality,
+      addressRegion: ADDRESS.addressRegion,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: ADDRESS.addressCountry,
     },
     areaServed: [
       { '@type': 'City', name: 'Chester' },
@@ -105,32 +104,25 @@ function ServicesPage() {
   };
 
   return (
-    <main className="bg-black text-white">
+    <main className="bg-premium-black grain text-white antialiased">
       {/* Hero — local-pack signal: city + county + service in H1 */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <SectionBackdrop video="/video/hero-paving.mp4" />
+        <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
           <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Chester, VA &middot; Chesterfield County HQ
+            Chester, Virginia &middot; Class A Licensed Paving Contractor &middot; Est. 1984
           </p>
           <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
-            Asphalt paving services in Chester, Chesterfield, Richmond &amp; the surrounding counties.
+            Our business&nbsp;&nbsp; Asphalt.
           </h1>
-          <p className="mt-8 max-w-3xl text-lg text-white/60 md:text-xl">
-            Family-owned since 1984. Headquartered at 1601 Ware Bottom Springs Rd in Chester, VA. Driveways,
-            parking lots, sealcoating, milling, striping, and tar &amp; chip for the farms and country roads
-            from Powhatan to Hanover.
+          <p className="mt-6 max-w-3xl text-xl font-light tracking-tight text-white/70 md:text-2xl">
+            Pavement built to last. Quoted in 24 hours.
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={PHONE_HREF}
-              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90"
-            >
+            <a href={PHONE_HREF} className="btn-primary">
               Call {PHONE}
             </a>
-            <Link
-              to="/contact"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
-            >
+            <Link to="/contact" className="btn-ghost">
               Free estimate &rarr;
             </Link>
           </div>
@@ -138,13 +130,29 @@ function ServicesPage() {
       </section>
 
       {/* Service grid */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-px bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <div className="relative mx-auto max-w-7xl px-6 py-20">
+          <div className="mb-12 max-w-3xl">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+              Four generations &middot; Chester, Virginia &middot; Est. 1984
+            </p>
+            <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
+              J. Worden &amp; Sons has been paving Virginia for forty years.
+            </h2>
+            <p className="mt-6 text-base text-white/60">
+              Founded in Chester in 1984, J. Worden &amp; Sons is now in its fourth generation of
+              family ownership. BBB A+ accredited since 1994. Class A Virginia license. Four-time
+              Best of Houzz. National preferred contractor for KFC, Taco Bell, and Arby&rsquo;s.
+              Every estimate is walked, scoped, and approved by Mr. Worden &mdash;
+              and every crew on your property is a direct employee of this company.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((s, i) => (
             <Link
               key={s.name}
               to={s.to}
-              className="group block bg-black p-10 transition hover:bg-white/[0.03] md:p-12"
+              className="surface-glass lift-hover group block p-10 md:p-12"
             >
               <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
                 0{i + 1}
@@ -156,75 +164,81 @@ function ServicesPage() {
               </div>
             </Link>
           ))}
-        </div>
-      </section>
-
-      {/* Tar & chip dedicated block — captures rural search intent */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-4xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Built for the country
-          </p>
-          <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-            Tar &amp; chip driveways for farms, ranches &amp; rural property.
-          </h2>
-          <div className="mt-10 space-y-6 text-lg leading-relaxed text-white/70">
-            <p>
-              A 600-foot farm lane doesn&rsquo;t need a city parking lot. Tar &amp; chip (also called chip seal)
-              gives you a rugged, locked-in driving surface for a fraction of the cost of full-depth asphalt.
-              The aggregate gives traction in mud and ice, the binder seals out water, and tractors,
-              skid-steers, and grain trucks roll over it without spitting it apart.
-            </p>
-            <p>
-              We run tar &amp; chip across Powhatan, Goochland, Hanover, New Kent, Amelia, Cumberland,
-              Fluvanna, Louisa, Orange, and the rest of the rural counties around our Chester, VA shop.
-              If you&rsquo;ve got a long lane, a horse barn, an equipment yard, or a private road that won&rsquo;t
-              justify a hot-mix bid, this is the right surface.
-            </p>
-            <p className="text-white">
-              <strong className="font-medium text-white">Call {PHONE}</strong> and we&rsquo;ll come walk it.
-              No salesman. A Worden quotes the job.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Standards */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-4xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            The Worden standard
-          </p>
-          <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
-            What you get on every job, no exceptions.
+      {/* CTA — 3rd section */}
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <SectionBackdrop video="/video/segment-2.mp4" />
+        <div className="relative mx-auto max-w-7xl px-6 py-32">
+          <h2 className="max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
+            Ready for a real number?
           </h2>
-          <ul className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {[
-              ['6-inch structural stone base', 'Compacted #21A. Not optional. Not an upsell.'],
-              ['96% Marshall density', 'Verified on site, not estimated on paper.'],
-              ['VDOT Section 315 spec', 'Aggregate gradation matches Virginia DOT highway standard.'],
-              ['Zero subcontracted crews', 'A Worden walks the job. A Worden runs the job.'],
-              ['Class A Virginia contractor', 'Licensed in Virginia, Maryland, and North Carolina.'],
-              ['BBB A+ since 1994', '4-time Best of Houzz. KFC and Taco Bell preferred contractor.'],
-            ].map(([h, b]) => (
-              <li key={h} className="border-t border-white/10 pt-6">
-                <div className="text-base font-medium">{h}</div>
-                <div className="mt-2 text-sm text-white/60">{b}</div>
-              </li>
-            ))}
-          </ul>
+          <p className="mt-6 max-w-xl text-lg text-white/60">
+            Call {PHONE} and a J. Worden picks up. We&rsquo;ll come walk the job.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <a href={PHONE_HREF} className="btn-primary">
+              Call {PHONE}
+            </a>
+            <Link to="/contact" className="btn-ghost">
+              Request estimate &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Tar & chip teaser strip */}
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+            Bituminous surface treatment
+          </p>
+          <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
+            Tar &amp; chip for farms, estates &amp; private rural roads.
+          </h2>
+          <div className="mt-10">
+            <Link to="/tar-and-chip" className="btn-ghost">
+              Tar &amp; chip details &rarr;
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Worden Standard teaser strip */}
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+            Construction specifications
+          </p>
+          <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
+            Built to a documented standard.
+          </h2>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-white/60">
+            VDOT-spec construction, written into every contract, verified on site.
+          </p>
+          <div className="mt-10">
+            <Link to="/the-worden-standard" className="btn-ghost">
+              Read the Worden Standard &rarr;
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Local pack: nearby cities + rural counties */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto max-w-7xl px-6 py-20">
+      <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
+        <div className="relative mx-auto max-w-7xl px-6 py-20">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
-            Cities we pave from our Chester shop
+            Greater Richmond service area
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-4xl">
-            Local crews. Local trucks. Local response.
+            Local crews, local equipment, same-week site visits.
           </h2>
+          <p className="mt-6 max-w-2xl text-base text-white/60">
+            Our paving and sealcoating crews dispatch daily from our Chester, VA yard. Most estimate
+            walks within Chesterfield, Henrico, and the City of Richmond are scheduled inside 72 hours.
+          </p>
           <div className="mt-10 flex flex-wrap gap-2 text-sm">
             {NEAR_HQ.map((slug) => {
               const c = CITIES.find((x) => x.slug === slug);
@@ -264,52 +278,27 @@ function ServicesPage() {
       </section>
 
       {/* NAP block — matches Google Business Profile */}
-      <section className="border-b border-white/10">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-20 md:grid-cols-3">
+      <section className="relative isolate overflow-hidden">
+        <SectionBackdrop video="/video/driveway-stratford-hills.mp4" />
+        <div className="relative mx-auto grid min-h-[70vh] max-w-7xl grid-cols-1 items-center gap-16 px-6 py-40 md:grid-cols-3 md:py-56">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Phone</p>
-            <a href={PHONE_HREF} className="mt-3 block text-2xl font-medium hover:text-white/80">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">Phone</p>
+            <a href={PHONE_HREF} className="mt-4 block text-3xl font-light tracking-tight text-white hover:text-white/80 md:text-4xl">
               {PHONE}
             </a>
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Headquarters</p>
-            <p className="mt-3 text-base text-white">
-              1601 Ware Bottom Springs Rd, Suite 214
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">Headquarters</p>
+            <p className="mt-4 text-lg font-light leading-relaxed text-white/90 md:text-xl">
+              {ADDRESS.streetAddress}
               <br />
-              Chester, VA 23836
+              {ADDRESS.addressLocality}, {ADDRESS.addressRegion} {ADDRESS.postalCode}
             </p>
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Hours</p>
-            <p className="mt-3 text-base text-white">Mon&ndash;Fri 7am&ndash;7pm</p>
-            <p className="text-base text-white">Sat 7am&ndash;5pm</p>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section>
-        <div className="mx-auto max-w-7xl px-6 py-32">
-          <h2 className="max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
-            Want a real number, not a guess?
-          </h2>
-          <p className="mt-6 max-w-xl text-lg text-white/60">
-            Call {PHONE} and a Worden picks up. We&rsquo;ll come walk the job.
-          </p>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <a
-              href={PHONE_HREF}
-              className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black hover:bg-white/90"
-            >
-              Call {PHONE}
-            </a>
-            <Link
-              to="/contact"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-white hover:bg-white/5"
-            >
-              Request estimate &rarr;
-            </Link>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/60">Hours</p>
+            <p className="mt-4 text-lg font-light text-white/90 md:text-xl">Mon&ndash;Fri 7am&ndash;6pm</p>
+            <p className="text-lg font-light text-white/90 md:text-xl">Sat 7am&ndash;2pm</p>
           </div>
         </div>
       </section>

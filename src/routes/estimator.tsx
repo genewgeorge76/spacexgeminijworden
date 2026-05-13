@@ -3,7 +3,7 @@ import ContactForm from '../components/ContactForm';
 
 export const Route = createFileRoute('/estimator')({
   component: () => (
-    <main className="min-h-screen bg-[#111111] text-white font-sans text-left">
+    <main className="min-h-screen bg-premium-black grain text-white font-sans text-left">
       {/* Hero */}
       <section className="relative py-32 px-6 bg-[#1a1a1a] border-b-[15px] border-[#ffcc00] overflow-hidden text-left">
         <div className="max-w-7xl mx-auto relative z-10 text-left">
