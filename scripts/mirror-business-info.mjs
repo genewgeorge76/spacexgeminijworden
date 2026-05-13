@@ -15,22 +15,34 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-const MASTER =
-  process.env.MASTER ??
-  resolve(
-    'C:/Users/genew/gemni-investigate/src/lib/businessInfo.ts',
-  );
+// Repo root, derived from this script's own location so it works regardless of
+// the current working directory or host OS (developer Windows box vs. Netlify Linux build).
+const REPO_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
-const MIRROR =
-  process.env.MIRROR ??
-  resolve(
-    'C:/Users/genew/Downloads/jworden_netlify_standalone_patched (2) (1)/src/lib/businessInfo.canonical.js',
-  );
+// MASTER lives inside this repo. Override with $MASTER if needed.
+const MASTER = process.env.MASTER ?? resolve(REPO_ROOT, 'src/lib/businessInfo.ts');
+
+// MIRROR target is the sibling standalone repo on the maintainer's local machine.
+// On Netlify (or any clean CI environment) the sibling repo doesn't exist, so we
+// detect that and skip the mirror step instead of failing the build.
+const DEFAULT_MIRROR =
+  process.platform === 'win32'
+    ? 'C:/Users/genew/Downloads/jworden_netlify_standalone_patched (2) (1)/src/lib/businessInfo.canonical.js'
+    : null;
+const MIRROR = process.env.MIRROR ?? DEFAULT_MIRROR;
 
 if (!existsSync(MASTER)) {
   console.error(`[mirror] MASTER not found: ${MASTER}`);
   process.exit(1);
+}
+
+if (!MIRROR || !existsSync(dirname(MIRROR))) {
+  console.log(
+    `[mirror] sibling standalone repo not present at "${MIRROR ?? '(unset)'}" — skipping mirror (CI / non-maintainer environment).`,
+  );
+  process.exit(0);
 }
 
 let src = readFileSync(MASTER, 'utf8');
