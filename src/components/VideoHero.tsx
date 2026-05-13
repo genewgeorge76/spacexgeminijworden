@@ -97,16 +97,39 @@ export function VideoHero({
     >
       {/* Media layer */}
       <div className="absolute inset-0 -z-10">
-        {/* Poster always rendered: serves as LCP image and as fallback. */}
-        <img
-          src={poster}
-          alt={posterAlt}
-          aria-hidden={posterAlt ? undefined : true}
-          className="h-full w-full object-cover"
-          loading="eager"
-          // Hint to browser this is the LCP candidate.
-          fetchPriority="high"
-        />
+        {/* Poster always rendered: serves as LCP image and as fallback.
+            Auto-derives modern WebP/AVIF siblings if poster is .jpg/.jpeg/.png
+            (e.g. /a/b.jpg → also /a/b.webp + /a/b.avif). */}
+        {(() => {
+          const m = poster.match(/^(.*)\.(jpe?g|png)$/i);
+          if (!m) {
+            return (
+              <img
+                src={poster}
+                alt={posterAlt}
+                aria-hidden={posterAlt ? undefined : true}
+                className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
+            );
+          }
+          const base = m[1];
+          return (
+            <picture>
+              <source srcSet={`${base}.avif`} type="image/avif" />
+              <source srcSet={`${base}.webp`} type="image/webp" />
+              <img
+                src={poster}
+                alt={posterAlt}
+                aria-hidden={posterAlt ? undefined : true}
+                className="h-full w-full object-cover"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </picture>
+          );
+        })()}
         {showVideo && (
           <video
             ref={videoRef}

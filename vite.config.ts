@@ -19,6 +19,13 @@ export default defineConfig({
     },
   },
   build: {
+    // Ship source maps so Lighthouse "Missing source maps for large first-party JavaScript"
+    // best-practices audit passes; sourcemaps live next to chunks but are not loaded in prod.
+    sourcemap: true,
+    // Tighten minification (esbuild is the Vite default and is already aggressive).
+    cssMinify: true,
+    // Slightly larger warning threshold so legitimate vendor chunks (three, leaflet, pdf) don't spam.
+    chunkSizeWarningLimit: 700,
     rollupOptions: {
       output: {
         manualChunks(id) {
