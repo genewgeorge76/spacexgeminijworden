@@ -87,6 +87,19 @@
   status = 200
   force  = true
 
+# Service worker cleanup (prevents old cached SW from breaking site)
+[[redirects]]
+  from   = "/sw.js"
+  to     = "/sw.js"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/service-worker.js"
+  to     = "/service-worker.js"
+  status = 200
+  force  = true
+
 # SPA fallback — must be LAST
 [[redirects]]
   from   = "/*"
