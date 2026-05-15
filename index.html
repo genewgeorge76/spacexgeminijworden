@@ -47,6 +47,39 @@
     ]
   }
   </script>
+
+  <!-- GA4 + Google Ads Conversion Tracking -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BJX8RPZ10X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BJX8RPZ10X');
+
+    // Conversion helper — call from anywhere
+    window.track_conversion = function(action, label) {
+      gtag('event', action, {
+        event_category: 'conversion',
+        event_label: label || '',
+        value: 1
+      });
+    };
+
+    // Track all tel: and sms: link clicks automatically
+    document.addEventListener('click', function(e) {
+      var link = e.target.closest('a[href]');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      if (href.startsWith('tel:')) {
+        gtag('event', 'conversion', { event_category: 'engagement', event_label: 'phone_call', value: 1 });
+        gtag('event', 'phone_call_click', { phone_number: '804-446-1296' });
+      }
+      if (href.startsWith('sms:')) {
+        gtag('event', 'conversion', { event_category: 'engagement', event_label: 'text_message', value: 1 });
+        gtag('event', 'text_message_click', { phone_number: '804-446-1296' });
+      }
+    });
+  </script>
 </head>
 <body>
   <!-- Netlify Forms detection (build-time scan). Hidden from users; React form posts here at runtime. -->

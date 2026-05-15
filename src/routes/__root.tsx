@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import '../index.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
+import MobileCTA from '../components/MobileCTA'
 import SocialTracking from '../components/SocialTracking'
 import GoogleIntelligence from '../components/GoogleIntelligence'
 import PageLoadCurtain from '../components/PageLoadCurtain'
@@ -349,6 +350,9 @@ export const Route = createRootRoute({
         <Outlet />
       </main>
       <Footer />
+      {/* Spacer for sticky mobile CTA bar */}
+      <div className="h-20 md:hidden" />
+      <MobileCTA />
       <DeferredJarvisChat />
 
       {/* MASTER AUTHORITY SCHEMA — PavingContractor + AggregateRating + 41-City ServiceArea */}
