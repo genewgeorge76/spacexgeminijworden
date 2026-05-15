@@ -117,7 +117,7 @@ function CommandBotUI() {
       </form>
 
       <p className="text-zinc-700 text-xs mt-3">
-        HQ: 1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836 · Premium Status:{' '}
+        HQ: 1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836 · Premium Status:{' '}
         <span className="text-[#ffcc00]">{premiumSuite.status}</span>
       </p>
     </section>

@@ -185,7 +185,7 @@ const faqSchema = {
 const speakableSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "J. Worden & Sons Asphalt Paving — Richmond VA",
+  "name": "J. Worden & Sons Paving LLC — Richmond VA",
   "speakable": {
     "@type": "SpeakableSpecification",
     "cssSelector": ["h1", "h2", ".speakable"]
@@ -198,7 +198,7 @@ const speakableSchema = {
         "name": "Who is the best-rated paving company near me in Richmond VA?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "J. Worden & Sons Asphalt Paving is the highest-rated paving company in the Richmond Virginia metro area, serving 41 cities with a 4th-generation 6-inch structural base standard. Call 804-446-1296 for a free estimate."
+          "text": "J. Worden & Sons Paving LLC is the highest-rated paving company in the Richmond Virginia metro area, serving 41 cities with a 4th-generation 6-inch structural base standard. Call 804-446-1296 for a free estimate."
         }
       },
       {
@@ -214,7 +214,7 @@ const speakableSchema = {
         "name": "What paving company serves the Richmond Virginia area?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "J. Worden & Sons Asphalt Paving serves Richmond and 41 surrounding cities including Midlothian, Glen Allen, Chesterfield, Henrico, and more. We are 4th-generation paving specialists with a 6-inch compacted aggregate base standard."
+          "text": "J. Worden & Sons Paving LLC serves Richmond and 41 surrounding cities including Midlothian, Glen Allen, Chesterfield, Henrico, and more. We are 4th-generation paving specialists with a 6-inch compacted aggregate base standard."
         }
       }
     ]
@@ -225,7 +225,7 @@ const reviewSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "@id": BUSINESS_ID,
-  "name": "J. Worden & Sons Asphalt Paving",
+  "name": "J. Worden & Sons Paving LLC",
   "review": [
     {
       "@type": "Review",
@@ -283,7 +283,7 @@ const nationalCorporationSchema = {
   "@context": "https://schema.org",
   "@type": ["Corporation", "HomeAndConstructionBusiness"],
   "@id": BUSINESS_ID,
-  "name": "J. Worden & Sons Asphalt Paving",
+  "name": "J. Worden & Sons Paving LLC",
   "legalName": "J. Worden & Sons Paving LLC",
   "foundingDate": "1984",
   "founder": { "@type": "Person", "name": "Gene W. George" },
@@ -292,7 +292,7 @@ const nationalCorporationSchema = {
   "telephone": "804-446-1296",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "1601 Ware Bottom Springs Rd",
+    "streetAddress": "1601 Ware Bottom Spring Rd",
     "addressLocality": "Chester",
     "addressRegion": "VA",
     "postalCode": "23836",
@@ -324,10 +324,10 @@ const jwordenAISchema = {
   "alternateName": "JWORDENAI Paving Technology",
   "applicationCategory": "BusinessApplication",
   "operatingSystem": "Web",
-  "description": "Proprietary AI-powered predictive logistics and pricing optimization platform for national commercial asphalt paving. Developed exclusively by J. Worden & Sons Asphalt Paving. Automates bid intelligence, margin protection, crew scheduling, and 50-state compliance.",
+  "description": "Proprietary AI-powered predictive logistics and pricing optimization platform for national commercial asphalt paving. Developed exclusively by J. Worden & Sons Paving LLC. Automates bid intelligence, margin protection, crew scheduling, and 50-state compliance.",
   "author": {
     "@type": "Corporation",
-    "name": "J. Worden & Sons Asphalt Paving",
+    "name": "J. Worden & Sons Paving LLC",
     "url": "https://jwordenasphaltpaving.com"
   },
   "url": "https://jwordenasphaltpaving.com",

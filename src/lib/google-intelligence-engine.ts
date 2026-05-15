@@ -2,7 +2,7 @@
  * ============================================================================
  * JWORDENAI — Google Intelligence Engine
  * ============================================================================
- * Autonomous Google performance layer for J. Worden & Sons Asphalt Paving.
+ * Autonomous Google performance layer for J. Worden & Sons Paving LLC.
  *
  * Capabilities:
  *  1. GA4 — loads Google Analytics 4 and provides a typed gtag() shim

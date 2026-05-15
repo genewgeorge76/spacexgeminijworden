@@ -7,7 +7,7 @@ import { virtualForeman } from './virtualForeman';
 
 export const richmondVoiceHub = {
   activeNumber: '8044461296',
-  primaryHQ: '1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836',
+  primaryHQ: '1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836',
 
   matchCityNode: function (address: string): string {
     // Match against the 72-city SEO grid

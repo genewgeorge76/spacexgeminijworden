@@ -31,7 +31,7 @@ export default function LocationPage({ city, nearby }: Props) {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     '@id': `https://jwordenasphaltpaving.com/locations/${city.slug}#business`,
-    name: `J. Worden & Sons Asphalt Paving — ${cityState}`,
+    name: `J. Worden & Sons Paving LLC — ${cityState}`,
     image: 'https://jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
     telephone: PHONE_SCHEMA,
     priceRange: '$$$',

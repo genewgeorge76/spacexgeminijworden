@@ -68,7 +68,7 @@ function ServicesPage() {
     '@context': 'https://schema.org',
     '@type': 'PavingContractor',
     '@id': 'https://jwordenasphaltpaving.com/services#contractor',
-    name: 'J. Worden & Sons Asphalt Paving',
+    name: 'J. Worden & Sons Paving LLC',
     image: 'https://jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
     telephone: PHONE_SCHEMA,
     priceRange: '$$$',

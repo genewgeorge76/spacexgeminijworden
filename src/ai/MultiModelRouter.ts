@@ -24,7 +24,7 @@ const TASK_ROUTING: Record<TaskType, { provider: ModelRouteResult['provider']; m
   general:    { provider: 'anthropic', model: 'claude-3-5-sonnet-20241022' },
 };
 
-const WORDEN_SYSTEM_CONTEXT = `You are JWORDENAI — the proprietary AI engine for J. Worden & Sons Asphalt Paving & General Contracting.
+const WORDEN_SYSTEM_CONTEXT = `You are JWORDENAI — the proprietary AI engine for J. Worden & Sons Paving LLC & General Contracting.
 Company: 4th-generation family business, established 1984.
 License: Virginia Class A Contractor License.
 Standards: 96% Marshall Unit Weight compaction minimum. VDOT Section 315 structural stone base required on all paving.

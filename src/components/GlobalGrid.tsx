@@ -93,7 +93,7 @@ const GlobalGrid = () => {
   return (
     <section style={styles.wrapper} aria-label="Worden Alliance Footprint">
       <div style={styles.hqBadge}>
-        &#9679; COMMAND CENTER: 1601 Ware Bottom Springs Rd, Chester, VA
+        &#9679; COMMAND CENTER: 1601 Ware Bottom Spring Rd, Chester, VA
       </div>
 
       <h2 style={styles.heading}>THE WORDEN ALLIANCE FOOTPRINT</h2>

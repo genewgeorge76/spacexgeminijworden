@@ -1,6 +1,6 @@
 export const commandBot = {
   status: "ONLINE",
-  hq: "1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836",
+  hq: "1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836",
   processCommand: function(input: string) {
     const lowerInput = input.toLowerCase();
     if (lowerInput.includes("leads")) return "Checking Kickserv pipeline... 3 High-Velocity leads found.";

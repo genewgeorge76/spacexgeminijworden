@@ -1,7 +1,7 @@
 /**
  * JWORDENAI Voice Assistant v1.0
  * Logic: AI-Foreman Persona + Satellite Trigger
- * Node: Chester, VA HQ — 1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836
+ * Node: Chester, VA HQ — 1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836
  */
 
 export interface LeadInfo {
@@ -38,7 +38,7 @@ function createKickservLead(payload: KickservPayload): void {
 
 export const virtualForeman = {
   voiceModel: 'Industrial-Professional-Male',
-  hq: '1601 Ware Bottom Springs Rd, Suite 214, Chester, VA 23836',
+  hq: '1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836',
 
   onIncomingCall: function (
     callerID: string,

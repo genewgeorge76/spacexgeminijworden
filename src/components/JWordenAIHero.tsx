@@ -39,7 +39,7 @@ export const JWordenAIHero = () => {
             <p className="text-sm">Virginia Infrastructure Grid</p>
           </div>
           <div className="stat-block">
-            <h4 className="text-2xl text-gold">1601 Ware Bottom Springs</h4>
+            <h4 className="text-2xl text-gold">1601 Ware Bottom Spring</h4>
             <p className="text-sm">National Command Center</p>
           </div>
         </div>

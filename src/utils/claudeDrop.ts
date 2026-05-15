@@ -1,7 +1,7 @@
 /**
  * ============================================================================
  * PROPRIETARY AND CONFIDENTIAL
- * Copyright (c) 2026 Gene W. George / J. Worden & Sons Asphalt Paving.
+ * Copyright (c) 2026 Gene W. George / J. Worden & Sons Paving LLC.
  * All Rights Reserved.
  *
  * Unauthorized copying of this file, via any medium, is strictly prohibited.
