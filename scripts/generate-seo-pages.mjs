@@ -1,204 +1,36 @@
-/**
- * generate-seo-pages.mjs — Static SEO Page Generator
- * 
- * Reads sitemap.xml, generates SEO-optimized static HTML for every route.
- * Each page gets: unique <title>, <meta description>, <h1>, schema,
- * and key content — all visible to Google BEFORE React hydrates.
- * 
- * This replaces Puppeteer prerendering with zero external dependencies.
- */
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const DIST = path.resolve(__dirname, '../dist')
 const SITEMAP = path.resolve(DIST, 'sitemap.xml')
 const INDEX_HTML = fs.readFileSync(path.resolve(DIST, 'index.html'), 'utf-8')
-
-// ─── ROUTE → SEO DATA MAP ───────────────────────────────────────────────────
-const BUSINESS = {
-  name: 'J. Worden & Sons Paving LLC',
-  phone: '(804) 446-1296',
-  address: '1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836',
-  since: '1984',
-  url: 'https://www.jwordenasphaltpaving.com',
+const B={name:'J. Worden & Sons Paving LLC',phone:'(804) 446-1296',tel:'+18044461296',addr:'1601 Ware Bottom Spring Rd, Suite 214, Chester, VA 23836',since:'1984',url:'https://www.jwordenasphaltpaving.com'}
+const ST={va:'Virginia',nc:'North Carolina',sc:'South Carolina',ga:'Georgia',md:'Maryland',wv:'West Virginia',dc:'Washington DC',tn:'Tennessee',ny:'New York',oh:'Ohio',tx:'Texas',il:'Illinois',mo:'Missouri',nh:'New Hampshire',vt:'Vermont',pa:'Pennsylvania',nj:'New Jersey',fl:'Florida',al:'Alabama',ky:'Kentucky',mi:'Michigan',mn:'Minnesota'}
+const P={
+'/':{t:`${B.name} | Asphalt Paving Chester & Richmond VA`,d:`Family-owned asphalt paving since ${B.since}. Driveways, parking lots, sealcoating across Virginia. Class A licensed. Call ${B.phone}.`,h:'Virginia Asphalt Paving — Built To Last Since 1984',c:`${B.name} is a 4th-generation family paving contractor in Chester, Virginia. Professional asphalt paving, sealcoating, tar & chip, and hardscapes. Virginia Class A Licensed. Call ${B.phone}.`},
+'/about':{t:`About ${B.name} | 4th Generation Virginia Paving Since 1984`,d:`4th generation family contractor since ${B.since}. Virginia Class A, Best of Houzz, 2018 Pavement Magazine Top Contractor.`,h:`About ${B.name}`,c:`Founded in ${B.since} by John H. Worden. Virginia Class A License. Best of Houzz Service 2014-2023. 2018 Pavement Magazine Top Contractor. National QSR portfolio including KFC, Arby's, Taco Bell.`},
+'/contact':{t:`Contact ${B.name} | Free Paving Estimate Chester VA`,d:`Free paving estimate. Call ${B.phone}. ${B.addr}. Serving all of Virginia.`,h:'Contact Us for a Free Estimate',c:`Call ${B.phone} or visit ${B.addr}. Free estimates for driveways, parking lots, sealcoating. Same-week estimates for most projects.`},
+'/services':{t:`Paving Services | ${B.name} | Full Service Virginia Contractor`,d:`Asphalt paving, sealcoating, tar & chip, concrete, masonry, crack repair. Virginia Class A since ${B.since}.`,h:'Our Paving & Construction Services',c:`Asphalt paving, sealcoating, tar & chip, crack repair, line striping, concrete, stone masonry, retaining walls, general contracting. VDOT specs, 96% Marshall compaction.`},
+'/residential':{t:`Residential Driveway Paving | ${B.name} | Richmond & Chester VA`,d:`New driveways, resurfacing, repair. 40+ years. Chester, Richmond, Chesterfield, Henrico. Call ${B.phone}.`,h:'Residential Driveway Paving',c:`Driveways engineered to last 20+ years. Proper 6" stone base, VDOT-grade hot mix asphalt. Serving Chester, Richmond, Chesterfield, Henrico, Midlothian, and Central Virginia.`},
+'/commercial':{t:`Commercial Paving Contractor | ${B.name} | Virginia`,d:`Commercial parking lots, retail centers, industrial. ADA compliant. National QSR experience. Class A licensed.`,h:'Commercial Paving Services',c:`Commercial parking lots, retail centers, warehouses, multi-family. Portfolio: KFC, Arby's, Taco Bell, Big Chicken Marietta GA. ADA compliant, VDOT spec, stormwater design.`},
+'/sealcoating':{t:`Asphalt Sealcoating | ${B.name} | Chester & Richmond VA`,d:`Professional sealcoating extends pavement 15-20 years. Coal tar & polymer-modified. Call ${B.phone}.`,h:'Asphalt Sealcoating Services',c:`Coal tar and polymer-modified sealcoat for driveways and parking lots. Applied every 2-3 years, extends pavement life 15-20 years, prevents oxidation and water damage.`},
+'/concrete':{t:`Concrete Contractor | ${B.name} | Sidewalks, Patios, Foundations VA`,d:`Concrete flatwork, sidewalks, patios, curbing, foundations. Virginia Class A. 40+ years. Free estimates.`,h:'Concrete Services',c:`Sidewalks, patios, curb and gutter, ADA ramps, foundations, stamped concrete. Complete site packages for residential and commercial.`},
+'/masonry':{t:`Masonry & Hardscapes | ${B.name} | Patios, Walls, Fireplaces VA`,d:`Brick pavers, cobblestone, retaining walls, stone masonry, outdoor fireplaces. Since ${B.since}.`,h:'Masonry & Hardscape Services',c:`Brick paver patios, cobblestone driveways, natural stone retaining walls, outdoor fireplaces, walkways. Old World craftsmanship with modern engineering.`},
+'/roofing':{t:`Roofing Contractor | ${B.name} | Commercial & Residential VA`,d:`Commercial and residential roofing. TPO, EPDM, modified bitumen, shingles. Virginia Class A.`,h:'Roofing Services',c:`TPO membrane, EPDM rubber, modified bitumen, architectural shingles. Complete replacements, repairs, and maintenance programs.`},
+'/gallery':{t:`Project Gallery | ${B.name} | Before & After Paving Photos`,d:`Completed paving projects. Driveways, parking lots, sealcoating, hardscapes. Before and after photos.`,h:'Project Gallery — Our Work Speaks for Itself',c:`Residential driveways, commercial parking lots, sealcoating, hardscapes. Every project meets our 96% Marshall compaction standard.`},
+'/standards':{t:`The Worden Standard | ${B.name} | Quality Paving Specifications`,d:`96% Marshall compaction, VDOT Section 315 stone base, Virginia climate engineering.`,h:'The Worden Standard — Our Quality Promise',c:`96% Marshall compaction (industry min 92%). VDOT Section 315 stone base. Climate-specific binder. Machine health monitoring. 35% margin floor — we never cut corners.`},
+'/parking-lots':{t:`Parking Lot Paving | ${B.name} | Commercial Virginia`,d:`Commercial parking lot paving, repair, maintenance. ADA compliant, VDOT specs. Free estimates.`,h:'Commercial Parking Lot Paving',c:`Parking lots engineered for Virginia's freeze-thaw climate. Restaurant chains, retail, churches, HOAs, industrial. ADA, fire lane, stormwater compliant.`},
+'/tar-and-chip':{t:`Tar and Chip Paving | ${B.name} | Affordable Virginia Option`,d:`Tar and chip (chip seal) 40-60% less than asphalt. Rural driveways and roads. Since ${B.since}.`,h:'Tar & Chip (Chip Seal) Paving',c:`Durable textured surface at 40-60% less than full-depth asphalt. Rural driveways, farm roads, private lanes. Hundreds built across Virginia.`},
+'/reviews':{t:`Customer Reviews | ${B.name} | Testimonials & Ratings`,d:`Verified reviews for ${B.name}. Best of Houzz Service winner. 4th generation quality.`,h:'Customer Reviews & Testimonials',c:`Best of Houzz Service 2014, 2015, 2016, 2023. Most of our work comes from referrals and repeat customers.`},
+'/asphalt-paving':{t:`Asphalt Paving Services | ${B.name} | Virginia`,d:`Full-service asphalt — installation, overlays, milling, repair. VDOT specs. 96% Marshall density.`,h:'Asphalt Paving Services',c:`New installation, overlays, milling, pothole repair, infrared patching. VDOT-spec materials, 96% Marshall compaction, climate-engineered binder.`},
 }
-
-const SERVICE_PAGES = {
-  '/': {
-    title: `${BUSINESS.name} | Asphalt Paving Chester & Richmond VA`,
-    desc: `Family-owned asphalt paving since ${BUSINESS.since}. Driveways, parking lots, sealcoating & repair. Virginia Class A licensed. Call ${BUSINESS.phone}.`,
-    h1: 'Virginia Asphalt Paving — Built To Last',
-    content: `${BUSINESS.name} has provided professional asphalt paving across Virginia since ${BUSINESS.since}. From residential driveways to commercial parking lots, we deliver quality workmanship backed by 4 generations of experience. Call ${BUSINESS.phone} for a free estimate.`,
-  },
-  '/about': {
-    title: `About ${BUSINESS.name} | 4th Generation Virginia Paving`,
-    desc: `4th generation family paving contractor since ${BUSINESS.since}. Virginia Class A licensed, BBB accredited, Best of Houzz winner. Chester VA.`,
-    h1: `About ${BUSINESS.name}`,
-    content: `Founded in ${BUSINESS.since}, ${BUSINESS.name} is a 4th-generation family paving contractor headquartered in Chester, Virginia. We hold a Virginia Class A Contractor License and have earned Best of Houzz Service awards in 2014, 2015, 2016, and 2023.`,
-  },
-  '/contact': {
-    title: `Contact ${BUSINESS.name} | Free Paving Estimate Chester VA`,
-    desc: `Get a free asphalt paving estimate. Call ${BUSINESS.phone} or visit us at ${BUSINESS.address}.`,
-    h1: 'Contact Us — Free Estimate',
-    content: `Call ${BUSINESS.phone} for a free paving estimate. Visit us at ${BUSINESS.address}. We serve Richmond, Chesterfield, Henrico, Colonial Heights, and all of Central Virginia.`,
-  },
-  '/asphalt-paving': {
-    title: `Asphalt Paving Contractor | ${BUSINESS.name} | Richmond VA`,
-    desc: `Professional asphalt paving for driveways, roads, and commercial properties. 40+ years experience. Virginia Class A licensed. Free estimates.`,
-    h1: 'Asphalt Paving Services',
-    content: `${BUSINESS.name} provides full-service asphalt paving including new installation, overlays, milling, and repair. We use Virginia DOT-spec materials and maintain 96% Marshall compaction density on every project.`,
-  },
-  '/parking-lots': {
-    title: `Commercial Parking Lot Paving | ${BUSINESS.name} | Virginia`,
-    desc: `Commercial parking lot paving, striping, and maintenance. ADA-compliant. National QSR experience (KFC, Arby's, Taco Bell). Free estimates.`,
-    h1: 'Commercial Parking Lot Paving',
-    content: `We build and maintain commercial parking lots across Virginia. Our portfolio includes national QSR chains (KFC, Arby's, Taco Bell), retail centers, and industrial facilities. Every project meets ADA compliance and Virginia fire lane requirements.`,
-  },
-  '/sealcoating': {
-    title: `Sealcoating Contractor | ${BUSINESS.name} | Chester VA`,
-    desc: `Professional asphalt sealcoating protects your investment. Coal tar and polymer-modified options. Residential and commercial. Free estimates.`,
-    h1: 'Asphalt Sealcoating Services',
-    content: `Sealcoating extends the life of your asphalt by 15-20 years. ${BUSINESS.name} offers both coal tar and polymer-modified sealcoat applications for driveways and parking lots. We recommend sealing every 2-3 years for maximum protection.`,
-  },
-  '/residential': {
-    title: `Residential Driveway Paving | ${BUSINESS.name} | Richmond VA`,
-    desc: `New driveways, resurfacing, and repair. Family-owned, 40+ years. Chester, Richmond, Chesterfield, Henrico. Call ${BUSINESS.phone}.`,
-    h1: 'Residential Driveway Paving',
-    content: `Your driveway is the first thing visitors see. ${BUSINESS.name} builds residential driveways that last 20+ years using proper stone base preparation and VDOT-grade hot mix asphalt. We serve Chester, Richmond, Chesterfield, Henrico, and all of Central Virginia.`,
-  },
-  '/reviews': {
-    title: `Reviews | ${BUSINESS.name} | Customer Testimonials`,
-    desc: `See why homeowners and businesses trust ${BUSINESS.name}. Best of Houzz Service winner. 4th generation family quality.`,
-    h1: 'Customer Reviews & Testimonials',
-    content: `${BUSINESS.name} has earned the trust of hundreds of Virginia homeowners and businesses. We are proud recipients of Best of Houzz Service awards and maintain high standards on every project.`,
-  },
-  '/tar-and-chip': {
-    title: `Tar and Chip Paving | ${BUSINESS.name} | Virginia`,
-    desc: `Tar and chip (chip seal) driveways and roads. Affordable alternative to full asphalt. Rural Virginia specialist. Free estimates.`,
-    h1: 'Tar & Chip Paving',
-    content: `Tar and chip (chip seal) provides a durable, attractive surface at a lower cost than full-depth asphalt. Ideal for rural driveways, farm roads, and low-traffic residential streets. ${BUSINESS.name} has decades of experience with this traditional paving method.`,
-  },
-  '/gallery': {
-    title: `Project Gallery | ${BUSINESS.name} | Before & After Photos`,
-    desc: `See our completed asphalt paving projects. Driveways, parking lots, commercial, residential. Before and after photos.`,
-    h1: 'Project Gallery',
-    content: `Browse completed projects by ${BUSINESS.name}. From residential driveways in Chester to commercial parking lots in Richmond, see the quality of our work firsthand.`,
-  },
-  '/services': {
-    title: `Paving Services | ${BUSINESS.name} | Full Service Virginia Contractor`,
-    desc: `Asphalt paving, sealcoating, tar & chip, crack repair, striping, hardscapes. Full-service Virginia contractor since ${BUSINESS.since}.`,
-    h1: 'Our Paving Services',
-    content: `${BUSINESS.name} offers complete paving services: asphalt paving, sealcoating, tar & chip, crack repair, line striping, concrete work, and hardscaping. Virginia Class A licensed for residential and commercial projects.`,
-  },
-}
-
-// City/location page generator
-function cityMeta(slug) {
-  const city = slug.replace('/locations/', '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()).replace(' Va', ' VA')
-  return {
-    title: `Asphalt Paving ${city} | ${BUSINESS.name}`,
-    desc: `Professional asphalt paving in ${city}. Driveways, parking lots, sealcoating. 40+ years experience. Virginia Class A licensed. Call ${BUSINESS.phone}.`,
-    h1: `Asphalt Paving in ${city}`,
-    content: `${BUSINESS.name} provides professional asphalt paving services in ${city} and surrounding areas. Our services include new driveway installation, parking lot paving, sealcoating, crack repair, and more. Call ${BUSINESS.phone} for a free estimate.`,
-  }
-}
-
-function serviceAreaMeta(slug) {
-  const area = slug.replace('/service-areas/', '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-  return {
-    title: `Paving Contractor ${area} | ${BUSINESS.name}`,
-    desc: `Serving ${area} with professional asphalt paving, sealcoating, and repair. 4th generation family contractor. Call ${BUSINESS.phone}.`,
-    h1: `Paving Services — ${area}`,
-    content: `${BUSINESS.name} serves ${area} with full-service asphalt paving, sealcoating, and maintenance. With 40+ years of experience and a Virginia Class A license, we deliver quality results on every project.`,
-  }
-}
-
-function getMeta(route) {
-  if (SERVICE_PAGES[route]) return SERVICE_PAGES[route]
-  if (route.startsWith('/locations/')) return cityMeta(route)
-  if (route.startsWith('/service-areas/')) return serviceAreaMeta(route)
-  // Generic fallback
-  const name = route.slice(1).replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) || 'Home'
-  return {
-    title: `${name} | ${BUSINESS.name}`,
-    desc: `${BUSINESS.name} — professional asphalt paving in Virginia since ${BUSINESS.since}. Call ${BUSINESS.phone}.`,
-    h1: name,
-    content: `${BUSINESS.name} serves Virginia with professional paving services. Call ${BUSINESS.phone} for a free estimate.`,
-  }
-}
-
-// ─── SKIP INTERNAL TOOL ROUTES ──────────────────────────────────────────────
-const SKIP = new Set([
-  '/whale-hunter', '/dispatch', '/profit-node', '/portal', '/staff',
-  '/command-center', '/dashboard', '/admin', '/crew-eta', '/estimator',
-  '/dns-migration', '/candidate', '/revenue', '/voice-calls', '/leads',
-])
-
-function shouldSkip(route) {
-  return SKIP.has(route) || SKIP.has('/' + route.split('/')[1])
-}
-
-// ─── GENERATE ────────────────────────────────────────────────────────────────
-function getRoutes() {
-  if (!fs.existsSync(SITEMAP)) {
-    console.warn('[seo-gen] No sitemap.xml — generating / only')
-    return ['/']
-  }
-  const xml = fs.readFileSync(SITEMAP, 'utf-8')
-  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1])
-  return [...new Set(urls.map(u => { try { return new URL(u).pathname } catch { return '/' } }))]
-    .filter(r => !shouldSkip(r))
-}
-
-function generatePage(route) {
-  const meta = getMeta(route)
-  
-  // Replace <title> and <meta description> in the shell HTML
-  let html = INDEX_HTML
-    .replace(/<title>[^<]*<\/title>/, `<title>${meta.title}</title>`)
-    .replace(
-      /<meta name="description" content="[^"]*">/,
-      `<meta name="description" content="${meta.desc}">`
-    )
-  
-  // Inject SEO content div inside <div id="root"> that React will hydrate over
-  const seoBlock = `
-    <div id="seo-content" style="position:absolute;left:-9999px;overflow:hidden" aria-hidden="false">
-      <h1>${meta.h1}</h1>
-      <p>${meta.content}</p>
-      <p>Call <a href="tel:+18044461296">${BUSINESS.phone}</a> for a free estimate.</p>
-      <address>${BUSINESS.address}</address>
-    </div>`
-  
-  html = html.replace('<div id="root"></div>', `<div id="root">${seoBlock}</div>`)
-  
-  return html
-}
-
-function savePage(route, html) {
-  const filePath = route === '/'
-    ? path.join(DIST, 'index.html')
-    : path.join(DIST, route, 'index.html')
-  fs.mkdirSync(path.dirname(filePath), { recursive: true })
-  fs.writeFileSync(filePath, html, 'utf-8')
-}
-
-// ─── MAIN ────────────────────────────────────────────────────────────────────
-const routes = getRoutes()
-console.log(`[seo-gen] Generating SEO pages for ${routes.length} routes...`)
-
-let ok = 0
-for (const route of routes) {
-  try {
-    const html = generatePage(route)
-    savePage(route, html)
-    ok++
-  } catch (err) {
-    console.warn(`[seo-gen] Failed: ${route} — ${err.message}`)
-  }
-}
-
-console.log(`[seo-gen] ✓ ${ok}/${routes.length} pages generated`)
-console.log('[seo-gen] Complete.')
+function locMeta(slug){const parts=slug.split('-');let st='VA',cp=[...parts];const last=parts[parts.length-1];if(last.length===2&&ST[last]){st=last.toUpperCase();cp=parts.slice(0,-1)}const city=cp.map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');const full=ST[st.toLowerCase()]||st;const cs=`${city}, ${st}`;return{t:`Asphalt Paving ${cs} | ${B.name} | Free Estimates`,d:`Professional asphalt paving in ${cs}. Driveways, parking lots, sealcoating. 40+ years. Class A. Call ${B.phone}.`,h:`Asphalt Paving in ${cs}`,c:`${B.name} serves ${city}, ${full} with driveway paving, parking lots, sealcoating, crack repair, tar & chip. 4th-generation, Class A license. Call ${B.phone} for a free estimate in ${city}.`}}
+const SKIP=new Set(['/whale-hunter','/dispatch','/dispatch-node','/profit-node','/payroll-treasury','/investor-roi','/pre-con','/pre-con-dashboard','/legal-compliance','/litigation','/command-bot','/command-center','/sovereign','/sovereign-master','/sovereign-command','/weather-intel','/mr-worden-3d','/gc-bid','/safety','/portal','/login','/products','/field','/estimator','/crew-eta','/staff','/admin','/dashboard','/leads','/voice-calls','/revenue','/candidate','/dns-migration'])
+function getMeta(r){if(P[r])return P[r];if(r.startsWith('/locations/'))return locMeta(r.replace('/locations/',''));const n=r.slice(1).replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase())||'Home';return{t:`${n} | ${B.name}`,d:`${B.name} — paving since ${B.since}. Call ${B.phone}.`,h:n,c:`${B.name} provides ${n.toLowerCase()} services. Call ${B.phone}.`}}
+function gen(r){const m=getMeta(r);let h=INDEX_HTML.replace(/<title>[^<]*<\/title>/,`<title>${m.t}</title>`).replace(/<meta name="description" content="[^"]*">/,`<meta name="description" content="${m.d}">`);if(!h.includes('rel="canonical"'))h=h.replace('</head>',`  <link rel="canonical" href="${B.url}${r}" />\n  </head>`);const s=`<div id="seo-content" style="position:absolute;left:-9999px;overflow:hidden" aria-hidden="false"><h1>${m.h}</h1><p>${m.c}</p><p>Call <a href="tel:${B.tel}">${B.phone}</a></p><address>${B.addr}</address></div>`;return h.replace('<div id="root"></div>',`<div id="root">${s}</div>`)}
+function save(r,html){const fp=r==='/'?path.join(DIST,'index.html'):path.join(DIST,r,'index.html');fs.mkdirSync(path.dirname(fp),{recursive:true});fs.writeFileSync(fp,html,'utf-8')}
+const routes=['/'];if(fs.existsSync(SITEMAP)){for(const m of fs.readFileSync(SITEMAP,'utf-8').matchAll(/<loc>([^<]+)<\/loc>/g)){try{const p=new URL(m[1]).pathname;if(p!=='/'&&!SKIP.has(p)&&!SKIP.has('/'+p.split('/')[1]))routes.push(p)}catch{}}}
+for(const p of Object.keys(P)){if(!routes.includes(p))routes.push(p)}
+const uniq=[...new Set(routes)];console.log(`[seo-gen] Generating ${uniq.length} pages...`);let ok=0;for(const r of uniq){try{save(r,gen(r));ok++}catch(e){console.warn(`  x ${r}: ${e.message}`)}}
+console.log(`[seo-gen] Done: ${ok}/${uniq.length} | Service:${Object.keys(P).length} | Locations:${uniq.filter(r=>r.startsWith('/locations/')).length}`)
