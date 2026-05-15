@@ -16,6 +16,64 @@
   status = 301
   force  = true
 
+# ─── LEGACY DOMAIN REDIRECTS ─────────────────────────────────────────────────
+# jwordenandsonspaving.com → main site (CRITICAL — Yelp, Angi, HomeAdvisor link here)
+[[redirects]]
+  from   = "https://jwordenandsonspaving.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://www.jwordenandsonspaving.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/:splat"
+  status = 301
+  force  = true
+
+# Richmond domains → /locations/richmond
+[[redirects]]
+  from   = "https://richmondasphaltpaving.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/locations/richmond"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://www.richmondasphaltpaving.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/locations/richmond"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://richmondasphaltpaving.net/*"
+  to     = "https://www.jwordenasphaltpaving.com/locations/richmond"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://richmondasphaltpros.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/locations/richmond"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://www.richmondasphaltpros.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/locations/richmond"
+  status = 301
+  force  = true
+
+# Carolina → main site
+[[redirects]]
+  from   = "https://carolinablacktop.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/"
+  status = 301
+  force  = true
+
+[[redirects]]
+  from   = "https://www.carolinablacktop.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/"
+  status = 301
+  force  = true
+
 # Static files — serve before SPA fallback
 [[redirects]]
   from   = "/robots.txt"
