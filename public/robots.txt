@@ -1,10 +1,9 @@
 User-agent: *
 Allow: /
 
-# Block internal/operational routes from public crawl
+# Internal tools — not for public crawl
 Disallow: /admin
 Disallow: /dashboard
-Disallow: /field
 Disallow: /dispatch
 Disallow: /dispatch-node
 Disallow: /profit-node
@@ -16,9 +15,7 @@ Disallow: /legal-compliance
 Disallow: /litigation
 Disallow: /command-bot
 Disallow: /command-center
-Disallow: /sovereign
-Disallow: /sovereign-master
-Disallow: /sovereign-command
+Disallow: /sovereign*
 Disallow: /whale-hunter
 Disallow: /weather-intel
 Disallow: /mr-worden-3d
@@ -27,5 +24,9 @@ Disallow: /safety
 Disallow: /portal
 Disallow: /login
 Disallow: /products
+Disallow: /field
+Disallow: /estimator
+Disallow: /crew-eta
+Disallow: /staff
 
-Sitemap: https://jwordenasphaltpaving.com/sitemap.xml
+Sitemap: https://www.jwordenasphaltpaving.com/sitemap.xml
