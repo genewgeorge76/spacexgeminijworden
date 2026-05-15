@@ -1,44 +1,58 @@
 [build]
-  command  = "npm run build"
+  command  = "npx puppeteer browsers install chrome && npm run build"
   publish  = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+  NODE_VERSION        = "22"
+  PUPPETEER_CACHE_DIR = "/opt/buildhome/.cache/puppeteer"
 
-# Production-only env. While api.jwordenasphaltpaving.com DNS is pointed at
-# AWS (404), bridge directly to the Railway-hosted FastAPI ops backend so
-# the contact form's mirror call and the JarvisChat widget both work.
-# Once the api.* CNAME is moved back to Railway, replace these with the
-# clean api.jwordenasphaltpaving.com URLs.
 [context.production.environment]
   VITE_LEADS_API_URL = "https://codexbuildfreeofbase44-production.up.railway.app/api/v1/leads/website"
   VITE_AI_CHAT_URL   = "https://codexbuildfreeofbase44-production.up.railway.app/api/v1/public/chat"
 
+# Apex → www redirect
 [[redirects]]
-  from = "https://jwordenasphaltpaving.com/*"
-  to   = "https://www.jwordenasphaltpaving.com/:splat"
+  from   = "https://jwordenasphaltpaving.com/*"
+  to     = "https://www.jwordenasphaltpaving.com/:splat"
   status = 301
   force  = true
 
-# SPA fallback so client-side routes (e.g. /residential, /contact) work on direct hit / refresh
+# Static files served directly (before SPA fallback)
 [[redirects]]
-  from = "/*"
-  to   = "/index.html"
+  from   = "/robots.txt"
+  to     = "/robots.txt"
+  status = 200
+  force  = true
+
+[[redirects]]
+  from   = "/sitemap.xml"
+  to     = "/sitemap.xml"
+  status = 200
+  force  = true
+
+# SPA fallback
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
   status = 200
 
+# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options        = "SAMEORIGIN"
-    X-Content-Type-Options = "nosniff"
-    X-XSS-Protection       = "1; mode=block"
-    Referrer-Policy        = "strict-origin-when-cross-origin"
+    X-Frame-Options           = "SAMEORIGIN"
+    X-Content-Type-Options    = "nosniff"
+    X-XSS-Protection          = "1; mode=block"
+    Referrer-Policy            = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
+# Cache HTML: always revalidate
 [[headers]]
   for = "/*.html"
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
+# Cache assets: immutable
 [[headers]]
   for = "/assets/*"
   [headers.values]
