@@ -15,9 +15,9 @@ export function SectionReveal() {
       if (armed.has(el)) return;
       armed.add(el);
       el.style.opacity = '0';
-      el.style.transform = 'translateY(14px)';
+      el.style.transform = 'translateY(8px)';
       el.style.transition =
-        'opacity 1600ms cubic-bezier(.22,1,.36,1), transform 1600ms cubic-bezier(.22,1,.36,1)';
+        'opacity 600ms cubic-bezier(.16,1,.3,1), transform 600ms cubic-bezier(.22,1,.36,1)';
       el.style.willChange = 'opacity, transform';
 
       const io = new IntersectionObserver(

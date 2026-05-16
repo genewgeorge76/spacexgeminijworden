@@ -17,13 +17,13 @@ export function SmoothScroll() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const lenis = new Lenis({
-      duration: 1.4,
+      duration: 1.0,
       // SpaceX-style ease: deep ease-out, no overshoot
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
       wheelMultiplier: 0.9,
       touchMultiplier: 1.4,
-      lerp: 0.085,
+      lerp: 0.12,
     });
 
     let rafId = 0;

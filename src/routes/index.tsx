@@ -40,13 +40,13 @@ function Home() {
         className="border-b border-white/[0.04]"
       >
         <div className="mx-auto w-full max-w-7xl px-6 py-32 md:py-48">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/70">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/90">
             Class A Licensed Asphalt Contractor &middot; Chester, VA &middot; Established 1984
           </p>
-          <h1 className="max-w-5xl text-5xl font-light leading-[1.05] tracking-tight text-white/70 md:text-7xl lg:text-8xl">
+          <h1 className="max-w-5xl text-5xl font-light leading-[1.05] tracking-tight text-white/90 md:text-7xl lg:text-8xl">
             Asphalt paving engineered to outlast the building on top of it.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg text-white/55 md:text-xl">
+          <p className="mt-8 max-w-2xl text-lg text-white/80 md:text-xl">
             Commercial parking lot construction, residential driveway installation, sealcoating,
             milling and overlay, and ADA striping across Virginia, Maryland, and the Mid-Atlantic.
             Family-owned for four generations. Self-performed crews. VDOT-spec construction on
@@ -157,7 +157,7 @@ function Home() {
                 h
               </span>
               <div>
-                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white transition group-hover:text-white/70">
+                <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-white transition group-hover:text-white/90">
                   Houzz Pro Certified
                 </p>
                 <p className="mt-1 text-[11px] uppercase tracking-[0.18em] text-white/45">
@@ -177,7 +177,7 @@ function Home() {
                   rel="noopener noreferrer"
                   className="surface-glass lift-hover flex flex-col items-center px-5 py-3"
                 >
-                  <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/55">
+                  <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-white/80">
                     Best of Houzz
                   </span>
                   <span className="mt-1 text-2xl font-light tracking-tight text-white">{year}</span>
@@ -186,7 +186,7 @@ function Home() {
             </div>
           </div>
 
-          <p className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-white/55">
+          <p className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-white/80">
             Pavement Magazine Top 75 Contractors &mdash; four separate categories. Best of Houzz Service
             Award, multiple years. Nominated, 2026 Pavement Magazine Top Contractor.
           </p>
@@ -240,7 +240,7 @@ function Home() {
               'Hopewell', 'Colonial Heights', 'Fredericksburg', 'Williamsburg', 'Norfolk',
               'Virginia Beach', 'Newport News', 'Hampton', 'Portsmouth', 'Suffolk',
             ].map((city) => (
-              <span key={city} className="rounded-full border border-white/15 px-4 py-2 text-white/70">
+              <span key={city} className="rounded-full border border-white/15 px-4 py-2 text-white/90">
                 {city}
               </span>
             ))}
@@ -400,7 +400,7 @@ function FilmReel({ clips, rate = 1 }: { clips: Clip[]; rate?: number }) {
           holdDone && visible ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/70">{current.eyebrow}</p>
+        <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/90">{current.eyebrow}</p>
         <h2 className="mt-3 max-w-3xl text-3xl font-medium tracking-tight text-white md:text-5xl">
           {current.title}
         </h2>
