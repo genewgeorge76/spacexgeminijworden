@@ -53,8 +53,8 @@ export default function LocationPage({ city, nearby }: Props) {
     url: `https://www.jwordenasphaltpaving.com/locations/${city.slug}`,
     aggregateRating: {
       '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '127',
+      ratingValue: '4.7',
+      reviewCount: '87',
     },
     openingHoursSpecification: [
       { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '19:00' },

@@ -225,7 +225,7 @@ export function renderPostBody(post: Post): string[] {
 
   const local = `Every ${city} project is engineered to the soil, drainage, and traffic conditions of the property. ${region} has its own subgrade story — a mix of clay, sandy loam, and historic fill that punishes generic spec sheets. We test the section, design the mat, and document the proposal so you know exactly what is going under the surface and exactly what it will cost.`;
 
-  const proof = `We are the same crew, with the same trucks and the same foremen, that has been pouring driveways and parking lots from Richmond to the Hampton Roads peninsula since 1984. Pavement Magazine named us a Top 75 Contractor in four separate categories. Houzz has awarded us Best of Service multiple years running. Our Google Business Profile holds a 4.9 rating across nearly a hundred verified reviews.`;
+  const proof = `We are the same crew, with the same trucks and the same foremen, that has been pouring driveways and parking lots from Richmond to the Hampton Roads peninsula since 1984. Pavement Magazine named us a Top 75 Contractor in four separate categories. Houzz has awarded us Best of Service multiple years running. Our Google Business Profile holds strong ratings across 87 verified reviews.`;
 
   const close = `If you are evaluating ${service.noun.toLowerCase()} in ${city}, ask the bidders three questions: Are you a Class A licensed contractor? Will the same crew that bid the job pour the job? And what is the engineered section, lift by lift, that you intend to install? J. Worden & Sons answers all three in writing on every estimate.`;
 

@@ -5,63 +5,45 @@ export interface Testimonial {
   text: string;
   projectType: string;
   date: string;
+  source?: string;
 }
 
+// Real verified reviews from Houzz.com — publicly visible, linked profiles
 export const testimonials: Testimonial[] = [
   {
-    name: "Marcus T.",
-    city: "Midlothian, VA",
-    rating: 5,
-    text: "J. Worden & Sons repaved our entire commercial parking lot in 3 days. The 6-inch structural stone base is exactly what our property needed — zero cracking after two winters. Absolutely the best paving company in the Richmond area.",
-    projectType: "Commercial Parking Lot",
-    date: "2024-11-12",
-  },
-  {
-    name: "Sandra L.",
-    city: "Chesterfield, VA",
-    rating: 5,
-    text: "Our driveway looks absolutely stunning. They completed the job ahead of schedule and the crew was incredibly professional. The Worden Standard is real — this driveway is built to last decades. I've already referred two neighbors.",
-    projectType: "Residential Driveway",
-    date: "2024-10-03",
-  },
-  {
-    name: "Robert H.",
-    city: "Glen Allen, VA",
-    rating: 5,
-    text: "Hired J. Worden & Sons for our KFC franchise lot resurfacing. They delivered on time, within budget, and the finish meets every specification. The crew worked nights to avoid business disruption. Exceptional contractor.",
-    projectType: "QSR Commercial Paving",
-    date: "2024-09-18",
-  },
-  {
-    name: "Patricia W.",
+    name: "Jaclyn F.",
     city: "Chester, VA",
     rating: 5,
-    text: "As a Chester resident, it was great to work with a local company with real heritage. My sealcoating job came out perfect. They cleaned up completely and the crew was respectful of my property. 4th generation really shows.",
-    projectType: "Sealcoating",
-    date: "2024-08-27",
+    text: "We had a major drainage issue in a brand new pea gravel driveway — a pond and sometimes an ice skating rink on one side. I called every reference and we drove by the addresses; all of his customers were happy with his work. In 4 days the driveway was done. It's beautiful, it drains perfectly, and Gene's communication and his team's professionalism were excellent. They truly care about their work.",
+    projectType: "Driveway Paving & Drainage",
+    date: "2016-06-23",
+    source: "Houzz",
   },
   {
-    name: "James B.",
-    city: "Mechanicsville, VA",
+    name: "Greg O.",
+    city: "Virginia",
     rating: 5,
-    text: "Called on a Monday, got an estimate on Tuesday, work started Thursday. The compaction results were verified on-site and the asphalt surface is flawless. Best decision I made for my industrial facility's access road.",
-    projectType: "Industrial Access Road",
-    date: "2024-07-14",
+    text: "They paved our driveway 18 months ago with paver entries. Did a fabulous job. We ran into drainage issues, not their fault — they were great at fixing them and everything went as agreed. I would recommend them to everyone.",
+    projectType: "Driveway with Paver Entries",
+    date: "2022-04-19",
+    source: "Houzz",
   },
   {
-    name: "Diane M.",
-    city: "Richmond, VA",
+    name: "Daryll H.",
+    city: "Virginia",
     rating: 5,
-    text: "We've used J. Worden & Sons twice now — once for our office park and once for our storage facility. Both projects were executed with military precision. Their 96% Marshall compaction standard is not marketing — it's real engineering.",
-    projectType: "Office Park Parking Lot",
-    date: "2024-06-05",
-  },
-  {
-    name: "Kevin A.",
-    city: "Powhatan, VA",
-    rating: 5,
-    text: "Absolutely impressed with the professionalism and quality. My 200-foot driveway was completed in one day with a perfect finish. The gold standard of Virginia paving contractors — nobody else comes close.",
+    text: "J. Worden & Sons did a great job on our new driveway. Gene was friendly, courteous and provided excellent customer service. His crew even went above and beyond by moving and staging a supply of wood materials we had temporarily stored on our old driveway.",
     projectType: "Residential Driveway",
-    date: "2024-05-22",
+    date: "2015-03-30",
+    source: "Houzz",
+  },
+  {
+    name: "Susan A.",
+    city: "Virginia",
+    rating: 5,
+    text: "We hired J. Worden & Sons to repair and repave our large asphalt driveway. Gene's many years of experience in this family owned business, fair price, and great finished projects in our neighborhood led us to contract with him. Friendly, professional and efficient crew with all the best machinery. We are very happy with the result.",
+    projectType: "Driveway Repair & Repave",
+    date: "2013-11-09",
+    source: "Houzz",
   },
 ];
