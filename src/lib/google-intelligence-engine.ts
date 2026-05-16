@@ -350,7 +350,7 @@ export function initGA4(measurementId: string): void {
   });
 }
 
-const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ?? 'https://jwordenasphaltpaving.com';
+const SITE_URL = (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, '') ?? 'https://www.jwordenasphaltpaving.com';
 
 /** Sends a GA4 page_view event. Call this on every route change. */
 export function trackPageView(path: string, title: string): void {

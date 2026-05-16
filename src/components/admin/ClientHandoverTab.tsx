@@ -104,7 +104,7 @@ export function ClientHandoverTab() {
   const job = DEMO_JOBS.find((j) => j.id === selectedId) ?? DEMO_JOBS[0];
 
   function handleCopyLink() {
-    const url = `https://jwordenasphaltpaving.com/project-twin/${job.id}`;
+    const url = `https://www.jwordenasphaltpaving.com/project-twin/${job.id}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);

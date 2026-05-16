@@ -289,7 +289,7 @@ const nationalCorporationSchema = {
   "foundingDate": "1984",
   "founder": { "@type": "Person", "name": "Gene W. George" },
   "description": "National commercial asphalt paving contractor operating across all 50 states. 4th-generation family business powered by JWORDENAI predictive logistics. Virginia Class A Licensed. 96% Marshall compaction standard on every project.",
-  "url": "https://jwordenasphaltpaving.com",
+  "url": "https://www.jwordenasphaltpaving.com",
   "telephone": "804-446-1296",
   "address": {
     "@type": "PostalAddress",
@@ -329,9 +329,9 @@ const jwordenAISchema = {
   "author": {
     "@type": "Corporation",
     "name": "J. Worden & Sons Paving LLC",
-    "url": "https://jwordenasphaltpaving.com"
+    "url": "https://www.jwordenasphaltpaving.com"
   },
-  "url": "https://jwordenasphaltpaving.com",
+  "url": "https://www.jwordenasphaltpaving.com",
   "copyrightHolder": { "@type": "Person", "name": "Gene W. George" },
   "copyrightYear": "2026",
   "keywords": "AI Asphalt Estimating Software, JWORDENAI Paving Technology, predictive logistics paving, national commercial paving AI, Plaza Street Partners Paving Contractor"

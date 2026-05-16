@@ -30,9 +30,9 @@ export default function LocationPage({ city, nearby }: Props) {
   const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    '@id': `https://jwordenasphaltpaving.com/locations/${city.slug}#business`,
+    '@id': `https://www.jwordenasphaltpaving.com/locations/${city.slug}#business`,
     name: `J. Worden & Sons Paving LLC — ${cityState}`,
-    image: 'https://jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
+    image: 'https://www.jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
     telephone: PHONE_SCHEMA,
     priceRange: '$$$',
     address: {
@@ -50,7 +50,7 @@ export default function LocationPage({ city, nearby }: Props) {
         ? { '@type': 'AdministrativeArea', name: `${city.county} County, ${city.state}` }
         : { '@type': 'State', name: city.state },
     },
-    url: `https://jwordenasphaltpaving.com/locations/${city.slug}`,
+    url: `https://www.jwordenasphaltpaving.com/locations/${city.slug}`,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: '4.9',
@@ -66,9 +66,9 @@ export default function LocationPage({ city, nearby }: Props) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://jwordenasphaltpaving.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Service Area', item: 'https://jwordenasphaltpaving.com/services' },
-      { '@type': 'ListItem', position: 3, name: cityState, item: `https://jwordenasphaltpaving.com/locations/${city.slug}` },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.jwordenasphaltpaving.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Service Area', item: 'https://www.jwordenasphaltpaving.com/services' },
+      { '@type': 'ListItem', position: 3, name: cityState, item: `https://www.jwordenasphaltpaving.com/locations/${city.slug}` },
     ],
   };
 

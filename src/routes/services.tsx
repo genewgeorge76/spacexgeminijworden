@@ -67,9 +67,9 @@ function ServicesPage() {
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'PavingContractor',
-    '@id': 'https://jwordenasphaltpaving.com/services#contractor',
+    '@id': 'https://www.jwordenasphaltpaving.com/services#contractor',
     name: 'J. Worden & Sons Paving LLC',
-    image: 'https://jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
+    image: 'https://www.jwordenasphaltpaving.com/parking-lot-pave-richmond-va.jpg',
     telephone: PHONE_SCHEMA,
     priceRange: '$$$',
     address: {

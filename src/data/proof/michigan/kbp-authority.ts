@@ -164,9 +164,9 @@ export const KBP_MICHIGAN_PORTFOLIO_SAVINGS = MICHIGAN_TCO_SAVINGS_PER_LOCATION 
 // ---------------------------------------------------------------------------
 
 export const MICHIGAN_WHALE_URLS: string[] = [
-  'https://jwordenasphaltpaving.com/locations/detroit',
-  'https://jwordenasphaltpaving.com/locations/grand-rapids',
-  'https://jwordenasphaltpaving.com/locations/lansing',
-  'https://jwordenasphaltpaving.com/locations/ann-arbor',
-  'https://jwordenasphaltpaving.com/locations/sterling-heights',
+  'https://www.jwordenasphaltpaving.com/locations/detroit',
+  'https://www.jwordenasphaltpaving.com/locations/grand-rapids',
+  'https://www.jwordenasphaltpaving.com/locations/lansing',
+  'https://www.jwordenasphaltpaving.com/locations/ann-arbor',
+  'https://www.jwordenasphaltpaving.com/locations/sterling-heights',
 ];

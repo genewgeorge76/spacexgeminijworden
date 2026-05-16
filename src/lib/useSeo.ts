@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://jwordenasphaltpaving.com';
+const SITE_URL = 'https://www.jwordenasphaltpaving.com';
 const DEFAULT_OG_IMAGE = `${SITE_URL}/asphalt-paving-with-paver.jpg`;
 
 interface SeoProps {

@@ -135,7 +135,7 @@ export function generateLocalBusinessSchema(page: ServiceAreaPage) {
     name: `J. Worden & Sons — ${page.serviceType} in ${page.city}, ${page.stateAbbr}`,
     description: page.metaDescription,
     telephone: '804-446-1296',
-    url: `https://jwordenasphaltpaving.com${page.path}`,
+    url: `https://www.jwordenasphaltpaving.com${page.path}`,
     address: {
       '@type': 'PostalAddress',
       addressLocality: page.city,
