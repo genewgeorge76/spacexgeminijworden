@@ -1,7 +1,6 @@
 User-agent: *
 Allow: /
 
-# Internal tools — not for public crawl
 Disallow: /admin
 Disallow: /dashboard
 Disallow: /dispatch
