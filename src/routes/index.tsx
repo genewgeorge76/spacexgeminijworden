@@ -199,7 +199,7 @@ function Home() {
       {/* SERVICES */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Asphalt services</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Asphalt services</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
             One Class A contractor for every phase of asphalt construction.
           </h2>
@@ -224,7 +224,7 @@ function Home() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/driveway-paving.mp4" opacity={0.6} />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Service area</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Service area</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
             Headquartered in Chester, Virginia. Serving the Mid-Atlantic from D.C. to the Outer Banks.
           </h2>
@@ -263,7 +263,7 @@ function Stat({ value, label, sub }: { value: string; label: string; sub: string
     <div className="surface-glass lift-hover p-10 md:p-12">
       <div className="text-5xl font-medium tracking-tight md:text-6xl">{value}</div>
       <div className="mt-4 text-sm font-medium text-white">{label}</div>
-      <div className="mt-1 text-sm text-white/50">{sub}</div>
+      <div className="mt-1 text-sm text-white/80">{sub}</div>
     </div>
   );
 }
@@ -273,7 +273,7 @@ function ServiceCard({ to, title, desc }: { to: string; title: string; desc: str
     <Link to={to} className="surface-glass lift-hover group block p-10 md:p-12">
       <div className="text-xl font-medium">{title}</div>
       <div className="mt-3 text-sm text-white/60">{desc}</div>
-      <div className="mt-8 text-sm text-white/40 transition group-hover:text-white">Learn more &rarr;</div>
+      <div className="mt-8 text-sm text-white/75 transition group-hover:text-white">Learn more &rarr;</div>
     </Link>
   );
 }

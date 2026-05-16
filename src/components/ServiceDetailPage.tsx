@@ -60,7 +60,7 @@ export default function ServiceDetailPage({
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/parking-lot.mp4" opacity={0.7} />
         <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">{eyebrow}</p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">{eyebrow}</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">{hero}</h1>
           <p className="mt-8 max-w-3xl text-lg text-white/60 md:text-xl">{intro}</p>
           <div className="mt-12 flex flex-wrap gap-4">
@@ -76,7 +76,7 @@ export default function ServiceDetailPage({
 
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">What&rsquo;s included</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">What&rsquo;s included</p>
           <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
             {features.map((f) => (
               <div key={f.title} className="surface-glass lift-hover p-10 md:p-12">
@@ -92,7 +92,7 @@ export default function ServiceDetailPage({
         <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
           <SectionBackdrop video="/video/bg-proof.mp4" opacity={0.5} />
           <div className="relative mx-auto max-w-4xl px-6 py-24">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Frequently asked</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Frequently asked</p>
             <dl className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
               {faqs.map((f) => (
                 <div key={f.q} className="py-8">
@@ -108,7 +108,7 @@ export default function ServiceDetailPage({
       {relatedCities.length > 0 && (
         <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
           <div className="relative mx-auto max-w-7xl px-6 py-20">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Service area</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Service area</p>
             <div className="mt-8 flex flex-wrap gap-2 text-sm">
               {relatedCities.map((city) => (
                 <Link

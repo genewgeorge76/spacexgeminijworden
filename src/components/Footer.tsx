@@ -41,7 +41,7 @@ const trackPhone = () => {
   if (w.gtag) w.gtag('event', 'click', { event_category: 'phone_call', event_label: PHONE });
 };
 
-const META = 'text-[11px] uppercase tracking-[0.22em] text-white/40';
+const META = 'text-[11px] uppercase tracking-[0.22em] text-white/75';
 const COL = 'text-[11px] uppercase tracking-[0.22em] text-white/35';
 
 export default function Footer() {

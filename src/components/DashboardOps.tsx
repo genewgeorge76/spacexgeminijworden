@@ -73,7 +73,7 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
           <h1 className="text-3xl font-black text-[#d4af37] tracking-tighter text-glow uppercase">
             JWordenAI <span className="text-white font-light text-xl">Sovereign Absolute</span>
           </h1>
-          <p className="text-xs text-gray-400 tracking-widest mt-1">NATIONWIDE PRIME CONTRACTOR // AUTH 1984</p>
+          <p className="text-xs text-gray-200 tracking-widest mt-1">NATIONWIDE PRIME CONTRACTOR // AUTH 1984</p>
         </div>
         <div className="px-4 py-1 rounded-full bg-glass border-gold-glow text-sm text-[#d4af37] animate-pulse">
           {isAutoMode ? '🟢 AUTO-PILOT ACTIVE' : '🟡 MANUAL OVERRIDE'}
@@ -95,7 +95,7 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
         <div className="col-span-2 space-y-8">
           <div className="bg-glass p-8 rounded-xl border-gold-glow relative overflow-hidden h-[300px]">
             <h2 className="text-xl font-bold text-white mb-2">Live Demand Heatmap & Satellite Targeting</h2>
-            <p className="text-sm text-gray-400 mb-6">Scanning High-Intensity I-95 Nodes (Fairfax, Arlington, Fredericksburg)...</p>
+            <p className="text-sm text-gray-200 mb-6">Scanning High-Intensity I-95 Nodes (Fairfax, Arlington, Fredericksburg)...</p>
             <div className="absolute inset-0 top-24 bg-[#1f1f23] rounded-lg border border-white/10 flex items-center justify-center overflow-hidden">
               <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]"></div>
               <p className="text-[#00ff41] font-mono z-10 animate-pulse">AWAITING SATELLITE LOCK...</p>
@@ -105,9 +105,9 @@ export const DashboardOps = ({ isAutoMode }: { isAutoMode: boolean }) => {
           <div className="bg-glass p-6 rounded-xl border border-white/10">
             <div className="flex justify-between items-center mb-4 border-b border-white/10 pb-2">
               <h3 className="text-[#00ff41] font-bold uppercase tracking-wider text-sm">🌐 Google SERP Supremacy Radar</h3>
-              <span className="text-xs text-gray-500 font-mono">LIVE API SYNC</span>
+              <span className="text-xs text-gray-300 font-mono">LIVE API SYNC</span>
             </div>
-            <div className="grid grid-cols-4 gap-4 text-xs text-gray-400 mb-2 font-mono uppercase">
+            <div className="grid grid-cols-4 gap-4 text-xs text-gray-200 mb-2 font-mono uppercase">
               <div className="col-span-2">Target Keyword</div>
               <div>Google Rank</div>
               <div>7-Day Trend</div>

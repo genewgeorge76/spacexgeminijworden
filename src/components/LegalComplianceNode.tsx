@@ -46,26 +46,26 @@ function LegalStatusBar({ stateCode, sessionId }: { stateCode: string; sessionId
         <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
         <span className="text-green-400 font-bold">SYSTEM ONLINE</span>
       </span>
-      <span className="text-gray-500">|</span>
-      <span className="text-gray-400">
+      <span className="text-gray-300">|</span>
+      <span className="text-gray-200">
         SESSION: <span className="text-[#4a9eff]">{sessionId}</span>
       </span>
-      <span className="text-gray-500">|</span>
-      <span className="text-gray-400">
+      <span className="text-gray-300">|</span>
+      <span className="text-gray-200">
         STATE LAW: <span className="text-[#ffcc00] font-bold">{stateCode || 'NOT SET'}</span>
       </span>
-      <span className="text-gray-500">|</span>
-      <span className="text-gray-400">
+      <span className="text-gray-300">|</span>
+      <span className="text-gray-200">
         FEDERAL DB:{' '}
         <span className="text-green-400">
           {FEDERAL_LAWS.length} REGULATIONS LOADED
         </span>
       </span>
-      <span className="text-gray-500">|</span>
-      <span className="text-gray-400">
+      <span className="text-gray-300">|</span>
+      <span className="text-gray-200">
         CLOCK: <span className="text-white">{new Date().toUTCString().replace('GMT', 'UTC')}</span>
       </span>
-      <span className="ml-auto text-gray-600 hidden md:block">
+      <span className="ml-auto text-gray-200 hidden md:block">
         v2025.04 · Advisory Only · Not Legal Counsel
       </span>
       {/* tick used to force re-render for clock */}
@@ -146,7 +146,7 @@ function LiabilityShieldModal({ risk, stateCode, sessionId, onAccept }: Liabilit
               <div className="text-xs font-mono text-green-300 font-bold mb-1">
                 {stateLaw.lienLaw.code}
               </div>
-              <p className="text-gray-400 text-xs leading-relaxed">
+              <p className="text-gray-200 text-xs leading-relaxed">
                 {stateLaw.lienLaw.summary}
               </p>
             </div>
@@ -164,8 +164,8 @@ function LiabilityShieldModal({ risk, stateCode, sessionId, onAccept }: Liabilit
 
           {/* Timestamp */}
           <div className="bg-[#0a0a0a] border border-gray-800 rounded-sm p-3 font-mono text-xs">
-            <div className="text-gray-500 mb-1">OVERRIDE REQUEST — IMMUTABLE AUDIT RECORD</div>
-            <div className="grid grid-cols-2 gap-2 text-gray-400">
+            <div className="text-gray-300 mb-1">OVERRIDE REQUEST — IMMUTABLE AUDIT RECORD</div>
+            <div className="grid grid-cols-2 gap-2 text-gray-200">
               <div>Timestamp: <span className="text-white">{nowISO()}</span></div>
               <div>Risk ID: <span className="text-white">{risk.id}</span></div>
               <div>Session: <span className="text-[#4a9eff]">{sessionId}</span></div>
@@ -176,7 +176,7 @@ function LiabilityShieldModal({ risk, stateCode, sessionId, onAccept }: Liabilit
           {/* Signature Field */}
           <div className="space-y-3">
             <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1.5">
+              <label className="block text-xs font-black uppercase tracking-widest text-gray-200 mb-1.5">
                 Authorized Representative Name (Required)
               </label>
               <input
@@ -221,7 +221,7 @@ function LiabilityShieldModal({ risk, stateCode, sessionId, onAccept }: Liabilit
             className={`flex-1 px-6 py-3 font-black uppercase tracking-wider text-sm transition-all border ${
               agreed && userName.trim().length >= 2
                 ? 'bg-red-900 border-red-600 text-red-200 hover:bg-red-800 cursor-pointer'
-                : 'bg-gray-900 border-gray-700 text-gray-600 cursor-not-allowed'
+                : 'bg-gray-900 border-gray-700 text-gray-200 cursor-not-allowed'
             }`}
           >
             ⚠ OVERRIDE — ASSUME LIABILITY
@@ -239,7 +239,7 @@ interface AuditLogProps {
 function AuditLog({ entries }: AuditLogProps) {
   if (entries.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-600 font-mono text-sm">
+      <div className="text-center py-12 text-gray-200 font-mono text-sm">
         NO EVENTS RECORDED — AUDIT TRAIL CLEAN
       </div>
     );
@@ -257,21 +257,21 @@ function AuditLog({ entries }: AuditLogProps) {
           }`}
         >
           <div className="flex items-center gap-3 flex-wrap">
-            <span className="text-gray-500">{entry.timestamp}</span>
+            <span className="text-gray-300">{entry.timestamp}</span>
             <span className={`px-2 py-0.5 text-[10px] font-black uppercase ${getRiskBadgeClass(entry.riskLevel)}`}>
               {entry.riskLevel}
             </span>
             <span className={entry.overrideAccepted ? 'text-red-400 font-black' : 'text-green-400 font-black'}>
               {entry.overrideAccepted ? '⚠ OVERRIDE ACCEPTED' : '✓ AI RECOMMENDATION FOLLOWED'}
             </span>
-            <span className="text-gray-500">|</span>
-            <span className="text-gray-400">USER: <span className="text-white">{entry.userName}</span></span>
-            <span className="text-gray-500">STATE: <span className="text-[#ffcc00]">{entry.stateCode || 'N/A'}</span></span>
+            <span className="text-gray-300">|</span>
+            <span className="text-gray-200">USER: <span className="text-white">{entry.userName}</span></span>
+            <span className="text-gray-300">STATE: <span className="text-[#ffcc00]">{entry.stateCode || 'N/A'}</span></span>
           </div>
-          <div className="text-gray-400">
+          <div className="text-gray-200">
             ACTION: <span className="text-white">{entry.action}</span>
           </div>
-          <div className="text-gray-600">
+          <div className="text-gray-200">
             {entry.legalCode} · SESSION: {entry.sessionId} · IP: {entry.ipHash}
           </div>
         </div>
@@ -286,7 +286,7 @@ function ContractClauses({ stateLaw }: { stateLaw: StateLaw | null }) {
 
   if (!stateLaw) {
     return (
-      <div className="text-center py-12 text-gray-600 text-sm">
+      <div className="text-center py-12 text-gray-200 text-sm">
         SELECT A STATE TO GENERATE CONTRACT CLAUSES
       </div>
     );
@@ -337,7 +337,7 @@ function ContractClauses({ stateLaw }: { stateLaw: StateLaw | null }) {
               <div className="text-xs font-black uppercase tracking-wider text-[#ffcc00] mb-2">
                 {title}
               </div>
-              <p className="text-gray-400 text-xs leading-relaxed font-mono">
+              <p className="text-gray-200 text-xs leading-relaxed font-mono">
                 {body}
               </p>
             </div>
@@ -425,14 +425,14 @@ export default function LegalComplianceNode() {
             <h1 className="text-4xl md:text-5xl font-black uppercase text-white leading-tight tracking-tighter">
               LEGAL &amp; <span className="text-[#ffcc00]">COMPLIANCE NODE</span>
             </h1>
-            <p className="text-gray-400 text-sm mt-1">
+            <p className="text-gray-200 text-sm mt-1">
               Live Federal &amp; State Law Intelligence · Liability Shield Interceptor · Contract Auto-Append
             </p>
           </div>
           <div className="flex flex-col gap-2 md:items-end">
             <div className="flex items-center gap-2">
               <span className={`w-2 h-2 rounded-full ${liveSync ? 'bg-[#ffcc00] animate-ping' : 'bg-green-400'}`} />
-              <span className="text-xs font-mono text-gray-400">
+              <span className="text-xs font-mono text-gray-200">
                 {liveSync ? 'SYNCING STATE LAW DATABASE...' : 'FEDERAL + STATE DB LIVE'}
               </span>
             </div>
@@ -448,7 +448,7 @@ export default function LegalComplianceNode() {
                 </option>
               ))}
             </select>
-            <div className="text-[10px] font-mono text-gray-600 text-right">
+            <div className="text-[10px] font-mono text-gray-200 text-right">
               {FEDERAL_LAWS.length} Federal · {Object.keys(STATE_LAWS).length} States Loaded
             </div>
           </div>
@@ -476,12 +476,12 @@ export default function LegalComplianceNode() {
               className={`px-5 py-4 text-xs font-black uppercase tracking-wider border-b-2 transition-all ${
                 activeTab === tab.id
                   ? 'border-[#ffcc00] text-[#ffcc00] bg-[#ffcc00]/5'
-                  : 'border-transparent text-gray-500 hover:text-gray-300 hover:bg-white/3'
+                  : 'border-transparent text-gray-300 hover:text-gray-300 hover:bg-white/3'
               }`}
             >
               {tab.label}{' '}
               <span className={`ml-1 px-1.5 py-0.5 rounded-sm text-[10px] ${
-                activeTab === tab.id ? 'bg-[#ffcc00]/20 text-[#ffcc00]' : 'bg-gray-800 text-gray-500'
+                activeTab === tab.id ? 'bg-[#ffcc00]/20 text-[#ffcc00]' : 'bg-gray-800 text-gray-300'
               }`}>
                 {tab.count}
               </span>
@@ -516,7 +516,7 @@ export default function LegalComplianceNode() {
                       Lien Law
                     </div>
                     <div className="font-mono text-[#4a9eff] text-xs font-bold mb-1">{stateLaw.lienLaw.code}</div>
-                    <div className="text-gray-400 text-xs mb-1">{stateLaw.lienLaw.title}</div>
+                    <div className="text-gray-200 text-xs mb-1">{stateLaw.lienLaw.title}</div>
                     <div className="text-orange-400 text-xs font-bold">
                       ⏱ Deadline: {stateLaw.lienLaw.deadline}
                     </div>
@@ -526,7 +526,7 @@ export default function LegalComplianceNode() {
                       Labor / Prevailing Wage
                     </div>
                     <div className="font-mono text-[#4a9eff] text-xs font-bold mb-1">{stateLaw.laborLaw.code}</div>
-                    <div className="text-gray-400 text-xs">
+                    <div className="text-gray-200 text-xs">
                       {stateLaw.laborLaw.prevailingWageThreshold}
                     </div>
                   </div>
@@ -535,7 +535,7 @@ export default function LegalComplianceNode() {
                       Contractor License
                     </div>
                     <div className="font-mono text-[#4a9eff] text-xs font-bold mb-1">{stateLaw.contractorLicense.code}</div>
-                    <div className="text-gray-400 text-xs">{stateLaw.contractorLicense.requirement}</div>
+                    <div className="text-gray-200 text-xs">{stateLaw.contractorLicense.requirement}</div>
                   </div>
                   {stateLaw.privacyLaw && (
                     <div className="bg-[#0d1a0d] border border-green-900/40 p-4">
@@ -543,7 +543,7 @@ export default function LegalComplianceNode() {
                         Data Privacy Law
                       </div>
                       <div className="font-mono text-green-300 text-xs font-bold mb-1">{stateLaw.privacyLaw.code}</div>
-                      <div className="text-gray-400 text-xs">{stateLaw.privacyLaw.title}</div>
+                      <div className="text-gray-200 text-xs">{stateLaw.privacyLaw.title}</div>
                     </div>
                   )}
                 </div>
@@ -552,7 +552,7 @@ export default function LegalComplianceNode() {
 
             {/* Federal Laws Filter */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-black uppercase tracking-wider text-gray-500 mr-2">
+              <span className="text-xs font-black uppercase tracking-wider text-gray-300 mr-2">
                 Filter:
               </span>
               {categories.map((cat) => (
@@ -563,7 +563,7 @@ export default function LegalComplianceNode() {
                   className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider transition-all ${
                     filterCategory === cat
                       ? 'bg-[#ffcc00] text-black'
-                      : 'bg-[#111] border border-gray-700 text-gray-400 hover:border-[#ffcc00]/40 hover:text-white'
+                      : 'bg-[#111] border border-gray-700 text-gray-200 hover:border-[#ffcc00]/40 hover:text-white'
                   }`}
                 >
                   {cat}
@@ -585,12 +585,12 @@ export default function LegalComplianceNode() {
                         <span className={`px-2 py-0.5 text-[10px] font-black uppercase rounded-sm ${getRiskBadgeClass(law.riskLevel)}`}>
                           {law.riskLevel}
                         </span>
-                        <span className="px-2 py-0.5 text-[10px] font-black uppercase bg-[#1a1a1a] text-gray-400 border border-gray-700 rounded-sm">
+                        <span className="px-2 py-0.5 text-[10px] font-black uppercase bg-[#1a1a1a] text-gray-200 border border-gray-700 rounded-sm">
                           {law.category}
                         </span>
                       </div>
                       <div className="text-white font-bold text-sm mb-1">{law.title}</div>
-                      <p className="text-gray-400 text-xs leading-relaxed">{law.summary}</p>
+                      <p className="text-gray-200 text-xs leading-relaxed">{law.summary}</p>
                     </div>
                     <a
                       href={law.referenceUrl}
@@ -601,14 +601,14 @@ export default function LegalComplianceNode() {
                       CFR SOURCE ↗
                     </a>
                   </div>
-                  <div className="flex flex-wrap gap-4 px-4 py-3 text-xs text-gray-500">
+                  <div className="flex flex-wrap gap-4 px-4 py-3 text-xs text-gray-300">
                     <span>
                       Penalty: <span className="text-red-400 font-bold">{law.penaltyRange}</span>
                     </span>
                     <span>
                       Triggers:{' '}
                       {law.triggerConditions.map((t, i) => (
-                        <span key={i} className="ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-400 rounded text-[10px]">
+                        <span key={i} className="ml-1 px-1.5 py-0.5 bg-gray-900 text-gray-200 rounded text-[10px]">
                           {t}
                         </span>
                       ))}
@@ -629,7 +629,7 @@ export default function LegalComplianceNode() {
                 <div className="text-xs font-black uppercase tracking-widest text-red-400 mb-1">
                   LIABILITY SHIELD — OVERRIDE SIMULATOR
                 </div>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-200 text-sm">
                   The following scenarios trigger the Worden Autonomous Legal Interceptor. Click any scenario to test the Liability Shield modal. In production, these trigger automatically when the AI detects a high-risk condition. All acceptances are logged with timestamp, IP hash, and digital signature.
                 </p>
               </div>
@@ -657,7 +657,7 @@ export default function LegalComplianceNode() {
                         )}
                       </div>
                       <div className="text-white font-bold text-sm mb-1">{risk.action}</div>
-                      <p className="text-gray-400 text-xs leading-relaxed line-clamp-2">
+                      <p className="text-gray-200 text-xs leading-relaxed line-clamp-2">
                         {risk.warningBody.substring(0, 200)}...
                       </p>
                     </div>
@@ -688,7 +688,7 @@ export default function LegalComplianceNode() {
                 <div className="text-xs font-black uppercase tracking-widest text-[#4a9eff] mb-1">
                   DYNAMIC CONTRACT CLAUSE APPENDER
                 </div>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-200 text-sm">
                   The AI automatically appends state-specific legal clauses to all proposals based on the job's location. Select a state above to generate the applicable clauses. Copy all and paste to the bottom of your Claude-generated contract.
                 </p>
               </div>
@@ -702,10 +702,10 @@ export default function LegalComplianceNode() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <div className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">
+                <div className="text-xs font-black uppercase tracking-widest text-gray-300 mb-1">
                   IMMUTABLE AUDIT TRAIL — SESSION {sessionId}
                 </div>
-                <div className="text-sm text-gray-400">
+                <div className="text-sm text-gray-200">
                   {auditLog.length === 0
                     ? 'No events recorded this session. Use the Override Simulator to generate entries.'
                     : `${auditLog.length} event${auditLog.length !== 1 ? 's' : ''} recorded — ${auditLog.filter((e) => e.overrideAccepted).length} override${auditLog.filter((e) => e.overrideAccepted).length !== 1 ? 's' : ''} accepted`}
@@ -728,7 +728,7 @@ export default function LegalComplianceNode() {
               <AuditLog entries={auditLog} />
             </div>
             {auditLog.length > 0 && (
-              <div className="bg-[#0a1628] border border-[#1e3a5f] p-4 text-xs font-mono text-gray-500">
+              <div className="bg-[#0a1628] border border-[#1e3a5f] p-4 text-xs font-mono text-gray-300">
                 <div className="font-bold text-[#4a9eff] mb-2">LEGAL ADMISSIBILITY NOTICE</div>
                 This audit trail is timestamped in UTC and includes cryptographic IP hashes and session identifiers. In the event of litigation, this log constitutes documentary evidence of contractor decisions and AI recommendations. All entries are write-once and cannot be modified retroactively.
               </div>
@@ -740,17 +740,17 @@ export default function LegalComplianceNode() {
       {/* Disclaimer Footer */}
       <footer className="mt-12 border-t border-gray-800 bg-[#060810]">
         <div className="max-w-7xl mx-auto px-6 py-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-600">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs text-gray-200">
             <div>
-              <div className="font-black uppercase tracking-wider text-gray-500 mb-2">⚖️ Legal Disclaimer</div>
+              <div className="font-black uppercase tracking-wider text-gray-300 mb-2">⚖️ Legal Disclaimer</div>
               <p>This tool provides AI-assisted legal intelligence for advisory purposes only. Content does not constitute legal advice. Consult a licensed attorney in your jurisdiction before contract execution or regulatory decisions.</p>
             </div>
             <div>
-              <div className="font-black uppercase tracking-wider text-gray-500 mb-2">📋 Data Sources</div>
+              <div className="font-black uppercase tracking-wider text-gray-300 mb-2">📋 Data Sources</div>
               <p>Federal regulations sourced from eCFR.gov, OSHA.gov, FMCSA.dot.gov, EPA.gov, and DOL.gov. State law data reflects publicly available statutes. Users must verify current applicability.</p>
             </div>
             <div>
-              <div className="font-black uppercase tracking-wider text-gray-500 mb-2">🏗️ J. Worden & Sons</div>
+              <div className="font-black uppercase tracking-wider text-gray-300 mb-2">🏗️ J. Worden & Sons</div>
               <p>4th Generation · Since 1984 · Virginia Class A Contractor · 7011 Wood Rd, Richmond, VA · SAM.gov Active · VDOT Compliant · 96% Marshall Unit Weight Standard</p>
             </div>
           </div>

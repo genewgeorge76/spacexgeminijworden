@@ -157,7 +157,7 @@ export default function GoogleReviewsLive() {
               <div className="mt-8 flex items-center justify-between border-t border-white/[0.08] pt-5">
                 <div>
                   <div className="text-sm font-medium text-white">{r.author}</div>
-                  <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-white/40">
+                  <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-white/75">
                     {new Date(r.date).toLocaleDateString('en-US', {
                       year: 'numeric',
                       month: 'long',
@@ -174,7 +174,7 @@ export default function GoogleReviewsLive() {
         </div>
 
         <div className="mt-10 flex flex-col items-center justify-between gap-4 md:flex-row">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-white/40">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-white/75">
             Last synced from your Google Business Profile
           </p>
           <a

@@ -87,7 +87,7 @@ export default function WordenStandardPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/hero-paving.mp4" opacity={0.7} />
         <div className="relative mx-auto max-w-5xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Construction specifications
           </p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
@@ -105,14 +105,14 @@ export default function WordenStandardPage() {
       {/* Specs */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-5xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Six contract specifications</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Six contract specifications</p>
           <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
             What gets written into every project, regardless of size.
           </h2>
           <ul className="mt-16 divide-y divide-white/[0.08] border-y border-white/[0.08]">
             {SPECS.map((s, i) => (
               <li key={s.title} className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[80px_1fr] md:gap-12">
-                <div className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">0{i + 1}</div>
+                <div className="text-xs font-medium uppercase tracking-[0.3em] text-white/75">0{i + 1}</div>
                 <div>
                   <div className="text-2xl font-medium tracking-tight">{s.title}</div>
                   <p className="mt-3 text-base leading-relaxed text-white/60">{s.body}</p>
@@ -127,14 +127,14 @@ export default function WordenStandardPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/parking-lot.mp4" opacity={0.6} />
         <div className="relative mx-auto max-w-5xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Construction process</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Construction process</p>
           <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
             From measurement through compaction verification.
           </h2>
           <ol className="mt-16 space-y-12">
             {PROCESS.map((p) => (
               <li key={p.step} className="grid grid-cols-1 gap-6 md:grid-cols-[100px_1fr] md:gap-12">
-                <div className="text-3xl font-medium tracking-tight text-white/30">{p.step}</div>
+                <div className="text-3xl font-medium tracking-tight text-white/70">{p.step}</div>
                 <div>
                   <div className="text-2xl font-medium tracking-tight">{p.title}</div>
                   <p className="mt-3 text-base leading-relaxed text-white/60">{p.body}</p>

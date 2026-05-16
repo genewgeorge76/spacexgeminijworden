@@ -69,13 +69,13 @@ export default function TestimonialCarousel() {
             <div className="mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
                 <p className="text-white font-black text-lg">{t.name}</p>
-                <p className="text-zinc-400 text-sm font-bold">{t.city}</p>
+                <p className="text-zinc-200 text-sm font-bold">{t.city}</p>
               </div>
               <div className="flex flex-col items-start sm:items-end gap-1">
                 <span className="bg-[#ffcc00] text-black px-3 py-1 text-[10px] font-black uppercase tracking-widest rounded-full">
                   {t.projectType}
                 </span>
-                <time className="text-zinc-600 text-xs" dateTime={t.date}>
+                <time className="text-zinc-200 text-xs" dateTime={t.date}>
                   {new Date(t.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long' })}
                 </time>
               </div>
@@ -132,7 +132,7 @@ export default function TestimonialCarousel() {
           >
             ⭐ Leave Us a Google Review
           </a>
-          <p className="text-zinc-500 text-xs mt-3">Share your experience — it helps other homeowners find quality paving contractors.</p>
+          <p className="text-zinc-300 text-xs mt-3">Share your experience — it helps other homeowners find quality paving contractors.</p>
         </div>
       </div>
     </section>

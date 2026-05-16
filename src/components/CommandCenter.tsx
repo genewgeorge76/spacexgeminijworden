@@ -120,7 +120,7 @@ export default function CommandCenter({ onLock }: CommandCenterProps) {
           {onLock && (
             <button
               onClick={onLock}
-              className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-700 hover:border-amber-500/40 text-zinc-400 hover:text-amber-400 text-[10px] font-black uppercase tracking-widest rounded-lg transition-colors"
+              className="flex items-center gap-2 px-4 py-2 bg-zinc-900 border border-zinc-700 hover:border-amber-500/40 text-zinc-200 hover:text-amber-400 text-[10px] font-black uppercase tracking-widest rounded-lg transition-colors"
             >
               <Lock className="w-3 h-3" />
               Lock
@@ -134,10 +134,10 @@ export default function CommandCenter({ onLock }: CommandCenterProps) {
             <span className="text-[9px] font-black uppercase tracking-widest text-green-400">Systems Online</span>
           </div>
           <div className="h-3 w-px bg-zinc-700" />
-          <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">
+          <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">
             96% Marshall &middot; VDOT Sec 315 &middot; $9/Ton Shield &middot; Zero-Downtime Medical
           </span>
-          <div className="ml-auto text-[9px] font-bold text-zinc-600 uppercase tracking-widest">
+          <div className="ml-auto text-[9px] font-bold text-zinc-200 uppercase tracking-widest">
             JWORDENAI&trade; v1.0.0
           </div>
         </div>
@@ -160,7 +160,7 @@ export default function CommandCenter({ onLock }: CommandCenterProps) {
                   <p className={`text-sm font-black uppercase tracking-wider ${mod.color} mb-1`}>
                     {mod.label}
                   </p>
-                  <p className="text-[11px] text-zinc-500 leading-snug">{mod.desc}</p>
+                  <p className="text-[11px] text-zinc-300 leading-snug">{mod.desc}</p>
                 </div>
               </a>
             );

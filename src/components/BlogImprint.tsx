@@ -20,7 +20,7 @@ export function BlogImprint({ mode, limit = 0 }: Props) {
   if (mode === 'services') {
     return (
       <div className="mt-16 border-t border-white/10 pt-10">
-        <p className="text-[10px] uppercase tracking-[0.32em] text-white/40">
+        <p className="text-[10px] uppercase tracking-[0.32em] text-white/75">
           Field notes &middot; service area coverage
         </p>
         <div className="mt-6 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
@@ -40,10 +40,10 @@ export function BlogImprint({ mode, limit = 0 }: Props) {
   return (
     <div className="mt-16 border-t border-white/10 pt-10">
       <div className="flex items-baseline justify-between">
-        <p className="text-[10px] uppercase tracking-[0.32em] text-white/40">
+        <p className="text-[10px] uppercase tracking-[0.32em] text-white/75">
           Field notes &middot; city pages
         </p>
-        <p className="text-[10px] uppercase tracking-[0.28em] text-white/30">
+        <p className="text-[10px] uppercase tracking-[0.28em] text-white/70">
           {CITIES.length} cities &middot; {SERVICES.length} services &middot; {CITIES.length * SERVICES.length} posts
         </p>
       </div>

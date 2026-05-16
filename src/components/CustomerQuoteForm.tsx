@@ -18,7 +18,7 @@ export default function CustomerQuoteForm() {
       <h2 className="text-2xl font-black uppercase text-[#ffcc00] tracking-wider mb-2">
         JWORDENAI Vision™
       </h2>
-      <p className="text-zinc-400 text-sm mb-6">
+      <p className="text-zinc-200 text-sm mb-6">
         Enter your ZIP code to see verified local paving projects near you.
       </p>
 
@@ -50,13 +50,13 @@ export default function CustomerQuoteForm() {
             {evidence.images.map((src, i) => (
               <div
                 key={i}
-                className="bg-zinc-700 border-2 border-dashed border-zinc-500 rounded-lg h-40 flex items-center justify-center text-zinc-500 text-xs"
+                className="bg-zinc-700 border-2 border-dashed border-zinc-500 rounded-lg h-40 flex items-center justify-center text-zinc-300 text-xs"
                 aria-label={`${evidence.folder} project photo ${i + 1}`}
               >
                 <span className="text-center px-4">
                   📷 {evidence.folder} verified project photo
                   <br />
-                  <span className="text-zinc-600">{src}</span>
+                  <span className="text-zinc-200">{src}</span>
                 </span>
               </div>
             ))}

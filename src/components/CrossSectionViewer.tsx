@@ -495,7 +495,7 @@ export default function CrossSectionViewer({
       />
 
       {/* Controls hint */}
-      <div className="px-4 py-1.5 bg-zinc-800 border-t border-zinc-700 text-[10px] text-zinc-500 flex gap-4">
+      <div className="px-4 py-1.5 bg-zinc-800 border-t border-zinc-700 text-[10px] text-zinc-300 flex gap-4">
         <span>🖱 Drag: Rotate</span>
         <span>⚙ Scroll: Zoom</span>
         <span>⇧ Right-drag: Pan</span>
@@ -515,7 +515,7 @@ export default function CrossSectionViewer({
             <div>
               <span className="text-zinc-300 font-bold">{layer.label}</span>
               <br />
-              <span className="text-zinc-600 font-mono">{layer.spec}</span>
+              <span className="text-zinc-200 font-mono">{layer.spec}</span>
             </div>
           </div>
         ))}

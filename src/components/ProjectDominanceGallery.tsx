@@ -58,7 +58,7 @@ export const ProjectDominanceGallery = () => {
       <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-4 gap-4 flex-wrap">
         <div>
           <h3 className="text-[#d4af37] font-black text-2xl uppercase tracking-widest">Visual Proof: Operational Supremacy</h3>
-          <p className="text-gray-400 text-sm mt-1">4K Optmized Asset Delivery // Fourth Generation Execution</p>
+          <p className="text-gray-200 text-sm mt-1">4K Optmized Asset Delivery // Fourth Generation Execution</p>
         </div>
 
         <div className="flex space-x-2">
@@ -69,7 +69,7 @@ export const ProjectDominanceGallery = () => {
               className={`px-4 py-2 text-xs font-bold rounded-md transition-all ${
                 activeSector === sector
                   ? 'bg-[#d4af37] text-black shadow-[0_0_10px_rgba(212,175,55,0.5)]'
-                  : 'bg-[#1f1f23] text-gray-400 hover:text-white border border-white/10'
+                  : 'bg-[#1f1f23] text-gray-200 hover:text-white border border-white/10'
               }`}
             >
               {sector}

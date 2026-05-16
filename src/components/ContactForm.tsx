@@ -201,26 +201,26 @@ export default function ContactForm() {
               <div className="grid grid-cols-3 gap-3">
                 <div className="bg-zinc-900 border border-zinc-700 p-4 text-center">
                   <p className="text-[#ffcc00] font-black text-lg">{bidResult.metrics.asphaltTons.toFixed(1)}</p>
-                  <p className="text-zinc-400 text-xs uppercase tracking-widest font-bold mt-1">Asphalt Tons</p>
+                  <p className="text-zinc-200 text-xs uppercase tracking-widest font-bold mt-1">Asphalt Tons</p>
                 </div>
                 <div className="bg-zinc-900 border border-zinc-700 p-4 text-center">
                   <p className="text-[#ffcc00] font-black text-lg">{bidResult.metrics.stoneTons.toFixed(1)}</p>
-                  <p className="text-zinc-400 text-xs uppercase tracking-widest font-bold mt-1">Stone Base Tons</p>
+                  <p className="text-zinc-200 text-xs uppercase tracking-widest font-bold mt-1">Stone Base Tons</p>
                 </div>
                 <div className="bg-zinc-900 border border-zinc-700 p-4 text-center">
                   <p className="text-[#ffcc00] font-black text-lg">${bidResult.metrics.totalProjected.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
-                  <p className="text-zinc-400 text-xs uppercase tracking-widest font-bold mt-1">Est. Materials</p>
+                  <p className="text-zinc-200 text-xs uppercase tracking-widest font-bold mt-1">Est. Materials</p>
                 </div>
               </div>
             </div>
           )}
 
-          <p className="mt-6 text-xs text-zinc-500 italic font-medium">
+          <p className="mt-6 text-xs text-zinc-300 italic font-medium">
             Secured by Kickserv · Same-day response · We respect your privacy.
           </p>
           <button
             onClick={() => { setSubmitted(false); setBidResult(null); setBidError(null); setKickservError(null); setValidationError(null); }}
-            className="mt-4 text-zinc-600 hover:text-zinc-400 text-xs uppercase tracking-widest font-bold transition-colors"
+            className="mt-4 text-zinc-200 hover:text-zinc-200 text-xs uppercase tracking-widest font-bold transition-colors"
           >
             ← Submit Another Request
           </button>
@@ -355,7 +355,7 @@ export default function ContactForm() {
           {kickservLoading ? '⏳ Submitting to Dispatch...' : '🧠 Get AI Estimate — Worden Brain Dispatch'}
         </button>
 
-        <p className="mt-8 text-xs text-zinc-500 text-center italic font-bold uppercase tracking-widest">
+        <p className="mt-8 text-xs text-zinc-300 text-center italic font-bold uppercase tracking-widest">
           Authorized Kickserv® Dispatch Point • 4th-Gen Integrity Guaranteed
         </p>
       </form>

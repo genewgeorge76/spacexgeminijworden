@@ -55,7 +55,7 @@ export default function TarAndChipPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/chip-and-tar.mp4" />
         <div className="relative mx-auto max-w-5xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Bituminous surface treatment
           </p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
@@ -77,7 +77,7 @@ export default function TarAndChipPage() {
       {/* Body */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-3xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">What it is</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">What it is</p>
           <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
             A sealed, dust-free driving surface engineered for rural use.
           </h2>
@@ -108,14 +108,14 @@ export default function TarAndChipPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/driveway-stratford-hills.mp4" />
         <div className="relative mx-auto max-w-5xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Where it fits</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Where it fits</p>
           <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
             The right surface for the right property.
           </h2>
           <ul className="mt-16 divide-y divide-white/[0.08] border-y border-white/[0.08]">
             {APPLICATIONS.map((a, i) => (
               <li key={a.title} className="grid grid-cols-1 gap-6 py-10 md:grid-cols-[80px_1fr] md:gap-12">
-                <div className="text-xs font-medium uppercase tracking-[0.3em] text-white/40">0{i + 1}</div>
+                <div className="text-xs font-medium uppercase tracking-[0.3em] text-white/75">0{i + 1}</div>
                 <div>
                   <div className="text-2xl font-medium tracking-tight">{a.title}</div>
                   <p className="mt-3 text-base leading-relaxed text-white/60">{a.body}</p>
@@ -129,7 +129,7 @@ export default function TarAndChipPage() {
       {/* Service area */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-5xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Rural service area
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-4xl">
@@ -146,7 +146,7 @@ export default function TarAndChipPage() {
                   className="rounded-full border border-white/15 px-4 py-2 text-white/70 hover:bg-white/5 hover:text-white"
                 >
                   {c.name}
-                  {c.county ? <span className="text-white/40"> &middot; {c.county} Co.</span> : null}
+                  {c.county ? <span className="text-white/75"> &middot; {c.county} Co.</span> : null}
                 </Link>
               );
             })}

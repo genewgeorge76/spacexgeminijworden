@@ -204,8 +204,8 @@ function DayCard({ d, isSelected, onClick }: { d: DayForecast; isSelected: boole
       className={`flex flex-col items-center gap-1 p-3 rounded-lg border cursor-pointer transition-all min-w-[72px] select-none
         ${isSelected ? `${cfg.bg} ${cfg.border} ring-2 ring-offset-1 ring-offset-zinc-950 ${cfg.border.replace('border-', 'ring-')}` : 'bg-zinc-900 border-zinc-800 hover:border-zinc-600'}`}
     >
-      <span className="text-[10px] font-bold uppercase text-zinc-500">{d.dayName}</span>
-      <span className="text-[11px] font-black text-zinc-400">{d.date}</span>
+      <span className="text-[10px] font-bold uppercase text-zinc-300">{d.dayName}</span>
+      <span className="text-[11px] font-black text-zinc-200">{d.date}</span>
       <span className={`text-[10px] font-black uppercase ${cfg.color}`}>
         {d.risk === 'LOW' ? '✓ PAVE' : d.risk === 'MODERATE' ? '⚠ CAUTION' : d.risk === 'HIGH' ? '⚠ RISK' : '✗ NO-PAVE'}
       </span>
@@ -256,13 +256,13 @@ export default function WeatherIntel() {
             <span className="bg-[#ffcc00] text-black px-4 py-1 text-[10px] font-black uppercase tracking-[0.4em]">
               Enterprise Dispatch Node
             </span>
-            <span className="border border-zinc-700 text-zinc-400 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
+            <span className="border border-zinc-700 text-zinc-200 px-3 py-1 text-[10px] font-black uppercase tracking-widest">
               Meteorological Intelligence v3.0
             </span>
             <button
               type="button"
               onClick={() => setShowInfo(!showInfo)}
-              className="ml-auto text-zinc-500 hover:text-[#ffcc00] transition-colors"
+              className="ml-auto text-zinc-300 hover:text-[#ffcc00] transition-colors"
               aria-label="Toggle info"
             >
               <Info size={18} />
@@ -271,12 +271,12 @@ export default function WeatherIntel() {
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none">
             30-DAY <span className="text-[#ffcc00]">PAVE / NO-PAVE</span>
           </h1>
-          <p className="mt-4 text-zinc-400 text-lg font-bold max-w-3xl">
+          <p className="mt-4 text-zinc-200 text-lg font-bold max-w-3xl">
             Financial meteorological engine for heavy highway &amp; asphalt paving. Every forecast day is evaluated against 96% Marshall compaction thresholds, VDOT ground-temp minimums, wind-chill cooling rates, and sub-base washout risk — then converted into projected profit or loss.
           </p>
 
           {showInfo && (
-            <div className="mt-4 bg-zinc-900 border border-zinc-700 rounded-xl p-6 text-sm text-zinc-400 space-y-2">
+            <div className="mt-4 bg-zinc-900 border border-zinc-700 rounded-xl p-6 text-sm text-zinc-200 space-y-2">
               <p><span className="text-[#ffcc00] font-black">Ground Temp Logic:</span> VDOT Sec 315 requires a minimum 40°F surface temp for compaction. Below 50°F the mat cools from the bottom up before rollers reach it, jeopardizing 96% Marshall density.</p>
               <p><span className="text-[#ffcc00] font-black">Wind-Chill Cooling Factor:</span> Every 5 mph above 10 mph cuts effective mat temperature by ~6°F. Above 20 mph the surface cools 50% faster — rollers must stay within 15 ft of the screed.</p>
               <p><span className="text-[#ffcc00] font-black">Moisture / Washout Risk:</span> Rain ≥ 0.5 inch saturates the sub-base, causing "mud pumping" beneath the new mat. All grading and stone-base work should be deferred if ≥ 0.5 inch is forecast within 48 hours.</p>
@@ -318,8 +318,8 @@ export default function WeatherIntel() {
           ].map((s) => (
             <div key={s.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
               <div className={`text-4xl font-black ${s.color}`}>{s.value}</div>
-              <div className="text-xs font-black uppercase tracking-widest text-zinc-400 mt-1">{s.label}</div>
-              <div className="text-[10px] text-zinc-600 mt-0.5">{s.sub}</div>
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-200 mt-1">{s.label}</div>
+              <div className="text-[10px] text-zinc-200 mt-0.5">{s.sub}</div>
             </div>
           ))}
         </div>
@@ -331,7 +331,7 @@ export default function WeatherIntel() {
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-emerald-400/70">30-Day Protected Profit</div>
               <div className="text-3xl font-black text-emerald-400">+${totalPotentialGain.toLocaleString()}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">If all optimal windows are utilized</div>
+              <div className="text-xs text-zinc-300 mt-0.5">If all optimal windows are utilized</div>
             </div>
           </div>
           <div className="bg-red-900/20 border border-red-500/30 rounded-xl p-5 flex items-center gap-4">
@@ -339,7 +339,7 @@ export default function WeatherIntel() {
             <div>
               <div className="text-xs font-black uppercase tracking-widest text-red-400/70">30-Day Exposure If Not Rescheduled</div>
               <div className="text-3xl font-black text-red-400">-${Math.abs(totalPotentialLoss).toLocaleString()}</div>
-              <div className="text-xs text-zinc-500 mt-0.5">Mat failures + washout + warranty repairs</div>
+              <div className="text-xs text-zinc-300 mt-0.5">Mat failures + washout + warranty repairs</div>
             </div>
           </div>
         </div>
@@ -349,7 +349,7 @@ export default function WeatherIntel() {
           <div className="flex items-center gap-3 mb-5">
             <Calendar className="text-[#ffcc00]" size={18} />
             <span className="text-sm font-black uppercase tracking-widest text-zinc-300">30-Day Forecast Calendar</span>
-            <span className="text-xs text-zinc-600 ml-2">Select a day for full analysis</span>
+            <span className="text-xs text-zinc-200 ml-2">Select a day for full analysis</span>
           </div>
           <div className="overflow-x-auto pb-2">
             <div className="flex gap-2 w-max">
@@ -369,7 +369,7 @@ export default function WeatherIntel() {
         <div className={`rounded-2xl border-2 p-6 md:p-8 ${cfg.bg} ${cfg.border} transition-all`}>
           <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
             <div>
-              <div className="text-xs font-black uppercase tracking-widest text-zinc-400 mb-1">
+              <div className="text-xs font-black uppercase tracking-widest text-zinc-200 mb-1">
                 Day {day.day} — {day.dayName}, {day.date}
               </div>
               <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none">
@@ -437,10 +437,10 @@ export default function WeatherIntel() {
                   key={m.label}
                   className={`rounded-xl p-4 border ${m.alert ? 'bg-orange-950/30 border-orange-500/30' : 'bg-zinc-900 border-zinc-800'}`}
                 >
-                  <MIcon size={16} className={m.alert ? 'text-orange-400' : 'text-zinc-400'} />
-                  <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mt-2">{m.label}</div>
+                  <MIcon size={16} className={m.alert ? 'text-orange-400' : 'text-zinc-200'} />
+                  <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mt-2">{m.label}</div>
                   <div className={`text-2xl font-black mt-0.5 ${m.alert ? 'text-orange-300' : 'text-white'}`}>{m.value}</div>
-                  <div className={`text-[10px] mt-1 font-bold ${m.alert ? 'text-orange-400' : 'text-zinc-500'}`}>{m.sub}</div>
+                  <div className={`text-[10px] mt-1 font-bold ${m.alert ? 'text-orange-400' : 'text-zinc-300'}`}>{m.sub}</div>
                 </div>
               );
             })}
@@ -449,16 +449,16 @@ export default function WeatherIntel() {
           {/* Temp Delta Explainer */}
           <div className="bg-zinc-900/60 border border-zinc-700 rounded-xl p-4 mb-6 flex flex-col md:flex-row gap-4 md:items-center">
             <div className="flex-1">
-              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">Ambient ↔ Ground Temp Delta</div>
+              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">Ambient ↔ Ground Temp Delta</div>
               <div className="flex items-center gap-3">
                 <span className="text-2xl font-black text-white">{day.ambientTempF}°F</span>
-                <span className="text-zinc-600 font-bold">vs.</span>
+                <span className="text-zinc-200 font-bold">vs.</span>
                 <span className={`text-2xl font-black ${day.groundTempF < 50 ? 'text-orange-400' : 'text-emerald-400'}`}>{day.groundTempF}°F</span>
-                <span className="text-zinc-400 font-bold text-sm">
+                <span className="text-zinc-200 font-bold text-sm">
                   (Δ {Math.abs(day.ambientTempF - day.groundTempF)}°F gap)
                 </span>
               </div>
-              <div className="text-xs text-zinc-500 mt-1">
+              <div className="text-xs text-zinc-300 mt-1">
                 {day.groundTempF >= 55
                   ? 'Ground temp adequate — mat will stay workable through full compaction cycle.'
                   : day.groundTempF >= 45
@@ -467,8 +467,8 @@ export default function WeatherIntel() {
               </div>
             </div>
             <div className="flex-1">
-              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">Wind-Chill Cooling Factor</div>
-              <div className="text-sm text-zinc-400">
+              <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">Wind-Chill Cooling Factor</div>
+              <div className="text-sm text-zinc-200">
                 At <span className="text-white font-bold">{day.windSpeedMph} mph</span>,
                 surface cools approximately{' '}
                 <span className={`font-bold ${day.windSpeedMph > 12 ? 'text-orange-400' : 'text-emerald-400'}`}>
@@ -509,10 +509,10 @@ export default function WeatherIntel() {
             </div>
             <p className="text-white font-bold text-base leading-relaxed">{day.recommendation}</p>
             <div className="mt-3 flex items-center gap-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Projected Impact:</span>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-300">Projected Impact:</span>
               <ProfitBadge amount={day.profitImpact} />
               {day.risk !== 'LOW' && (
-                <span className="text-xs text-zinc-600">vs. optimal-day profit of +${calcProfitImpact('LOW', projectValue).toLocaleString()}</span>
+                <span className="text-xs text-zinc-200">vs. optimal-day profit of +${calcProfitImpact('LOW', projectValue).toLocaleString()}</span>
               )}
             </div>
           </div>
@@ -520,7 +520,7 @@ export default function WeatherIntel() {
 
         {/* ── Legend ── */}
         <div className="mt-8 bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
-          <div className="text-xs font-black uppercase tracking-widest text-zinc-500 mb-4">Risk Legend &amp; VDOT Thresholds</div>
+          <div className="text-xs font-black uppercase tracking-widest text-zinc-300 mb-4">Risk Legend &amp; VDOT Thresholds</div>
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
             {(Object.entries(RISK_CONFIG) as [PaveRisk, typeof RISK_CONFIG[PaveRisk]][]).map(([risk, c]) => {
               const LIcon = c.icon;
@@ -530,7 +530,7 @@ export default function WeatherIntel() {
                     <LIcon size={12} />
                     {c.label}
                   </div>
-                  <div className="text-zinc-500 leading-relaxed">
+                  <div className="text-zinc-300 leading-relaxed">
                     {risk === 'LOW'      && 'Ambient ≥ 55°F · Ground ≥ 55°F · Wind ≤ 12 mph · Precip < 25%'}
                     {risk === 'MODERATE' && 'Ambient 45–54°F or Ground 50–54°F or Wind 13–20 mph or Precip 25–44%'}
                     {risk === 'HIGH'     && 'Ambient < 45°F or Ground < 50°F or Wind > 20 mph or Precip 45–69%'}
@@ -540,7 +540,7 @@ export default function WeatherIntel() {
               );
             })}
           </div>
-          <div className="mt-4 text-[10px] text-zinc-600">
+          <div className="mt-4 text-[10px] text-zinc-200">
             Standards: VDOT Section 315 (Asphalt Base/Surface) · AASHTO T245 (Marshall Mix Design) · Worden Standard: 96% Marshall Unit Weight minimum · $9/ton oil-price shield applied to all cost projections.
           </div>
         </div>

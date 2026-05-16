@@ -353,14 +353,14 @@ export default function RealityEngineNode() {
           <h2 className="text-3xl font-black uppercase text-white tracking-tight">
             ⚡ Risk vs. Penalty <span className="text-[#ffcc00]">Arbitration</span>
           </h2>
-          <p className="text-zinc-400 text-sm font-bold mt-1">
+          <p className="text-zinc-200 text-sm font-bold mt-1">
             Bridges the gap between perfect AI conditions and the brutal reality of hitting your deadline.
           </p>
         </div>
         <button
           type="button"
           onClick={() => setShowAuditLog(!showAuditLog)}
-          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-[#ffcc00] border border-zinc-800 hover:border-[#ffcc00]/40 px-4 py-2 transition-all"
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-zinc-300 hover:text-[#ffcc00] border border-zinc-800 hover:border-[#ffcc00]/40 px-4 py-2 transition-all"
         >
           <Clock className="w-3 h-3" />
           Audit Log ({auditLog.length})
@@ -380,7 +380,7 @@ export default function RealityEngineNode() {
             </label>
             <div className="flex items-center gap-4 mb-4">
               <span className="text-3xl font-black text-white">${Number(ldPerDay).toLocaleString()}</span>
-              <span className="text-xs text-zinc-500 font-bold uppercase">/day penalty</span>
+              <span className="text-xs text-zinc-300 font-bold uppercase">/day penalty</span>
             </div>
             <input
               type="range"
@@ -396,8 +396,8 @@ export default function RealityEngineNode() {
               className="w-full accent-[#ffcc00] mb-3"
             />
             <div className="flex items-center gap-2">
-              <span className="text-xs text-zinc-600 font-bold">Or enter exact:</span>
-              <span className="text-zinc-500 font-bold">$</span>
+              <span className="text-xs text-zinc-200 font-bold">Or enter exact:</span>
+              <span className="text-zinc-300 font-bold">$</span>
               <input
                 type="number"
                 value={ldInput}
@@ -410,7 +410,7 @@ export default function RealityEngineNode() {
                 className="w-28 bg-black border border-zinc-700 text-white px-3 py-1.5 text-sm font-bold focus:border-[#ffcc00] outline-none"
               />
             </div>
-            <p className="text-[10px] text-zinc-600 mt-2 font-bold uppercase tracking-wider">
+            <p className="text-[10px] text-zinc-200 mt-2 font-bold uppercase tracking-wider">
               Contract daily penalty for missing deadline
             </p>
           </div>
@@ -423,7 +423,7 @@ export default function RealityEngineNode() {
             </label>
             <div className="flex items-center gap-4 mb-4">
               <span className="text-3xl font-black text-white">{daysRemaining}</span>
-              <span className="text-xs text-zinc-500 font-bold uppercase">days left</span>
+              <span className="text-xs text-zinc-300 font-bold uppercase">days left</span>
             </div>
             <input
               type="range"
@@ -434,7 +434,7 @@ export default function RealityEngineNode() {
               onChange={(e) => setDaysRemaining(Number(e.target.value))}
               className="w-full accent-[#ffcc00]"
             />
-            <div className="flex justify-between text-[10px] text-zinc-600 font-bold mt-1">
+            <div className="flex justify-between text-[10px] text-zinc-200 font-bold mt-1">
               <span>0 (Breach)</span>
               <span>90 Days</span>
             </div>
@@ -453,7 +453,7 @@ export default function RealityEngineNode() {
               placeholder="Enter name for audit log"
               className="w-full bg-black border border-zinc-700 text-white px-3 py-3 text-sm font-bold focus:border-[#ffcc00] outline-none placeholder-zinc-600"
             />
-            <p className="text-[10px] text-zinc-600 mt-2 font-bold uppercase tracking-wider">
+            <p className="text-[10px] text-zinc-200 mt-2 font-bold uppercase tracking-wider">
               Bound to all audit records
             </p>
           </div>
@@ -461,7 +461,7 @@ export default function RealityEngineNode() {
 
         {/* ── SCENARIO SELECTOR ── */}
         <div>
-          <label className="block text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-4">
+          <label className="block text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-4">
             Active Field Condition / Scenario
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3">
@@ -473,14 +473,14 @@ export default function RealityEngineNode() {
                 className={`text-left p-4 border rounded-xl transition-all ${
                   selectedScenario === s.id
                     ? 'border-[#ffcc00] bg-[#ffcc00]/5 text-white'
-                    : 'border-zinc-800 bg-zinc-900/30 text-zinc-400 hover:border-zinc-600'
+                    : 'border-zinc-800 bg-zinc-900/30 text-zinc-200 hover:border-zinc-600'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-1">
                   {s.icon}
                   <span className="text-xs font-black uppercase tracking-wide">{s.label}</span>
                 </div>
-                <p className="text-[10px] text-zinc-500 font-bold">{s.weatherCondition}</p>
+                <p className="text-[10px] text-zinc-300 font-bold">{s.weatherCondition}</p>
               </button>
             ))}
           </div>
@@ -500,15 +500,15 @@ export default function RealityEngineNode() {
               <div className="flex gap-6 text-center">
                 <div>
                   <div className="text-2xl font-black text-red-400">${scenario.waitCost.toLocaleString()}</div>
-                  <div className="text-[10px] text-zinc-500 font-bold uppercase">LD Wait Cost</div>
+                  <div className="text-[10px] text-zinc-300 font-bold uppercase">LD Wait Cost</div>
                 </div>
                 <div>
                   <div className="text-2xl font-black text-yellow-400">${scenario.executeCost.toLocaleString()}</div>
-                  <div className="text-[10px] text-zinc-500 font-bold uppercase">Execution Risk</div>
+                  <div className="text-[10px] text-zinc-300 font-bold uppercase">Execution Risk</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-black text-zinc-400">{scenario.daysToIdeal}d</div>
-                  <div className="text-[10px] text-zinc-500 font-bold uppercase">Days to Ideal</div>
+                  <div className="text-2xl font-black text-zinc-200">{scenario.daysToIdeal}d</div>
+                  <div className="text-[10px] text-zinc-300 font-bold uppercase">Days to Ideal</div>
                 </div>
               </div>
             </div>
@@ -544,7 +544,7 @@ export default function RealityEngineNode() {
                       Net Savings: ${verdict.netSavings.toLocaleString()}
                     </span>
                   )}
-                  <span className="text-[10px] font-bold text-zinc-600">
+                  <span className="text-[10px] font-bold text-zinc-200">
                     {new Date(verdict.auditTimestamp).toLocaleString()}
                     {verdict.auditSignature ? ` — ${verdict.auditSignature}` : ''}
                   </span>
@@ -554,7 +554,7 @@ export default function RealityEngineNode() {
 
             {/* Rationale */}
             <div className="bg-black/40 border border-zinc-800 rounded-lg p-6 mb-6">
-              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-2">AI Arbitration Rationale</p>
+              <p className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-2">AI Arbitration Rationale</p>
               <p className="text-zinc-300 font-bold leading-relaxed">{verdict.rationale}</p>
             </div>
 
@@ -575,7 +575,7 @@ export default function RealityEngineNode() {
                         <div className="flex-1">
                           <p className="text-white font-bold text-sm leading-relaxed">{cm.action}</p>
                           {cm.spec && (
-                            <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider mt-2">
+                            <p className="text-[10px] text-zinc-300 font-bold uppercase tracking-wider mt-2">
                               Spec Ref: {cm.spec}
                             </p>
                           )}
@@ -599,7 +599,7 @@ export default function RealityEngineNode() {
                   <AlertTriangle className="w-4 h-4" />
                   Superintendent Override — Force Execute Against Recommendation
                 </h4>
-                <p className="text-zinc-400 text-sm font-bold mb-4">
+                <p className="text-zinc-200 text-sm font-bold mb-4">
                   By clicking "Force Execute," <strong className="text-white">{superintendentName || '[Superintendent Name Required]'}</strong> personally assumes 100% financial liability for execution outcome and waives all claims against J. Worden &amp; Sons and the Worden OS platform.
                 </p>
                 <div className="flex items-start gap-3 mb-4">
@@ -645,7 +645,7 @@ export default function RealityEngineNode() {
                   }`} />
                   <div className="flex-1 min-w-0">
                     <p className="text-xs font-black text-white truncate">{entry.headline}</p>
-                    <p className="text-[10px] text-zinc-500 font-bold mt-0.5">
+                    <p className="text-[10px] text-zinc-300 font-bold mt-0.5">
                       {new Date(entry.auditTimestamp).toLocaleString()}
                       {entry.auditSignature ? ` · ${entry.auditSignature}` : ''}
                     </p>
@@ -661,7 +661,7 @@ export default function RealityEngineNode() {
 
         {/* Legal Disclaimer Footer */}
         <div className="border-t border-zinc-900 pt-6">
-          <p className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest leading-relaxed">
+          <p className="text-[10px] text-zinc-200 font-bold uppercase tracking-widest leading-relaxed">
             ⚖️ Advisory Tool Only — The Worden Reality Engine is an AI-powered advisory system. All construction decisions are the sole responsibility of the licensed Superintendent and Project Manager on site. This platform does not replace professional engineering judgment, OSHA regulations, or contract obligations. All override actions are recorded in the immutable audit log. J. Worden &amp; Sons and the Worden OS platform are held harmless from outcomes resulting from user-initiated execution decisions.
           </p>
         </div>

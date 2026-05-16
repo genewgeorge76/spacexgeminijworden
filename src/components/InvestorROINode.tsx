@@ -66,7 +66,7 @@ function StatCard({
     <div
       className={`p-5 border ${highlight ? 'border-[#ffcc00] bg-[#ffcc00]/5' : 'border-zinc-800 bg-zinc-900'}`}
     >
-      <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+      <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
         {label}
       </div>
       <div
@@ -75,7 +75,7 @@ function StatCard({
         {value}
       </div>
       {sub && (
-        <div className="text-xs text-zinc-500 font-bold mt-1">{sub}</div>
+        <div className="text-xs text-zinc-300 font-bold mt-1">{sub}</div>
       )}
     </div>
   );
@@ -108,7 +108,7 @@ function CapRateCalculator() {
       <h2 className="text-4xl font-black uppercase text-white mb-2 tracking-tight">
         Asset Valuation <span className="text-[#ffcc00]">Calculator</span>
       </h2>
-      <p className="text-zinc-400 font-bold mb-10 max-w-3xl">
+      <p className="text-zinc-200 font-bold mb-10 max-w-3xl">
         Enter the infrastructure investment cost, current NOI, projected NOI
         increase, and local cap rate. The engine calculates exactly how many
         dollars of asset equity your paving investment manufactures.
@@ -187,7 +187,7 @@ function CapRateCalculator() {
                 onChange={numSetter(field.setter)}
                 className={sliderClass}
               />
-              <div className="flex justify-between text-[10px] text-zinc-600 font-bold mt-1">
+              <div className="flex justify-between text-[10px] text-zinc-200 font-bold mt-1">
                 <span>
                   {field.prefix}
                   {field.fmtVal ? field.fmtVal(field.min) : fmt(field.min)}
@@ -231,13 +231,13 @@ function CapRateCalculator() {
             />
           </div>
           <div className="bg-zinc-900 border border-zinc-800 p-6">
-            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-3">
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-3">
               Leverage Multiple
             </div>
             <div className="text-5xl font-black text-[#ffcc00]">
               {results.leverageMultiple.toFixed(2)}×
             </div>
-            <div className="text-zinc-400 text-sm font-bold mt-2">
+            <div className="text-zinc-200 text-sm font-bold mt-2">
               Every $1 invested in infrastructure generates{' '}
               <span className="text-white">
                 ${results.leverageMultiple.toFixed(2)}
@@ -342,7 +342,7 @@ function HighestBestUse() {
       <h2 className="text-4xl font-black uppercase text-white mb-2 tracking-tight">
         Land Use <span className="text-[#ffcc00]">Optimizer</span>
       </h2>
-      <p className="text-zinc-400 font-bold mb-10 max-w-3xl">
+      <p className="text-zinc-200 font-bold mb-10 max-w-3xl">
         The AI analyzes soil data, zoning context, and infrastructure
         investment requirements to identify the highest-value use for the
         subject parcel.
@@ -363,7 +363,7 @@ function HighestBestUse() {
             <div className="text-2xl mb-2">{s.badge}</div>
             <div
               className={`text-xs font-black uppercase tracking-widest ${
-                selected === s.id ? 'text-[#ffcc00]' : 'text-zinc-400'
+                selected === s.id ? 'text-[#ffcc00]' : 'text-zinc-200'
               }`}
             >
               {s.label}
@@ -376,19 +376,19 @@ function HighestBestUse() {
       <div className="bg-zinc-900 border border-zinc-800 p-8 md:p-10">
         <div className="grid md:grid-cols-2 gap-10">
           <div>
-            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
               Current Use
             </div>
             <div className="text-xl font-black text-zinc-300 mb-4">
               {scenario.currentUse}
             </div>
-            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
               Proposed Use
             </div>
             <div className="text-xl font-black text-white mb-4">
               {scenario.proposedUse}
             </div>
-            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+            <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
               Target Tenant / Exit
             </div>
             <div className="text-lg font-bold text-[#ffcc00] mb-6">
@@ -411,12 +411,12 @@ function HighestBestUse() {
 
             <div className="bg-black border border-zinc-800 p-5">
               <div className="flex items-start gap-3">
-                <Shield className="w-4 h-4 text-zinc-400 mt-0.5 shrink-0" />
+                <Shield className="w-4 h-4 text-zinc-200 mt-0.5 shrink-0" />
                 <div>
-                  <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+                  <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
                     Soil Intelligence
                   </div>
-                  <div className="text-sm text-zinc-400 font-bold">
+                  <div className="text-sm text-zinc-200 font-bold">
                     {scenario.soilNote}
                   </div>
                 </div>
@@ -461,7 +461,7 @@ function HighestBestUse() {
               </div>
               <p className="text-zinc-300 text-sm font-bold leading-relaxed">
                 "Current Use:{' '}
-                <span className="text-zinc-400">{scenario.currentUse}</span>.
+                <span className="text-zinc-200">{scenario.currentUse}</span>.
                 Proposed Use:{' '}
                 <span className="text-white">{scenario.proposedUse}</span>.
                 Structural paving investment of{' '}
@@ -544,7 +544,7 @@ function ProFormaPanel() {
       <h2 className="text-4xl font-black uppercase text-white mb-2 tracking-tight">
         Delay &amp; Carrying Cost <span className="text-[#ffcc00]">Risk Engine</span>
       </h2>
-      <p className="text-zinc-400 font-bold mb-10 max-w-3xl">
+      <p className="text-zinc-200 font-bold mb-10 max-w-3xl">
         Integrates weather, soil, and execution risks into a financial Pro
         Forma view. Quantifies exactly how a 30-day delay bleeds the
         investor's IRR and triggers the Schedule Crashing protocol.
@@ -611,7 +611,7 @@ function ProFormaPanel() {
                 <div className="flex justify-between items-center mb-2">
                   <label
                     htmlFor={field.id}
-                    className="text-xs font-black uppercase tracking-widest text-zinc-400"
+                    className="text-xs font-black uppercase tracking-widest text-zinc-200"
                   >
                     {field.label}
                   </label>
@@ -675,7 +675,7 @@ function ProFormaPanel() {
                       className={`px-3 py-1 text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${
                         row.value === lvl.id
                           ? `${lvl.bg} ${lvl.color} border-current`
-                          : 'border-zinc-700 text-zinc-600 hover:border-zinc-500'
+                          : 'border-zinc-700 text-zinc-200 hover:border-zinc-500'
                       }`}
                     >
                       {lvl.label}
@@ -725,7 +725,7 @@ function ProFormaPanel() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-1">
+                <div className="text-[10px] text-zinc-300 font-black uppercase tracking-widest mb-1">
                   Risk-Adj. Delay
                 </div>
                 <div className="text-2xl font-black text-red-400">
@@ -733,7 +733,7 @@ function ProFormaPanel() {
                 </div>
               </div>
               <div>
-                <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-1">
+                <div className="text-[10px] text-zinc-300 font-black uppercase tracking-widest mb-1">
                   Risk-Adj. Exposure
                 </div>
                 <div className="text-2xl font-black text-red-400">
@@ -762,7 +762,7 @@ function ProFormaPanel() {
             </p>
             <div className="flex justify-between items-center">
               <div>
-                <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-1">
+                <div className="text-[10px] text-zinc-300 font-black uppercase tracking-widest mb-1">
                   Net Investor Savings
                 </div>
                 <div className="text-3xl font-black text-[#ffcc00]">
@@ -770,7 +770,7 @@ function ProFormaPanel() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-[10px] text-zinc-500 font-black uppercase tracking-widest mb-1">
+                <div className="text-[10px] text-zinc-300 font-black uppercase tracking-widest mb-1">
                   Crash ROI
                 </div>
                 <div className="text-3xl font-black text-white">
@@ -867,7 +867,7 @@ export default function InvestorROINode() {
             INVESTOR <br />
             <span className="text-white italic">ROI ENGINE</span>
           </h1>
-          <p className="text-2xl text-zinc-400 italic font-bold mt-10 max-w-4xl leading-snug">
+          <p className="text-2xl text-zinc-200 italic font-bold mt-10 max-w-4xl leading-snug">
             Infrastructure is not a cost — it is an equity manufacturing
             machine. This dashboard translates every dollar of J. Worden
             &amp; Sons construction work into cap rate math, asset valuation
@@ -881,11 +881,11 @@ export default function InvestorROINode() {
               { label: 'Delay Protected', value: '$0', sub: 'With crashing protocol active' },
             ].map((s) => (
               <div key={s.label} className="bg-zinc-900 px-6 py-5">
-                <div className="text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-1">
+                <div className="text-[10px] font-black uppercase tracking-widest text-zinc-300 mb-1">
                   {s.label}
                 </div>
                 <div className="text-3xl font-black text-[#ffcc00]">{s.value}</div>
-                <div className="text-xs text-zinc-500 font-bold mt-1">{s.sub}</div>
+                <div className="text-xs text-zinc-300 font-bold mt-1">{s.sub}</div>
               </div>
             ))}
           </div>

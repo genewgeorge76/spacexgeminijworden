@@ -19,7 +19,7 @@ const CrossSectionViewer = lazy(() => import('@/components/CrossSectionViewer'))
 
 function LazyPanelFallback({ label }: { label: string }) {
   return (
-    <div className="flex h-[420px] items-center justify-center border border-zinc-800 bg-zinc-950/40 text-xs font-bold uppercase tracking-[0.3em] text-zinc-500">
+    <div className="flex h-[420px] items-center justify-center border border-zinc-800 bg-zinc-950/40 text-xs font-bold uppercase tracking-[0.3em] text-zinc-300">
       Loading {label}…
     </div>
   );
@@ -90,7 +90,7 @@ function EstimatePage() {
             Draw Your <br />
             <span className="text-white italic">Project</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-400 italic font-bold mt-8 max-w-3xl leading-snug">
+          <p className="text-xl md:text-2xl text-gray-200 italic font-bold mt-8 max-w-3xl leading-snug">
             Draw your driveway, parking lot, or walkway on the map and watch the
             JWordenAI price calculate in real-time — backed by 40 years of 4th-generation
             paving expertise.
@@ -248,7 +248,7 @@ function EstimatePage() {
           <h2 className="text-3xl font-black uppercase text-white mb-4">
             The Worden <span className="text-[#ffcc00]">Promise</span>
           </h2>
-          <p className="text-zinc-400 font-bold max-w-2xl mx-auto mb-10">
+          <p className="text-zinc-200 font-bold max-w-2xl mx-auto mb-10">
             Every estimate includes our non-negotiable standards — the same specs we use
             for KFC, Arby's, and VDOT projects.
           </p>
@@ -262,7 +262,7 @@ function EstimatePage() {
               <div key={item.label} className="bg-zinc-900 border border-zinc-700 p-6">
                 <p className="text-3xl font-black text-[#ffcc00]">{item.stat}</p>
                 <p className="text-white font-bold text-xs uppercase tracking-wider mt-2">{item.label}</p>
-                <p className="text-zinc-600 text-[10px] uppercase tracking-wider mt-1">{item.sub}</p>
+                <p className="text-zinc-200 text-[10px] uppercase tracking-wider mt-1">{item.sub}</p>
               </div>
             ))}
           </div>

@@ -8,14 +8,14 @@
 :root {
   --jworden-dark: #121212;        /* Deep Industrial Charcoal */
   --jworden-slate: #1e1e24;       /* Secondary Surface */
-  --jworden-gold: #ffc107;        /* Safety Gold Call-to-Action */
-  --jworden-white: #f5f5f5;       /* Premium Text */
+  --jworden-gold: #ffd740;        /* Safety Gold Call-to-Action */
+  --jworden-white: #ffffff;       /* Premium Text */
   --jworden-accent: #37474f;      /* Heavy Equipment Slate */
 }
 
 @theme {
   --color-obsidian: #0a0a0c;
-  --color-empire-gold: #d4af37;
+  --color-empire-gold: #f0cc45;
   --color-vdot-gray: #1f1f23;
 }
 
@@ -37,7 +37,7 @@
 
 body {
   background-color: var(--color-obsidian);
-  color: #e2e8f0;
+  color: #f8fafc;
   font-family: 'Inter', system-ui, sans-serif;
   background-image: radial-gradient(circle at 50% 0%, var(--color-vdot-gray) 0%, transparent 70%), linear-gradient(to bottom, transparent, var(--color-obsidian) 100%);
   min-height: 100vh;

@@ -156,7 +156,7 @@ export default function Header() {
 
 const mobileItem = 'rounded-md px-3 py-3 text-base text-white/80 hover:bg-white/5 hover:text-white';
 
-const colLabel = 'text-[10px] uppercase tracking-[0.32em] text-white/40';
+const colLabel = 'text-[10px] uppercase tracking-[0.32em] text-white/75';
 const linkSm = 'block text-[12px] tracking-wide text-white/65 transition hover:text-white';
 const linkLg = 'block text-sm text-white/85 transition hover:text-white';
 
@@ -167,7 +167,7 @@ function ServicesPanel({ onNavigate }: { onNavigate: () => void }) {
         <p className={colLabel}>Capabilities</p>
         <p className="mt-4 text-[22px] font-light leading-tight tracking-tight text-white">
           Asphalt, sealed and striped.
-          <span className="text-white/40"> One crew. One standard.</span>
+          <span className="text-white/75"> One crew. One standard.</span>
         </p>
         <Link to="/services" onClick={onNavigate} className="mt-6 inline-block text-[11px] uppercase tracking-[0.28em] text-white/55 transition hover:text-white">
           All services →
@@ -208,7 +208,7 @@ function WorkPanel({ onNavigate }: { onNavigate: () => void }) {
         <p className={colLabel}>Field record</p>
         <p className="mt-4 text-[22px] font-light leading-tight tracking-tight text-white">
           100+ franchise sites. 40+ years.
-          <span className="text-white/40"> Same family. Same trucks.</span>
+          <span className="text-white/75"> Same family. Same trucks.</span>
         </p>
       </div>
       <div className="col-span-4">
@@ -282,7 +282,7 @@ function AboutPanel({ onNavigate }: { onNavigate: () => void }) {
         <p className={colLabel}>Who we are</p>
         <p className="mt-4 text-[22px] font-light leading-tight tracking-tight text-white">
           Family-owned since 1984.
-          <span className="text-white/40"> Headquartered in Chester, VA.</span>
+          <span className="text-white/75"> Headquartered in Chester, VA.</span>
         </p>
       </div>
       <div className="col-span-3">

@@ -144,10 +144,10 @@ export default function IronGridMap() {
             </span>
           </div>
           <div className="flex items-center gap-4 text-[9px] font-black uppercase tracking-widest">
-            <span className="text-zinc-600">
+            <span className="text-zinc-200">
               Intercepted Queries: <span className="text-[#ffcc00]">{(tick * 7 + 1402).toLocaleString()}</span>
             </span>
-            <span className="text-zinc-600">
+            <span className="text-zinc-200">
               Auto-Proposals Fired: <span className="text-green-400">{(tick * 2 + 348).toLocaleString()}</span>
             </span>
             <span className="bg-red-900/30 border border-red-700/40 text-red-400 px-3 py-1 rounded-full animate-pulse">
@@ -159,9 +159,9 @@ export default function IronGridMap() {
         {/* Title */}
         <h2 className="text-2xl md:text-3xl font-black uppercase tracking-tighter text-white mb-1">
           Iron Grid <span className="text-red-500">War Room</span>{' '}
-          <span className="text-zinc-600 text-lg">— National Search Intercept Map</span>
+          <span className="text-zinc-200 text-lg">— National Search Intercept Map</span>
         </h2>
-        <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wider mb-8">
+        <p className="text-[11px] text-zinc-300 font-bold uppercase tracking-wider mb-8">
           Real-time SEO dominance radar · JWORDENAI detecting high commercial search intent across 50 states
         </p>
 
@@ -346,7 +346,7 @@ export default function IronGridMap() {
                     className="inline-block w-2.5 h-2.5 rounded-full"
                     style={{ background: col, boxShadow: `0 0 6px 1px ${col}66` }}
                   />
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">{label}</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-300">{label}</span>
                 </div>
               ))}
               <span className="ml-auto text-[9px] font-bold uppercase tracking-widest text-[#ffcc00]/50">
@@ -372,14 +372,14 @@ export default function IronGridMap() {
               <span className="text-[9px] font-black uppercase tracking-[0.45em] text-green-500/80">
                 SEARCH INTERCEPT RADAR
               </span>
-              <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-zinc-600">
+              <span className="ml-auto text-[9px] font-black uppercase tracking-widest text-zinc-200">
                 [{INTERCEPTS.length} STREAMS]
               </span>
             </div>
 
             {/* Sub-header */}
             <div className="px-4 py-2 border-b border-zinc-900 bg-black/20">
-              <div className="text-[8px] font-black uppercase tracking-[0.4em] text-zinc-600">
+              <div className="text-[8px] font-black uppercase tracking-[0.4em] text-zinc-200">
                 &gt;&gt; JWORDENAI · REAL-TIME SEO DOMINANCE ENGINE · LIVE FEED
               </div>
             </div>
@@ -423,15 +423,15 @@ export default function IronGridMap() {
             {/* Feed footer stats */}
             <div className="border-t border-zinc-800/80 px-4 py-3 bg-black/30 space-y-1.5">
               <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
-                <span className="text-zinc-600">Queries / Hour</span>
+                <span className="text-zinc-200">Queries / Hour</span>
                 <span className="text-green-400 font-mono">{(2847 + tick * 3).toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
-                <span className="text-zinc-600">Proposals Auto-Fired</span>
+                <span className="text-zinc-200">Proposals Auto-Fired</span>
                 <span className="text-[#ffcc00] font-mono">{(348 + tick * 2).toLocaleString()}</span>
               </div>
               <div className="flex justify-between text-[8px] font-black uppercase tracking-widest">
-                <span className="text-zinc-600">Hot Zones Active</span>
+                <span className="text-zinc-200">Hot Zones Active</span>
                 <span className="text-red-400 font-mono">
                   {Object.values(HEAT).filter((h) => h >= 0.75).length} STATES
                 </span>
@@ -456,7 +456,7 @@ export default function IronGridMap() {
                     className="inline-block w-2 h-2 rounded-full"
                     style={{ background: col, boxShadow: `0 0 4px 1px ${col}` }}
                   />
-                  <span className="text-[9px] font-black text-zinc-400 uppercase tracking-widest">
+                  <span className="text-[9px] font-black text-zinc-200 uppercase tracking-widest">
                     {s.name}
                   </span>
                   <span className="text-[9px] font-mono" style={{ color: col }}>
@@ -466,7 +466,7 @@ export default function IronGridMap() {
               );
             })}
           </div>
-          <div className="text-[9px] font-black uppercase tracking-widest text-zinc-600">
+          <div className="text-[9px] font-black uppercase tracking-widest text-zinc-200">
             JWORDENAI Search Radar · Updated every 2.8s · 50-State Coverage
           </div>
         </div>

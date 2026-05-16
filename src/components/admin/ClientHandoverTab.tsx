@@ -73,7 +73,7 @@ const WINDOW_DEFS: Array<{ key: MaintenanceWindow; yearOffset: number; color: st
 function Spec({ label, value, mono = false }: { label: string; value: string | number; mono?: boolean }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">{label}</span>
+      <span className="text-[10px] font-black uppercase tracking-widest text-gray-300">{label}</span>
       <span className={`text-sm font-bold text-white ${mono ? 'font-mono' : ''}`}>{value}</span>
     </div>
   );
@@ -86,7 +86,7 @@ function QualityBadge({ pass, value, label }: { pass: boolean; value: string; la
         ? <CheckCircle size={22} className="text-green-400 mb-1" />
         : <ShieldCheck size={22} className="text-red-400 mb-1" />}
       <div className={`text-2xl font-black ${pass ? 'text-green-400' : 'text-red-400'}`}>{value}</div>
-      <div className="text-[10px] font-black uppercase tracking-widest text-gray-400 mt-0.5">{label}</div>
+      <div className="text-[10px] font-black uppercase tracking-widest text-gray-200 mt-0.5">{label}</div>
       <div className={`text-[10px] font-black mt-1 ${pass ? 'text-green-500' : 'text-red-500'}`}>
         {pass ? '✅ CERTIFIED' : '⚠️ REVIEW'}
       </div>
@@ -124,7 +124,7 @@ export function ClientHandoverTab() {
             <Share2 size={20} className="text-[#ffcc00]" />
             Digital Twin — Client Handover Report
           </h2>
-          <p className="text-xs text-gray-500 mt-1 max-w-xl">
+          <p className="text-xs text-gray-300 mt-1 max-w-xl">
             Generate a professional as-built record for your commercial client. This document locks in your
             standards, certifies compaction, and schedules future maintenance — making it impossible for them
             to use another contractor.
@@ -133,7 +133,7 @@ export function ClientHandoverTab() {
 
         {/* Job selector */}
         <div className="flex flex-col gap-1">
-          <label className="text-[10px] font-black uppercase tracking-widest text-gray-500">Select Completed Job</label>
+          <label className="text-[10px] font-black uppercase tracking-widest text-gray-300">Select Completed Job</label>
           <select
             value={selectedId}
             onChange={(e) => setSelectedId(e.target.value)}
@@ -165,7 +165,7 @@ export function ClientHandoverTab() {
           {copied ? 'Copied!' : 'Copy Shareable Link'}
         </button>
         <button
-          className="flex items-center gap-2 bg-transparent border border-gray-700 text-gray-400 font-black uppercase tracking-wider px-5 py-3 text-sm hover:border-gray-500 hover:text-white transition-all"
+          className="flex items-center gap-2 bg-transparent border border-gray-700 text-gray-200 font-black uppercase tracking-wider px-5 py-3 text-sm hover:border-gray-500 hover:text-white transition-all"
           title="Send via email (coming soon)"
         >
           <Download size={16} />
@@ -316,8 +316,8 @@ export function ClientHandoverTab() {
                 <div key={key} className={`border p-5 ${bg} ${border} flex flex-col gap-2`}>
                   <div className={`text-xs font-black uppercase tracking-widest ${color}`}>{sched.label}</div>
                   <div className={`text-2xl font-black ${color}`}>{targetYear}</div>
-                  <p className="text-xs text-gray-400 leading-relaxed flex-1">{sched.action}</p>
-                  <div className="text-[10px] font-black uppercase text-gray-600 border-t border-gray-800 pt-2">
+                  <p className="text-xs text-gray-200 leading-relaxed flex-1">{sched.action}</p>
+                  <div className="text-[10px] font-black uppercase text-gray-200 border-t border-gray-800 pt-2">
                     Year +{yearOffset} · Contact Worden
                   </div>
                 </div>
@@ -352,21 +352,21 @@ export function ClientHandoverTab() {
                 <TrendingUp size={16} className="text-[#ffcc00] mt-0.5 shrink-0" />
                 <div>
                   <div className="text-xs font-black uppercase text-[#ffcc00] mb-0.5">4th Generation Since 1984</div>
-                  <div className="text-xs text-gray-400">40+ years of paving excellence in the Commonwealth of Virginia.</div>
+                  <div className="text-xs text-gray-200">40+ years of paving excellence in the Commonwealth of Virginia.</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Wrench size={16} className="text-[#ffcc00] mt-0.5 shrink-0" />
                 <div>
                   <div className="text-xs font-black uppercase text-[#ffcc00] mb-0.5">Virginia Class A Licensed</div>
-                  <div className="text-xs text-gray-400">Full GC capability: Div 01–33 CSI MasterFormat. Bonded & insured.</div>
+                  <div className="text-xs text-gray-200">Full GC capability: Div 01–33 CSI MasterFormat. Bonded & insured.</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Phone size={16} className="text-[#ffcc00] mt-0.5 shrink-0" />
                 <div>
                   <div className="text-xs font-black uppercase text-[#ffcc00] mb-0.5">Lifetime Maintenance Partnership</div>
-                  <div className="text-xs text-gray-400">
+                  <div className="text-xs text-gray-200">
                     Call <span className="text-white font-bold">804-446-1296</span> or visit{' '}
                     <span className="text-[#ffcc00]">jwordenasphaltpaving.com</span> to schedule your next maintenance window.
                   </div>
@@ -377,7 +377,7 @@ export function ClientHandoverTab() {
         </div>
 
         {/* Report Footer */}
-        <div className="px-8 py-5 flex items-center justify-between gap-4 text-xs text-gray-600 font-bold uppercase tracking-widest flex-wrap">
+        <div className="px-8 py-5 flex items-center justify-between gap-4 text-xs text-gray-200 font-bold uppercase tracking-widest flex-wrap">
           <span>J. Worden &amp; Sons · 7011 Wood Rd, Richmond, VA · 804-446-1296</span>
           <span className="font-mono text-gray-700">Twin ID: {job.id} · Generated {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
         </div>

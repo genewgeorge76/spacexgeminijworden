@@ -75,22 +75,22 @@ export function LifetimeTwinTab() {
       {/* Lifetime KPIs */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-[#111] border border-gray-800 p-4">
-          <div className="text-xs text-gray-500 uppercase font-bold mb-1">Jobs in Ledger</div>
+          <div className="text-xs text-gray-300 uppercase font-bold mb-1">Jobs in Ledger</div>
           <div className="text-3xl font-black text-white">{summary.totalJobs}</div>
         </div>
         <div className="bg-[#111] border border-gray-800 p-4">
-          <div className="text-xs text-gray-500 uppercase font-bold mb-1">Total Contract Value</div>
+          <div className="text-xs text-gray-300 uppercase font-bold mb-1">Total Contract Value</div>
           <div className="text-3xl font-black text-[#ffcc00]">{fmt(summary.totalContractValue)}</div>
         </div>
         <div className="bg-[#111] border border-green-800 bg-green-950/10 p-4">
-          <div className="text-xs text-gray-500 uppercase font-bold mb-1">Projected Lifetime Revenue</div>
+          <div className="text-xs text-gray-300 uppercase font-bold mb-1">Projected Lifetime Revenue</div>
           <div className="text-3xl font-black text-green-400">{fmt(summary.projectedLifetimeRevenue)}</div>
-          <div className="text-xs text-gray-500 mt-0.5">{summary.lifetimeMultiplier}× multiplier</div>
+          <div className="text-xs text-gray-300 mt-0.5">{summary.lifetimeMultiplier}× multiplier</div>
         </div>
         <div className="bg-[#111] border border-[#ffcc00]/40 p-4">
-          <div className="text-xs text-gray-500 uppercase font-bold mb-1">Active Maintenance Pings</div>
+          <div className="text-xs text-gray-300 uppercase font-bold mb-1">Active Maintenance Pings</div>
           <div className="text-3xl font-black text-[#ffcc00]">{pings.length}</div>
-          <div className="text-xs text-gray-500">{pings.filter((p) => p.isOverdue).length} overdue</div>
+          <div className="text-xs text-gray-300">{pings.filter((p) => p.isOverdue).length} overdue</div>
         </div>
       </div>
 
@@ -114,7 +114,7 @@ export function LifetimeTwinTab() {
               { key: 'sealerBrand', label: 'Sealer Brand', type: 'text' },
             ].map(({ key, label, type }) => (
               <div key={key}>
-                <label className="text-gray-500 uppercase font-bold mb-1 block">{label}</label>
+                <label className="text-gray-300 uppercase font-bold mb-1 block">{label}</label>
                 <input
                   type={type}
                   value={String((newJob as Record<string, unknown>)[key] ?? '')}
@@ -128,7 +128,7 @@ export function LifetimeTwinTab() {
             <button onClick={addJob} className="px-6 py-2 bg-[#ffcc00] text-black font-black text-xs uppercase">
               ✅ Save Job to Ledger
             </button>
-            <button onClick={() => setShowAddForm(false)} className="px-6 py-2 bg-gray-800 text-gray-400 font-black text-xs uppercase">
+            <button onClick={() => setShowAddForm(false)} className="px-6 py-2 bg-gray-800 text-gray-200 font-black text-xs uppercase">
               Cancel
             </button>
           </div>
@@ -141,7 +141,7 @@ export function LifetimeTwinTab() {
           <button
             key={v}
             onClick={() => setActiveView(v)}
-            className={`px-5 py-3 text-xs font-black uppercase tracking-wider ${activeView === v ? 'text-[#ffcc00] border-b-2 border-[#ffcc00]' : 'text-gray-500 hover:text-gray-300'}`}
+            className={`px-5 py-3 text-xs font-black uppercase tracking-wider ${activeView === v ? 'text-[#ffcc00] border-b-2 border-[#ffcc00]' : 'text-gray-300 hover:text-gray-300'}`}
           >
             {v === 'pings' ? `🔔 Maintenance Pings (${pings.length})` : `📋 Job Ledger (${jobs.length})`}
           </button>
@@ -152,7 +152,7 @@ export function LifetimeTwinTab() {
       {activeView === 'pings' && (
         <div className="space-y-4">
           {pings.length === 0 && (
-            <div className="text-center text-gray-600 py-12 font-bold">No maintenance pings within range. All jobs are either too new or too far out.</div>
+            <div className="text-center text-gray-200 py-12 font-bold">No maintenance pings within range. All jobs are either too new or too far out.</div>
           )}
           {pings.map((ping) => {
             const cfg = windowColors[ping.window];
@@ -167,14 +167,14 @@ export function LifetimeTwinTab() {
                     <Bell size={16} className={ping.isOverdue ? 'text-red-400 animate-pulse' : 'text-[#ffcc00]'} />
                     <div>
                       <div className="text-white font-black text-sm">{ping.clientName}</div>
-                      <div className="text-gray-500 text-xs mt-0.5">{ping.propertyAddress} · Job {ping.jobId}</div>
+                      <div className="text-gray-300 text-xs mt-0.5">{ping.propertyAddress} · Job {ping.jobId}</div>
                     </div>
                   </div>
                   <div className="text-right">
                     <div className={`text-xs font-black border px-2 py-0.5 ${cfg}`}>
                       {windowLabels[ping.window]}
                     </div>
-                    <div className={`text-xs font-bold mt-1 ${ping.isOverdue ? 'text-red-400' : 'text-gray-400'}`}>
+                    <div className={`text-xs font-bold mt-1 ${ping.isOverdue ? 'text-red-400' : 'text-gray-200'}`}>
                       {ping.isOverdue ? `⚠️ ${Math.abs(ping.daysUntil)}d overdue` : `${ping.daysUntil}d away`}
                     </div>
                     <div className="text-[#ffcc00] font-black text-sm mt-1">{fmt(ping.estimatedRevenue)}</div>
@@ -183,9 +183,9 @@ export function LifetimeTwinTab() {
 
                 {isExpanded && (
                   <div className="mt-4 border-t border-gray-700 pt-4 space-y-3">
-                    <div className="text-xs text-gray-400 font-bold">Recommended Action:</div>
+                    <div className="text-xs text-gray-200 font-bold">Recommended Action:</div>
                     <p className="text-sm text-white">{ping.recommendedAction}</p>
-                    <div className="text-xs text-gray-400 font-bold flex items-center gap-1">
+                    <div className="text-xs text-gray-200 font-bold flex items-center gap-1">
                       <Mail size={12} /> Auto-Ping Message:
                     </div>
                     <div className="bg-gray-900/60 p-3 text-xs text-gray-300 leading-relaxed font-mono border border-gray-700">
@@ -207,7 +207,7 @@ export function LifetimeTwinTab() {
         <div className="overflow-x-auto">
           <table className="w-full text-xs">
             <thead>
-              <tr className="border-b border-gray-800 text-gray-500 uppercase tracking-widest">
+              <tr className="border-b border-gray-800 text-gray-300 uppercase tracking-widest">
                 <th className="text-left py-3 pr-4">Job ID</th>
                 <th className="text-left py-3 pr-4">Client</th>
                 <th className="text-left py-3 pr-4">Location</th>
@@ -226,10 +226,10 @@ export function LifetimeTwinTab() {
                     <td className="py-3 pr-4 font-black text-[#ffcc00]">{job.id}</td>
                     <td className="py-3 pr-4">
                       <div className="text-white font-bold">{job.clientName}</div>
-                      <div className="text-gray-500">{job.serviceType}</div>
+                      <div className="text-gray-300">{job.serviceType}</div>
                     </td>
-                    <td className="py-3 pr-4 text-gray-400">{job.city}, {job.stateCode}</td>
-                    <td className="py-3 pr-4 text-gray-400">{new Date(job.completionDate).toLocaleDateString()}</td>
+                    <td className="py-3 pr-4 text-gray-200">{job.city}, {job.stateCode}</td>
+                    <td className="py-3 pr-4 text-gray-200">{new Date(job.completionDate).toLocaleDateString()}</td>
                     <td className="py-3 pr-4 text-right font-black text-white">{fmt(job.contractValue)}</td>
                     <td className="py-3 pr-4 text-right font-black text-green-400">{fmt(ltv)}</td>
                     <td className="py-3 text-right">
@@ -238,7 +238,7 @@ export function LifetimeTwinTab() {
                           {compOk ? <CheckCircle size={12} /> : <AlertTriangle size={12} />}
                           {job.compactionPct}%
                         </span>
-                      ) : <span className="text-gray-600">N/A</span>}
+                      ) : <span className="text-gray-200">N/A</span>}
                     </td>
                   </tr>
                 );

@@ -328,7 +328,7 @@ function DayCell({ analysis, isSelected, onClick }: {
       {seasonalAlert && (
         <span className="absolute -top-1 -right-1 w-3 h-3 bg-orange-500 rounded-full border border-zinc-950 z-10" title="Seasonal risk alert" />
       )}
-      <span className="text-[9px] font-bold text-zinc-400 uppercase">{day.dayOfWeek}</span>
+      <span className="text-[9px] font-bold text-zinc-200 uppercase">{day.dayOfWeek}</span>
       <span className="text-base font-black text-white leading-none">{day.dayOfMonth}</span>
       {financialRisk < 0 && (
         <span className="text-[8px] font-black text-red-300 leading-none">
@@ -406,9 +406,9 @@ export default function DispatchNode() {
           </span>
           <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white leading-none mb-4">
             90-Day <span className="text-[#ffcc00]">Pave/No-Pave</span><br />
-            <span className="text-zinc-400 text-4xl md:text-5xl">Financial Forecast Grid</span>
+            <span className="text-zinc-200 text-4xl md:text-5xl">Financial Forecast Grid</span>
           </h1>
-          <p className="text-zinc-400 font-bold italic text-lg max-w-3xl border-l-4 border-[#ffcc00] pl-4">
+          <p className="text-zinc-200 font-bold italic text-lg max-w-3xl border-l-4 border-[#ffcc00] pl-4">
             Every day rated by Ground Temp, Wind Chill, Moisture, and Long-Term Seasonal Risk.
             Financial exposure calculated in real-time so you never pave on a losing day again.
           </p>
@@ -436,7 +436,7 @@ export default function DispatchNode() {
               </button>
             ))}
           </div>
-          <p className="mt-2 text-[10px] text-zinc-500 font-bold uppercase tracking-widest">
+          <p className="mt-2 text-[10px] text-zinc-300 font-bold uppercase tracking-widest">
             Active Spec Reference: <span className="text-zinc-300">{trade.spec}</span>
           </p>
         </section>
@@ -446,24 +446,24 @@ export default function DispatchNode() {
           <div className="bg-emerald-900/30 border border-emerald-700/40 rounded-xl p-4 text-center">
             <CheckCircle className="w-5 h-5 text-emerald-400 mx-auto mb-1" />
             <p className="text-3xl font-black text-emerald-400">{optimalDays}</p>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Optimal Days</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">Optimal Days</p>
           </div>
           <div className="bg-yellow-900/20 border border-yellow-700/30 rounded-xl p-4 text-center">
             <AlertTriangle className="w-5 h-5 text-yellow-400 mx-auto mb-1" />
             <p className="text-3xl font-black text-yellow-400">{marginalDays}</p>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Marginal Days</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">Marginal Days</p>
           </div>
           <div className="bg-red-900/20 border border-red-700/30 rounded-xl p-4 text-center">
             <XCircle className="w-5 h-5 text-red-500 mx-auto mb-1" />
             <p className="text-3xl font-black text-red-400">{noGoDays}</p>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">No-Go Days</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">No-Go Days</p>
           </div>
           <div className="bg-zinc-900 border border-zinc-700 rounded-xl p-4 text-center">
             <TrendingDown className="w-5 h-5 text-red-400 mx-auto mb-1" />
             <p className="text-2xl font-black text-red-400">
               ${Math.abs(totalRisk / 1000).toFixed(0)}K
             </p>
-            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Total Exposure</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">Total Exposure</p>
           </div>
         </section>
 
@@ -475,7 +475,7 @@ export default function DispatchNode() {
               <Calendar className="w-5 h-5 text-[#ffcc00]" />
               <h2 className="text-2xl font-black uppercase text-white tracking-tight">
                 {monthDates[viewMonth]}
-                <span className="text-zinc-500 text-sm font-bold ml-3">
+                <span className="text-zinc-300 text-sm font-bold ml-3">
                   (Days {viewMonth * 30 + 1}–{viewMonth * 30 + 30})
                 </span>
               </h2>
@@ -498,7 +498,7 @@ export default function DispatchNode() {
                   className={`px-4 py-2 text-xs font-black uppercase tracking-widest border transition-colors rounded ${
                     viewMonth === m
                       ? 'bg-[#ffcc00] text-black border-[#ffcc00]'
-                      : 'border-zinc-700 text-zinc-400 hover:border-[#ffcc00]/60 hover:text-white'
+                      : 'border-zinc-700 text-zinc-200 hover:border-[#ffcc00]/60 hover:text-white'
                   }`}
                 >
                   Month {m + 1}
@@ -521,7 +521,7 @@ export default function DispatchNode() {
             {/* Day-of-week headers */}
             <div className="grid grid-cols-7 gap-1 mb-2">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((d) => (
-                <div key={d} className="text-center text-[9px] font-black uppercase tracking-widest text-zinc-500 py-1">
+                <div key={d} className="text-center text-[9px] font-black uppercase tracking-widest text-zinc-300 py-1">
                   {d}
                 </div>
               ))}
@@ -563,12 +563,12 @@ export default function DispatchNode() {
           </div>
 
           {/* Legend */}
-          <div className="flex flex-wrap gap-4 mt-3 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+          <div className="flex flex-wrap gap-4 mt-3 text-[10px] font-bold uppercase tracking-widest text-zinc-200">
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-emerald-900 border border-emerald-600" /> Optimal — Full margin</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-yellow-900 border border-yellow-600" /> Marginal — Reduced profit</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-red-900 border border-red-600" /> No-Go — Financial loss</span>
             <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-orange-500 border border-zinc-800" /> Seasonal alert</span>
-            <span className="flex items-center gap-1.5 text-zinc-500">Grayed = Weekend</span>
+            <span className="flex items-center gap-1.5 text-zinc-300">Grayed = Weekend</span>
           </div>
         </section>
 
@@ -598,14 +598,14 @@ export default function DispatchNode() {
               <div className="bg-zinc-800 rounded-lg p-3 flex items-center gap-3">
                 <Thermometer className="w-5 h-5 text-orange-400 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Temp Range</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200">Temp Range</p>
                   <p className="text-lg font-black text-white">{selectedAnalysis.day.tempLow}–{selectedAnalysis.day.tempHigh}°F</p>
                 </div>
               </div>
               <div className="bg-zinc-800 rounded-lg p-3 flex items-center gap-3">
                 <Thermometer className="w-5 h-5 text-blue-400 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Ground Temp</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200">Ground Temp</p>
                   <p className={`text-lg font-black ${selectedAnalysis.day.groundTemp < 40 ? 'text-red-400' : selectedAnalysis.day.groundTemp < 50 ? 'text-yellow-400' : 'text-emerald-400'}`}>
                     {selectedAnalysis.day.groundTemp}°F
                   </p>
@@ -614,7 +614,7 @@ export default function DispatchNode() {
               <div className="bg-zinc-800 rounded-lg p-3 flex items-center gap-3">
                 <Wind className="w-5 h-5 text-cyan-400 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Wind Speed</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200">Wind Speed</p>
                   <p className={`text-lg font-black ${selectedAnalysis.day.windSpeed >= 35 ? 'text-red-400' : selectedAnalysis.day.windSpeed >= 20 ? 'text-yellow-400' : 'text-white'}`}>
                     {selectedAnalysis.day.windSpeed} mph
                   </p>
@@ -623,7 +623,7 @@ export default function DispatchNode() {
               <div className="bg-zinc-800 rounded-lg p-3 flex items-center gap-3">
                 <CloudRain className="w-5 h-5 text-blue-500 flex-shrink-0" />
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400">Precipitation</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200">Precipitation</p>
                   <p className={`text-lg font-black ${selectedAnalysis.day.precipMM > 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                     {selectedAnalysis.day.precipMM > 0 ? `${selectedAnalysis.day.precipMM}mm` : 'Clear'}
                   </p>
@@ -639,13 +639,13 @@ export default function DispatchNode() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Profit Margin Protected</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200 mb-1">Profit Margin Protected</p>
                   <p className={`text-4xl font-black ${selectedAnalysis.profitProtection >= 80 ? 'text-emerald-400' : selectedAnalysis.profitProtection >= 40 ? 'text-yellow-400' : 'text-red-400'}`}>
                     {selectedAnalysis.profitProtection}%
                   </p>
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-400 mb-1">Dollars at Risk</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-zinc-200 mb-1">Dollars at Risk</p>
                   <p className={`text-4xl font-black ${selectedAnalysis.financialRisk < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                     {selectedAnalysis.financialRisk < 0
                       ? `-$${Math.abs(selectedAnalysis.financialRisk).toLocaleString()}`
@@ -693,7 +693,7 @@ export default function DispatchNode() {
             <h2 className="text-lg font-black uppercase tracking-tight text-white mb-4 flex items-center gap-2">
               <AlertTriangle className="w-5 h-5 text-orange-400" />
               Long-Term Seasonal Risk Intelligence
-              <span className="text-xs font-bold text-zinc-500 normal-case ml-2">— 90-Day Consequence Analysis</span>
+              <span className="text-xs font-bold text-zinc-300 normal-case ml-2">— 90-Day Consequence Analysis</span>
             </h2>
             <div className="space-y-3">
               {seasonalAlerts.map((a) => (
@@ -737,15 +737,15 @@ export default function DispatchNode() {
                   </p>
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-zinc-400 font-bold">Optimal Days</span>
+                      <span className="text-zinc-200 font-bold">Optimal Days</span>
                       <span className="font-black text-emerald-400">{mGo}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-zinc-400 font-bold">No-Go Days</span>
+                      <span className="text-zinc-200 font-bold">No-Go Days</span>
                       <span className="font-black text-red-400">{mNoGo}</span>
                     </div>
                     <div className="flex justify-between border-t border-zinc-700 pt-2 mt-2">
-                      <span className="text-zinc-400 font-bold">Exposure</span>
+                      <span className="text-zinc-200 font-bold">Exposure</span>
                       <span className={`font-black ${mRisk < 0 ? 'text-red-400' : 'text-emerald-400'}`}>
                         {mRisk < 0 ? `-$${Math.abs(mRisk / 1000).toFixed(0)}K` : '$0'}
                       </span>
@@ -761,21 +761,21 @@ export default function DispatchNode() {
             <div className="flex items-center gap-3">
               <DollarSign className="w-6 h-6 text-red-400" />
               <div>
-                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Total 90-Day Financial Exposure if Crews Deploy on No-Go Days</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">Total 90-Day Financial Exposure if Crews Deploy on No-Go Days</p>
                 <p className="text-3xl font-black text-red-400">
                   -${Math.abs(totalRisk).toLocaleString()}
                 </p>
               </div>
             </div>
             <div className="text-right">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-400">Protected by Worden Intelligence Engine</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-zinc-200">Protected by Worden Intelligence Engine</p>
               <p className="text-2xl font-black text-emerald-400">
                 ${Math.abs(totalRisk).toLocaleString()} SAVED
               </p>
             </div>
           </div>
 
-          <p className="mt-4 text-[10px] text-zinc-500 font-bold">
+          <p className="mt-4 text-[10px] text-zinc-300 font-bold">
             * Risk figures calculated using trade-specific thresholds: VDOT Sec 315 (Asphalt), ACI 318 (Concrete), AASHTO T99 (Earthwork), OSHA 1926.1400 (Crane), FM Global RoofNav (Roofing). Weather data uses seeded simulation. Connect to a live weather API for production deployment.
           </p>
         </section>
@@ -785,7 +785,7 @@ export default function DispatchNode() {
           <h3 className="text-3xl font-black uppercase text-white mb-3">
             Never Lose Money to the Weather <span className="text-[#ffcc00]">Again</span>
           </h3>
-          <p className="text-zinc-400 font-bold max-w-xl mx-auto mb-6">
+          <p className="text-zinc-200 font-bold max-w-xl mx-auto mb-6">
             This dashboard saves a paving company $40,000+ the first time it prevents a crew from laying 500 tons on a washout day. Enterprise license: $2,500/month.
           </p>
           <a

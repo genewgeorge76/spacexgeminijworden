@@ -230,7 +230,7 @@ export function SovereignVisionTab() {
         <h2 className="text-xl font-black uppercase text-white flex items-center gap-2">
           <Camera size={20} className="text-[#ffcc00]" /> Sovereign Vision — Photo-to-Bid Analyzer
         </h2>
-        <p className="text-gray-500 text-xs mt-1">
+        <p className="text-gray-300 text-xs mt-1">
           Customer uploads a photo of their cracked pavement. JWordenAI identifies damage type, estimates tonnage needed, and produces a pre-vetted bid — before a Worden estimator leaves Chester HQ.
         </p>
       </div>
@@ -248,9 +248,9 @@ export function SovereignVisionTab() {
               <img src={preview} alt="Pavement damage" className="max-h-48 mx-auto object-contain" />
             ) : (
               <div className="space-y-3">
-                <Upload size={40} className="text-gray-600 mx-auto" />
-                <p className="text-gray-400 font-bold text-sm">Drop pavement photo here or click to upload</p>
-                <p className="text-gray-600 text-xs">PNG, JPG, WEBP · Phone photos work great</p>
+                <Upload size={40} className="text-gray-200 mx-auto" />
+                <p className="text-gray-200 font-bold text-sm">Drop pavement photo here or click to upload</p>
+                <p className="text-gray-200 text-xs">PNG, JPG, WEBP · Phone photos work great</p>
               </div>
             )}
             <input
@@ -264,9 +264,9 @@ export function SovereignVisionTab() {
 
           {file && (
             <div className="bg-[#111] border border-gray-800 p-4 text-xs">
-              <div className="text-gray-400 font-bold mb-2">📎 {file.name} ({(file.size / 1024).toFixed(0)} KB)</div>
+              <div className="text-gray-200 font-bold mb-2">📎 {file.name} ({(file.size / 1024).toFixed(0)} KB)</div>
               <div>
-                <label className="text-gray-500 uppercase font-bold block mb-1">Estimated Total Pavement Area (sq ft)</label>
+                <label className="text-gray-300 uppercase font-bold block mb-1">Estimated Total Pavement Area (sq ft)</label>
                 <input
                   type="number"
                   value={sqFt}
@@ -274,7 +274,7 @@ export function SovereignVisionTab() {
                   onChange={(e) => { setSqFt(Number(e.target.value)); setResult(null); }}
                   className="w-full bg-gray-900 border border-gray-700 text-white text-sm p-2 font-bold focus:border-[#ffcc00] outline-none"
                 />
-                <p className="text-gray-600 mt-1">Tip: A standard 2-car driveway ≈ 600–800 sq ft. A small parking lot ≈ 5,000–20,000 sq ft.</p>
+                <p className="text-gray-200 mt-1">Tip: A standard 2-car driveway ≈ 600–800 sq ft. A small parking lot ≈ 5,000–20,000 sq ft.</p>
               </div>
               <button
                 onClick={runAnalysis}
@@ -288,7 +288,7 @@ export function SovereignVisionTab() {
 
           {/* Damage type reference */}
           <div className="bg-[#111] border border-gray-800 p-4">
-            <div className="text-xs font-black uppercase text-gray-400 mb-3 flex items-center gap-2">
+            <div className="text-xs font-black uppercase text-gray-200 mb-3 flex items-center gap-2">
               <Layers size={12} /> Detectable Damage Types
             </div>
             <div className="space-y-2">
@@ -305,7 +305,7 @@ export function SovereignVisionTab() {
         {/* Results panel */}
         <div>
           {!result && !analyzing && (
-            <div className="h-full flex items-center justify-center text-gray-600 font-bold text-center p-8">
+            <div className="h-full flex items-center justify-center text-gray-200 font-bold text-center p-8">
               <div>
                 <Camera size={48} className="mx-auto mb-4 opacity-20" />
                 <p>Upload a pavement photo to generate an instant damage report + bid estimate.</p>
@@ -318,7 +318,7 @@ export function SovereignVisionTab() {
               <div className="space-y-4">
                 <div className="text-4xl animate-pulse">🔍</div>
                 <p>Analyzing pavement damage patterns…</p>
-                <p className="text-gray-500 text-xs">Detecting alligator cracking, potholes, raveling…</p>
+                <p className="text-gray-300 text-xs">Detecting alligator cracking, potholes, raveling…</p>
               </div>
             </div>
           )}
@@ -328,23 +328,23 @@ export function SovereignVisionTab() {
               {/* KPIs */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[#111] border border-gray-800 p-4">
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Affected Area</div>
-                  <div className="text-2xl font-black text-white">{result.totalAffectedSqFt.toLocaleString()} <span className="text-sm text-gray-400">sq ft</span></div>
-                  <div className="text-xs text-gray-500">{Math.round((result.totalAffectedSqFt / result.totalEstSqFt) * 100)}% of total surface</div>
+                  <div className="text-xs text-gray-300 uppercase font-bold mb-1">Affected Area</div>
+                  <div className="text-2xl font-black text-white">{result.totalAffectedSqFt.toLocaleString()} <span className="text-sm text-gray-200">sq ft</span></div>
+                  <div className="text-xs text-gray-300">{Math.round((result.totalAffectedSqFt / result.totalEstSqFt) * 100)}% of total surface</div>
                 </div>
                 <div className="bg-[#111] border border-gray-800 p-4">
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Est. Repair Tonnage</div>
-                  <div className="text-2xl font-black text-white">{result.totalTons} <span className="text-sm text-gray-400">tons</span></div>
-                  <div className="text-xs text-gray-500">VDOT SM-9.5A + base</div>
+                  <div className="text-xs text-gray-300 uppercase font-bold mb-1">Est. Repair Tonnage</div>
+                  <div className="text-2xl font-black text-white">{result.totalTons} <span className="text-sm text-gray-200">tons</span></div>
+                  <div className="text-xs text-gray-300">VDOT SM-9.5A + base</div>
                 </div>
                 <div className={`border p-4 ${result.urgency === 'Immediate' ? 'border-red-700 bg-red-950/20' : result.urgency === 'Within 6 months' ? 'border-orange-700 bg-orange-950/10' : 'border-gray-800 bg-[#111]'}`}>
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Urgency</div>
+                  <div className="text-xs text-gray-300 uppercase font-bold mb-1">Urgency</div>
                   <div className={`text-lg font-black ${result.urgency === 'Immediate' ? 'text-red-400' : result.urgency === 'Within 6 months' ? 'text-orange-400' : 'text-green-400'}`}>{result.urgency}</div>
                 </div>
                 <div className="bg-[#111] border border-[#ffcc00]/40 p-4">
-                  <div className="text-xs text-gray-500 uppercase font-bold mb-1">Pre-Vetted Estimate</div>
+                  <div className="text-xs text-gray-300 uppercase font-bold mb-1">Pre-Vetted Estimate</div>
                   <div className="text-2xl font-black text-[#ffcc00]">{fmt(result.totalBidEstimate)}</div>
-                  <div className="text-xs text-gray-500">includes oil shield + 18% margin</div>
+                  <div className="text-xs text-gray-300">includes oil shield + 18% margin</div>
                 </div>
               </div>
 
@@ -355,13 +355,13 @@ export function SovereignVisionTab() {
                     <div className="flex items-center justify-between mb-1">
                       <span className="font-black text-sm">{damage.indicator} {damage.name}</span>
                       <div className="flex items-center gap-2 text-xs">
-                        <span className="text-gray-500">{confidence}% confidence</span>
+                        <span className="text-gray-300">{confidence}% confidence</span>
                         <span className={`font-black border px-1.5 py-0.5 ${SEVERITY_COLOR[damage.severity]}`}>{damage.severity}</span>
                       </div>
                     </div>
-                    <p className="text-xs text-gray-400 mb-1">{damage.description}</p>
+                    <p className="text-xs text-gray-200 mb-1">{damage.description}</p>
                     <p className="text-xs font-bold">Area: ~{affectedSqFt.toLocaleString()} sq ft · Repair: {damage.repair}</p>
-                    <p className="text-xs text-gray-500 font-mono mt-0.5">{damage.spec}</p>
+                    <p className="text-xs text-gray-300 font-mono mt-0.5">{damage.spec}</p>
                   </div>
                 ))}
               </div>

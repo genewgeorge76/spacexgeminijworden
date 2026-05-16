@@ -216,7 +216,7 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
           {submitting ? '⚙️ Submitting...' : '⚡ Lock In My Estimate — Schedule Site Visit'}
         </button>
 
-        <p className="text-zinc-600 text-xs text-center italic">
+        <p className="text-zinc-200 text-xs text-center italic">
           No obligation · Same-day response · 4th generation since 1984
         </p>
       </form>

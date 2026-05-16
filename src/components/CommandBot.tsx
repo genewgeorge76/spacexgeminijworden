@@ -81,7 +81,7 @@ function CommandBotUI() {
         <span className="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
         <span className="w-3 h-3 rounded-full bg-yellow-400 inline-block"></span>
         <span className="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
-        <span className="ml-3 text-zinc-400 text-xs uppercase tracking-widest">JWORDENAI Terminal</span>
+        <span className="ml-3 text-zinc-200 text-xs uppercase tracking-widest">JWORDENAI Terminal</span>
       </div>
 
       <div

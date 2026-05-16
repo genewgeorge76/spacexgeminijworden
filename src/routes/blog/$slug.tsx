@@ -24,7 +24,7 @@ function BlogPostPage() {
     return (
       <main className="min-h-screen bg-black px-6 py-32 text-white">
         <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[11px] uppercase tracking-[0.32em] text-white/40">Not found</p>
+          <p className="text-[11px] uppercase tracking-[0.32em] text-white/75">Not found</p>
           <h1 className="mt-4 text-3xl font-light tracking-tight">That post does not exist.</h1>
           <Link to="/" className="mt-8 inline-block text-sm text-white/60 underline-offset-4 hover:underline">
             Return home

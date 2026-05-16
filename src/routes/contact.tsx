@@ -95,7 +95,7 @@ function ContactPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04]">
         <SectionBackdrop video="/video/bg-reviews.mp4" opacity={0.6} />
         <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">Contact</p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">Contact</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
             Tell us about the job.
           </h1>
@@ -110,23 +110,23 @@ function ContactPage() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 py-24 lg:grid-cols-[1fr_1.4fr]">
           {/* LEFT: contact details */}
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Direct line</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Direct line</p>
             <a
               href={PHONE_HREF}
               className="mt-3 block text-3xl font-medium tracking-tight text-white hover:text-white/80 md:text-4xl"
             >
               {PHONE}
             </a>
-            <p className="mt-2 text-sm text-white/50">{HOURS_DISPLAY}</p>
+            <p className="mt-2 text-sm text-white/80">{HOURS_DISPLAY}</p>
 
             <div className="mt-12 border-t border-white/10 pt-10">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Headquarters</p>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Headquarters</p>
               <p className="mt-3 text-base text-white">{ADDRESS.streetAddress}</p>
               <p className="text-base text-white">{ADDRESS.addressLocality}, {ADDRESS.addressRegion} {ADDRESS.postalCode}</p>
             </div>
 
             <div className="mt-10 border-t border-white/10 pt-10">
-              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Credentials</p>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Credentials</p>
               <ul className="mt-4 space-y-2 text-sm text-white/60">
                 <li>Class A Virginia Contractor</li>
                 <li>BBB Accredited &middot; A+ Rating</li>
@@ -140,7 +140,7 @@ function ContactPage() {
           <div>
             {status === 'sent' ? (
               <div className="rounded-lg border border-white/15 bg-white/[0.02] p-10">
-                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Received</p>
+                <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Received</p>
                 <h2 className="mt-3 text-3xl font-medium tracking-tight">Thank you. We&rsquo;ll be in touch.</h2>
                 <p className="mt-4 text-white/60">
                   If it&rsquo;s urgent, please call <a href={PHONE_HREF} className="text-white underline">{PHONE}</a>.
@@ -189,7 +189,7 @@ function ContactPage() {
                 >
                   {status === 'sending' ? 'Sending…' : 'Request estimate'}
                 </button>
-                <p className="text-xs text-white/40">
+                <p className="text-xs text-white/75">
                   Or call {PHONE} for the fastest response.
                 </p>
               </form>
@@ -216,9 +216,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+      <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/80">
         {label}
-        {required && <span className="ml-1 text-white/30">*</span>}
+        {required && <span className="ml-1 text-white/70">*</span>}
       </span>
       <input
         name={name}
@@ -246,9 +246,9 @@ function FieldArea({
 }) {
   return (
     <label className="block">
-      <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/50">
+      <span className="text-xs font-medium uppercase tracking-[0.2em] text-white/80">
         {label}
-        {required && <span className="ml-1 text-white/30">*</span>}
+        {required && <span className="ml-1 text-white/70">*</span>}
       </span>
       <textarea
         name={name}

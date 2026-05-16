@@ -29,7 +29,7 @@ export default function PartnerPortal() {
         </div>
 
         <div className="w-full max-w-md rounded-2xl border border-zinc-700 bg-black/50 p-6">
-          <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-500">Portal Access</p>
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-zinc-300">Portal Access</p>
           <p className="mt-3 text-lg font-bold text-white">Open the contractor portal for project-ready documents and expedited scheduling.</p>
           <Link
             to="/portal"

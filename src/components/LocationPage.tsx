@@ -107,7 +107,7 @@ export default function LocationPage({ city, nearby }: Props) {
     <main className="bg-premium-black grain text-white antialiased">
       {/* Breadcrumbs */}
       <div className="border-b border-white/[0.06]">
-        <div className="mx-auto max-w-7xl px-6 py-4 text-xs text-white/40">
+        <div className="mx-auto max-w-7xl px-6 py-4 text-xs text-white/75">
           <Link to="/" className="hover:text-white">Home</Link>
           <span className="mx-2">/</span>
           <Link to="/services" className="hover:text-white">Service area</Link>
@@ -120,7 +120,7 @@ export default function LocationPage({ city, nearby }: Props) {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/hero-paving.mp4" opacity={0.7} />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             {city.county ? `${city.county} County, ${city.state}` : city.state} \u00b7 Class A Licensed
           </p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
@@ -166,7 +166,7 @@ export default function LocationPage({ city, nearby }: Props) {
       {/* Services */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Services in {city.name}</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Services in {city.name}</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
             Full-scope asphalt construction &amp; pavement maintenance in {city.name}.
           </h2>
@@ -198,7 +198,7 @@ export default function LocationPage({ city, nearby }: Props) {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/segment-2.mp4" opacity={0.5} />
         <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Construction specifications</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Construction specifications</p>
           <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
             Built to a documented standard in {city.name}.
           </h2>
@@ -216,7 +216,7 @@ export default function LocationPage({ city, nearby }: Props) {
       {/* FAQ */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-4xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">{city.name} questions</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">{city.name} questions</p>
           <dl className="mt-10 divide-y divide-white/[0.06] border-y border-white/[0.06]">
             {faqSchema.mainEntity.map((q) => (
               <div key={q.name} className="py-8">
@@ -232,7 +232,7 @@ export default function LocationPage({ city, nearby }: Props) {
       {nearby.length > 0 && (
         <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
           <div className="relative mx-auto max-w-7xl px-6 py-20">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Nearby cities we serve</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Nearby cities we serve</p>
             <div className="mt-8 flex flex-wrap gap-2 text-sm">
               {nearby.map((n) => (
                 <Link
@@ -252,15 +252,15 @@ export default function LocationPage({ city, nearby }: Props) {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 py-20 md:grid-cols-3">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Phone</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Phone</p>
             <a href={PHONE_HREF} className="mt-3 block text-2xl font-medium hover:text-white/80">{PHONE}</a>
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Headquarters</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Headquarters</p>
             <p className="mt-3 text-base text-white">{HQ_ADDRESS}</p>
           </div>
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Hours</p>
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Hours</p>
             <p className="mt-3 text-base text-white">Mon&ndash;Fri 7am&ndash;7pm</p>
             <p className="text-base text-white">Sat 7am&ndash;5pm</p>
           </div>
@@ -304,7 +304,7 @@ function ServiceCard({ to, title, desc }: { to: string; title: string; desc: str
     <Link to={to} className="surface-glass lift-hover group block p-10 md:p-12">
       <div className="text-xl font-medium">{title}</div>
       <div className="mt-3 text-sm text-white/60">{desc}</div>
-      <div className="mt-8 text-sm text-white/40 transition group-hover:text-white">Learn more &rarr;</div>
+      <div className="mt-8 text-sm text-white/75 transition group-hover:text-white">Learn more &rarr;</div>
     </Link>
   );
 }

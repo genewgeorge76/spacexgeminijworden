@@ -109,7 +109,7 @@ function ServicesPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/hero-paving.mp4" />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Chester, Virginia &middot; Class A Licensed Paving Contractor &middot; Est. 1984
           </p>
           <h1 className="max-w-5xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
@@ -133,7 +133,7 @@ function ServicesPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-20">
           <div className="mb-12 max-w-3xl">
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+            <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">
               Four generations &middot; Chester, Virginia &middot; Est. 1984
             </p>
             <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-5xl">
@@ -154,12 +154,12 @@ function ServicesPage() {
               to={s.to}
               className="surface-glass lift-hover group block p-10 md:p-12"
             >
-              <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
+              <div className="text-xs font-medium uppercase tracking-[0.2em] text-white/75">
                 0{i + 1}
               </div>
               <div className="mt-6 text-2xl font-medium tracking-tight">{s.name}</div>
               <div className="mt-3 text-sm text-white/60">{s.desc}</div>
-              <div className="mt-8 text-sm text-white/40 transition group-hover:text-white">
+              <div className="mt-8 text-sm text-white/75 transition group-hover:text-white">
                 Details &rarr;
               </div>
             </Link>
@@ -192,7 +192,7 @@ function ServicesPage() {
       {/* Tar & chip teaser strip */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Bituminous surface treatment
           </p>
           <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
@@ -209,7 +209,7 @@ function ServicesPage() {
       {/* Worden Standard teaser strip */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Construction specifications
           </p>
           <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
@@ -229,7 +229,7 @@ function ServicesPage() {
       {/* Local pack: nearby cities + rural counties */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-20">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Greater Richmond service area
           </p>
           <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-4xl">
@@ -255,7 +255,7 @@ function ServicesPage() {
             })}
           </div>
 
-          <p className="mt-16 text-xs font-medium uppercase tracking-[0.3em] text-white/50">
+          <p className="mt-16 text-xs font-medium uppercase tracking-[0.3em] text-white/80">
             Tar &amp; chip + rural service area
           </p>
           <div className="mt-6 flex flex-wrap gap-2 text-sm">
@@ -269,7 +269,7 @@ function ServicesPage() {
                   className="rounded-full border border-white/15 px-4 py-2 text-white/70 hover:bg-white/5 hover:text-white"
                 >
                   {c.name}
-                  {c.county ? <span className="text-white/40"> &middot; {c.county} Co.</span> : null}
+                  {c.county ? <span className="text-white/75"> &middot; {c.county} Co.</span> : null}
                 </Link>
               );
             })}

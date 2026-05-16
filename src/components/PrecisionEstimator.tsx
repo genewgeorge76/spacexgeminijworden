@@ -84,7 +84,7 @@ export default function PrecisionEstimator() {
           />
           <div>
             <span className="font-black uppercase text-sm block">Include 6&quot; Structural Stone Base</span>
-            <span className="text-zinc-400 text-xs font-medium block mt-1">
+            <span className="text-zinc-200 text-xs font-medium block mt-1">
               The Worden Minimum — adds ${PRICING.baseAddOn.toFixed(2)}/sq ft for municipal-grade foundation.
               Prevents cracking, shifting &amp; sub-base failure.
             </span>
@@ -94,12 +94,12 @@ export default function PrecisionEstimator() {
         {/* Rate Summary */}
         <div className="bg-zinc-800/60 rounded-xl p-4 text-sm">
           <div className="flex justify-between font-bold mb-1">
-            <span className="text-zinc-400 uppercase tracking-wider">Base Rate</span>
+            <span className="text-zinc-200 uppercase tracking-wider">Base Rate</span>
             <span className="text-white">${PRICING.standard.toFixed(2)} / sq ft</span>
           </div>
           {baseNeeded && (
             <div className="flex justify-between font-bold mb-1">
-              <span className="text-zinc-400 uppercase tracking-wider">6&quot; Stone Base Add-On</span>
+              <span className="text-zinc-200 uppercase tracking-wider">6&quot; Stone Base Add-On</span>
               <span className="text-[#ffcc00]">+${(rate - PRICING.standard).toFixed(2)} / sq ft</span>
             </div>
           )}
@@ -111,14 +111,14 @@ export default function PrecisionEstimator() {
 
         {/* Projected Investment */}
         <div className="pt-6 border-t border-zinc-800">
-          <span className="text-zinc-400 font-black uppercase text-xs tracking-widest block mb-2">
+          <span className="text-zinc-200 font-black uppercase text-xs tracking-widest block mb-2">
             Projected Investment
           </span>
           <div className="text-5xl font-black text-[#ffcc00] drop-shadow-[0_0_20px_rgba(255,204,0,0.3)]">
             {sqft > 0 ? formattedTotal : '—'}
           </div>
           {sqft > 0 && (
-            <p className="text-zinc-500 text-xs mt-2 italic">
+            <p className="text-zinc-300 text-xs mt-2 italic">
               * Estimate only. Final pricing confirmed after on-site structural evaluation.
             </p>
           )}

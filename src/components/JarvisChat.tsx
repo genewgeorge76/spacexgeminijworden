@@ -272,7 +272,7 @@ export default function JarvisChat() {
             </div>
             <div className="flex-1 min-w-0">
               <div className="text-sm font-semibold tracking-wide text-white">Jarvis · J. Worden Concierge</div>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+              <div className="text-[11px] uppercase tracking-[0.18em] text-zinc-300">
                 Online · replies in seconds
               </div>
             </div>
@@ -280,7 +280,7 @@ export default function JarvisChat() {
               type="button"
               onClick={() => setOpen(false)}
               aria-label="Close chat"
-              className="rounded-md p-1 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffcc00]"
+              className="rounded-md p-1 text-zinc-200 transition-colors hover:bg-zinc-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#ffcc00]"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M18 6 6 18" />
@@ -388,7 +388,7 @@ export default function JarvisChat() {
             </button>
           </form>
 
-          <div className="border-t border-zinc-900 bg-zinc-950 px-4 py-1.5 text-center text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+          <div className="border-t border-zinc-900 bg-zinc-950 px-4 py-1.5 text-center text-[10px] uppercase tracking-[0.2em] text-zinc-200">
             Powered by JWORDENAI · Replies are AI-generated
           </div>
         </div>

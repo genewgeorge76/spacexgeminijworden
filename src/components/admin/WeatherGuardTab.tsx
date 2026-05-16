@@ -43,7 +43,7 @@ export function WeatherGuardTab() {
       {/* City + State selector */}
       <div className="flex flex-wrap gap-4 bg-[#111] border border-gray-800 p-4">
         <div className="flex-1 min-w-[160px]">
-          <label className="text-xs font-black uppercase text-gray-500 mb-1 block">City / Project Site</label>
+          <label className="text-xs font-black uppercase text-gray-300 mb-1 block">City / Project Site</label>
           <div className="flex gap-2">
             <input
               value={cityInput}
@@ -61,7 +61,7 @@ export function WeatherGuardTab() {
           </div>
         </div>
         <div className="min-w-[140px]">
-          <label className="text-xs font-black uppercase text-gray-500 mb-1 block">State (50 States)</label>
+          <label className="text-xs font-black uppercase text-gray-300 mb-1 block">State (50 States)</label>
           <select
             value={stateCode}
             onChange={(e) => setStateCode(e.target.value)}
@@ -84,7 +84,7 @@ export function WeatherGuardTab() {
             { label: 'Primary Risk', value: profile.primaryRisk },
           ].map((s) => (
             <div key={s.label} className="bg-[#111] border border-gray-800 p-4">
-              <div className="text-xs text-gray-500 uppercase font-bold mb-1">{s.label}</div>
+              <div className="text-xs text-gray-300 uppercase font-bold mb-1">{s.label}</div>
               <div className="text-sm text-white font-black leading-tight">{s.value}</div>
             </div>
           ))}
@@ -100,7 +100,7 @@ export function WeatherGuardTab() {
           { label: 'Next Halt Day', value: nextHalt?.label ?? 'None in 14d', color: nextHalt ? 'text-red-400' : 'text-green-400' },
         ].map((s) => (
           <div key={s.label} className="bg-[#111] border border-gray-800 p-4">
-            <div className="text-xs text-gray-500 uppercase font-bold mb-1">{s.label}</div>
+            <div className="text-xs text-gray-300 uppercase font-bold mb-1">{s.label}</div>
             <div className={`text-lg font-black ${s.color}`}>{s.value}</div>
           </div>
         ))}
@@ -108,7 +108,7 @@ export function WeatherGuardTab() {
 
       {/* 14-day schedule grid */}
       <section>
-        <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3 flex items-center gap-2">
+        <h3 className="text-sm font-black uppercase tracking-wider text-gray-200 mb-3 flex items-center gap-2">
           <Calendar size={14} className="text-[#ffcc00]" /> 14-Day Paving Schedule — {city}, {stateCode}
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -124,18 +124,18 @@ export function WeatherGuardTab() {
                   <span className={`text-xs font-black uppercase px-2 py-0.5 border ${cfg.border} ${cfg.color}`}>{cfg.label}</span>
                 </div>
                 <div className="grid grid-cols-4 gap-2 text-xs mb-2">
-                  <div className="text-gray-500">
+                  <div className="text-gray-300">
                     <Thermometer size={10} className="inline mr-1" />
                     <span className="text-white font-bold">{day.ambientTempF}°F</span>
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-gray-300">
                     Ground: <span className="text-white font-bold">{day.groundTempF}°F</span>
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-gray-300">
                     <CloudRain size={10} className="inline mr-1" />
                     <span className={day.precipChancePct >= 40 ? 'text-orange-400 font-bold' : 'text-white font-bold'}>{day.precipChancePct}%</span>
                   </div>
-                  <div className="text-gray-500">
+                  <div className="text-gray-300">
                     <Wind size={10} className="inline mr-1" />
                     <span className="text-white font-bold">{day.windMph} mph</span>
                   </div>
@@ -149,10 +149,10 @@ export function WeatherGuardTab() {
 
       {/* Threshold reference */}
       <div className="p-4 bg-[#111] border border-gray-800 text-xs">
-        <div className="text-gray-400 font-black uppercase mb-2 flex items-center gap-2">
+        <div className="text-gray-200 font-black uppercase mb-2 flex items-center gap-2">
           <MapPin size={12} /> VDOT Section 315 Weather Thresholds (All States)
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-gray-500">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-gray-300">
           <div>Min Ambient: <span className="text-white font-bold">45°F</span></div>
           <div>Min Ground: <span className="text-white font-bold">40°F</span></div>
           <div>Max Rain Prob: <span className="text-orange-400 font-bold">40%</span></div>

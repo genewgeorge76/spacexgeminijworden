@@ -68,7 +68,7 @@ function GalleryPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04]">
         <SectionBackdrop video="/video/driveway-paving.mp4" opacity={0.65} />
         <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">Work</p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">Work</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
             Forty years of asphalt across Central Virginia.
           </h1>
@@ -93,7 +93,7 @@ function GalleryPage() {
                 </div>
                 <figcaption className="px-2 py-5">
                   <div className="text-base font-medium text-white">{p.title}</div>
-                  <div className="text-sm text-white/50">{p.meta}</div>
+                  <div className="text-sm text-white/80">{p.meta}</div>
                 </figcaption>
               </figure>
             ))}

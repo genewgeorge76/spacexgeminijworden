@@ -13,7 +13,7 @@ export const Route = createFileRoute('/estimator')({
           <h1 className="text-8xl font-black uppercase text-[#ffcc00] leading-[0.9] tracking-tighter text-left">
             FREE <br /> <span className="text-white italic">ESTIMATOR</span>
           </h1>
-          <p className="text-3xl text-gray-400 italic font-bold mt-10 max-w-4xl leading-snug text-left">
+          <p className="text-3xl text-gray-200 italic font-bold mt-10 max-w-4xl leading-snug text-left">
             Get a professional estimate from J. Worden &amp; Sons — free, fast, and backed by 40 years of 4th-generation paving expertise.
           </p>
         </div>
@@ -41,7 +41,7 @@ export const Route = createFileRoute('/estimator')({
 
             <div className="mt-12 bg-[#1a1a1a] border-l-[6px] border-[#ffcc00] p-8">
               <h3 className="text-2xl font-black text-[#ffcc00] uppercase mb-4">The Worden Promise</h3>
-              <ul className="space-y-3 text-gray-400 font-bold">
+              <ul className="space-y-3 text-gray-200 font-bold">
                 <li>→ Free site visit within 48 hours for qualified projects</li>
                 <li>→ Detailed line-item proposals with spec references</li>
                 <li>→ 96% Marshall compaction minimum — in writing</li>

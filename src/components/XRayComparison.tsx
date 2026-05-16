@@ -54,7 +54,7 @@ function LayerStack({ layers, title, badge }: { layers: Layer[]; title: string; 
       </div>
 
       {!revealed && (
-        <div className="bg-zinc-950 px-6 py-4 text-zinc-600 text-xs font-bold italic text-center">
+        <div className="bg-zinc-950 px-6 py-4 text-zinc-200 text-xs font-bold italic text-center">
           Click to X-Ray the structure below the surface →
         </div>
       )}
@@ -71,7 +71,7 @@ export default function XRayComparison() {
           <h2 className="text-4xl md:text-6xl font-black uppercase text-white tracking-tight mt-4 mb-4">
             The <span className="text-[#ffcc00]">X-Ray</span> Comparison
           </h2>
-          <p className="text-xl text-zinc-400 max-w-2xl mx-auto font-medium">
+          <p className="text-xl text-zinc-200 max-w-2xl mx-auto font-medium">
             Most paving companies hide what's under the surface. We reveal every layer so you know exactly what you're paying for.
           </p>
         </div>

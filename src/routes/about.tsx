@@ -30,7 +30,7 @@ function AboutPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/driveway-paving.mp4" opacity={0.7} />
         <div className="relative mx-auto max-w-7xl px-6 py-32 md:py-40">
-          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/50">About the company</p>
+          <p className="mb-6 text-xs font-medium uppercase tracking-[0.3em] text-white/80">About the company</p>
           <h1 className="max-w-4xl text-5xl font-medium leading-[1.05] tracking-tight md:text-7xl">
             Four generations of asphalt paving. One uncompromising standard.
           </h1>
@@ -47,7 +47,7 @@ function AboutPage() {
 
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <div className="relative mx-auto max-w-7xl px-6 py-24">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Company history</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Company history</p>
           <h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
             Forty-plus years of paving the Mid-Atlantic.
           </h2>
@@ -65,7 +65,7 @@ function AboutPage() {
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/parking-lot.mp4" opacity={0.6} />
         <div className="relative mx-auto max-w-5xl px-6 py-28 text-center md:py-36">
-          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/50">Construction specifications</p>
+          <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Construction specifications</p>
           <h2 className="mx-auto mt-6 max-w-3xl text-4xl font-medium tracking-tight md:text-6xl">
             Built to a documented standard.
           </h2>

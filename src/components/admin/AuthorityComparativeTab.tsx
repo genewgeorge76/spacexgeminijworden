@@ -44,15 +44,15 @@ export function AuthorityComparativeTab() {
         <h2 className="text-xl font-black uppercase text-white flex items-center gap-2">
           <Shield size={20} className="text-[#ffcc00]" /> Authority Comparative — Jordan Wells Filter
         </h2>
-        <p className="text-gray-500 text-xs mt-1">When a customer says "someone else was cheaper" — run this filter to deconstruct what they're NOT getting.</p>
+        <p className="text-gray-300 text-xs mt-1">When a customer says "someone else was cheaper" — run this filter to deconstruct what they're NOT getting.</p>
       </div>
 
       {/* Input panel */}
       <div className="bg-[#111] border border-gray-800 p-5">
-        <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-4">Bid Comparison Input</h3>
+        <h3 className="text-sm font-black uppercase tracking-wider text-gray-200 mb-4">Bid Comparison Input</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
-            <label className="text-xs font-black uppercase text-gray-500 mb-1 block">Competitor Name</label>
+            <label className="text-xs font-black uppercase text-gray-300 mb-1 block">Competitor Name</label>
             <input
               value={competitorName}
               onChange={(e) => { setCompetitorName(e.target.value); setAnalyzed(false); }}
@@ -61,7 +61,7 @@ export function AuthorityComparativeTab() {
             />
           </div>
           <div>
-            <label className="text-xs font-black uppercase text-gray-500 mb-1 block">Project Type</label>
+            <label className="text-xs font-black uppercase text-gray-300 mb-1 block">Project Type</label>
             <select value={projectType} onChange={(e) => { setProjectType(e.target.value as CompetitorBidInput['projectType']); setAnalyzed(false); }}
               className="w-full bg-gray-900 border border-gray-700 text-white text-sm p-2 font-bold focus:border-[#ffcc00] outline-none">
               <option value="driveway">Residential Driveway</option>
@@ -72,17 +72,17 @@ export function AuthorityComparativeTab() {
             </select>
           </div>
           <div>
-            <label className="text-xs font-black uppercase text-gray-500 mb-1 block">Square Footage</label>
+            <label className="text-xs font-black uppercase text-gray-300 mb-1 block">Square Footage</label>
             <input type="number" value={sqFt} min={100} onChange={(e) => { setSqFt(Number(e.target.value)); setAnalyzed(false); }}
               className="w-full bg-gray-900 border border-gray-700 text-white text-sm p-2 font-bold focus:border-[#ffcc00] outline-none" />
           </div>
           <div>
-            <label className="text-xs font-black uppercase text-gray-500 mb-1 block">Their Price</label>
+            <label className="text-xs font-black uppercase text-gray-300 mb-1 block">Their Price</label>
             <input type="number" value={theirPrice} min={0} onChange={(e) => { setTheirPrice(Number(e.target.value)); setAnalyzed(false); }}
               className="w-full bg-gray-900 border border-gray-700 text-white text-sm p-2 font-bold focus:border-[#ffcc00] outline-none" />
           </div>
           <div>
-            <label className="text-xs font-black uppercase text-gray-500 mb-1 block">Worden Quote</label>
+            <label className="text-xs font-black uppercase text-gray-300 mb-1 block">Worden Quote</label>
             <input type="number" value={wordenPrice} min={0} onChange={(e) => { setWordenPrice(Number(e.target.value)); setAnalyzed(false); }}
               className="w-full bg-gray-900 border border-gray-700 text-white text-sm p-2 font-bold focus:border-[#ffcc00] outline-none" />
           </div>
@@ -90,10 +90,10 @@ export function AuthorityComparativeTab() {
 
         {/* Omitted items checklist */}
         <div className="mb-4">
-          <label className="text-xs font-black uppercase text-gray-500 mb-2 block">What JWORDENAI Sovereign Standard Items Did They Likely Omit?</label>
+          <label className="text-xs font-black uppercase text-gray-300 mb-2 block">What JWORDENAI Sovereign Standard Items Did They Likely Omit?</label>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
             {JWORDENAI_SOVEREIGN_STANDARD_ITEMS.map((item) => (
-              <label key={item.id} className={`flex items-center gap-2 text-xs font-bold cursor-pointer px-3 py-2 border ${omittedIds.includes(item.id) ? 'border-orange-600 bg-orange-950/20 text-orange-400' : 'border-gray-800 text-gray-400'}`}>
+              <label key={item.id} className={`flex items-center gap-2 text-xs font-bold cursor-pointer px-3 py-2 border ${omittedIds.includes(item.id) ? 'border-orange-600 bg-orange-950/20 text-orange-400' : 'border-gray-800 text-gray-200'}`}>
                 <input type="checkbox" checked={omittedIds.includes(item.id)} onChange={() => toggleOmitted(item.id)} className="accent-[#ffcc00]" />
                 {item.category}
               </label>
@@ -115,24 +115,24 @@ export function AuthorityComparativeTab() {
           {/* Summary KPIs */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="bg-[#111] border border-gray-800 p-4">
-              <div className="text-xs text-gray-500 uppercase font-bold mb-1">Price Difference</div>
+              <div className="text-xs text-gray-300 uppercase font-bold mb-1">Price Difference</div>
               <div className="text-2xl font-black text-orange-400">{fmt(result.priceDifference)}</div>
-              <div className="text-xs text-gray-500">{result.priceDifferencePct}% of Worden bid</div>
+              <div className="text-xs text-gray-300">{result.priceDifferencePct}% of Worden bid</div>
             </div>
             <div className="bg-[#111] border border-gray-800 p-4">
-              <div className="text-xs text-gray-500 uppercase font-bold mb-1">Missing Standards</div>
+              <div className="text-xs text-gray-300 uppercase font-bold mb-1">Missing Standards</div>
               <div className="text-2xl font-black text-red-400">{result.valueDeficit}</div>
-              <div className="text-xs text-gray-500">critical items omitted</div>
+              <div className="text-xs text-gray-300">critical items omitted</div>
             </div>
             <div className="bg-[#111] border border-orange-800 bg-orange-950/10 p-4">
-              <div className="text-xs text-gray-500 uppercase font-bold mb-1">True Cost (Low)</div>
+              <div className="text-xs text-gray-300 uppercase font-bold mb-1">True Cost (Low)</div>
               <div className="text-2xl font-black text-orange-400">{fmt(result.trueCompetitorCostLow)}</div>
-              <div className="text-xs text-gray-500">their price + hidden costs</div>
+              <div className="text-xs text-gray-300">their price + hidden costs</div>
             </div>
             <div className="bg-[#111] border border-red-800 bg-red-950/10 p-4">
-              <div className="text-xs text-gray-500 uppercase font-bold mb-1">True Cost (High)</div>
+              <div className="text-xs text-gray-300 uppercase font-bold mb-1">True Cost (High)</div>
               <div className="text-2xl font-black text-red-400">{fmt(result.trueCompetitorCostHigh)}</div>
-              <div className="text-xs text-gray-500">worst-case 5yr exposure</div>
+              <div className="text-xs text-gray-300">worst-case 5yr exposure</div>
             </div>
           </div>
 
@@ -147,13 +147,13 @@ export function AuthorityComparativeTab() {
           {/* Omitted items breakdown */}
           {result.omittedItems.length > 0 && (
             <div>
-              <h3 className="text-sm font-black uppercase tracking-wider text-gray-400 mb-3">What They Didn't Include</h3>
+              <h3 className="text-sm font-black uppercase tracking-wider text-gray-200 mb-3">What They Didn't Include</h3>
               <div className="space-y-3">
                 {result.omittedItems.map((item) => (
                   <div key={item.id} className="border border-red-800 bg-red-950/10 px-4 py-3">
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-red-400 font-black text-sm uppercase">{item.category}</span>
-                      <span className="text-xs text-gray-500 font-mono">{item.spec}</span>
+                      <span className="text-xs text-gray-300 font-mono">{item.spec}</span>
                     </div>
                     <p className="text-gray-300 text-xs font-bold mb-1">Requirement: {item.requirement}</p>
                     <p className="text-orange-400 text-xs">Cost impact: {item.typicalCostImpact}</p>
@@ -178,7 +178,7 @@ export function AuthorityComparativeTab() {
             </button>
             {expandedScript && (
               <div className="px-5 pb-5 space-y-3 border-t border-gray-800">
-                <p className="text-xs text-gray-500 mt-3 italic">Share these questions with the customer. Let the competitor's spec sheet do the talking.</p>
+                <p className="text-xs text-gray-300 mt-3 italic">Share these questions with the customer. Let the competitor's spec sheet do the talking.</p>
                 {result.interrogationScript.map((q, i) => (
                   <div key={i} className="text-sm text-gray-200 font-bold">{q}</div>
                 ))}

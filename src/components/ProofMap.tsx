@@ -103,7 +103,7 @@ export default function ProofMap() {
         <h2 className="text-5xl font-black uppercase text-white mb-4">
           Proof of <span className="text-[#ffcc00]">Performance</span>
         </h2>
-        <p className="text-gray-400 font-bold mb-8 max-w-2xl">
+        <p className="text-gray-200 font-bold mb-8 max-w-2xl">
           Every pin is a completed project — from Richmond, VA to Los Angeles, CA. Click any marker to see the project details.
         </p>
 
@@ -115,7 +115,7 @@ export default function ProofMap() {
                 className="w-3 h-3 rounded-full border-2 border-[#111]"
                 style={{ background: color, boxShadow: `0 0 6px ${color}88` }}
               />
-              <span className="text-xs font-black uppercase tracking-widest text-gray-400">{type}</span>
+              <span className="text-xs font-black uppercase tracking-widest text-gray-200">{type}</span>
             </div>
           ))}
         </div>

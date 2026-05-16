@@ -17,7 +17,7 @@ export const NegotiationPanel = ({ activeLead }: { activeLead: any }) => {
 
       <div className="grid grid-cols-2 gap-4 mb-4">
         <div className="bg-black p-3 border-gray">
-          <p className="text-gray-400 text-sm">Standard Market Bid</p>
+          <p className="text-gray-200 text-sm">Standard Market Bid</p>
           <p className="text-2xl font-bold">${stdPrice.toLocaleString()}</p>
         </div>
         <div className="bg-black p-3 border-gold">

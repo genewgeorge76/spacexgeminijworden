@@ -196,13 +196,13 @@ export default function MapEstimator({
       )}
 
       {/* Drawing instructions */}
-      <div className="bg-zinc-900/80 border border-zinc-700 px-4 py-3 text-xs text-zinc-400">
+      <div className="bg-zinc-900/80 border border-zinc-700 px-4 py-3 text-xs text-zinc-200">
         {isDrawing ? (
           <span>
             <span className="text-[#ffcc00] font-bold">📍 Click on the map</span> to place points around
             your project area. Place at least 3 points to form the area.
             {points.length > 0 && (
-              <span className="text-zinc-500 ml-2">({points.length} point{points.length !== 1 ? 's' : ''} placed)</span>
+              <span className="text-zinc-300 ml-2">({points.length} point{points.length !== 1 ? 's' : ''} placed)</span>
             )}
           </span>
         ) : (

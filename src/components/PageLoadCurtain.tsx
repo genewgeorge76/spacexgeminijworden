@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 
 /**
- * Initial page-load curtain.
- * Holds the entire viewport pure black for a beat after first paint, then
- * fades out over 1.6s — so the very first section appears to dawn from black
- * the moment the user lands. Subsequent sections take over with their own
- * SectionBackdrop fade as the user scrolls.
+ * Quick page-load curtain — 200ms hold, 400ms fade.
+ * Just enough to prevent flash of unstyled content.
  */
-const HOLD_MS = 1000;
-const FADE_MS = 1600;
+const HOLD_MS = 150;
+const FADE_MS = 350;
 
 export function PageLoadCurtain() {
   const [opacity, setOpacity] = useState(1);
@@ -30,7 +27,7 @@ export function PageLoadCurtain() {
       className="pointer-events-none fixed inset-0 z-[100] bg-[#050507]"
       style={{
         opacity,
-        transition: `opacity ${FADE_MS}ms cubic-bezier(.22,1,.36,1)`,
+        transition: `opacity ${FADE_MS}ms ease-out`,
         willChange: 'opacity',
       }}
     />
