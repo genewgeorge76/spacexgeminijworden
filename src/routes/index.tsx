@@ -23,9 +23,9 @@ const HERO_POSTER = '/video/hero-paving-poster.jpg';
 
 function Home() {
   useSeo({
-    title: 'Asphalt Paving Contractor in Richmond, VA | Driveways, Parking Lots, Sealcoating | J. Worden & Sons',
+    title: 'Asphalt Paving Contractor | Chester, Richmond, Virginia Beach, Charlottesville VA | J. Worden & Sons',
     description:
-      'Family-owned, fourth-generation asphalt paving contractor headquartered in Chester, VA. Class A licensed across Virginia, Maryland, and the Mid-Atlantic. Commercial parking lots, residential driveways, sealcoating, milling, ADA striping, and tar & chip. Over 100 franchise sites paved for KFC, Taco Bell, and Arby\u2019s. BBB A+ since 1994. Call 804-446-1296 for a free on-site estimate.',
+      'Fourth-generation asphalt paving contractor headquartered in Chester, VA. Serving the Richmond metro, I-95 corridor to Fredericksburg, I-64 east to Virginia Beach, and west to Charlottesville. Driveways, parking lots, sealcoating. Virginia Class A licensed since 1984. Call 804-446-1296.',
     path: '/',
   });
 
@@ -48,9 +48,10 @@ function Home() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-white/80 md:text-xl">
             Commercial parking lot construction, residential driveway installation, sealcoating,
-            milling and overlay, and ADA striping across Virginia, Maryland, and the Mid-Atlantic.
-            Family-owned for four generations. Self-performed crews. VDOT-spec construction on
-            every project, public or private.
+            milling and overlay, and ADA striping. Headquartered in Chester, serving the Richmond
+            metro, I-95 north to Fredericksburg, I-64 east to Virginia Beach, and west to
+            Charlottesville. Family-owned for four generations. Self-performed crews. VDOT-spec
+            construction on every project.
           </p>
           <div className="mt-12 flex flex-wrap items-center gap-4">
             <a
@@ -220,37 +221,81 @@ function Home() {
         </div>
       </section>
 
-      {/* LOCATIONS */}
+      {/* LOCATIONS — 4 CORRIDORS */}
       <section className="relative isolate overflow-hidden border-b border-white/[0.04] bg-black">
         <SectionBackdrop video="/video/driveway-paving.mp4" opacity={0.6} />
         <div className="relative mx-auto max-w-7xl px-6 py-24 md:py-32">
           <p className="text-xs font-medium uppercase tracking-[0.3em] text-white/80">Service area</p>
-          <h2 className="mt-4 max-w-3xl text-4xl font-medium tracking-tight md:text-5xl">
-            Headquartered in Chester, Virginia. Serving the Mid-Atlantic from D.C. to the Outer Banks.
+          <h2 className="mt-4 max-w-4xl text-4xl font-medium tracking-tight md:text-5xl">
+            Chester to Charlottesville. Richmond to Virginia Beach. One crew, one standard.
           </h2>
-          <p className="mt-6 max-w-2xl text-base text-white/60">
-            Daily mobilization from our Chester yard to Chesterfield, Henrico, Richmond, Hanover,
-            Powhatan, and Goochland. Multi-state Class A licensure for commercial rollouts across
-            Virginia, Maryland, and North Carolina.
+          <p className="mt-6 max-w-2xl text-base text-white/80">
+            Daily mobilization from our Chester yard. Four corridors, one Class A license,
+            40+ years of Virginia paving.
           </p>
-          <div className="mt-12 flex flex-wrap gap-2 text-sm">
-            {[
-              'Richmond', 'Chester', 'Chesterfield', 'Henrico', 'Mechanicsville', 'Glen Allen',
-              'Midlothian', 'Short Pump', 'Tuckahoe', 'Windsor Farms', 'Hanover', 'Petersburg',
-              'Hopewell', 'Colonial Heights', 'Fredericksburg', 'Williamsburg', 'Norfolk',
-              'Virginia Beach', 'Newport News', 'Hampton', 'Portsmouth', 'Suffolk',
-            ].map((city) => (
-              <span key={city} className="rounded-full border border-white/15 px-4 py-2 text-white/90">
-                {city}
-              </span>
-            ))}
-            <Link
-              to="/contact"
-              className="rounded-full border border-white/30 px-4 py-2 font-medium text-white hover:bg-white/5"
-            >
-              Other VA / MD / NC &rarr;
-            </Link>
+
+          <div className="mt-14 grid grid-cols-1 gap-10 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#ffd740]">
+                Home Base &middot; Richmond Metro
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {['chester', 'richmond', 'chesterfield', 'henrico', 'midlothian',
+                  'colonial-heights', 'mechanicsville', 'glen-allen', 'short-pump',
+                  'bon-air', 'tuckahoe', 'sandston', 'hopewell', 'petersburg'].map((s) => (
+                  <Link key={s} to={`/locations/${s}`}
+                    className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
+                    {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#ffd740]">
+                I-95 North Corridor
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {['ashland', 'hanover', 'caroline', 'spotsylvania', 'fredericksburg',
+                  'stafford', 'king-george', 'culpeper', 'orange', 'warrenton'].map((s) => (
+                  <Link key={s} to={`/locations/${s}`}
+                    className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
+                    {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#ffd740]">
+                I-64 East &middot; Hampton Roads
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {['williamsburg', 'newportnews', 'hampton', 'norfolk',
+                  'virginia-beach', 'chesapeake', 'portsmouth', 'suffolk'].map((s) => (
+                  <Link key={s} to={`/locations/${s}`}
+                    className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
+                    {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-xs font-medium uppercase tracking-[0.3em] text-[#ffd740]">
+                I-64 West &middot; Central Virginia
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm">
+                {['goochland', 'powhatan', 'louisa', 'fluvanna', 'charlottesville', 'cumberland', 'amelia'].map((s) => (
+                  <Link key={s} to={`/locations/${s}`}
+                    className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
+                    {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
+
           <BlogImprint mode="locations" />
         </div>
       </section>
