@@ -112,10 +112,10 @@ export const GOOGLE_WRITE_REVIEW_URL = `https://search.google.com/local/writerev
 export const GOOGLE_MAPS_URL = `https://www.google.com/maps/place/?q=place_id:${GOOGLE_PLACE_ID}`;
 
 export const AGGREGATE_RATING = {
-  ratingValue: '4.7',
+  ratingValue: '4.4',
   bestRating: '5',
   worstRating: '1',
-  reviewCount: '87',
+  reviewCount: '91',
 } as const;
 
 // ──────────────────────────────────────────────────────────────────────────────

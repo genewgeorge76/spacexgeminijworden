@@ -225,7 +225,7 @@ function WorkPanel({ onNavigate }: { onNavigate: () => void }) {
           <li className={linkSm}>Class A Virginia Contractor</li>
           <li className={linkSm}>Houzz Best of Service · multi-year</li>
           <li className={linkSm}>Pavement Magazine Top 75</li>
-          <li className={linkSm}>4.7 ★ · 87 verified reviews</li>
+          <li className={linkSm}>4.4 ★ · 91 verified reviews</li>
         </ul>
       </div>
     </div>
