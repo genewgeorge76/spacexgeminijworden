@@ -163,7 +163,7 @@ const JWordenSovereignEngine = () => {
             color: THEME.gold,
           }}
         >
-          OFFICIAL HQ: 1601 WARE BOTTOM SPRINGS RD, CHESTER, VA
+          OFFICIAL HQ: 1601 WARE BOTTOM SPRING RD, CHESTER, VA
         </div>
         <h1 style={{ fontSize: '48px', fontWeight: 900, marginTop: '20px' }}>
           THE WORDEN ALLIANCE
