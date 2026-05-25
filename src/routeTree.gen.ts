@@ -9,17 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WeatherIntelRouteImport } from './routes/weather-intel'
 import { Route as TheWordenStandardRouteImport } from './routes/the-worden-standard'
 import { Route as TarAndChipRouteImport } from './routes/tar-and-chip'
 import { Route as StandardsRouteImport } from './routes/standards'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SealcoatingRouteImport } from './routes/sealcoating'
 import { Route as ResidentialRouteImport } from './routes/residential'
+import { Route as ProfitNodeRouteImport } from './routes/profit-node'
+import { Route as PreConDashboardRouteImport } from './routes/pre-con-dashboard'
+import { Route as PreConRouteImport } from './routes/pre-con'
+import { Route as PortalRouteImport } from './routes/portal'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as LitigationRouteImport } from './routes/litigation'
+import { Route as LegalComplianceRouteImport } from './routes/legal-compliance'
+import { Route as InvestorRoiRouteImport } from './routes/investor-roi'
 import { Route as GalleryRouteImport } from './routes/gallery'
+import { Route as FieldRouteImport } from './routes/field'
 import { Route as EstimatorRouteImport } from './routes/estimator'
 import { Route as EstimateRouteImport } from './routes/estimate'
+import { Route as DispatchNodeRouteImport } from './routes/dispatch-node'
+import { Route as DispatchRouteImport } from './routes/dispatch'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CommercialRouteImport } from './routes/commercial'
+import { Route as CommandCenterRouteImport } from './routes/command-center'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProductsProductIdRouteImport } from './routes/products/$productId'
@@ -69,6 +83,7 @@ import { Route as LocationsColonialHeightsRouteImport } from './routes/locations
 import { Route as LocationsChesterfieldRouteImport } from './routes/locations/chesterfield'
 import { Route as LocationsChesterRouteImport } from './routes/locations/chester'
 import { Route as LocationsChesapeakeRouteImport } from './routes/locations/chesapeake'
+import { Route as LocationsCharlottesvilleRouteImport } from './routes/locations/charlottesville'
 import { Route as LocationsCharlesCityRouteImport } from './routes/locations/charles-city'
 import { Route as LocationsCarolineRouteImport } from './routes/locations/caroline'
 import { Route as LocationsBonAirRouteImport } from './routes/locations/bon-air'
@@ -76,6 +91,11 @@ import { Route as LocationsAshlandRouteImport } from './routes/locations/ashland
 import { Route as LocationsAmeliaRouteImport } from './routes/locations/amelia'
 import { Route as BlogSlugRouteImport } from './routes/blog/$slug'
 
+const WeatherIntelRoute = WeatherIntelRouteImport.update({
+  id: '/weather-intel',
+  path: '/weather-intel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TheWordenStandardRoute = TheWordenStandardRouteImport.update({
   id: '/the-worden-standard',
   path: '/the-worden-standard',
@@ -106,9 +126,54 @@ const ResidentialRoute = ResidentialRouteImport.update({
   path: '/residential',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfitNodeRoute = ProfitNodeRouteImport.update({
+  id: '/profit-node',
+  path: '/profit-node',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreConDashboardRoute = PreConDashboardRouteImport.update({
+  id: '/pre-con-dashboard',
+  path: '/pre-con-dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PreConRoute = PreConRouteImport.update({
+  id: '/pre-con',
+  path: '/pre-con',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortalRoute = PortalRouteImport.update({
+  id: '/portal',
+  path: '/portal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LitigationRoute = LitigationRouteImport.update({
+  id: '/litigation',
+  path: '/litigation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalComplianceRoute = LegalComplianceRouteImport.update({
+  id: '/legal-compliance',
+  path: '/legal-compliance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestorRoiRoute = InvestorRoiRouteImport.update({
+  id: '/investor-roi',
+  path: '/investor-roi',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GalleryRoute = GalleryRouteImport.update({
   id: '/gallery',
   path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FieldRoute = FieldRouteImport.update({
+  id: '/field',
+  path: '/field',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EstimatorRoute = EstimatorRouteImport.update({
@@ -121,6 +186,21 @@ const EstimateRoute = EstimateRouteImport.update({
   path: '/estimate',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DispatchNodeRoute = DispatchNodeRouteImport.update({
+  id: '/dispatch-node',
+  path: '/dispatch-node',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DispatchRoute = DispatchRouteImport.update({
+  id: '/dispatch',
+  path: '/dispatch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -129,6 +209,11 @@ const ContactRoute = ContactRouteImport.update({
 const CommercialRoute = CommercialRouteImport.update({
   id: '/commercial',
   path: '/commercial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommandCenterRoute = CommandCenterRouteImport.update({
+  id: '/command-center',
+  path: '/command-center',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -377,6 +462,12 @@ const LocationsChesapeakeRoute = LocationsChesapeakeRouteImport.update({
   path: '/locations/chesapeake',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsCharlottesvilleRoute =
+  LocationsCharlottesvilleRouteImport.update({
+    id: '/locations/charlottesville',
+    path: '/locations/charlottesville',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LocationsCharlesCityRoute = LocationsCharlesCityRouteImport.update({
   id: '/locations/charles-city',
   path: '/locations/charles-city',
@@ -411,23 +502,38 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
+  '/investor-roi': typeof InvestorRoiRoute
+  '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
+  '/pre-con-dashboard': typeof PreConDashboardRoute
+  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
   '/tar-and-chip': typeof TarAndChipRoute
   '/the-worden-standard': typeof TheWordenStandardRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
   '/locations/caroline': typeof LocationsCarolineRoute
   '/locations/charles-city': typeof LocationsCharlesCityRoute
+  '/locations/charlottesville': typeof LocationsCharlottesvilleRoute
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
@@ -479,23 +585,38 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
+  '/investor-roi': typeof InvestorRoiRoute
+  '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
+  '/pre-con-dashboard': typeof PreConDashboardRoute
+  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
   '/tar-and-chip': typeof TarAndChipRoute
   '/the-worden-standard': typeof TheWordenStandardRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
   '/locations/caroline': typeof LocationsCarolineRoute
   '/locations/charles-city': typeof LocationsCharlesCityRoute
+  '/locations/charlottesville': typeof LocationsCharlottesvilleRoute
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
@@ -548,23 +669,38 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/command-center': typeof CommandCenterRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
+  '/dashboard': typeof DashboardRoute
+  '/dispatch': typeof DispatchRoute
+  '/dispatch-node': typeof DispatchNodeRoute
   '/estimate': typeof EstimateRoute
   '/estimator': typeof EstimatorRoute
+  '/field': typeof FieldRoute
   '/gallery': typeof GalleryRoute
+  '/investor-roi': typeof InvestorRoiRoute
+  '/legal-compliance': typeof LegalComplianceRoute
+  '/litigation': typeof LitigationRoute
+  '/login': typeof LoginRoute
+  '/portal': typeof PortalRoute
+  '/pre-con': typeof PreConRoute
+  '/pre-con-dashboard': typeof PreConDashboardRoute
+  '/profit-node': typeof ProfitNodeRoute
   '/residential': typeof ResidentialRoute
   '/sealcoating': typeof SealcoatingRoute
   '/services': typeof ServicesRoute
   '/standards': typeof StandardsRoute
   '/tar-and-chip': typeof TarAndChipRoute
   '/the-worden-standard': typeof TheWordenStandardRoute
+  '/weather-intel': typeof WeatherIntelRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/locations/amelia': typeof LocationsAmeliaRoute
   '/locations/ashland': typeof LocationsAshlandRoute
   '/locations/bon-air': typeof LocationsBonAirRoute
   '/locations/caroline': typeof LocationsCarolineRoute
   '/locations/charles-city': typeof LocationsCharlesCityRoute
+  '/locations/charlottesville': typeof LocationsCharlottesvilleRoute
   '/locations/chesapeake': typeof LocationsChesapeakeRoute
   '/locations/chester': typeof LocationsChesterRoute
   '/locations/chesterfield': typeof LocationsChesterfieldRoute
@@ -618,23 +754,38 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/contact'
+    | '/dashboard'
+    | '/dispatch'
+    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
+    | '/field'
     | '/gallery'
+    | '/investor-roi'
+    | '/legal-compliance'
+    | '/litigation'
+    | '/login'
+    | '/portal'
+    | '/pre-con'
+    | '/pre-con-dashboard'
+    | '/profit-node'
     | '/residential'
     | '/sealcoating'
     | '/services'
     | '/standards'
     | '/tar-and-chip'
     | '/the-worden-standard'
+    | '/weather-intel'
     | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
     | '/locations/caroline'
     | '/locations/charles-city'
+    | '/locations/charlottesville'
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
@@ -686,23 +837,38 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/contact'
+    | '/dashboard'
+    | '/dispatch'
+    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
+    | '/field'
     | '/gallery'
+    | '/investor-roi'
+    | '/legal-compliance'
+    | '/litigation'
+    | '/login'
+    | '/portal'
+    | '/pre-con'
+    | '/pre-con-dashboard'
+    | '/profit-node'
     | '/residential'
     | '/sealcoating'
     | '/services'
     | '/standards'
     | '/tar-and-chip'
     | '/the-worden-standard'
+    | '/weather-intel'
     | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
     | '/locations/caroline'
     | '/locations/charles-city'
+    | '/locations/charlottesville'
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
@@ -754,23 +920,38 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/command-center'
     | '/commercial'
     | '/contact'
+    | '/dashboard'
+    | '/dispatch'
+    | '/dispatch-node'
     | '/estimate'
     | '/estimator'
+    | '/field'
     | '/gallery'
+    | '/investor-roi'
+    | '/legal-compliance'
+    | '/litigation'
+    | '/login'
+    | '/portal'
+    | '/pre-con'
+    | '/pre-con-dashboard'
+    | '/profit-node'
     | '/residential'
     | '/sealcoating'
     | '/services'
     | '/standards'
     | '/tar-and-chip'
     | '/the-worden-standard'
+    | '/weather-intel'
     | '/blog/$slug'
     | '/locations/amelia'
     | '/locations/ashland'
     | '/locations/bon-air'
     | '/locations/caroline'
     | '/locations/charles-city'
+    | '/locations/charlottesville'
     | '/locations/chesapeake'
     | '/locations/chester'
     | '/locations/chesterfield'
@@ -823,23 +1004,38 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  CommandCenterRoute: typeof CommandCenterRoute
   CommercialRoute: typeof CommercialRoute
   ContactRoute: typeof ContactRoute
+  DashboardRoute: typeof DashboardRoute
+  DispatchRoute: typeof DispatchRoute
+  DispatchNodeRoute: typeof DispatchNodeRoute
   EstimateRoute: typeof EstimateRoute
   EstimatorRoute: typeof EstimatorRoute
+  FieldRoute: typeof FieldRoute
   GalleryRoute: typeof GalleryRoute
+  InvestorRoiRoute: typeof InvestorRoiRoute
+  LegalComplianceRoute: typeof LegalComplianceRoute
+  LitigationRoute: typeof LitigationRoute
+  LoginRoute: typeof LoginRoute
+  PortalRoute: typeof PortalRoute
+  PreConRoute: typeof PreConRoute
+  PreConDashboardRoute: typeof PreConDashboardRoute
+  ProfitNodeRoute: typeof ProfitNodeRoute
   ResidentialRoute: typeof ResidentialRoute
   SealcoatingRoute: typeof SealcoatingRoute
   ServicesRoute: typeof ServicesRoute
   StandardsRoute: typeof StandardsRoute
   TarAndChipRoute: typeof TarAndChipRoute
   TheWordenStandardRoute: typeof TheWordenStandardRoute
+  WeatherIntelRoute: typeof WeatherIntelRoute
   BlogSlugRoute: typeof BlogSlugRoute
   LocationsAmeliaRoute: typeof LocationsAmeliaRoute
   LocationsAshlandRoute: typeof LocationsAshlandRoute
   LocationsBonAirRoute: typeof LocationsBonAirRoute
   LocationsCarolineRoute: typeof LocationsCarolineRoute
   LocationsCharlesCityRoute: typeof LocationsCharlesCityRoute
+  LocationsCharlottesvilleRoute: typeof LocationsCharlottesvilleRoute
   LocationsChesapeakeRoute: typeof LocationsChesapeakeRoute
   LocationsChesterRoute: typeof LocationsChesterRoute
   LocationsChesterfieldRoute: typeof LocationsChesterfieldRoute
@@ -891,6 +1087,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/weather-intel': {
+      id: '/weather-intel'
+      path: '/weather-intel'
+      fullPath: '/weather-intel'
+      preLoaderRoute: typeof WeatherIntelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/the-worden-standard': {
       id: '/the-worden-standard'
       path: '/the-worden-standard'
@@ -933,11 +1136,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResidentialRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profit-node': {
+      id: '/profit-node'
+      path: '/profit-node'
+      fullPath: '/profit-node'
+      preLoaderRoute: typeof ProfitNodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pre-con-dashboard': {
+      id: '/pre-con-dashboard'
+      path: '/pre-con-dashboard'
+      fullPath: '/pre-con-dashboard'
+      preLoaderRoute: typeof PreConDashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pre-con': {
+      id: '/pre-con'
+      path: '/pre-con'
+      fullPath: '/pre-con'
+      preLoaderRoute: typeof PreConRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portal': {
+      id: '/portal'
+      path: '/portal'
+      fullPath: '/portal'
+      preLoaderRoute: typeof PortalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/litigation': {
+      id: '/litigation'
+      path: '/litigation'
+      fullPath: '/litigation'
+      preLoaderRoute: typeof LitigationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal-compliance': {
+      id: '/legal-compliance'
+      path: '/legal-compliance'
+      fullPath: '/legal-compliance'
+      preLoaderRoute: typeof LegalComplianceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investor-roi': {
+      id: '/investor-roi'
+      path: '/investor-roi'
+      fullPath: '/investor-roi'
+      preLoaderRoute: typeof InvestorRoiRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/gallery': {
       id: '/gallery'
       path: '/gallery'
       fullPath: '/gallery'
       preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/field': {
+      id: '/field'
+      path: '/field'
+      fullPath: '/field'
+      preLoaderRoute: typeof FieldRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/estimator': {
@@ -954,6 +1220,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EstimateRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dispatch-node': {
+      id: '/dispatch-node'
+      path: '/dispatch-node'
+      fullPath: '/dispatch-node'
+      preLoaderRoute: typeof DispatchNodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dispatch': {
+      id: '/dispatch'
+      path: '/dispatch'
+      fullPath: '/dispatch'
+      preLoaderRoute: typeof DispatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -966,6 +1253,13 @@ declare module '@tanstack/react-router' {
       path: '/commercial'
       fullPath: '/commercial'
       preLoaderRoute: typeof CommercialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/command-center': {
+      id: '/command-center'
+      path: '/command-center'
+      fullPath: '/command-center'
+      preLoaderRoute: typeof CommandCenterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -1311,6 +1605,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LocationsChesapeakeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/charlottesville': {
+      id: '/locations/charlottesville'
+      path: '/locations/charlottesville'
+      fullPath: '/locations/charlottesville'
+      preLoaderRoute: typeof LocationsCharlottesvilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/locations/charles-city': {
       id: '/locations/charles-city'
       path: '/locations/charles-city'
@@ -1359,23 +1660,38 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  CommandCenterRoute: CommandCenterRoute,
   CommercialRoute: CommercialRoute,
   ContactRoute: ContactRoute,
+  DashboardRoute: DashboardRoute,
+  DispatchRoute: DispatchRoute,
+  DispatchNodeRoute: DispatchNodeRoute,
   EstimateRoute: EstimateRoute,
   EstimatorRoute: EstimatorRoute,
+  FieldRoute: FieldRoute,
   GalleryRoute: GalleryRoute,
+  InvestorRoiRoute: InvestorRoiRoute,
+  LegalComplianceRoute: LegalComplianceRoute,
+  LitigationRoute: LitigationRoute,
+  LoginRoute: LoginRoute,
+  PortalRoute: PortalRoute,
+  PreConRoute: PreConRoute,
+  PreConDashboardRoute: PreConDashboardRoute,
+  ProfitNodeRoute: ProfitNodeRoute,
   ResidentialRoute: ResidentialRoute,
   SealcoatingRoute: SealcoatingRoute,
   ServicesRoute: ServicesRoute,
   StandardsRoute: StandardsRoute,
   TarAndChipRoute: TarAndChipRoute,
   TheWordenStandardRoute: TheWordenStandardRoute,
+  WeatherIntelRoute: WeatherIntelRoute,
   BlogSlugRoute: BlogSlugRoute,
   LocationsAmeliaRoute: LocationsAmeliaRoute,
   LocationsAshlandRoute: LocationsAshlandRoute,
   LocationsBonAirRoute: LocationsBonAirRoute,
   LocationsCarolineRoute: LocationsCarolineRoute,
   LocationsCharlesCityRoute: LocationsCharlesCityRoute,
+  LocationsCharlottesvilleRoute: LocationsCharlottesvilleRoute,
   LocationsChesapeakeRoute: LocationsChesapeakeRoute,
   LocationsChesterRoute: LocationsChesterRoute,
   LocationsChesterfieldRoute: LocationsChesterfieldRoute,

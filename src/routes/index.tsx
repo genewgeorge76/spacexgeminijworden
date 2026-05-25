@@ -243,7 +243,7 @@ function Home() {
                 {['chester', 'richmond', 'chesterfield', 'henrico', 'midlothian',
                   'colonial-heights', 'mechanicsville', 'glen-allen', 'short-pump',
                   'bon-air', 'tuckahoe', 'sandston', 'hopewell', 'petersburg'].map((s) => (
-                  <Link key={s} to={`/locations/${s}`}
+                  <Link key={s} to={`/locations/${s}` as any}
                     className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
                     {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                   </Link>
@@ -258,7 +258,7 @@ function Home() {
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
                 {['ashland', 'hanover', 'caroline', 'spotsylvania', 'fredericksburg',
                   'stafford', 'king-george', 'culpeper', 'orange', 'warrenton'].map((s) => (
-                  <Link key={s} to={`/locations/${s}`}
+                  <Link key={s} to={`/locations/${s}` as any}
                     className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
                     {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                   </Link>
@@ -273,7 +273,7 @@ function Home() {
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
                 {['williamsburg', 'newportnews', 'hampton', 'norfolk',
                   'virginia-beach', 'chesapeake', 'portsmouth', 'suffolk'].map((s) => (
-                  <Link key={s} to={`/locations/${s}`}
+                  <Link key={s} to={`/locations/${s}` as any}
                     className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
                     {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                   </Link>
@@ -287,7 +287,7 @@ function Home() {
               </p>
               <div className="mt-4 flex flex-wrap gap-2 text-sm">
                 {['goochland', 'powhatan', 'louisa', 'fluvanna', 'charlottesville', 'cumberland', 'amelia'].map((s) => (
-                  <Link key={s} to={`/locations/${s}`}
+                  <Link key={s} to={`/locations/${s}` as any}
                     className="rounded-full border border-white/20 px-4 py-2 text-white/90 hover:bg-white/10 hover:text-white transition">
                     {s.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')}
                   </Link>

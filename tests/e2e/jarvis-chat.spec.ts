@@ -65,7 +65,7 @@ test.describe('jarvis chat widget', () => {
       message: 'Do you sealcoat driveways in Chester?',
       page_context: '/',
     });
-    expect(typeof (lastBody as Record<string, unknown>)?.session_id).toBe('string');
+    expect(typeof (lastBody as unknown as Record<string, unknown>)?.session_id).toBe('string');
 
     // Reply text renders
     await expect(panel.getByText(/sealcoating in Chester/i)).toBeVisible();

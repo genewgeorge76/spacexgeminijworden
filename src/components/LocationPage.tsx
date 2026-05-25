@@ -2,7 +2,7 @@ import { Link } from '@tanstack/react-router';
 import { useSeo } from '../lib/useSeo';
 import type { CityEntry } from '../data/cities';
 import SectionBackdrop from './SectionBackdrop';
-import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, ADDRESS_DISPLAY, PHONE_SCHEMA, SITE_URL } from '../lib/businessInfo';
+import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, ADDRESS_DISPLAY, PHONE_SCHEMA } from '../lib/businessInfo';
 
 const HQ_ADDRESS = ADDRESS_DISPLAY;
 

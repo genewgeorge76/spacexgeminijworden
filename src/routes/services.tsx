@@ -2,7 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 import { useSeo } from '../lib/useSeo';
 import { CITIES } from '../data/cities';
 import SectionBackdrop from '../components/SectionBackdrop';
-import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, PHONE_SCHEMA, SITE_URL } from '../lib/businessInfo';
+import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, PHONE_SCHEMA } from '../lib/businessInfo';
 
 export const Route = createFileRoute('/services')({
   component: ServicesPage,
@@ -246,7 +246,7 @@ function ServicesPage() {
               return (
                 <Link
                   key={slug}
-                  to={`/locations/${slug}`}
+                  to={`/locations/${slug}` as any}
                   className="rounded-full border border-white/15 px-4 py-2 text-white/70 hover:bg-white/5 hover:text-white"
                 >
                   Paving in {c.name}
@@ -265,7 +265,7 @@ function ServicesPage() {
               return (
                 <Link
                   key={slug}
-                  to={`/locations/${slug}`}
+                  to={`/locations/${slug}` as any}
                   className="rounded-full border border-white/15 px-4 py-2 text-white/70 hover:bg-white/5 hover:text-white"
                 >
                   {c.name}
