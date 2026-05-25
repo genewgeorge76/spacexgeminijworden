@@ -42,7 +42,7 @@ export const CITIES: CityEntry[] = [
   { slug: 'windsor-farms', name: 'Windsor Farms', state: 'VA', county: 'Richmond City', region: 'Greater Richmond' },
 
   // I-64 West Corridor
-  { slug: 'charlottesville', name: 'Charlottesville', state: 'VA', county: 'Albemarle', region: 'I-64 West' },
+  { slug: 'charlottesville', name: 'Charlottesville', state: 'VA', county: 'Albemarle', region: 'Surrounding Counties' },
 
   // Tri-Cities / Chesterfield
   { slug: 'chester', name: 'Chester', state: 'VA', county: 'Chesterfield', region: 'Tri-Cities' },
