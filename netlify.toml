@@ -147,3 +147,4 @@
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+# Mon May 25 13:53:17 UTC 2026
