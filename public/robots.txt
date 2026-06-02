@@ -1,31 +1,20 @@
 User-agent: *
 Allow: /
 
+# Block internal/operational routes from public crawl
 Disallow: /admin
 Disallow: /dashboard
+Disallow: /field
 Disallow: /dispatch
 Disallow: /dispatch-node
 Disallow: /profit-node
 Disallow: /payroll-treasury
 Disallow: /investor-roi
-Disallow: /pre-con
 Disallow: /pre-con-dashboard
 Disallow: /legal-compliance
 Disallow: /litigation
 Disallow: /command-bot
-Disallow: /command-center
-Disallow: /sovereign*
-Disallow: /whale-hunter
-Disallow: /weather-intel
-Disallow: /mr-worden-3d
-Disallow: /gc-bid
-Disallow: /safety
-Disallow: /portal
 Disallow: /login
-Disallow: /products
-Disallow: /field
-Disallow: /estimator
-Disallow: /crew-eta
-Disallow: /staff
+Disallow: /portal
 
-Sitemap: https://www.jwordenasphaltpaving.com/sitemap.xml
+Sitemap: https://jwordenasphaltpaving.com/sitemap.xml
