@@ -15,7 +15,7 @@
     "tier": "Tier 1",
     "tier_emoji": "\ud83d\udc0b Whale",
     "qualified": true,
-    "scored_at": "2026-06-05T03:09:43.007760+00:00"
+    "scored_at": "2026-06-05T05:32:25.611503+00:00"
   },
   {
     "lead_id": "LD-002",
@@ -33,7 +33,7 @@
     "tier": "Tier 2",
     "tier_emoji": "\ud83e\udd88 Shark",
     "qualified": true,
-    "scored_at": "2026-06-05T03:09:43.007780+00:00"
+    "scored_at": "2026-06-05T05:32:25.611522+00:00"
   },
   {
     "lead_id": "LD-003",
@@ -51,7 +51,7 @@
     "tier": "Tier 1",
     "tier_emoji": "\ud83d\udc0b Whale",
     "qualified": true,
-    "scored_at": "2026-06-05T03:09:43.007790+00:00"
+    "scored_at": "2026-06-05T05:32:25.611530+00:00"
   },
   {
     "lead_id": "LD-004",
@@ -69,7 +69,7 @@
     "tier": "Tier 3",
     "tier_emoji": "\ud83d\udc1f Fish",
     "qualified": false,
-    "scored_at": "2026-06-05T03:09:43.007799+00:00"
+    "scored_at": "2026-06-05T05:32:25.611537+00:00"
   },
   {
     "lead_id": "LD-005",
@@ -87,6 +87,6 @@
     "tier": "Tier 1",
     "tier_emoji": "\ud83d\udc0b Whale",
     "qualified": true,
-    "scored_at": "2026-06-05T03:09:43.007807+00:00"
+    "scored_at": "2026-06-05T05:32:25.611542+00:00"
   }
 ]
