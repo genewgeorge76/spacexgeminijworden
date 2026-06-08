@@ -14,26 +14,26 @@
     "postbuild": "node scripts/generate-seo-pages.mjs"
   },
   "dependencies": {
-    "@anthropic-ai/sdk": "^0.95.2",
+    "@anthropic-ai/sdk": "^0.102.0",
     "@react-pdf/renderer": "^4.5.1",
-    "@sentry/react": "^10.53.1",
-    "@tanstack/react-router": "^1.168.23",
+    "@sentry/react": "^10.56.0",
+    "@tanstack/react-router": "^1.170.15",
     "@types/leaflet": "^1.9.21",
-    "@types/three": "^0.184.0",
+    "@types/three": "^0.184.1",
     "googleapis": "^171.4.0",
     "leaflet": "^1.9.4",
     "lenis": "^1.3.23",
-    "lucide-react": "^1.14.0",
+    "lucide-react": "^1.17.0",
     "react": "latest",
     "react-dom": "latest",
     "three": "^0.184.0",
-    "web-vitals": "^5.2.0"
+    "web-vitals": "^5.3.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.60.0",
     "@tailwindcss/vite": "latest",
     "@tanstack/router-plugin": "latest",
-    "@types/node": "^25.6.0",
+    "@types/node": "^25.9.2",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
@@ -41,7 +41,7 @@
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest",
-    "typescript-eslint": "^8.59.3",
+    "typescript-eslint": "^8.60.1",
     "vite": "latest",
     "puppeteer": "^24.0.0",
     "express": "^4.21.0"
