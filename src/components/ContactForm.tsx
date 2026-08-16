@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { apiUrl } from '@/lib/apiBase';
 
-// Netlify Function proxy — forwards leads to Kickserv server-side to avoid browser CORS
-const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
+// FastAPI ops backend — forwards leads to Kickserv server-side to avoid browser CORS.
+// Was '/.netlify/functions/kickserv-lead'; Netlify is no longer the host, so that
+// path resolved to the SPA shell and every lead submitted here was discarded.
+const KICKSERV_PROXY = apiUrl('/api/v1/leads/website');
 
-// GA4 Measurement ID — set VITE_GA4_MEASUREMENT_ID in Netlify dashboard environment variables
+// GA4 Measurement ID — set VITE_GA4_MEASUREMENT_ID in the hosting provider's env vars
 const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined;
 
 // Simple validation helpers

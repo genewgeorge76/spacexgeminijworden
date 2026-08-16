@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { useSeo } from '../lib/useSeo';
+import { apiUrl } from '../lib/apiBase';
 import SectionBackdrop from '../components/SectionBackdrop';
 import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, HOURS_DISPLAY } from '../lib/businessInfo';
 
@@ -8,8 +9,13 @@ export const Route = createFileRoute('/contact')({
   component: ContactPage,
 });
 
-/** FastAPI lead webhook (standalone repo). Empty string = disabled. */
-const LEADS_API_URL = (import.meta.env.VITE_LEADS_API_URL as string | undefined) ?? '';
+/**
+ * FastAPI lead endpoint. VITE_LEADS_API_URL (a full URL) still wins if set, for
+ * backwards compatibility; otherwise the path is built from VITE_API_BASE_URL.
+ */
+const LEADS_ENDPOINT =
+  ((import.meta.env.VITE_LEADS_API_URL as string | undefined) ?? '').trim() ||
+  apiUrl('/api/v1/leads/website');
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -48,41 +54,40 @@ function ContactPage() {
       return;
     }
 
-    // Encode for Netlify Forms (application/x-www-form-urlencoded).
-    const params = new URLSearchParams();
-    params.append('form-name', 'contact');
+    // The FastAPI backend is the system of record for this form.
+    //
+    // This previously POSTed to Netlify Forms ('/' with form-name=contact) as the
+    // primary store and mirrored to the backend fire-and-forget.  Hosting moved to
+    // Vercel + Fly.io, so Netlify Forms no longer exists — that POST hit the SPA
+    // catch-all, came back 200, passed `res.ok`, and the customer was shown a
+    // confirmation for a lead that was never stored anywhere.  The backend call is
+    // now the primary path and is awaited so failures are surfaced, not swallowed.
+    const payload: Record<string, string> = {};
     for (const [k, v] of data.entries()) {
-      params.append(k, typeof v === 'string' ? v : '');
+      if (k === 'form-name' || k === 'bot-field') continue;
+      payload[k] = typeof v === 'string' ? v : '';
     }
+    payload.source = 'gemni-investigate';
+    payload.path = '/contact';
 
     try {
-      // 1) Netlify Forms (always on — customer-safe persistent log)
-      const res = await fetch('/', {
+      const res = await fetch(LEADS_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error(`Server returned ${res.status}`);
 
-      // 2) Mirror the lead to the FastAPI ops backend (best-effort, non-blocking)
-      if (LEADS_API_URL) {
-        const payload: Record<string, string> = {};
-        for (const [k, v] of data.entries()) payload[k] = typeof v === 'string' ? v : '';
-        payload.source = 'gemni-investigate';
-        payload.path = '/contact';
-        // Fire-and-forget; if backend is down the customer's lead is still safe in Netlify Forms.
-        void fetch(LEADS_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true,
-        }).catch(() => undefined);
-      }
+      // Confirm the backend actually persisted the lead. A catch-all SPA rewrite
+      // returns 200 + index.html for an unmatched path, so `res.ok` alone is not
+      // proof of success — that is exactly how this form failed silently before.
+      const saved = await res.json().catch(() => null);
+      if (!saved) throw new Error('Lead was not accepted by the server');
 
       setStatus('sent');
       const w = window as unknown as { gtag?: (...args: unknown[]) => void };
       if (w.gtag) {
-        w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'netlify_forms' });
+        w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'ops_backend' });
       }
     } catch (err) {
       setStatus('error');
@@ -153,15 +158,15 @@ function ContactPage() {
                 </Link>
               </div>
             ) : (
+              // The data-netlify / form-name plumbing was removed with the move off
+              // Netlify; submission is handled entirely by handleSubmit, which also
+              // checks the bot-field honeypot below.
               <form
                 name="contact"
                 method="POST"
-                data-netlify="true"
-                data-netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="space-y-6"
               >
-                <input type="hidden" name="form-name" value="contact" />
                 <p hidden>
                   <label>
                     Don&rsquo;t fill this out: <input name="bot-field" />
