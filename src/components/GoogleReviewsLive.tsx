@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import SectionBackdrop from './SectionBackdrop';
+import { apiUrl } from '../lib/apiBase';
 
 type Review = {
   author: string;
@@ -90,8 +91,10 @@ export default function GoogleReviewsLive() {
 
   useEffect(() => {
     let cancelled = false;
-    // Try a Netlify function endpoint; fall back silently if absent.
-    fetch('/.netlify/functions/reviews', { headers: { accept: 'application/json' } })
+    // Live reviews come from the FastAPI backend; the hardcoded FALLBACK below
+    // is shown if it is unreachable.  (This previously pointed at a Netlify
+    // function that no longer exists, so the fallback was always what rendered.)
+    fetch(apiUrl('/api/v1/reviews'), { headers: { accept: 'application/json' } })
       .then((r) => (r.ok ? r.json() : null))
       .then((json: ReviewsPayload | null) => {
         if (!cancelled && json && json.aggregate_rating && json.reviews?.length) {

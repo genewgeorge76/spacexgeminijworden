@@ -1,15 +1,19 @@
 import { useState } from 'react';
 import type { MapEstimateResult, LeadCapture } from '@/lib/estimator-engine';
 import SuccessScreen from '@/components/SuccessScreen';
+import { apiUrl } from '@/lib/apiBase';
 
 /**
  * LeadCaptureForm — Contact info capture with Whale/Shark/Fish classification.
  * Appears after the user draws their project area and sees the estimate.
- * Formats leads for the lead_scoring.py pipeline and submits to Kickserv via
- * the server-side Netlify Function proxy (avoids browser CORS).
+ * Formats leads for the lead_scoring.py pipeline and submits to the FastAPI
+ * ops backend, which handles Kickserv forwarding server-side.
  */
 
-const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
+// Was '/.netlify/functions/kickserv-lead'.  Netlify is no longer the host, so
+// that path resolved to the SPA shell and leads were silently discarded.  The
+// backend's /leads/website endpoint accepts this exact payload shape.
+const LEAD_ENDPOINT = apiUrl('/api/v1/leads/website');
 
 interface LeadCaptureFormProps {
   result: MapEstimateResult;
@@ -59,8 +63,8 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
     const lastName = nameParts.slice(1).join(' ') || '';
 
     try {
-      // POST lead to Kickserv via Netlify Function proxy (server-side, no CORS)
-      const res = await fetch(KICKSERV_PROXY, {
+      // POST lead to the FastAPI backend, which forwards to Kickserv server-side
+      const res = await fetch(LEAD_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
