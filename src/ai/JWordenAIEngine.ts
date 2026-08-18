@@ -1,12 +1,7 @@
-import Anthropic from '@anthropic-ai/sdk';
 import legacyData from '../data/legacyPortfolio.json';
 import { sovereignElite } from '../logic/sovereignElite';
 import { coastalEmpire } from '../utils/coastalLogic';
-
-const anthropic = new Anthropic({
-  apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY || 'STANDBY_MODE',
-  dangerouslyAllowBrowser: true,
-});
+import { callAI } from './aiClient';
 
 function resolveHeritageSummary(): string {
   const heritage = legacyData.heritage as unknown;
@@ -33,18 +28,19 @@ export class JWordenAI {
     `;
 
     try {
-      const response = await anthropic.messages.create({
-        model: 'claude-3-5-sonnet-20241022',
-        max_tokens: 1000,
-        temperature: 0.2,
+      // Runs through /.netlify/functions/ai-proxy rather than the Anthropic SDK.
+      // The SDK path needed dangerouslyAllowBrowser and VITE_ANTHROPIC_API_KEY,
+      // which Vite inlines into the shipped bundle — the key was readable by
+      // anyone who opened devtools. The proxy keeps it server-side.
+      const aiProposal = await callAI({
+        provider: 'anthropic',
         system: 'You are the apex AI estimator for an elite national paving syndicate.',
-        messages: [{ role: 'user', content: systemPrompt }],
+        prompt: systemPrompt,
+        maxTokens: 1000,
+        temperature: 0.2,
       });
 
-      return {
-        totalEstimate,
-        aiProposal: response.content[0].type === 'text' ? response.content[0].text : 'Error',
-      };
+      return { totalEstimate, aiProposal };
     } catch (error) {
       console.error('AI Engine Failure:', error);
       return null;

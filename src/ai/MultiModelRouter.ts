@@ -7,6 +7,8 @@
  * Falls back gracefully when API keys are absent.
  */
 
+import { callAI } from './aiClient';
+
 export type TaskType = 'bidding' | 'specs' | 'scheduling' | 'general';
 
 export interface ModelRouteResult {
@@ -18,10 +20,10 @@ export interface ModelRouteResult {
 }
 
 const TASK_ROUTING: Record<TaskType, { provider: ModelRouteResult['provider']; model: string }> = {
-  bidding:    { provider: 'anthropic', model: 'claude-3-5-sonnet-20241022' },
+  bidding:    { provider: 'anthropic', model: 'claude-opus-5' },
   specs:      { provider: 'gemini',    model: 'gemini-1.5-pro' },
   scheduling: { provider: 'openai',    model: 'gpt-4o' },
-  general:    { provider: 'anthropic', model: 'claude-3-5-sonnet-20241022' },
+  general:    { provider: 'anthropic', model: 'claude-opus-5' },
 };
 
 const WORDEN_SYSTEM_CONTEXT = `You are JWORDENAI — the proprietary AI engine for J. Worden & Sons Paving LLC & General Contracting.
@@ -32,62 +34,16 @@ Oil Price Shield: ±$9/ton liquid asphalt buffer on all cost calculations.
 Client Tiers: Whale ($500K+ national/federal), Shark ($100K–$499K regional), Fish (<$100K residential).
 Always cite standards. Always protect margins. Always prioritize Whale clients.`;
 
-/** Sentinel value used when VITE_ANTHROPIC_API_KEY is not set */
-const STANDBY_MODE = 'STANDBY_MODE';
-
-async function callAnthropic(prompt: string, systemContext: string): Promise<string> {
-  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-  if (!apiKey || apiKey === STANDBY_MODE) return '[Anthropic API key not configured]';
-
-  const { default: Anthropic } = await import('@anthropic-ai/sdk');
-  const client = new Anthropic({ apiKey, dangerouslyAllowBrowser: true });
-  const msg = await client.messages.create({
-    model: 'claude-3-5-sonnet-20241022',
-    max_tokens: 1024,
-    system: systemContext,
-    messages: [{ role: 'user', content: prompt }],
-  });
-  return msg.content[0].type === 'text' ? msg.content[0].text : 'No response';
+async function callAnthropic(prompt: string, systemContext: string, model?: string): Promise<string> {
+  return callAI({ provider: 'anthropic', prompt, system: systemContext, model });
 }
 
-async function callOpenAI(prompt: string, systemContext: string): Promise<string> {
-  const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-  if (!apiKey) return '[OpenAI API key not configured]';
-
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model: 'gpt-4o',
-      messages: [
-        { role: 'system', content: systemContext },
-        { role: 'user', content: prompt },
-      ],
-      max_tokens: 1024,
-    }),
-  });
-  const data = await res.json() as { choices?: Array<{ message?: { content?: string } }> };
-  return data.choices?.[0]?.message?.content ?? 'No response';
+async function callOpenAI(prompt: string, systemContext: string, model?: string): Promise<string> {
+  return callAI({ provider: 'openai', prompt, system: systemContext, model });
 }
 
-async function callGemini(prompt: string, systemContext: string): Promise<string> {
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
-  if (!apiKey) return '[Gemini API key not configured]';
-
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        system_instruction: { parts: [{ text: systemContext }] },
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 1024 },
-      }),
-    }
-  );
-  const data = await res.json() as { candidates?: Array<{ content?: { parts?: Array<{ text?: string }> } }> };
-  return data.candidates?.[0]?.content?.parts?.[0]?.text ?? 'No response';
+async function callGemini(prompt: string, systemContext: string, model?: string): Promise<string> {
+  return callAI({ provider: 'gemini', prompt, system: systemContext, model });
 }
 
 export async function routeToModel(
