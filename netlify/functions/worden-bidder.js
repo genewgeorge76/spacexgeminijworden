@@ -1,11 +1,11 @@
-const Anthropic = require('@anthropic-ai/sdk');
+import Anthropic from '@anthropic-ai/sdk';
 
 // The Worden Paving Constants
 const ASPHALT_DENSITY = 115; // lbs per square yard per inch
 const STONE_BASE_COST_PER_TON = 28.50; 
 const ASPHALT_COST_PER_TON = 85.00;
 
-exports.handler = async (event) => {
+export const handler = async (event) => {
   let address, sqft, soilType, region;
   try {
     ({ address, sqft, soilType, region } = JSON.parse(event.body));

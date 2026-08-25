@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Form definitions — J. Worden &amp; Sons</title>
+  </head>
+  <body>
+    <!--
+      Netlify detects forms by scanning the HTML it publishes. This is a Vite
+      SPA, so the real forms only exist after React renders and Netlify never
+      sees them. These static definitions are what register the forms with
+      Netlify Forms; every field a form submits must be declared here or that
+      field is dropped from the submission.
+
+      Do not delete. scripts/check-lead-intake.mjs fails the build if this file
+      or any form named below goes missing.
+    -->
+
+    <!-- Public contact page (src/routes/contact.tsx) -->
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="contact" />
+      <input name="bot-field" />
+      <input name="firstName" />
+      <input name="lastName" />
+      <input name="phone" type="tel" />
+      <input name="email" type="email" />
+      <input name="serviceAddress" />
+      <textarea name="jobDescription"></textarea>
+      <input name="source" />
+      <input name="path" />
+    </form>
+
+    <!--
+      Every lead that goes through netlify/functions/kickserv-lead lands here.
+      This is the credential-free sink of last resort: it keeps working when the
+      CRM token expires, the subscription lapses, or the ops backend is down.
+    -->
+    <form name="lead-intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="lead-intake" />
+      <input name="bot-field" />
+      <input name="leadRef" />
+      <input name="receivedAt" />
+      <input name="source" />
+      <input name="path" />
+      <input name="firstName" />
+      <input name="lastName" />
+      <input name="name" />
+      <input name="phone" type="tel" />
+      <input name="email" type="email" />
+      <input name="serviceAddress" />
+      <textarea name="jobDescription"></textarea>
+      <input name="serviceType" />
+      <input name="stateCode" />
+      <input name="sqFt" />
+      <input name="estimatedValue" />
+      <input name="tier" />
+    </form>
+  </body>
+</html>

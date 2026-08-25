@@ -3,13 +3,11 @@ import { useState } from 'react';
 import { useSeo } from '../lib/useSeo';
 import SectionBackdrop from '../components/SectionBackdrop';
 import { PHONE_DISPLAY as PHONE, PHONE_HREF, ADDRESS, HOURS_DISPLAY } from '../lib/businessInfo';
+import { submitLead } from '../lib/lead-intake';
 
 export const Route = createFileRoute('/contact')({
   component: ContactPage,
 });
-
-/** FastAPI lead webhook (standalone repo). Empty string = disabled. */
-const LEADS_API_URL = (import.meta.env.VITE_LEADS_API_URL as string | undefined) ?? '';
 
 type Status = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -48,45 +46,25 @@ function ContactPage() {
       return;
     }
 
-    // Encode for Netlify Forms (application/x-www-form-urlencoded).
-    const params = new URLSearchParams();
-    params.append('form-name', 'contact');
-    for (const [k, v] of data.entries()) {
-      params.append(k, typeof v === 'string' ? v : '');
+    const payload: Record<string, string> = {};
+    for (const [k, v] of data.entries()) payload[k] = typeof v === 'string' ? v : '';
+    payload.source = 'contact_page';
+    payload.path = '/contact';
+
+    // One path for every lead on the site. The function fans out to the CRM and
+    // the ops backend; Netlify Forms is the credential-free sink underneath.
+    const delivery = await submitLead(payload, 'contact');
+
+    if (!delivery.ok) {
+      setStatus('error');
+      setErrorMsg(delivery.error ?? 'Something went wrong. Please call us instead.');
+      return;
     }
 
-    try {
-      // 1) Netlify Forms (always on — customer-safe persistent log)
-      const res = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString(),
-      });
-      if (!res.ok) throw new Error(`Server returned ${res.status}`);
-
-      // 2) Mirror the lead to the FastAPI ops backend (best-effort, non-blocking)
-      if (LEADS_API_URL) {
-        const payload: Record<string, string> = {};
-        for (const [k, v] of data.entries()) payload[k] = typeof v === 'string' ? v : '';
-        payload.source = 'gemni-investigate';
-        payload.path = '/contact';
-        // Fire-and-forget; if backend is down the customer's lead is still safe in Netlify Forms.
-        void fetch(LEADS_API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
-          keepalive: true,
-        }).catch(() => undefined);
-      }
-
-      setStatus('sent');
-      const w = window as unknown as { gtag?: (...args: unknown[]) => void };
-      if (w.gtag) {
-        w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'netlify_forms' });
-      }
-    } catch (err) {
-      setStatus('error');
-      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please call us instead.');
+    setStatus('sent');
+    const w = window as unknown as { gtag?: (...args: unknown[]) => void };
+    if (w.gtag) {
+      w.gtag('event', 'generate_lead', { event_category: 'contact_form', event_label: 'netlify_forms' });
     }
   }
 

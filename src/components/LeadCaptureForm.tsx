@@ -1,15 +1,14 @@
 import { useState } from 'react';
 import type { MapEstimateResult, LeadCapture } from '@/lib/estimator-engine';
 import SuccessScreen from '@/components/SuccessScreen';
+import { submitLead, LEAD_FAILURE_MESSAGE } from '@/lib/lead-intake';
 
 /**
  * LeadCaptureForm — Contact info capture with Whale/Shark/Fish classification.
  * Appears after the user draws their project area and sees the estimate.
- * Formats leads for the lead_scoring.py pipeline and submits to Kickserv via
- * the server-side Netlify Function proxy (avoids browser CORS).
+ * Formats leads for the lead_scoring.py pipeline and hands them to the shared
+ * intake path (src/lib/lead-intake.ts), which fans out server-side.
  */
-
-const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
 
 interface LeadCaptureFormProps {
   result: MapEstimateResult;
@@ -58,42 +57,38 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
     const firstName = nameParts[0] || '';
     const lastName = nameParts.slice(1).join(' ') || '';
 
-    try {
-      // POST lead to Kickserv via Netlify Function proxy (server-side, no CORS)
-      const res = await fetch(KICKSERV_PROXY, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          phone,
-          email,
-          serviceAddress: address,
-          jobDescription,
-        }),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({})) as { error?: string };
-        throw new Error(data.error || `Server error ${res.status}`);
-      }
-    } catch (err) {
-      // Surface error but still allow the thank-you state so the user
-      // can call directly — do not block them with a hard failure
-      setSubmitError(err instanceof Error ? err.message : 'Submission failed. Please call 804-446-1296.');
-    }
+    const delivery = await submitLead({
+      firstName,
+      lastName,
+      phone,
+      email,
+      serviceAddress: address,
+      jobDescription,
+      serviceType,
+      stateCode,
+      sqFt: lead.sqFt,
+      estimatedValue: lead.estimatedValue,
+      tier: result.tier,
+      source: '3d_estimator',
+      path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
 
-    // Fire analytics event regardless of Kickserv outcome
-    const win = window as unknown as { gtag?: (...args: unknown[]) => void };
-    if (typeof window !== 'undefined' && win.gtag) {
-      win.gtag('event', 'generate_lead', {
-        event_category: '3d_estimator',
-        event_label: result.tier,
-        value: result.estimate.finalBidPrice,
-      });
+    // Only count a conversion we can prove was stored somewhere.
+    if (delivery.ok) {
+      const win = window as unknown as { gtag?: (...args: unknown[]) => void };
+      if (typeof window !== 'undefined' && win.gtag) {
+        win.gtag('event', 'generate_lead', {
+          event_category: '3d_estimator',
+          event_label: result.tier,
+          value: result.estimate.finalBidPrice,
+        });
+      }
     }
 
     setSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(delivery.ok ? null : delivery.error ?? LEAD_FAILURE_MESSAGE);
+    // A thank-you screen is only honest once a sink confirmed the lead.
+    setSubmitted(delivery.ok);
   };
 
   if (submitted) {
@@ -104,9 +99,7 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
           ? 'Commercial priority routing — a Worden estimator will contact you within 24 hours.'
           : 'A Worden estimator will contact you within 24 hours.';
 
-    const subtitle = submitError
-      ? `${tierNote} Note: ${submitError}`
-      : tierNote;
+    const subtitle = tierNote;
 
     return (
       <SuccessScreen
@@ -207,6 +200,18 @@ export default function LeadCaptureForm({ result, stateCode, serviceType }: Lead
             className="w-full bg-black border border-zinc-700 text-white p-3 text-sm focus:border-[#ffcc00] outline-none transition-colors"
           />
         </div>
+
+        {submitError && (
+          <div
+            role="alert"
+            className="border border-red-500/60 bg-red-500/10 px-4 py-3 text-sm font-bold text-red-200"
+          >
+            ⚠️ {submitError}{' '}
+            <a href="tel:+18044461296" className="underline hover:opacity-70">
+              Call 804-446-1296
+            </a>
+          </div>
+        )}
 
         <button
           type="submit"

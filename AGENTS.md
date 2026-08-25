@@ -27,10 +27,12 @@ This is a **Vite SPA**, not TanStack Start. There is no SSR and no file-based se
 
 ```
 ├── public/                   Static assets served as-is
+│   └── __forms.html          Static Netlify Forms definitions (SPA form detection)
 ├── data/                     Runtime data consumed by CI workflows (e.g. leads_scored.json)
 ├── research/                 Research notes and planning docs (not shipped)
 ├── scripts/
 │   ├── build-sitemaps.mjs    Generates sitemap.xml at build time
+│   ├── check-lead-intake.mjs Build-time guard for the lead path (runs as prebuild)
 │   └── lead_scoring.py       Hourly lead-scoring workflow invoked by GitHub Actions
 ├── netlify/
 │   └── functions/
@@ -67,9 +69,37 @@ Routes live in `src/routes/` and are compiled into `src/routeTree.gen.ts` by `@t
 
 Because this is an SPA, `netlify.toml` includes a `/*  →  /index.html  200` rewrite so deep-linked routes are served the bundle.
 
+### Lead intake
+
+Every lead on the site goes through one path. Do not add a second one.
+
+```
+form component → submitLead()            src/lib/lead-intake.ts
+              → /.netlify/functions/kickserv-lead
+              → netlify-forms + leads-api + crm-webhook (fan-out, server side)
+              → fallback: POST /__forms.html straight from the browser
+```
+
+Three rules hold this together, because breaking any of them silently loses
+customers — which is exactly what happened for several weeks in August 2026:
+
+1. **Never show a thank-you without a confirmed sink.** `submitLead()` returns
+   `ok: false` when nothing stored the lead; callers must render an error and
+   the phone number instead.
+2. **Never POST a lead to `/`.** The SPA fallback answers with `index.html` and
+   HTTP 200, so a dropped lead looks delivered. Post to `/__forms.html`.
+3. **Netlify only sees forms declared in `public/__forms.html`.** React-rendered
+   forms are invisible to the build scanner, so any new form name must be added
+   there or its submissions are rejected.
+
+`scripts/check-lead-intake.mjs` enforces all three. It runs as `prebuild`, so a
+deploy with a broken lead path fails instead of shipping, and again in CI. The
+`Lead Intake Canary` workflow probes production every 6 hours and opens an issue
+when the live endpoint stops answering.
+
 ### Server endpoints
 
-Anything that needs server credentials or cross-origin calls goes in `netlify/functions/`. Client code calls these via `/.netlify/functions/<name>`. `ContactForm.tsx` and `LeadCaptureForm.tsx` are the current callers.
+Anything that needs server credentials or cross-origin calls goes in `netlify/functions/`. Client code calls these via `/.netlify/functions/<name>`. `ContactForm.tsx`, `LeadCaptureForm.tsx`, and `routes/contact.tsx` reach them through `src/lib/lead-intake.ts`.
 
 Edge functions live under `netlify/edge-functions/`. `geo-intercept` handles `/strike/*` — it reads `context.geo` and annotates the SPA response with `x-worden-geo-*` headers for regional rapid-dispatch landing pages. The route is registered in the `[[edge_functions]]` block in `netlify.toml`.
 
@@ -91,9 +121,11 @@ Edge functions live under `netlify/edge-functions/`. `geo-intercept` handles `/s
 ```bash
 npm install          # Install dependencies
 npm run dev          # Vite dev server
-npm run build        # Production build → dist/
+npm run build        # Production build → dist/ (guards the lead path first)
 npm run preview      # Preview the dist/ build
-npm run build-sitemaps  # Regenerate sitemap.xml
+npm run build-sitemaps    # Regenerate sitemap.xml
+npm run check:lead-intake # Verify the lead path without a full build
+npm run test:e2e          # Playwright, includes the lead-intake regression suite
 ```
 
 Local full-stack emulation with functions:
@@ -132,5 +164,7 @@ Set on Netlify (or `.env` for local dev — see `.env.example`):
 
 - `ANTHROPIC_API_KEY` — Claude API access for `src/ai/*`
 - `VITE_SITE_URL` — canonical site origin, baked into the client at build time (defined in `netlify.toml`)
+- `LEADS_API_URL` — server-side lead fan-out target for `kickserv-lead` (falls back to `VITE_LEADS_API_URL`)
+- `KICKSERV_WEBHOOK_URL` / `KICKSERV_WEBHOOK_TOKEN` — optional CRM webhook for the same function
 
 Any other AI provider keys or CRM webhook secrets should live in Netlify environment variables and be read only from `netlify/functions/` code, never from `src/`.
