@@ -56,6 +56,37 @@ are the exclusive property of Gene W. George.
 
 ---
 
+## 📥 Lead Intake — Rebuilt August 25, 2026
+
+The site took **zero leads between roughly July 22 and August 25, 2026**. Three
+faults stacked up:
+
+1. `netlify/functions/kickserv-lead.js` was referenced by every form but did not
+   exist in the repo. Submissions 404'd.
+2. The client caught that 404 and rendered a thank-you screen anyway, so nothing
+   looked wrong to the visitor or to us.
+3. Netlify Forms was never registered — this is a Vite SPA, so the build scanner
+   never saw the React-rendered forms, and the contact page's POST to `/` hit the
+   SPA fallback and came back 200.
+
+**Current design — one path, guarded:**
+
+| Piece | Role |
+|-------|------|
+| `src/lib/lead-intake.ts` | The only way a lead leaves the browser. Returns `ok: false` when no sink stored it. |
+| `netlify/functions/kickserv-lead.js` | Server-side fan-out: Netlify Forms + `LEADS_API_URL` + optional CRM webhook. 502 when all sinks fail. |
+| `public/__forms.html` | Static form definitions — the only reason Netlify Forms is registered at all. |
+| `scripts/check-lead-intake.mjs` | `prebuild` + CI guard. A missing function or undeclared form fails the build. |
+| `.github/workflows/lead-intake-canary.yml` | Probes production every 6h, opens an issue when intake stops answering. |
+| `tests/e2e/lead-intake.spec.ts` | Locks in "never a thank-you without a confirmed sink". |
+
+**Still open:** `KICKSERV_WEBHOOK_URL` is unset, so CRM delivery is not live yet —
+leads land in Netlify Forms and the FastAPI backend. `data/leads_inbox.json` still
+does not exist, so `lead_scoring.py` scores built-in sample data (LD-001…LD-005 are
+fixtures, not real leads); the workflow now says so in its log.
+
+---
+
 ## 🏗️ Architecture Quick Reference
 
 | Layer | Technology |

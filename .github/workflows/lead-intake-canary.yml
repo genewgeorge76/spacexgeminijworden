@@ -1,0 +1,148 @@
+name: Lead Intake Canary
+
+# Watches the live lead path from outside the site.
+#
+# In August 2026 the intake endpoint was missing in production for weeks and
+# nothing anywhere went red — the forms kept showing a thank-you screen. CI only
+# proves the code is right at merge time; this proves the deployed site is still
+# taking leads right now.
+
+on:
+  schedule:
+    # Every 6 hours. Cheap, and four chances a day to catch a silent outage.
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  probe:
+    name: Probe production lead intake
+    runs-on: ubuntu-latest
+    steps:
+      - name: Probe the intake endpoint and form definitions
+        id: probe
+        run: |
+          set -uo pipefail
+          SITE="${PRODUCTION_URL:-https://www.jwordenasphaltpaving.com}"
+          echo "Probing $SITE"
+          FAILURES=""
+
+          # 1. The function must be deployed and answer the canary handshake.
+          #    x-worden-canary makes it report its configuration without
+          #    creating a lead, so this never pollutes the CRM.
+          BODY=$(curl -sS --max-time 30 -w '\n%{http_code}' \
+            -X POST "$SITE/.netlify/functions/kickserv-lead" \
+            -H 'Content-Type: application/json' \
+            -H 'x-worden-canary: 1' \
+            -d '{"canary":true}' || echo -e '\n000')
+          CODE=$(echo "$BODY" | tail -n1)
+          PAYLOAD=$(echo "$BODY" | sed '$d')
+          echo "endpoint HTTP $CODE: $PAYLOAD"
+
+          if [ "$CODE" != "200" ]; then
+            FAILURES="${FAILURES}- \`POST /.netlify/functions/kickserv-lead\` returned HTTP $CODE (expected 200). Every lead submitted right now is being dropped.\n"
+          elif ! echo "$PAYLOAD" | grep -q '"ok":true'; then
+            FAILURES="${FAILURES}- The intake endpoint answered 200 but not \`ok:true\`: \`$PAYLOAD\`\n"
+          fi
+
+          # 2. The static form definitions must be in the deploy, or Netlify
+          #    Forms — the sink that works without any credentials — is off.
+          FORMS_CODE=$(curl -sS --max-time 30 -o /dev/null -w '%{http_code}' "$SITE/__forms.html" || echo 000)
+          echo "__forms.html HTTP $FORMS_CODE"
+          if [ "$FORMS_CODE" != "200" ]; then
+            FAILURES="${FAILURES}- \`GET /__forms.html\` returned HTTP $FORMS_CODE (expected 200). Netlify Forms is not registered, so the fallback sink is gone.\n"
+          fi
+
+          if [ -n "$FAILURES" ]; then
+            {
+              echo "failures<<CANARY_EOF"
+              echo -e "$FAILURES"
+              echo "CANARY_EOF"
+            } >> "$GITHUB_OUTPUT"
+            echo "status=down" >> "$GITHUB_OUTPUT"
+            exit 1
+          fi
+
+          echo "status=up" >> "$GITHUB_OUTPUT"
+          echo "Lead intake is healthy."
+        env:
+          PRODUCTION_URL: ${{ vars.PRODUCTION_URL }}
+
+      - name: Raise the alarm
+        if: failure()
+        uses: actions/github-script@v7
+        env:
+          FAILURES: ${{ steps.probe.outputs.failures }}
+        with:
+          script: |
+            const title = '🚨 Lead intake is down in production';
+            const body = [
+              'The lead intake canary failed. Visitors filling in a form right now may not reach us.',
+              '',
+              '**What failed**',
+              '',
+              process.env.FAILURES || 'See the workflow run for details.',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              '',
+              'Checks performed:',
+              '1. `POST /.netlify/functions/kickserv-lead` with `x-worden-canary: 1` → expects HTTP 200 and `ok:true`.',
+              '2. `GET /__forms.html` → expects HTTP 200 so Netlify Forms stays registered.',
+              '',
+              'This issue closes itself on the next healthy run.',
+            ].join('\n');
+
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'lead-intake-down',
+            });
+
+            if (open.length > 0) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: open[0].number,
+                body,
+              });
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+              labels: ['lead-intake-down'],
+            });
+
+      - name: Stand down
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'lead-intake-down',
+            });
+
+            for (const issue of open) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: 'Lead intake is answering again — closing.',
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed',
+              });
+            }

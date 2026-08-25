@@ -26,9 +26,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Python 3.12
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Warn when no real lead inbox is present
+        env:
+          LEAD_INPUT_FILE: ${{ github.event.inputs.lead_input_file || 'data/leads_inbox.json' }}
+        run: |
+          if [ ! -f "$LEAD_INPUT_FILE" ]; then
+            echo "::warning title=No lead inbox::$LEAD_INPUT_FILE does not exist — lead_scoring.py will score built-in sample leads, not real ones."
+          fi
 
       - name: Run lead scoring
         env:

@@ -1,7 +1,7 @@
 import { useState } from 'react';
+import { submitLead, LEAD_FAILURE_MESSAGE } from '@/lib/lead-intake';
 
 // Netlify Function proxy — forwards leads to Kickserv server-side to avoid browser CORS
-const KICKSERV_PROXY = '/.netlify/functions/kickserv-lead';
 
 // GA4 Measurement ID — set VITE_GA4_MEASUREMENT_ID in Netlify dashboard environment variables
 const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA4_MEASUREMENT_ID as string | undefined;
@@ -108,27 +108,28 @@ export default function ContactForm() {
     setKickservLoading(true);
     setKickservError(null);
     let kickservOk = false;
-    try {
-      const res = await fetch(KICKSERV_PROXY, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, phone, email, serviceAddress: addressVal, jobDescription }),
-      });
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({})) as { error?: string };
-        throw new Error(data.error || `Server error ${res.status}`);
-      }
+    const delivery = await submitLead({
+      firstName,
+      lastName,
+      phone,
+      email,
+      serviceAddress: addressVal,
+      jobDescription,
+      source: 'contact_form',
+      path: typeof window !== 'undefined' ? window.location.pathname : '',
+    });
+
+    if (delivery.ok) {
       kickservOk = true;
-      // Fire GA conversion event on successful dispatch
+      // Fire GA conversion event on confirmed dispatch
       if (typeof window !== 'undefined' && win.gtag && GA4_MEASUREMENT_ID) {
         win.gtag('event', 'conversion', { event_category: 'kickserv_dispatch', send_to: GA4_MEASUREMENT_ID });
       }
       setSubmitted(true);
-    } catch (err) {
-      setKickservError(err instanceof Error ? err.message : 'Submission failed. Please call us at 804-446-1296.');
-    } finally {
-      setKickservLoading(false);
+    } else {
+      setKickservError(delivery.error ?? LEAD_FAILURE_MESSAGE);
     }
+    setKickservLoading(false);
 
     // Call the Worden Brain AI bidder if sqft is provided and Kickserv succeeded
     if (kickservOk && sqftVal > 0) {

@@ -18,9 +18,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci
+      - name: Verify the lead path is intact
+        run: npm run check:lead-intake
+      - name: Netlify Function unit tests
+        run: npm run test:functions
       - name: Mirror canonical business info (no-op if mirror path missing)
         run: node scripts/mirror-business-info.mjs || true
       - name: Build (vite includes mirror step)
@@ -36,7 +40,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - run: npm ci
       - name: Install Playwright browsers

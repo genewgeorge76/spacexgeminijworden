@@ -5,55 +5,37 @@ import { test, expect, type Route } from '@playwright/test';
  *
  * Verifies:
  *   1. /contact loads and renders the form.
- *   2. Submitting POSTs to Netlify Forms ("/" with form-name=contact).
- *   3. When VITE_LEADS_API_URL is set at build time, the same submission
- *      ALSO mirrors a JSON payload to the standalone /api/v1/leads/website
- *      endpoint (fire-and-forget).
- *   4. The success state renders.
+ *   2. Submitting hands the lead to the shared intake path
+ *      (/.netlify/functions/kickserv-lead) with the fields the CRM needs.
+ *   3. The success state renders only after a sink confirms the lead.
  *
- * We intercept network calls so the test never touches a real backend.
+ * Fan-out to the ops backend now happens inside the function, so it is no
+ * longer visible from the browser. tests/e2e/lead-intake.spec.ts covers the
+ * failure modes; this file covers the happy path.
  */
 
-const LEADS_API_URL =
-  process.env.VITE_LEADS_API_URL || 'https://example.invalid/api/v1/leads/website';
-
 test.describe('contact funnel', () => {
-  test('submits to Netlify Forms and mirrors to FastAPI', async ({ page }) => {
-    let netlifyHits = 0;
-    let backendHits = 0;
-    let backendBody: Record<string, unknown> | null = null;
+  test('hands the lead to the intake function and confirms', async ({ page }) => {
+    let hits = 0;
+    let body: Record<string, unknown> | null = null;
 
-    // Netlify Forms POSTs back to "/". Capture and short-circuit.
-    await page.route('**/', async (route: Route) => {
-      const req = route.request();
-      if (req.method() === 'POST') {
-        const post = req.postData() ?? '';
-        if (post.includes('form-name=contact')) {
-          netlifyHits += 1;
-          await route.fulfill({ status: 200, body: 'OK' });
-          return;
-        }
-      }
-      await route.continue();
-    });
-
-    // Mirror endpoint — capture the JSON payload to assert shape.
-    await page.route(`${LEADS_API_URL}**`, async (route: Route) => {
-      backendHits += 1;
+    await page.route('**/.netlify/functions/kickserv-lead', async (route: Route) => {
+      hits += 1;
       try {
-        backendBody = JSON.parse(route.request().postData() ?? '{}');
+        body = JSON.parse(route.request().postData() ?? '{}');
       } catch {
-        backendBody = {};
+        body = {};
       }
       await route.fulfill({
         status: 200,
         contentType: 'application/json',
-        body: JSON.stringify({ status: 'received', id: 1 }),
+        body: JSON.stringify({ ok: true, leadRef: 'WRD-TEST', delivered: ['netlify-forms'] }),
       });
     });
 
     await page.goto('/contact');
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    // The page ships a hidden SEO <h1> as well, so match on the visible one.
+    await expect(page.getByRole('heading', { name: /tell us about the job/i })).toBeVisible();
 
     await page.getByLabel(/first name/i).fill('Playwright');
     await page.getByLabel(/^phone/i).fill('804-555-0100');
@@ -61,23 +43,18 @@ test.describe('contact funnel', () => {
 
     await page.getByRole('button', { name: /send|submit|request/i }).click();
 
-    // Wait until either a confirmation message renders or sending state clears.
     await expect
-      .poll(() => netlifyHits, { timeout: 10_000, message: 'Netlify Forms not called' })
+      .poll(() => hits, { timeout: 10_000, message: 'Lead intake endpoint not called' })
       .toBeGreaterThanOrEqual(1);
 
-    // Backend mirror is fire-and-forget; only assert when an API URL was injected.
-    if (process.env.VITE_LEADS_API_URL) {
-      await expect
-        .poll(() => backendHits, { timeout: 5_000, message: 'Backend mirror not called' })
-        .toBeGreaterThanOrEqual(1);
-      expect(backendBody).toMatchObject({
-        firstName: 'Playwright',
-        phone: '804-555-0100',
-        jobDescription: 'Driveway sealcoat ~600 sqft, ASAP.',
-        source: 'gemni-investigate',
-        path: '/contact',
-      });
-    }
+    expect(body).toMatchObject({
+      firstName: 'Playwright',
+      phone: '804-555-0100',
+      jobDescription: 'Driveway sealcoat ~600 sqft, ASAP.',
+      source: 'contact_page',
+      path: '/contact',
+    });
+
+    await expect(page.getByText(/thank you/i)).toBeVisible();
   });
 });
